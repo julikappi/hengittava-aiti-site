@@ -36,12 +36,27 @@ createServer(async (req, res) => {
   try {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     if (pathname === '/') pathname = '/index.html';
-    const file = normalize(join(root, pathname));
+    if (pathname.endsWith('/')) pathname += 'index.html';
+    let file = normalize(join(root, pathname));
     if (!file.startsWith(root)) {
       res.writeHead(403);
       return res.end('Forbidden');
     }
-    const data = await readFile(file);
+    let data;
+    try {
+      data = await readFile(file);
+    } catch (err) {
+      if (!extname(file)) {
+        file = normalize(join(root, pathname, 'index.html'));
+        if (!file.startsWith(root)) {
+          res.writeHead(403);
+          return res.end('Forbidden');
+        }
+        data = await readFile(file);
+      } else {
+        throw err;
+      }
+    }
     res.writeHead(200, { 'Content-Type': mime[extname(file)] ?? 'application/octet-stream' });
     res.end(data);
   } catch {

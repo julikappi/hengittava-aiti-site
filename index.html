@@ -14,8 +14,8 @@
   · All behavior is in one <script> block, grouped by feature — convert
     to small client components / hooks (BreathingMoment, RevealOnScroll…).
   · Images live in ./kuvat/ → move to /public/kuvat/ and swap to next/image.
-  · The signup form is a stub with a success state — point it at an API
-    route or a list provider (e.g. Resend, Loops, Mailchimp) later.
+  · The signup form is ready to POST to /api/signup or a GHL webhook.
+    Configure endpoints in HA_CONFIG near the bottom before production.
   · No WordPress assumptions anywhere. No build step needed to preview.
   ═══════════════════════════════════════════════════════════════════
 -->
@@ -363,7 +363,7 @@
       <h2 class="font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-plum-900">
         Jokainen matka alkaa <em class="serif-italic text-plum-600">yhdestä hengityksestä</em>.
       </h2>
-      <p class="mt-5 text-lg text-plum-700/90 leading-relaxed">Valitse askel, joka tuntuu tänään mahdolliselta.</p>
+      <p class="mt-5 text-lg text-plum-700/90 leading-relaxed">Valitse aloitus, joka tuntuu tänään mahdolliselta.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6 md:gap-7 mt-16 items-stretch">
@@ -374,16 +374,16 @@
         <h3 class="font-serif text-[1.75rem] leading-tight mt-5 text-plum-900">Hermosto Reset <em class="serif-italic text-plum-600">Mini</em></h3>
         <p class="text-sm font-bold text-plum-400 mt-1.5">7 päivän opas · sähköpostiisi</p>
         <p class="mt-4 text-plum-700/90 leading-relaxed">
-          Ilmainen interaktiivinen opas hermoston rauhoittamiseen. Seitsemän päivää, yksi tehtävä päivässä.
+          Ilmainen 7 päivän opas uupuneelle äidille, joka kaipaa pientä, konkreettista alkua hermoston rauhoittamiseen.
         </p>
         <ul class="mt-5 space-y-2.5 text-plum-700/90 flex-1 text-[0.97rem]">
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Hengitys, lämpö, mikrotauko</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Aamurutiini &amp; iltarauhoittuminen</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Musiikki ja rajat hermostotekoina</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Interaktiivinen hengitystyökalu</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>7 päivää · yksi pieni askel päivässä</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Osa 1 · Pysähtyminen koko Hermosto Reset -matkasta</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Työkalupakki: hengitystä, lempeyttä ja pieniä tekoja arkeen</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#9B8EC4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Saat oppaan heti sähköpostiisi</li>
         </ul>
         <a href="#musiikki" data-plan="mini" class="mt-8 inline-flex items-center justify-center gap-2 rounded-full border-2 border-plum-600 text-plum-700 hover:bg-plum-600 hover:text-cream-light font-bold px-6 py-3.5 transition-all duration-500">
-          Lataa ilmaiseksi
+          Lataa ilmainen opas
         </a>
       </article>
 
@@ -392,19 +392,19 @@
         <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-plum-600/50 blur-2xl" aria-hidden="true"></div>
         <div class="absolute -bottom-20 -left-10 w-52 h-52 rounded-full bg-nude-400/20 blur-3xl" aria-hidden="true"></div>
         <span class="relative inline-flex w-fit items-center rounded-full bg-nude-400 text-plum-900 text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5">Suosituin</span>
-        <h3 class="relative font-serif text-[1.75rem] leading-tight mt-5">Hermosto Reset — <em class="serif-italic text-plum-300">21 päivän ohjelma</em></h3>
-        <p class="relative text-sm font-bold text-nude-300 mt-1.5">7,90 € · kertamaksu · välitön ja pysyvä pääsy</p>
+        <h3 class="relative font-serif text-[1.75rem] leading-tight mt-5">Hermosto Reset — <em class="serif-italic text-plum-300">21 päivää</em></h3>
+        <p class="relative text-sm font-bold text-nude-300 mt-1.5">19,90 € · kertamaksu · välitön PDF-lataus</p>
         <p class="relative mt-4 text-plum-100 leading-relaxed">
-          21 päivää, yksi tehtävä päivässä. Tutkimuspohjaiset harjoitukset — rakenne, joka kantaa.
+          21 päivää · 21 askelta kohti levollisempaa arkea ja kevyempää vanhemmuutta. Lempeä mutta käytännöllinen opas äidille, jonka hermosto kaipaa tukea.
         </p>
         <ul class="relative mt-5 space-y-2.5 text-plum-100 flex-1 text-[0.97rem]">
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>21 päivittäistä moduulia</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Verensokeri, aamurutiinit, kodin rauhoittaminen</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Uni, luonto, yhteys, itsemyötätunto</li>
-          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Hermostoa hellivä musiikkilista</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>3 osaa: Pysähtyminen, Keho ja arki, Uusi suunta</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>3 työkalupakkia harjoituksilla ja hemmotteluilla</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Bonuksena Hermosto Reset -musiikkilista</li>
+          <li class="flex gap-2.5"><svg class="shrink-0 mt-1" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#D4A5A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Hengitysnauhoitteet tulossa · toimitus viikon sisään</li>
         </ul>
-        <a href="#musiikki" data-plan="matka" class="relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-6 py-3.5 transition-all duration-500">
-          Hanki ohjelma — 7,90 €
+        <a href="#musiikki" data-plan="hr21" class="relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-6 py-3.5 transition-all duration-500">
+          Hanki Hermosto Reset 21 — 19,90 €
         </a>
       </article>
 
@@ -509,8 +509,8 @@
           Hermostoa hellivä <em class="serif-italic text-plum-600">musiikkilista</em>
         </h2>
         <p class="mt-5 text-lg text-plum-700/90 leading-relaxed">
-          Kuratoidut kappaleet aamusta iltaan — juuri oikeanlaiset rauhoittamaan
-          hermostoasi. Jätä sähköpostisi, niin lähetän listan suoraan sinulle.
+          Rauhoittava soittolista uupuneelle äidille. Laita taustalle aamuun, autoon tai iltaan,
+          kun hermosto kaipaa pehmeämpää ääntä. Jätä sähköpostisi, niin lähetän listan sinulle.
         </p>
 
         <div class="mt-9 rounded-[1.75rem] bg-cream-light border border-plum-800/10 shadow-soft overflow-hidden">
@@ -561,19 +561,19 @@
           <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-nude-500/20 blur-3xl" aria-hidden="true"></div>
 
           <div class="relative">
-            <h3 class="font-serif text-3xl leading-tight">Tilaa rauhaa sähköpostiisi</h3>
+            <h3 class="font-serif text-3xl leading-tight">Tilaa ensimmäinen askel sähköpostiisi</h3>
             <p class="mt-4 text-plum-100 leading-relaxed">
-              Jätä osoitteesi — saat heti musiikkilistan ja valitsemasi askeleen mukana.
-              Lempeää postia, ei kiirettä.
+              Valitse, mitä haluat seuraavaksi. Saat materiaalin sähköpostiisi osoitteesta
+              <strong>hei@hengittava-aiti.fi</strong>.
             </p>
 
-            <!-- Signup stub: wire to your list provider / API route on the Next.js port -->
+            <!-- Configure HA_CONFIG.signupEndpoint / checkoutUrlHr21 before production. -->
             <form id="signup-form" class="mt-8 space-y-4" novalidate>
               <label class="block">
                 <span class="text-sm font-bold text-plum-200">Mikä kiinnostaa sinua?</span>
                 <select id="signup-interest" class="field mt-2 w-full rounded-2xl bg-cream-light text-plum-900 font-semibold border border-transparent px-5 py-4">
                   <option value="mini">Hermosto Reset Mini — ilmainen 7 pv opas</option>
-                  <option value="matka">Hermosto Reset — 21 päivän ohjelma (7,90 €)</option>
+                  <option value="hr21">Hermosto Reset 21 — 19,90 €</option>
                   <option value="koti">Hengittävä Koti — 6 vk valmennus, odotuslista</option>
                   <option value="musiikki">Musiikkilista</option>
                 </select>
@@ -588,7 +588,7 @@
                 Lähetä minulle
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
-              <p id="signup-note" class="text-sm text-plum-200/90" aria-live="polite">Ei spämmäystä. Saat listan sähköpostiisi — ja voit poistua koska tahansa.</p>
+              <p id="signup-note" class="text-sm text-plum-200/90" aria-live="polite">Ei spämmäystä. Saat valitsemasi materiaalin sähköpostiisi — ja voit poistua koska tahansa.</p>
             </form>
 
             <!-- success state -->
@@ -598,7 +598,7 @@
                 <path d="M22 33l7 7 13-15" stroke="#D4A5A0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <p class="font-script text-4xl mt-4 text-nude-300">Kiitos.</p>
-              <p class="mt-2 text-plum-100">Hengitä rauhassa — posti on matkalla sinulle.</p>
+              <p class="mt-2 text-plum-100">Hengitä rauhassa — posti on matkalla sinulle. Jos valitsit ostettavan oppaan, ohjaamme sinut kassalle kun checkout-linkki on kytketty.</p>
             </div>
           </div>
         </div>
@@ -736,11 +736,11 @@
     </p>
     <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mt-10" data-delay="360">
       <a href="#musiikki" data-plan="mini" class="inline-flex items-center gap-2.5 rounded-full bg-plum-800 hover:bg-plum-700 text-cream-light font-bold px-9 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
-        Lataa ilmainen mini
+        Lataa ilmainen opas
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#askeleet" class="inline-flex items-center gap-2.5 rounded-full border-2 border-plum-800/20 hover:border-plum-600 hover:text-plum-700 text-plum-800 font-bold px-9 py-4 transition-all duration-500">
-        Tutustu 21 päivän ohjelmaan
+        Tutustu Hermosto Reset 21:een
       </a>
     </div>
   </div>
@@ -788,8 +788,8 @@
     </div>
 
     <div class="mt-14 pt-7 border-t border-plum-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-plum-400">
-      <p>© <span id="year">2026</span> Hengittävä Äiti · hengittava-aiti.fi</p>
-      <p class="font-script text-2xl text-plum-300">Tehty rauhassa, Suomessa.</p>
+      <p>© <span id="year">2026</span> Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · ALV-velvollinen</p>
+      <p class="font-script text-2xl text-plum-300">Tehty rauhassa, Porvoossa.</p>
     </div>
   </div>
 </footer>
@@ -932,7 +932,18 @@
     });
   });
 
-  /* ── 7. Signup form stub — replace with real API call on port ───── */
+  /* ── 7. Signup / checkout wiring ───────────────────────────────── */
+  var HA_CONFIG = {
+    // Miska: replace these with GHL form/webhook endpoints and checkout URL.
+    signupEndpoint: '', // e.g. 'https://services.leadconnectorhq.com/hooks/....'
+    checkoutUrlHr21: '', // GHL/Stripe checkout for Hermosto Reset 21, 19,90 €
+    thankYou: {
+      mini: '/kiitos/opas/',
+      musiikki: '/kiitos/musiikki/',
+      koti: '/kiitos/opas/',
+      hr21: '/kiitos/hermosto-reset-21/'
+    }
+  };
   var form = document.getElementById('signup-form');
   var email = document.getElementById('signup-email');
   var note = document.getElementById('signup-note');
@@ -940,6 +951,7 @@
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var value = (email.value || '').trim();
+    var plan = interest ? interest.value : 'musiikki';
     var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
     if (!valid) {
       note.textContent = 'Tarkista sähköpostiosoite — pieni hetki vain.';
@@ -947,7 +959,26 @@
       email.focus();
       return;
     }
-    // TODO(port): POST { email, interest: interest.value } to /api/signup
+    if (plan === 'hr21' && HA_CONFIG.checkoutUrlHr21) {
+      window.location.href = HA_CONFIG.checkoutUrlHr21;
+      return;
+    }
+    var payload = { email: value, interest: plan, source: 'hengittava-aiti.fi' };
+    if (HA_CONFIG.signupEndpoint) {
+      fetch(HA_CONFIG.signupEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function () {
+        window.location.href = HA_CONFIG.thankYou[plan] || '/kiitos/opas/';
+      }).catch(function () {
+        note.textContent = 'Lähetys ei juuri nyt onnistunut. Voit kirjoittaa meille: hei@hengittava-aiti.fi';
+        note.classList.add('text-nude-300');
+      });
+      return;
+    }
+    // Preview-safe fallback: no real lead is sent until GHL endpoint is configured.
+    console.info('Preview signup payload (not sent):', payload);
     form.classList.add('hidden');
     success.classList.remove('hidden');
   });
