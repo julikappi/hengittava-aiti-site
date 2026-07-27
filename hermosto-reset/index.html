@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  HENGITTÄVÄ ÄITI — hengittava-aiti.fi
+  Single-file brand site · v2.0 (brand palette & typography from the
+  original julianakappi.com design, elevated)
+
+  PORTING NOTES (→ Next.js / React on Vercel)
+  · Every section is wrapped in <section data-component="..."> with an
+    @component comment — lift each one directly into components/*.tsx.
+  · Design tokens live in the tailwind.config block below (colors, fonts,
+    shadows). Move them to tailwind.config.ts as-is.
+  · All custom CSS is in one <style> block → becomes globals.css.
+  · All behavior is in one <script> block, grouped by feature — convert
+    to small client components / hooks (BreathingMoment, RevealOnScroll…).
+  · Images live in ./kuvat/ → move to /public/kuvat/ and swap to next/image.
+  · The signup form is ready to POST to /api/signup or a GHL webhook.
+    Configure endpoints in HA_CONFIG near the bottom before production.
+  · No WordPress assumptions anywhere. No build step needed to preview.
+  ═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hengittävä Äiti — Kun sinä hengität, koti hengittää.</title>
+<meta name="description" content="Hengittävä Äiti on lempeä tila uupuneille äideille. Hengitystä, kehoa ja pieniä arjen tekoja hermoston rauhoittamiseen." />
+<meta name="theme-color" content="#F7EFF0" />
+<meta property="og:title" content="Hengittävä Äiti" />
+<meta property="og:description" content="Kun sinä hengität, koti hengittää." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="kuvat/IMG_6335.jpg" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%235C4190' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23D4A5A0'/%3E%3C/svg%3E" />
+
+<!-- Original brand typography: Cormorant Garamond (display) + Nunito (body) + Dancing Script (accent) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Nunito:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Tailwind via CDN (single-file preview). On the Next.js port, move this config to tailwind.config.ts -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          /* Brand palette — from the original site, refined */
+          cream: { light:'#FBF7F8', DEFAULT:'#F7EFF0', deep:'#F1E4E7' },
+          plum:  { 50:'#F6F3FA', 100:'#EDE8F5', 200:'#D9CFEC', 300:'#C4B5E8', 400:'#9B8EC4', 500:'#7E6BB0', 600:'#5C4190', 700:'#4A3276', 800:'#3D2963', 900:'#2A1845' },
+          nude:  { 50:'#FBF4F3', 100:'#F7E9E6', 200:'#EFD5D1', 300:'#E4BCB6', 400:'#D4A5A0', 500:'#C4918A', 600:'#A9756D', 700:'#8A5B54' }
+        },
+        fontFamily: {
+          serif:  ['"Cormorant Garamond"','Georgia','serif'],
+          sans:   ['Nunito','system-ui','sans-serif'],
+          script: ['"Dancing Script"','cursive']
+        },
+        boxShadow: {
+          soft: '0 24px 60px -28px rgba(42,24,69,0.25)',
+          lift: '0 18px 44px -18px rgba(42,24,69,0.32)',
+          glowlav: '0 0 90px 10px rgba(196,181,232,0.35)'
+        },
+        letterSpacing: { eyebrow: '0.24em' }
+      }
+    }
+  }
+</script>
+
+<style>
+  /* ─── Global polish (→ globals.css) ─────────────────────────────── */
+  :root { --nav-h: 5.25rem; }
+  html { scroll-padding-top: calc(var(--nav-h) + 1.5rem); }
+  body { text-rendering: optimizeLegibility; }
+  ::selection { background:#C4B5E8; color:#2A1845; }
+
+  /* Film grain — soft analog warmth */
+  .grain {
+    position: fixed; inset: 0; z-index: 70; pointer-events: none;
+    opacity: .05; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Breath-like ambient motion */
+  @keyframes breathe {
+    0%,100% { transform: scale(1);    opacity:.5; }
+    45%     { transform: scale(1.09); opacity:.9; }
+  }
+  @keyframes breathe-soft {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.045); }
+  }
+  @keyframes drift {
+    0%,100% { transform: translate3d(0,0,0) scale(1); }
+    50%     { transform: translate3d(0,-14px,0) scale(1.03); }
+  }
+  @keyframes kenburns {
+    0%   { transform: scale(1.02); }
+    100% { transform: scale(1.12); }
+  }
+  .anim-breathe      { animation: breathe 9s ease-in-out infinite; }
+  .anim-breathe-slow { animation: breathe 13s ease-in-out infinite; }
+  .anim-breathe-soft { animation: breathe-soft 10s ease-in-out infinite; }
+  .anim-drift        { animation: drift 16s ease-in-out infinite; }
+  .anim-kenburns     { animation: kenburns 28s ease-in-out infinite alternate; }
+
+  /* Scroll reveals — alive, unhurried */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+
+  /* Header: light over hero → cream glass after scroll */
+  #site-header {
+    --fg: #FBF7F8; --fg-soft: rgba(251,247,248,.85);
+    transition: background-color .5s ease, box-shadow .5s ease, border-color .5s ease;
+    border-bottom: 1px solid transparent;
+  }
+  #site-header.is-scrolled {
+    --fg: #2A1845; --fg-soft: #5C4190;
+    background: rgba(247,239,240,.88);
+    backdrop-filter: blur(14px);
+    border-color: rgba(42,24,69,.08);
+  }
+  #site-header .hdr-fg      { color: var(--fg); transition: color .5s ease; }
+  #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .5s ease; }
+  #site-header .hdr-stroke  { stroke: var(--fg); transition: stroke .5s ease; }
+
+  /* Nav link underline that grows like an inhale */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content:""; position:absolute; left:0; right:100%; bottom:-6px; height:1.5px;
+    background:#D4A5A0; transition: right .45s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-link:hover::after, .nav-link[aria-current="true"]::after { right:0; }
+
+  /* Typography helpers */
+  .serif-italic { font-style: italic; font-weight: 500; letter-spacing: -0.01em; }
+
+  /* Breathing tool */
+  #breath-circle { transition-property: transform; transition-timing-function: cubic-bezier(.45,0,.25,1); will-change: transform; }
+  #breath-label  { transition: opacity .5s ease; }
+  #breath-ring   { transition-property: stroke-dashoffset; transition-timing-function: linear; }
+
+  /* Card hover — gentle lift */
+  .card-lift { transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s cubic-bezier(.22,1,.36,1); }
+  .card-lift:hover { transform: translateY(-6px); }
+
+  /* Inputs */
+  .field { transition: border-color .3s ease, box-shadow .3s ease; }
+  .field:focus { outline:none; border-color:#9B8EC4; box-shadow:0 0 0 4px rgba(155,142,196,.2); }
+
+  /* Reduced motion: everything calm & still */
+  @media (prefers-reduced-motion: reduce) {
+    .anim-breathe, .anim-breathe-slow, .anim-breathe-soft, .anim-drift, .anim-kenburns { animation: none; }
+    .reveal { opacity:1; transform:none; transition:none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+
+<body class="bg-cream text-plum-800 font-sans antialiased overflow-x-hidden">
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ═══════════════ @component: SiteHeader ═══════════════ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-6xl mx-auto px-6 h-[var(--nav-h)] flex items-center justify-between" aria-label="Päävalikko">
+    <!-- Logo -->
+    <a href="#alku" class="flex items-center gap-3">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true" class="anim-breathe-slow">
+        <circle cx="32" cy="32" r="26" stroke-width="3.5" class="hdr-stroke" stroke="#FBF7F8"/>
+        <circle cx="32" cy="32" r="12" fill="#D4A5A0"/>
+      </svg>
+      <span class="hdr-fg font-serif text-[1.45rem] leading-none tracking-tight">
+        Hengittävä <em class="serif-italic">Äiti</em>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden lg:flex items-center gap-8 text-[0.95rem] font-semibold">
+      <a class="nav-link hdr-fg-soft hover:opacity-100" href="#tuntuuko">Tuntuuko tutulta</a>
+      <a class="nav-link hdr-fg-soft" href="#opas">Mikä tämä on</a>
+      <a class="nav-link hdr-fg-soft" href="#sisalto">Sisältö</a>
+      <a class="nav-link hdr-fg-soft" href="#hetki">Hengittävä hetki</a>
+      <a class="nav-link hdr-fg-soft" href="#hinta">Hinta</a>
+      <a class="nav-link hdr-fg-soft" href="#kysymykset">Kysymyksiä</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="#hinta"
+         class="hidden sm:inline-flex items-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 text-[0.95rem] font-bold px-6 py-3 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
+        Aloita 21 päivän matka
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm" aria-expanded="false" aria-controls="mobile-menu" aria-label="Avaa valikko">
+        <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke-width="2" stroke-linecap="round" class="hdr-stroke" stroke="#FBF7F8"/></svg>
+        <svg id="menu-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hidden"><path d="M6 6l12 12M18 6L6 18" stroke-width="2" stroke-linecap="round" class="hdr-stroke" stroke="#FBF7F8"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile panel -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-plum-800/10 bg-cream/95 backdrop-blur-md">
+    <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold text-plum-700">
+      <a href="#tuntuuko" class="mobile-link">Tuntuuko tutulta</a>
+      <a href="#opas" class="mobile-link">Mikä tämä on</a>
+      <a href="#sisalto" class="mobile-link">Sisältö</a>
+      <a href="#hetki" class="mobile-link">Hengittävä hetki</a>
+      <a href="#hinta" class="mobile-link">Hinta</a>
+      <a href="#kysymykset" class="mobile-link">Kysymyksiä</a>
+      <a href="#hinta" class="mobile-link mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-nude-400 text-plum-900 px-6 py-3 font-bold">Aloita 21 päivän matka</a>
+    </div>
+  </div>
+</header>
+
+<main id="alku">
+
+<!-- ═══════════════ @component: Hero — Hermosto Reset sales page ═══════════════ -->
+<section data-component="Hero" class="relative min-h-[100svh] flex items-end overflow-hidden bg-plum-900">
+  <div class="absolute inset-0" aria-hidden="true">
+    <img src="/kuvat/IMG_6335.jpg" alt="Rauhallinen hetki luonnossa auringonlaskuun päin" class="w-full h-full object-cover anim-kenburns" fetchpriority="high" onerror="this.style.display='none'" />
+    <div class="absolute inset-0 bg-gradient-to-b from-plum-900/62 via-plum-900/25 to-plum-900/82"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-plum-900/55 via-plum-900/10 to-transparent"></div>
+  </div>
+  <div class="relative w-full max-w-6xl mx-auto px-6 pb-32 md:pb-40 pt-40">
+    <p class="reveal max-w-3xl font-serif text-cream-light text-[clamp(2rem,5vw,4rem)] leading-[1.05] drop-shadow-[0_4px_30px_rgba(42,24,69,0.45)]">
+      ”Illalla mieheni kysyi, mitä olin päivällä tehnyt. En osannut vastata mitään erityistä, silti olin aivan poikki.”
+    </p>
+    <p class="reveal mt-8 inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-200" data-delay="120">
+      <span class="inline-block w-8 h-px bg-nude-300"></span> Hermosto Reset — 21 päivää
+    </p>
+    <h1 class="reveal font-serif text-cream-light tracking-tight leading-[0.95] mt-5 max-w-4xl text-[clamp(3rem,8vw,6.7rem)]" data-delay="240">
+      Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.
+    </h1>
+    <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-9" data-delay="360">
+      <a href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma" class="inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
+        Aloita 21 päivän matka · 19 €
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="text-sm text-cream-light/80 max-w-sm">Saat oppaan heti sähköpostiisi. 33 sivua, luettavissa puhelimella.</p>
+    </div>
+  </div>
+  <a href="#tuntuuko" class="absolute bottom-24 left-1/2 -translate-x-1/2 text-cream-light/70 hover:text-cream-light transition-colors z-10" aria-label="Selaa alas">
+    <svg width="22" height="34" viewBox="0 0 22 34" fill="none" aria-hidden="true"><rect x="1" y="1" width="20" height="32" rx="10" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="10" r="2.5" fill="currentColor" class="anim-breathe-soft"/></svg>
+  </a>
+  <svg class="absolute bottom-0 left-0 w-full h-[70px] md:h-[110px]" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,55 C360,120 1080,-10 1440,55 L1440,110 L0,110 Z" fill="#F7EFF0"/></svg>
+</section>
+
+<!-- ═══════════════ @component: ProblemEmpathy ═══════════════ -->
+<section id="tuntuuko" data-component="ProblemEmpathy" class="relative py-24 md:py-32">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"><div class="absolute top-20 -right-32 w-[26rem] h-[26rem] rounded-full bg-plum-200/40 blur-3xl anim-drift"></div><div class="absolute bottom-0 -left-32 w-[22rem] h-[22rem] rounded-full bg-nude-200/40 blur-3xl anim-drift" style="animation-delay:-8s"></div></div>
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl reveal">
+      <p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Tunnistatko tämän</p>
+      <h2 class="font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-plum-900">Väsymys voi kertoa hermostosta, joka on ollut pitkään varuillaan.</h2>
+      <p class="mt-6 text-lg text-plum-700/90 leading-relaxed">Ehkä tunnistat jotain tästä:</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mt-12">
+      <article class="reveal card-lift bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-7 shadow-soft"><h3 class="font-serif text-[1.45rem] text-plum-900">Nukahdat vasta, kun koko talo on hiljainen</h3></article>
+      <article class="reveal card-lift bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-7 shadow-soft" data-delay="80"><h3 class="font-serif text-[1.45rem] text-plum-900">Istut sohvalla, mutta mieli suunnittelee jo huomista</h3></article>
+      <article class="reveal card-lift bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-7 shadow-soft" data-delay="160"><h3 class="font-serif text-[1.45rem] text-plum-900">Lepo tuntuu väärältä, jos jotain on vielä kesken</h3></article>
+      <article class="reveal card-lift bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-7 shadow-soft" data-delay="240"><h3 class="font-serif text-[1.45rem] text-plum-900">Ärsyynnyt äänistä, joita ennen et huomannut</h3></article>
+      <article class="reveal card-lift bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-7 shadow-soft sm:col-span-2 lg:col-span-1" data-delay="320"><h3 class="font-serif text-[1.45rem] text-plum-900">Odotat elämää, joka olisi joskus helpompi</h3></article>
+    </div>
+    <p class="reveal mt-10 max-w-3xl text-xl leading-relaxed text-plum-800 font-semibold">Ne voivat olla merkkejä hermostosta, joka on ollut kauan varuillaan.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: WhatItIs ═══════════════ -->
+<section id="opas" data-component="WhatItIs" class="relative py-24 md:py-32 bg-plum-100/50 overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6 grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+    <div class="reveal rounded-t-[9rem] rounded-b-[2rem] overflow-hidden shadow-soft aspect-[4/5] bg-gradient-to-br from-plum-200 via-cream-deep to-nude-200">
+      <img src="/kuvat/IMG_3596.jpg" alt="Juliana lastensa kanssa" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'" />
+    </div>
+    <div class="reveal" data-delay="150">
+      <p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Mikä tämä on</p>
+      <h2 class="font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-plum-900">21 päivän opas äidille, joka kaipaa tukea ilman uutta projektia.</h2>
+      <div class="mt-6 space-y-5 text-lg text-plum-700/90 leading-relaxed">
+        <p>Hermosto Reset on 21 päivän opas äidille, joka on väsynyt mutta ei halua yhtä uutta projektia lisää.</p>
+        <p>Yksi päivä kerrallaan. Jokainen päivä on luettu muutamassa minuutissa: yksi oivallus, muutama ajatus ja yksi konkreettinen askel. Askel on tarkoituksella pieni — sellainen, jonka jaksat tehdä myös väsyneenä.</p>
+        <p>Tämä opas ei lisää tehtävälistaasi. Sen tarkoitus on päinvastainen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: Contents ═══════════════ -->
+<section id="sisalto" data-component="Contents" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Mitä opas sisältää <span class="inline-block w-8 h-px bg-nude-400"></span></p>
+      <h2 class="font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-plum-900">Kolme osaa, 21 päivää ja arkeen mahtuvat työkalut.</h2>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-6 md:gap-7 mt-16">
+      <article class="reveal bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-8 shadow-soft"><p class="text-sm font-extrabold uppercase tracking-wider text-plum-500">Osa 1 · Pysähtyminen — päivät 1–7</p><p class="mt-4 text-plum-700/90 leading-relaxed">Miksi olen aivan puhki? · Lepo ei ole palkinto · Missä elämä oikeastaan tapahtuu? · Pysähtyminen ja palautuminen · Se mitä opit ennen sanoja · Muutos syntyy pienistä valinnoista · Lempeys ei ole luovuttamista</p></article>
+      <article class="reveal bg-plum-800 text-cream-light rounded-[1.75rem] p-8 shadow-lift" data-delay="120"><p class="text-sm font-extrabold uppercase tracking-wider text-nude-300">Osa 2 · Keho ja arki — päivät 8–14</p><p class="mt-4 text-plum-100 leading-relaxed">Turva alkaa kehosta · Jokainen uloshengitys on viesti turvasta · Pienet rituaalit rakentavat turvaa · Suunnittele vähemmän stressiä huomiseen · Tunteet muuttuvat, kun hermosto saa levätä · Puhutaanko hieman rajoista · Sinä olet jo muuttunut</p></article>
+      <article class="reveal bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-8 shadow-soft" data-delay="240"><p class="text-sm font-extrabold uppercase tracking-wider text-plum-500">Osa 3 · Uusi suunta — päivät 15–21</p><p class="mt-4 text-plum-700/90 leading-relaxed">Kohti uutta suuntaa · Milloin on tarpeeksi? · Saat iloita · Elämä on tämä hetki · Sinä et ole projekti · Mitä jos on huono päivä? · Tämä on vasta alku</p></article>
+    </div>
+    <div class="reveal mt-10 bg-cream-light border border-plum-800/10 rounded-[1.75rem] p-8 shadow-soft">
+      <p class="text-sm font-extrabold uppercase tracking-wider text-plum-500">Lisäksi</p>
+      <ul class="mt-5 grid md:grid-cols-3 gap-4 text-plum-700/90 leading-relaxed">
+        <li>Kolme työkalupakkia: yhteensä 21 hengitys- ja kehoharjoitusta sekä 21 hemmottelua</li>
+        <li>Viikkoreflektiot jokaisen osan päätteeksi</li>
+        <li>Tilaa omille muistiinpanoille joka päivälle</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: ForWhom ═══════════════ -->
+<section id="kenelle" data-component="ForWhom" class="py-24 md:py-32 bg-plum-100/40">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-7">
+    <article class="reveal bg-cream-light border border-plum-800/10 rounded-[2rem] p-8 md:p-10 shadow-soft"><h2 class="font-serif text-4xl text-plum-900">Tämä on sinulle, jos</h2><ul class="mt-6 space-y-3 text-lg text-plum-700/90 leading-relaxed"><li>olet väsynyt tavalla, jota nukkuminen ei korjaa</li><li>haluat rauhoittua, mutta et jaksa uutta ohjelmaa tai sovellusta</li><li>sinulla on viisi minuuttia päivässä, ei tuntia</li></ul></article>
+    <article class="reveal bg-cream-light border border-plum-800/10 rounded-[2rem] p-8 md:p-10 shadow-soft" data-delay="150"><h2 class="font-serif text-4xl text-plum-900">Harkitse toista vaihtoehtoa, jos</h2><ul class="mt-6 space-y-3 text-lg text-plum-700/90 leading-relaxed"><li>etsit nopeaa ratkaisua yhdessä viikossa</li><li>haluat tieteellisen perusteoksen hermostosta</li><li>odotat, että joku muuttaa arkesi puolestasi</li></ul></article>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: FounderStory ═══════════════ -->
+<section id="juliana" data-component="FounderStory" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <div class="reveal order-2 lg:order-1 rounded-t-[9rem] rounded-b-[2rem] overflow-hidden shadow-soft aspect-[4/5] max-w-md mx-auto bg-gradient-to-br from-plum-200 via-cream-deep to-nude-200"><img src="/kuvat/IMG_3596.jpg" alt="Juliana lastensa kanssa" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+    <div class="reveal order-1 lg:order-2" data-delay="150"><p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Kuka minä olen</p><h2 class="font-serif tracking-tight text-4xl md:text-[3.2rem] leading-[1.05] mt-6 text-plum-900">Olen Juliana. Kolmen lapsen äiti ja joogaopettaja.</h2><div class="mt-6 space-y-5 text-lg text-plum-700/90 leading-relaxed"><p>Elin vuosia uskoen, että pysähtyminen on laiskuutta ja lepo pitää ansaita. Jatkoin, kunnes olin niin uupunut, etten jaksanut enää mitään. En nauttinut mistään, en edes äitiydestä.</p><p>Minulla oli työkalut. Olin lukenut kirjat ja kuunnellut luennot hermostosta. En vain ollut vienyt asiaa käytäntöön. Kun lopulta aloin — pieni muutos kerrallaan — koko maailma ympärilläni muuttui.</p><p>Tämä opas on se, mitä olisin itse tarvinnut silloin.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: BreathingMoment ═══════════════ -->
+<section id="hetki" data-component="BreathingMoment" class="relative py-24 md:py-36 overflow-hidden bg-plum-900">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[52rem] h-[52rem] rounded-full opacity-60" style="background: radial-gradient(closest-side, rgba(155,142,196,0.22), transparent 70%);"></div></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <p class="reveal inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-300"><span class="inline-block w-8 h-px bg-nude-400"></span> Hengittävä hetki <span class="inline-block w-8 h-px bg-nude-400"></span></p>
+    <h2 class="reveal font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-cream-light" data-delay="120">Kokeile pidennettyä uloshengitystä.</h2>
+    <p class="reveal mt-5 text-lg text-plum-200/90 leading-relaxed max-w-xl mx-auto" data-delay="240">Tämä sivun työkalu antaa pienen maistiaisen oppaan hengitystavasta. Hengitä sisään neljään ja ulos kuuteen tai kahdeksaan, ilman pidätystä.</p>
+    <div class="reveal mt-14 flex flex-col items-center" data-delay="360">
+      <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center" id="breath-stage"><svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true"><circle cx="140" cy="140" r="132" fill="none" stroke="rgba(196,181,232,0.22)" stroke-width="2.5"/><circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#D4A5A0" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/></svg><div class="absolute w-56 h-56 rounded-full border border-plum-400/40 anim-breathe" aria-hidden="true"></div><div class="absolute w-64 h-64 rounded-full border border-nude-400/30 anim-breathe-slow" aria-hidden="true"></div><div id="breath-circle" class="w-40 h-40 sm:w-44 sm:h-44 rounded-full shadow-glowlav flex items-center justify-center" style="background: radial-gradient(circle at 35% 30%, #C4B5E8 0%, #7E6BB0 55%, #4A3276 100%);"><span id="breath-label" class="font-serif serif-italic text-cream-light text-xl sm:text-2xl px-6 text-center leading-snug">Valmiina?</span></div></div>
+      <button id="breath-toggle" class="mt-10 inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">Aloita hengitys</button>
+      <p id="breath-count" class="mt-4 text-sm text-plum-300 h-5" aria-live="polite"></p>
+    </div>
+  </div>
+  <svg class="absolute bottom-0 left-0 w-full h-[70px] md:h-[100px]" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C360,110 1080,-10 1440,50 L1440,100 L0,100 Z" fill="#F7EFF0"/></svg>
+</section>
+
+<!-- ═══════════════ @component: Price ═══════════════ -->
+<section id="hinta" data-component="Price" class="py-24 md:py-32">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Hinta <span class="inline-block w-8 h-px bg-nude-400"></span></p>
+    <div class="mt-8 rounded-[2.25rem] bg-plum-800 text-cream-light p-8 md:p-12 shadow-lift relative overflow-hidden"><span class="relative inline-flex w-fit items-center rounded-full bg-nude-400 text-plum-900 text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5">Hermosto Reset — 21 päivää</span><h2 class="relative font-serif text-5xl md:text-6xl mt-6">33-sivuinen opas · 19 €</h2><p class="relative mt-6 text-lg text-plum-100 leading-relaxed max-w-2xl mx-auto">Saat oppaan heti sähköpostiisi PDF-muodossa. Se on sinun pysyvästi, ja voit palata siihen niin monta kertaa kuin haluat.</p><a href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma" class="relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 transition-all duration-500">Aloita 21 päivän matka · 19 €</a></div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: FAQ ═══════════════ -->
+<section id="kysymykset" data-component="FAQ" class="py-24 md:py-32 bg-plum-100/40">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center reveal"><p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Kysymyksiä <span class="inline-block w-8 h-px bg-nude-400"></span></p><h2 class="font-serif tracking-tight text-4xl md:text-[3.4rem] leading-[1.05] mt-6 text-plum-900">Ennen kuin aloitat.</h2></div>
+    <div class="mt-12 space-y-4">
+      <details class="reveal bg-cream-light border border-plum-800/10 rounded-2xl p-6 shadow-soft"><summary class="font-bold text-plum-900 cursor-pointer">Kuinka paljon aikaa tämä vie?</summary><p class="mt-3 text-plum-700/90 leading-relaxed">Muutaman minuutin päivässä. Päivän lukemiseen menee 2–3 minuuttia ja askeleeseen useimmiten alle viisi.</p></details>
+      <details class="reveal bg-cream-light border border-plum-800/10 rounded-2xl p-6 shadow-soft"><summary class="font-bold text-plum-900 cursor-pointer">Entä jos jään jälkeen?</summary><p class="mt-3 text-plum-700/90 leading-relaxed">Ei haittaa. Opas on sinun, ja voit jatkaa omaan tahtiisi. Hermosto oppii turvallisesta toistosta.</p></details>
+      <details class="reveal bg-cream-light border border-plum-800/10 rounded-2xl p-6 shadow-soft"><summary class="font-bold text-plum-900 cursor-pointer">Pitääkö minun osata joogata tai meditoida?</summary><p class="mt-3 text-plum-700/90 leading-relaxed">Ei. Harjoitukset ovat arkisia: hengitystä, hetkiä ja pieniä pysähdyksiä. Osan voi tehdä tiskatessa.</p></details>
+      <details class="reveal bg-cream-light border border-plum-800/10 rounded-2xl p-6 shadow-soft"><summary class="font-bold text-plum-900 cursor-pointer">Missä muodossa opas on?</summary><p class="mt-3 text-plum-700/90 leading-relaxed">PDF, jonka voit lukea puhelimella, tabletilla tai tietokoneella. Halutessasi voit myös tulostaa sen.</p></details>
+      <details class="reveal bg-cream-light border border-plum-800/10 rounded-2xl p-6 shadow-soft"><summary class="font-bold text-plum-900 cursor-pointer">Onko tämä sama kuin ilmainen Viikko 1?</summary><p class="mt-3 text-plum-700/90 leading-relaxed">Ilmainen osa sisältää ensimmäisen viikon. Tässä on koko 21 päivän matka: kaikki kolme osaa, kolme työkalupakkia ja viikkoreflektiot.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: HonestDisclaimer ═══════════════ -->
+<section id="rehellisesti" data-component="HonestDisclaimer" class="py-20 md:py-24">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="reveal bg-cream-light border border-nude-400/40 rounded-[2rem] p-8 md:p-10 shadow-soft">
+      <p class="text-sm font-extrabold uppercase tracking-wider text-nude-600">Rehellisesti</p>
+      <div class="mt-5 space-y-4 text-plum-700/90 leading-relaxed">
+        <p>Tämä opas perustuu omaan kokemukseeni ja siihen, mitä olen oppinut hermostosta joogaopettajana. Se ei ole terveydenhuollon hoitoa eikä korvaa sitä.</p>
+        <p>Jos väsymys on jatkunut pitkään tai arki tuntuu ylivoimaiselta, sinä ansaitset muutakin tukea kuin tämän oppaan. Ota silloin yhteyttä työterveyteen tai omalle terveysasemallesi. Tätä opasta voi hyvin lukea myös hoidon rinnalla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ @component: SiteFooter ═══════════════ -->
+<footer data-component="SiteFooter" class="bg-plum-900 text-plum-200 pt-16 pb-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-[1.4fr_1fr_1fr] gap-10">
+      <div>
+        <a href="#alku" class="flex items-center gap-3">
+          <svg width="30" height="30" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" stroke="#C4B5E8" stroke-width="3.5"/>
+            <circle cx="32" cy="32" r="12" fill="#D4A5A0"/>
+          </svg>
+          <span class="font-serif text-xl text-cream-light">Hengittävä <em class="serif-italic text-plum-300">Äiti</em></span>
+        </a>
+        <p class="mt-4 text-plum-300 leading-relaxed max-w-xs">
+          Lempeä tila uupuneille äideille. Hermoston rauhoitusta, hengitystä ja hiljaisuutta — yksi hengitys kerrallaan.
+        </p>
+        <a href="mailto:hei@hengittava-aiti.fi" class="inline-block mt-5 text-nude-300 hover:text-nude-200 transition-colors font-semibold">hei@hengittava-aiti.fi</a>
+        <p class="mt-3 text-sm text-plum-400">Maradevi Oy · Y-tunnus 3323765-3 · Fredrika Runebergin katu 1–3 H 16, 06100 Porvoo</p>
+      </div>
+
+      <nav aria-label="Alatunnisteen sivustolinkit">
+        <p class="text-sm font-extrabold uppercase tracking-wider text-plum-400">Sivusto</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="hover:text-cream-light transition-colors" href="#tuntuuko">Tuntuuko tutulta</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="#opas">Mikä tämä on</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="#sisalto">Sisältö</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="#hetki">Hengittävä hetki</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="#juliana">Juliana</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Alatunnisteen ohjelmalinkit">
+        <p class="text-sm font-extrabold uppercase tracking-wider text-plum-400">Ohjelmat</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="hover:text-cream-light transition-colors" href="/kiitos/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma">Hermosto Reset — 21 päivää</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittävä%20Koti%20-odotuslista">Hengittävä Koti — valmennus</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-14 pt-7 border-t border-plum-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-plum-400">
+      <p>© <span id="year">2026</span> Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · ALV-velvollinen</p>
+      <p class="font-script text-2xl text-plum-300">Tehty rauhassa, Porvoossa.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════ Behavior (→ small client components/hooks on React port) ═══════════ */
+(function () {
+  'use strict';
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 1. Sticky header state (light over hero → cream glass) ─────── */
+  var header = document.getElementById('site-header');
+  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── 2. Mobile menu ─────────────────────────────────────────────── */
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('menu-icon-open');
+  var iconClose = document.getElementById('menu-icon-close');
+  function setMenu(open) {
+    mobileMenu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Sulje valikko' : 'Avaa valikko');
+  }
+  menuBtn.addEventListener('click', function () {
+    setMenu(mobileMenu.classList.contains('hidden'));
+  });
+  document.querySelectorAll('.mobile-link').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+
+  /* ── 3. Scroll reveals ──────────────────────────────────────────── */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var delay = e.target.getAttribute('data-delay');
+          if (delay) e.target.style.transitionDelay = delay + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ── 4. Active nav link ─────────────────────────────────────────── */
+  var navLinks = document.querySelectorAll('.nav-link');
+  var sections = ['tuntuuko', 'opas', 'sisalto', 'hetki', 'hinta', 'kysymykset']
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) {
+            l.setAttribute('aria-current', l.getAttribute('href') === '#' + e.target.id ? 'true' : 'false');
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ── 5. Breathing exercise — 4 in, 6–8 out ─────────────────── */
+  var circle = document.getElementById('breath-circle');
+  var label  = document.getElementById('breath-label');
+  var ring   = document.getElementById('breath-ring');
+  var toggle = document.getElementById('breath-toggle');
+  var count  = document.getElementById('breath-count');
+  var RING_LEN = 829.4; // 2π · r132
+
+  var phases = [
+    { text: 'Hengitä sisään…', dur: 4000, scale: 1.42 },
+    { text: 'Hengitä ulos…',   dur: 8000, scale: 1.0  }
+  ];
+  var idx = 0, timer = null, running = false, breaths = 0;
+
+  function setLabel(text) {
+    label.style.opacity = '0';
+    setTimeout(function () { label.textContent = text; label.style.opacity = '1'; }, 320);
+  }
+  function animateRing(dur) {
+    ring.style.transitionDuration = '0ms';
+    ring.style.strokeDashoffset = String(RING_LEN);
+    void ring.getBoundingClientRect(); // reflow so the reset applies
+    ring.style.transitionDuration = dur + 'ms';
+    ring.style.strokeDashoffset = '0';
+  }
+  function runPhase() {
+    var p = phases[idx];
+    circle.style.transitionDuration = p.dur + 'ms';
+    circle.style.transform = 'scale(' + p.scale + ')';
+    setLabel(p.text);
+    animateRing(p.dur);
+    timer = setTimeout(function () {
+      idx = (idx + 1) % phases.length;
+      if (idx === 0) {
+        breaths += 1;
+        count.textContent = breaths === 1 ? '1 hengitys — hyvin tehty.' : breaths + ' hengitystä — jatka omaan tahtiin.';
+      }
+      runPhase();
+    }, p.dur);
+  }
+  function stopBreath() {
+    running = false;
+    clearTimeout(timer);
+    idx = 0;
+    circle.style.transitionDuration = '900ms';
+    circle.style.transform = 'scale(1)';
+    ring.style.transitionDuration = '600ms';
+    ring.style.strokeDashoffset = String(RING_LEN);
+    setLabel(breaths > 0 ? 'Kiitos tästä hetkestä.' : 'Valmiina?');
+    toggle.textContent = breaths > 0 ? 'Hengitä uudelleen' : 'Aloita hengitys';
+  }
+  toggle.addEventListener('click', function () {
+    if (running) { stopBreath(); return; }
+    running = true;
+    breaths = 0;
+    count.textContent = '';
+    toggle.textContent = 'Lopeta';
+    idx = 0;
+    runPhase();
+  });
+
+  /* ── 6. Plan preselect — offer CTAs feed the signup form ────────── */
+  var interest = document.getElementById('signup-interest');
+  document.querySelectorAll('[data-plan]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var plan = el.getAttribute('data-plan');
+      if (interest && plan) { interest.value = plan; if (typeof updateActionLink === 'function') updateActionLink(); }
+    });
+  });
+
+  /* ── 7. Direct launch links ─────────────────────────────────────── */
+  var HA_CONFIG = {
+    checkoutUrlHr21: 'https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma',
+    thankYou: {
+      mini: '/kiitos/opas/',
+      musiikki: '/kiitos/musiikki/',
+      koti: 'mailto:hei@hengittava-aiti.fi?subject=Hengittävä%20Koti%20-odotuslista',
+      hr21: 'https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma'
+    }
+  };
+  var form = document.getElementById('signup-form');
+  var action = document.getElementById('signup-action');
+  function updateActionLink() {
+    if (!interest || !action) return;
+    var plan = interest.value || 'mini';
+    action.href = HA_CONFIG.thankYou[plan] || '/kiitos/opas/';
+    action.textContent = plan === 'hr21' ? 'Aloita 21 päivän matka · 19 €' : plan === 'musiikki' ? 'Avaa soittolista' : plan === 'koti' ? 'Liity odotuslistalle' : 'Lataa ilmainen opas';
+  }
+  if (interest) interest.addEventListener('change', updateActionLink);
+  updateActionLink();
+
+  /* ── 8. Footer year ─────────────────────────────────────────────── */
+  document.getElementById('year').textContent = String(new Date().getFullYear());
+})();
+</script>
+</body>
+</html>
