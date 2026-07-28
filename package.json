@@ -1,0 +1,11 @@
+{
+  "name": "hengittava-aiti-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Hengittävä Äiti — static single-page website ready for GitHub and Vercel.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "check": "node --check server.mjs"
+  }
+}
