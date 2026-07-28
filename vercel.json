@@ -5,15 +5,7 @@
     { "src": "**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "headers": {
-        "X-Content-Type-Options": "nosniff",
-        "Referrer-Policy": "strict-origin-when-cross-origin"
-      },
-      "continue": true
-    },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1.js" },
     { "src": "/hermosto-reset/?", "dest": "/hermosto-reset/index.html" },
     { "src": "/kiitos/opas/?", "dest": "/kiitos/opas/index.html" },
     { "src": "/kiitos/musiikki/?", "dest": "/kiitos/musiikki/index.html" },
@@ -21,5 +13,14 @@
     { "src": "/tietosuoja/?", "dest": "/tietosuoja/index.html" },
     { "src": "/ostoehdot/?", "dest": "/ostoehdot/index.html" },
     { "handle": "filesystem" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
   ]
 }
