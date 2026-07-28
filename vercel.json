@@ -9,6 +9,7 @@
     { "src": "/hermosto-reset/?", "dest": "/hermosto-reset/index.html" },
     { "src": "/minun-tarinani/?", "dest": "/minun-tarinani/index.html" },
     { "src": "/kauppa/hermosto-reset/?", "dest": "/kauppa/hermosto-reset/index.html" },
+    { "src": "/opas/?", "dest": "/opas/index.html" },
     { "src": "/kiitos/opas/?", "dest": "/kiitos/opas/index.html" },
     { "src": "/kiitos/musiikki/?", "dest": "/kiitos/musiikki/index.html" },
     { "src": "/kiitos/hermosto-reset-21/?", "dest": "/kiitos/hermosto-reset-21/index.html" },

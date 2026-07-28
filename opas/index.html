@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<title>Lataa ilmainen opas — Hengittävä Äiti</title>
+<style>
+:root{--cream:#F7EFF0;--light:#FBF7F8;--plum:#2A1845;--mid:#5C4190;--lav:#C4B5E8;--nude:#D4A5A0}*{box-sizing:border-box}body{margin:0;font-family:Nunito,system-ui,sans-serif;background:var(--cream);color:var(--plum);line-height:1.65}main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px;background:radial-gradient(circle at 82% 12%,rgba(196,181,232,.38),transparent 34rem),linear-gradient(145deg,#FBF7F8,#F7EFF0)}.card{width:min(760px,100%);background:rgba(255,255,255,.74);border:1px solid rgba(42,24,69,.08);box-shadow:0 24px 70px -34px rgba(42,24,69,.35);border-radius:34px;padding:clamp(30px,6vw,58px)}.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;margin-bottom:42px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);font-weight:800}h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(42px,7vw,72px);line-height:1;margin:14px 0 18px;font-weight:500}h1 em{color:var(--mid)}p{font-size:18px;color:#4A3276;margin:0 0 24px}.form{display:grid;gap:16px;margin-top:30px}.field{display:grid;gap:7px}label{font-weight:800;color:var(--plum)}input{width:100%;border:1px solid rgba(42,24,69,.16);background:#fff;border-radius:18px;padding:16px 18px;font:inherit;color:var(--plum);outline:none}input:focus{border-color:var(--nude);box-shadow:0 0 0 4px rgba(212,165,160,.18)}button{border:0;border-radius:999px;background:var(--plum);color:var(--light);font-weight:800;font:inherit;padding:16px 24px;cursor:pointer;box-shadow:0 18px 45px -26px rgba(42,24,69,.5)}.note{font-size:14px;color:#6E5C92;margin-top:18px}.links{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}.links a{color:var(--mid);font-weight:800;text-decoration:none}@media(max-width:640px){.card{border-radius:26px}.brand{margin-bottom:28px}p{font-size:16px}}
+</style>
+</head>
+<body>
+<main><section class="card">
+  <div class="brand">Hengittävä <em>Äiti</em></div>
+  <div class="eyebrow">Ilmainen opas</div>
+  <h1>Hermosto Reset · <em>Viikko 1</em></h1>
+  <p>Jätä etunimesi ja sähköpostisi, niin pääset lataamaan ilmaisen 7 päivän oppaan heti seuraavalla sivulla.</p>
+  <p>Opas auttaa tunnistamaan, mistä kuorma voi syntyä ja miten pysähtymistä voi alkaa opetella pienesti, ilman uutta suurta projektia.</p>
+  <form class="form" action="/kiitos/opas/" method="get" id="free-guide-form">
+    <div class="field"><label for="firstName">Etunimi</label><input id="firstName" name="firstName" autocomplete="given-name" required></div>
+    <div class="field"><label for="email">Sähköposti</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+    <button type="submit">Lataa ilmainen opas</button>
+  </form>
+  <p class="note">Saat latauslinkin heti. Varsinainen sähköpostitoimitus lisätään seuraavassa vaiheessa, kun sähköpostilista kytketään.</p>
+  <div class="links"><a href="/">Takaisin etusivulle</a><a href="/hermosto-reset/">Tutustu 21 päivän oppaaseen</a></div>
+</section></main>
+<script>
+(function(){
+  var form=document.getElementById('free-guide-form');
+  form.addEventListener('submit',function(){
+    try{
+      sessionStorage.setItem('ha_free_guide_requested','1');
+      sessionStorage.setItem('ha_free_guide_email',document.getElementById('email').value || '');
+      sessionStorage.setItem('ha_free_guide_firstName',document.getElementById('firstName').value || '');
+    }catch(e){}
+  });
+})();
+</script>
+</body></html>

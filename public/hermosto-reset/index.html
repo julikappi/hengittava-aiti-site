@@ -428,7 +428,7 @@
       <nav aria-label="Alatunnisteen ohjelmalinkit">
         <p class="text-sm font-extrabold uppercase tracking-wider text-plum-400">Ohjelmat</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-cream-light transition-colors" href="/kiitos/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/kauppa/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi">Hengittävä äiti · 1:1 mentorointi</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
@@ -585,7 +585,7 @@
   var HA_CONFIG = {
     checkoutUrlHr21: '/kauppa/hermosto-reset/',
     thankYou: {
-      mini: '/kiitos/opas/',
+      mini: '/opas/',
       musiikki: '/kiitos/musiikki/',
       koti: 'mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi',
       hr21: '/kauppa/hermosto-reset/'
@@ -596,7 +596,7 @@
   function updateActionLink() {
     if (!interest || !action) return;
     var plan = interest.value || 'mini';
-    action.href = HA_CONFIG.thankYou[plan] || '/kiitos/opas/';
+    action.href = HA_CONFIG.thankYou[plan] || '/opas/';
     action.textContent = plan === 'hr21' ? 'Aloita 21 päivän matka · 19 €' : plan === 'musiikki' ? 'Avaa soittolista' : plan === 'koti' ? 'Kysy mentoroinnista' : 'Lataa ilmainen opas';
   }
   if (interest) interest.addEventListener('change', updateActionLink);

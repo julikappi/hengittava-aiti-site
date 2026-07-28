@@ -378,7 +378,7 @@
           <li>Se mitä opit ennen sanoja</li>
           <li>Työkalupakki: 7 harjoitusta ja 7 hemmottelua</li>
         </ul>
-        <a href="/kiitos/opas/" class="mt-8 inline-flex items-center justify-center gap-2 rounded-full border-2 border-plum-600 text-plum-700 hover:bg-plum-600 hover:text-cream-light font-bold px-6 py-3.5 transition-all duration-500">Lataa ilmaiseksi</a>
+        <a href="/opas/" class="mt-8 inline-flex items-center justify-center gap-2 rounded-full border-2 border-plum-600 text-plum-700 hover:bg-plum-600 hover:text-cream-light font-bold px-6 py-3.5 transition-all duration-500">Lataa ilmaiseksi</a>
       </article>
 
       <article class="reveal card-lift relative flex flex-col bg-plum-800 text-cream-light rounded-[1.75rem] p-8 shadow-lift md:-my-4 md:py-12 overflow-hidden" data-delay="120">
@@ -537,7 +537,7 @@
                 <span class="text-sm font-bold text-plum-200">Tarvitsetko apua?</span>
                 <p class="mt-2 text-plum-100 leading-relaxed">Jos linkki tai lataus ei aukea, kirjoita: <a class="text-nude-300 font-bold" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a></p>
               </label>
-              <a id="signup-action" href="/kiitos/opas/" class="w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 transition-all duration-500 hover:-translate-y-0.5">
+              <a id="signup-action" href="/opas/" class="w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 transition-all duration-500 hover:-translate-y-0.5">
                 Jatka
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
@@ -673,7 +673,7 @@
       Aloita tänään. Seitsemän lempeää päivää, yksi hengitys ja pieni askel kerrallaan.
     </p>
     <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mt-10" data-delay="360">
-      <a href="/kiitos/opas/" class="inline-flex items-center gap-2.5 rounded-full bg-plum-800 hover:bg-plum-700 text-cream-light font-bold px-9 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
+      <a href="/opas/" class="inline-flex items-center gap-2.5 rounded-full bg-plum-800 hover:bg-plum-700 text-cream-light font-bold px-9 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
         Lataa ilmainen opas
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -723,7 +723,7 @@
       <nav aria-label="Alatunnisteen ohjelmalinkit">
         <p class="text-sm font-extrabold uppercase tracking-wider text-plum-400">Ohjelmat</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-cream-light transition-colors" href="/kiitos/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi">Hengittävä äiti · 1:1 mentorointi</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
@@ -880,7 +880,7 @@
   var HA_CONFIG = {
     checkoutUrlHr21: '/kauppa/hermosto-reset/',
     thankYou: {
-      mini: '/kiitos/opas/',
+      mini: '/opas/',
       musiikki: 'https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5',
       koti: 'mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi',
       hr21: '/hermosto-reset/'
@@ -891,7 +891,7 @@
   function updateActionLink() {
     if (!interest || !action) return;
     var plan = interest.value || 'mini';
-    action.href = HA_CONFIG.thankYou[plan] || '/kiitos/opas/';
+    action.href = HA_CONFIG.thankYou[plan] || '/opas/';
     action.textContent = plan === 'hr21' ? 'Tutustu oppaaseen · 19 €' : plan === 'musiikki' ? 'Avaa soittolista' : plan === 'koti' ? 'Kysy mentoroinnista' : 'Lataa ilmainen opas';
   }
   if (interest) interest.addEventListener('change', updateActionLink);
