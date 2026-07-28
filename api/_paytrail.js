@@ -9,11 +9,11 @@ const PRODUCT = {
 };
 
 function getMerchantId() {
-  return process.env.PAYTRAIL_MERCHANT_ID || process.env.PAYTRAIL_ACCOUNT;
+  return (process.env.PAYTRAIL_MERCHANT_ID || process.env.PAYTRAIL_ACCOUNT || '').trim();
 }
 
 function getSecret() {
-  return process.env.PAYTRAIL_SECRET || process.env.PAYTRAIL_SECRET_KEY || process.env.PAYTRAIL_MERCHANT_SECRET;
+  return (process.env.PAYTRAIL_SECRET || process.env.PAYTRAIL_SECRET_KEY || process.env.PAYTRAIL_MERCHANT_SECRET || '').trim();
 }
 
 function getBaseUrl(req) {
