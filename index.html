@@ -140,6 +140,14 @@
   #breath-circle { transition-property: transform; transition-timing-function: cubic-bezier(.45,0,.25,1); will-change: transform; }
   #breath-label  { transition: opacity .5s ease; }
   #breath-ring   { transition-property: stroke-dashoffset; transition-timing-function: linear; }
+  #breath-cta { transition: opacity .7s ease, transform .7s ease, max-height .7s ease; max-height: 0; overflow: hidden; }
+  #breath-cta.is-visible { opacity: 1; transform: none; max-height: 15rem; }
+  .music-wave span {
+    display:block; width:3px; height:14px; border-radius:999px; background:#D4A5A0;
+    animation: wave 1.8s ease-in-out infinite; opacity:.75;
+  }
+  .music-wave span:nth-child(2){animation-delay:.18s}.music-wave span:nth-child(3){animation-delay:.36s}.music-wave span:nth-child(4){animation-delay:.54s}
+  @keyframes wave { 0%,100%{transform:scaleY(.45);opacity:.45} 50%{transform:scaleY(1.25);opacity:1} }
 
   /* Card hover — gentle lift */
   .card-lift { transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s cubic-bezier(.22,1,.36,1); }
@@ -427,8 +435,8 @@
       Pysähdy. Tämä minuutti on <em class="serif-italic text-plum-300">sinun</em>.
     </h2>
     <p class="reveal mt-5 text-lg text-plum-200/90 leading-relaxed max-w-xl mx-auto" data-delay="240">
-      Seuraa ympyrää. Sisään nenän kautta, ulos pitkään ja pehmeästi.
-      Rytmi <strong class="font-bold text-cream-light">4 sisään · 6–8 ulos</strong> seuraa oppaan periaatetta: pidennetty uloshengitys viestii keholle rauhasta.
+      Paina nappia. Rauhallinen musiikki käynnistyy ja hengitys alkaa ohjata sinua.
+      Rytmi <strong class="font-bold text-cream-light">4 sisään · 6 ulos</strong> antaa keholle pienen viestin turvasta.
     </p>
 
     <!-- Breathing instrument -->
@@ -453,9 +461,15 @@
 
       <button id="breath-toggle"
               class="mt-10 inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
-        Aloita hengitys
+        <span class="music-wave hidden inline-flex items-center gap-1" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span id="breath-toggle-text">Aloita 60 sekunnin hengityshetki</span>
       </button>
       <p id="breath-count" class="mt-4 text-sm text-plum-300 h-5" aria-live="polite"></p>
+      <div id="breath-cta" class="opacity-0 translate-y-3 mt-8 rounded-[1.5rem] border border-plum-300/30 bg-cream-light/10 p-6 text-center">
+        <p class="font-serif text-2xl text-cream-light leading-tight">Huomasitko, miten pienikin hetki voi muuttaa kehon tunnetta?</p>
+        <p class="mt-3 text-plum-200 leading-relaxed">Hermosto Reset — 21 päivää auttaa rakentamaan tästä pienen tavan. Päivä kerrallaan, ilman suorittamista.</p>
+        <a href="/hermosto-reset/" class="mt-5 inline-flex items-center justify-center rounded-full bg-cream-light text-plum-900 hover:bg-nude-100 font-bold px-6 py-3 transition-all duration-500">Tutustu 21 päivän oppaaseen</a>
+      </div>
     </div>
   </div>
 
@@ -809,19 +823,23 @@
     sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ── 5. Breathing exercise — 4 in, 6–8 out ─────────────────── */
+  /* ── 5. Breathing exercise + soft generated music — 4 in, 6 out ─ */
   var circle = document.getElementById('breath-circle');
   var label  = document.getElementById('breath-label');
   var ring   = document.getElementById('breath-ring');
   var toggle = document.getElementById('breath-toggle');
+  var toggleText = document.getElementById('breath-toggle-text');
+  var musicWave = toggle ? toggle.querySelector('.music-wave') : null;
   var count  = document.getElementById('breath-count');
+  var cta    = document.getElementById('breath-cta');
   var RING_LEN = 829.4; // 2π · r132
 
   var phases = [
-    { text: 'Hengitä sisään…', dur: 4000, scale: 1.42 },
-    { text: 'Hengitä ulos…',   dur: 8000, scale: 1.0  }
+    { text: 'Hengitä sisään 4', dur: 4000, scale: 1.42 },
+    { text: 'Hengitä ulos 6',   dur: 6000, scale: 1.0  }
   ];
-  var idx = 0, timer = null, running = false, breaths = 0;
+  var idx = 0, timer = null, completeTimer = null, running = false, breaths = 0;
+  var audioCtx = null, musicGain = null, musicNodes = [];
 
   function setLabel(text) {
     label.style.opacity = '0';
@@ -830,9 +848,52 @@
   function animateRing(dur) {
     ring.style.transitionDuration = '0ms';
     ring.style.strokeDashoffset = String(RING_LEN);
-    void ring.getBoundingClientRect(); // reflow so the reset applies
+    void ring.getBoundingClientRect();
     ring.style.transitionDuration = dur + 'ms';
     ring.style.strokeDashoffset = '0';
+  }
+  function startMusic() {
+    if (prefersReduced || (!(window.AudioContext || window.webkitAudioContext))) return;
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    stopMusic(true);
+
+    musicGain = audioCtx.createGain();
+    musicGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    musicGain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 2.4);
+    musicGain.connect(audioCtx.destination);
+
+    [196, 246.94, 293.66].forEach(function (freq, i) {
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      var lfo = audioCtx.createOscillator();
+      var lfoGain = audioCtx.createGain();
+      osc.type = i === 0 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.value = i === 0 ? 0.42 : 0.18;
+      lfo.frequency.value = 0.035 + i * 0.012;
+      lfoGain.gain.value = 0.045;
+      lfo.connect(lfoGain);
+      lfoGain.connect(gain.gain);
+      osc.connect(gain);
+      gain.connect(musicGain);
+      osc.start();
+      lfo.start();
+      musicNodes.push(osc, lfo, gain);
+    });
+  }
+  function stopMusic(instant) {
+    if (!audioCtx || !musicGain) return;
+    var now = audioCtx.currentTime;
+    musicGain.gain.cancelScheduledValues(now);
+    musicGain.gain.setValueAtTime(Math.max(musicGain.gain.value, 0.0001), now);
+    musicGain.gain.exponentialRampToValueAtTime(0.0001, now + (instant ? 0.05 : 1.4));
+    var oldNodes = musicNodes.slice();
+    setTimeout(function () {
+      oldNodes.forEach(function (node) { if (node.stop) { try { node.stop(); } catch (e) {} } if (node.disconnect) { try { node.disconnect(); } catch (e) {} } });
+    }, instant ? 80 : 1600);
+    musicNodes = [];
+    musicGain = null;
   }
   function runPhase() {
     var p = phases[idx];
@@ -849,25 +910,36 @@
       runPhase();
     }, p.dur);
   }
-  function stopBreath() {
+  function stopBreath(completed) {
     running = false;
     clearTimeout(timer);
+    clearTimeout(completeTimer);
     idx = 0;
     circle.style.transitionDuration = '900ms';
     circle.style.transform = 'scale(1)';
     ring.style.transitionDuration = '600ms';
     ring.style.strokeDashoffset = String(RING_LEN);
     setLabel(breaths > 0 ? 'Kiitos tästä hetkestä.' : 'Valmiina?');
-    toggle.textContent = breaths > 0 ? 'Hengitä uudelleen' : 'Aloita hengitys';
+    toggleText.textContent = breaths > 0 ? 'Hengitä uudelleen' : 'Aloita 60 sekunnin hengityshetki';
+    if (musicWave) musicWave.classList.add('hidden');
+    stopMusic(false);
+    if (completed || breaths > 0) cta.classList.add('is-visible');
   }
   toggle.addEventListener('click', function () {
-    if (running) { stopBreath(); return; }
+    if (running) { stopBreath(false); return; }
     running = true;
     breaths = 0;
-    count.textContent = '';
-    toggle.textContent = 'Lopeta';
+    count.textContent = 'Musiikki soi hiljaa. Hengitä rauhassa.';
+    cta.classList.remove('is-visible');
+    toggleText.textContent = 'Lopeta hetki';
+    if (musicWave) musicWave.classList.remove('hidden');
     idx = 0;
+    startMusic();
     runPhase();
+    completeTimer = setTimeout(function () {
+      count.textContent = '60 sekuntia. Riittää, että tulit tähän.';
+      stopBreath(true);
+    }, 60000);
   });
 
   /* ── 6. Plan preselect — offer CTAs feed the signup form ────────── */
