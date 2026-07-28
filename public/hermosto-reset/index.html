@@ -216,34 +216,43 @@
 <main id="alku">
 
 <!-- ═══════════════ @component: Hero — Hermosto Reset sales page ═══════════════ -->
-<section data-component="Hero" class="relative min-h-[100svh] flex items-end overflow-hidden bg-plum-900">
+<section data-component="Hero" class="relative min-h-[78svh] md:min-h-[82svh] flex items-end overflow-hidden bg-plum-900">
   <div class="absolute inset-0" aria-hidden="true">
     <img src="/kuvat/IMG_6335.jpg" alt="Rauhallinen hetki luonnossa auringonlaskuun päin" class="w-full h-full object-cover anim-kenburns" fetchpriority="high" onerror="this.style.display='none'" />
-    <div class="absolute inset-0 bg-gradient-to-b from-plum-900/62 via-plum-900/25 to-plum-900/82"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-plum-900/55 via-plum-900/10 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-plum-900/78 via-plum-900/52 to-plum-900/90"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-plum-900/80 via-plum-900/46 to-plum-900/10"></div>
   </div>
-  <div class="relative w-full max-w-6xl mx-auto px-6 pb-32 md:pb-40 pt-40">
-    <p class="reveal max-w-3xl font-serif text-cream-light text-[clamp(2rem,5vw,4rem)] leading-[1.05] drop-shadow-[0_4px_30px_rgba(42,24,69,0.45)]">
-      ”Illalla mieheni kysyi, mitä olin päivällä tehnyt. En osannut vastata mitään erityistä, silti olin aivan poikki.”
-    </p>
-    <p class="reveal mt-8 inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-200" data-delay="120">
+  <div class="relative w-full max-w-6xl mx-auto px-6 pb-22 md:pb-24 pt-32">
+    <div id="payment-cancel-note" class="hidden mb-6 max-w-2xl rounded-2xl bg-cream-light text-plum-900 border border-nude-300/50 shadow-soft px-5 py-4">
+      <p class="text-sm font-bold">Maksu keskeytyi.</p>
+      <p class="mt-1 text-sm text-plum-700/90">Ei hätää — maksua ei veloitettu. Voit palata ostoon rauhassa, jos haluat jatkaa.</p>
+    </div>
+    <div class="max-w-3xl rounded-[2rem] bg-plum-900/48 border border-cream-light/12 backdrop-blur-[2px] px-6 py-7 md:px-8 md:py-8 shadow-lift">
+    <p class="reveal inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-100" data-delay="80">
       <span class="inline-block w-8 h-px bg-nude-300"></span> Hermosto Reset — 21 päivää
     </p>
-    <h1 class="reveal font-serif text-cream-light tracking-tight leading-[0.95] mt-5 max-w-4xl text-[clamp(3rem,8vw,6.7rem)]" data-delay="240">
+    <h1 class="reveal font-serif text-cream-light tracking-tight leading-[0.98] mt-5 max-w-3xl text-[clamp(2.35rem,5.2vw,4.7rem)] drop-shadow-[0_4px_30px_rgba(42,24,69,0.42)]" data-delay="160">
       Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.
     </h1>
-    <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-9" data-delay="360">
-      <a href="/kauppa/hermosto-reset/" class="inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
+    <p class="reveal mt-6 max-w-2xl text-base md:text-lg leading-relaxed" style="color:rgba(251,247,248,.92)" data-delay="240">
+      34-sivuinen digitaalinen opas äidille, joka kaipaa konkreettisia pieniä askelia hermoston rauhoittamiseen arjen keskellä.
+    </p>
+    <p class="reveal mt-5 max-w-2xl font-serif italic text-lg md:text-xl leading-snug" style="color:rgba(251,247,248,.86)" data-delay="300">
+      “Illalla mieheni kysyi, mitä olin päivällä tehnyt. En osannut vastata mitään erityistä, silti olin aivan poikki.”
+    </p>
+    <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8" data-delay="360">
+      <a href="/kauppa/hermosto-reset/" class="inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500 whitespace-nowrap">
         Aloita 21 päivän matka · 19 €
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <p class="text-sm text-cream-light/80 max-w-sm">Maksun jälkeen saat latauslinkin heti. 34 sivua, luettavissa puhelimella.</p>
+      <p class="text-sm max-w-sm" style="color:rgba(251,247,248,.82)">Maksun jälkeen saat latauslinkin heti. Luettavissa puhelimella.</p>
+    </div>
     </div>
   </div>
-  <a href="#tuntuuko" class="absolute bottom-24 left-1/2 -translate-x-1/2 text-cream-light/70 hover:text-cream-light transition-colors z-10" aria-label="Selaa alas">
+  <a href="#tuntuuko" class="absolute bottom-20 left-1/2 -translate-x-1/2 text-cream-light/70 hover:text-cream-light transition-colors z-10" aria-label="Selaa alas">
     <svg width="22" height="34" viewBox="0 0 22 34" fill="none" aria-hidden="true"><rect x="1" y="1" width="20" height="32" rx="10" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="10" r="2.5" fill="currentColor" class="anim-breathe-soft"/></svg>
   </a>
-  <svg class="absolute bottom-0 left-0 w-full h-[70px] md:h-[110px]" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,55 C360,120 1080,-10 1440,55 L1440,110 L0,110 Z" fill="#F7EFF0"/></svg>
+  <svg class="absolute bottom-0 left-0 w-full h-[56px] md:h-[82px]" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,55 C360,120 1080,-10 1440,55 L1440,110 L0,110 Z" fill="#F7EFF0"/></svg>
 </section>
 
 <!-- ═══════════════ @component: ProblemEmpathy ═══════════════ -->
@@ -582,6 +591,13 @@
   }
   if (interest) interest.addEventListener('change', updateActionLink);
   updateActionLink();
+
+  /* ── Payment status note ───────────────────────────────────── */
+  var paymentParams = new URLSearchParams(window.location.search);
+  var cancelNote = document.getElementById('payment-cancel-note');
+  if (cancelNote && paymentParams.get('payment') === 'cancel') {
+    cancelNote.classList.remove('hidden');
+  }
 
   /* ── 8. Footer year ─────────────────────────────────────────────── */
   document.getElementById('year').textContent = String(new Date().getFullYear());
