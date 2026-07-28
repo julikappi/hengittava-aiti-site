@@ -24,6 +24,13 @@ module.exports = async function handler(req, res) {
   }
 
   const baseUrl = getBaseUrl(req);
+  const requestUrl = new URL(req.url, baseUrl);
+  const email = (requestUrl.searchParams.get('email') || '').trim().toLowerCase();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return redirect(res, 303, '/kauppa/hermosto-reset/?email=required');
+  }
+
   const nonce = cryptoRandomId();
   const stamp = `hr21-${Date.now()}-${nonce.slice(0, 8)}`;
   const reference = `HR21-${Date.now()}`;
@@ -43,7 +50,9 @@ module.exports = async function handler(req, res) {
         description: PRODUCT.name,
       },
     ],
-    customer: {},
+    customer: {
+      email,
+    },
     redirectUrls: {
       success: `${baseUrl}/api/paytrail-return?status=success`,
       cancel: `${baseUrl}/api/paytrail-return?status=cancel`,
