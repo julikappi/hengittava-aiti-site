@@ -233,11 +233,11 @@
       Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.
     </h1>
     <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-9" data-delay="360">
-      <a href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma" class="inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
+      <a href="/api/create-payment" class="inline-flex items-center gap-2.5 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 shadow-lift hover:-translate-y-0.5 transition-all duration-500">
         Aloita 21 päivän matka · 19 €
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <p class="text-sm text-cream-light/80 max-w-sm">Saat oppaan heti sähköpostiisi. 33 sivua, luettavissa puhelimella.</p>
+      <p class="text-sm text-cream-light/80 max-w-sm">Maksun jälkeen saat latauslinkin heti. 34 sivua, luettavissa puhelimella.</p>
     </div>
   </div>
   <a href="#tuntuuko" class="absolute bottom-24 left-1/2 -translate-x-1/2 text-cream-light/70 hover:text-cream-light transition-colors z-10" aria-label="Selaa alas">
@@ -343,7 +343,7 @@
 <section id="hinta" data-component="Price" class="py-16 md:py-24">
   <div class="max-w-4xl mx-auto px-6 text-center reveal">
     <p class="inline-flex items-center gap-3 text-[0.78rem] font-bold uppercase tracking-eyebrow text-plum-500"><span class="inline-block w-8 h-px bg-nude-400"></span> Hinta <span class="inline-block w-8 h-px bg-nude-400"></span></p>
-    <div class="mt-8 rounded-[2.25rem] bg-plum-800 text-cream-light p-8 md:p-12 shadow-lift relative overflow-hidden"><span class="relative inline-flex w-fit items-center rounded-full bg-nude-400 text-plum-900 text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5">Hermosto Reset — 21 päivää</span><h2 class="relative font-serif text-5xl md:text-6xl mt-6">33-sivuinen opas · 19 €</h2><p class="relative mt-6 text-lg text-plum-100 leading-relaxed max-w-2xl mx-auto">Maksun jälkeen saat latauslinkin kiitos-sivulta. Opas on sinun pysyvästi, ja voit palata siihen niin monta kertaa kuin haluat.</p><a href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma" class="relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 transition-all duration-500">Aloita 21 päivän matka · 19 €</a></div>
+    <div class="mt-8 rounded-[2.25rem] bg-plum-800 text-cream-light p-8 md:p-12 shadow-lift relative overflow-hidden"><span class="relative inline-flex w-fit items-center rounded-full bg-nude-400 text-plum-900 text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5">Hermosto Reset — 21 päivää</span><h2 class="relative font-serif text-5xl md:text-6xl mt-6">33-sivuinen opas · 19 €</h2><p class="relative mt-6 text-lg text-plum-100 leading-relaxed max-w-2xl mx-auto">Maksun jälkeen saat latauslinkin kiitos-sivulta. Opas on sinun pysyvästi, ja voit palata siihen niin monta kertaa kuin haluat.</p><a href="/api/create-payment" class="relative mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-nude-400 hover:bg-nude-300 text-plum-900 font-bold px-8 py-4 transition-all duration-500">Aloita 21 päivän matka · 19 €</a></div>
   </div>
 </section>
 
@@ -410,7 +410,7 @@
         <p class="text-sm font-extrabold uppercase tracking-wider text-plum-400">Ohjelmat</p>
         <ul class="mt-4 space-y-2.5">
           <li><a class="hover:text-cream-light transition-colors" href="/kiitos/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
-          <li><a class="hover:text-cream-light transition-colors" href="https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma">Hermosto Reset — 21 päivää</a></li>
+          <li><a class="hover:text-cream-light transition-colors" href="/api/create-payment">Hermosto Reset — 21 päivää</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi">Hengittävä äiti · 1:1 mentorointi</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
           <li><a class="hover:text-cream-light transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
@@ -564,12 +564,12 @@
 
   /* ── 7. Direct launch links ─────────────────────────────────────── */
   var HA_CONFIG = {
-    checkoutUrlHr21: 'https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma',
+    checkoutUrlHr21: '/api/create-payment',
     thankYou: {
       mini: '/kiitos/opas/',
       musiikki: '/kiitos/musiikki/',
       koti: 'mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi',
-      hr21: 'https://maradevistore.com/products/hermosto-reset-21-paivan-ohjelma'
+      hr21: '/api/create-payment'
     }
   };
   var form = document.getElementById('signup-form');

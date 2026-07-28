@@ -30,6 +30,7 @@ const mime = {
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
   '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf',
 };
 
 createServer(async (req, res) => {
