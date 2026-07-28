@@ -1,21 +1,25 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/hermosto-reset", "destination": "/hermosto-reset/index.html" },
-    { "source": "/kiitos/opas", "destination": "/kiitos/opas/index.html" },
-    { "source": "/kiitos/musiikki", "destination": "/kiitos/musiikki/index.html" },
-    { "source": "/kiitos/hermosto-reset-21", "destination": "/kiitos/hermosto-reset-21/index.html" },
-    { "source": "/tietosuoja", "destination": "/tietosuoja/index.html" },
-    { "source": "/ostoehdot", "destination": "/ostoehdot/index.html" }
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" },
+    { "src": "**/*", "use": "@vercel/static" }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-      ]
-    }
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      },
+      "continue": true
+    },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/hermosto-reset/?", "dest": "/hermosto-reset/index.html" },
+    { "src": "/kiitos/opas/?", "dest": "/kiitos/opas/index.html" },
+    { "src": "/kiitos/musiikki/?", "dest": "/kiitos/musiikki/index.html" },
+    { "src": "/kiitos/hermosto-reset-21/?", "dest": "/kiitos/hermosto-reset-21/index.html" },
+    { "src": "/tietosuoja/?", "dest": "/tietosuoja/index.html" },
+    { "src": "/ostoehdot/?", "dest": "/ostoehdot/index.html" },
+    { "handle": "filesystem" }
   ]
 }
