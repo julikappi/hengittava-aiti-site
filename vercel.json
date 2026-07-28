@@ -1,6 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/hermosto-reset", "destination": "/hermosto-reset/index.html" },
+    { "source": "/kiitos/opas", "destination": "/kiitos/opas/index.html" },
+    { "source": "/kiitos/musiikki", "destination": "/kiitos/musiikki/index.html" },
+    { "source": "/kiitos/hermosto-reset-21", "destination": "/kiitos/hermosto-reset-21/index.html" },
+    { "source": "/tietosuoja", "destination": "/tietosuoja/index.html" },
+    { "source": "/ostoehdot", "destination": "/ostoehdot/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
