@@ -3,38 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-<title>Lataa ilmainen opas — Hengittävä Äiti</title>
+<title>Hermosto Reset — viikko 1</title>
+<meta name="description" content="Ilmainen Hermosto Reset — viikko 1 -opas uupuneelle äidille.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#F7EFF0;--light:#FBF7F8;--plum:#2A1845;--mid:#5C4190;--lav:#C4B5E8;--nude:#D4A5A0}*{box-sizing:border-box}body{margin:0;font-family:Nunito,system-ui,sans-serif;background:var(--cream);color:var(--plum);line-height:1.65}main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px;background:radial-gradient(circle at 82% 12%,rgba(196,181,232,.38),transparent 34rem),linear-gradient(145deg,#FBF7F8,#F7EFF0)}.card{width:min(760px,100%);background:rgba(255,255,255,.74);border:1px solid rgba(42,24,69,.08);box-shadow:0 24px 70px -34px rgba(42,24,69,.35);border-radius:34px;padding:clamp(30px,6vw,58px)}.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;margin-bottom:42px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);font-weight:800}h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(42px,7vw,72px);line-height:1;margin:14px 0 18px;font-weight:500}h1 em{color:var(--mid)}p{font-size:18px;color:#4A3276;margin:0 0 24px}.form{display:grid;gap:16px;margin-top:30px}.field{display:grid;gap:7px}label{font-weight:800;color:var(--plum)}input{width:100%;border:1px solid rgba(42,24,69,.16);background:#fff;border-radius:18px;padding:16px 18px;font:inherit;color:var(--plum);outline:none}input:focus{border-color:var(--nude);box-shadow:0 0 0 4px rgba(212,165,160,.18)}button{border:0;border-radius:999px;background:var(--plum);color:var(--light);font-weight:800;font:inherit;padding:16px 24px;cursor:pointer;box-shadow:0 18px 45px -26px rgba(42,24,69,.5)}.note{font-size:14px;color:#6E5C92;margin-top:18px}.links{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}.links a{color:var(--mid);font-weight:800;text-decoration:none}@media(max-width:640px){.card{border-radius:26px}.brand{margin-bottom:28px}p{font-size:16px}}
+:root{--yo:#0C0316;--yo2:#150726;--lav:#C4B5E8;--rose:#D4A5A0;--hohde:#EBA97A;--utu:#F4F1F6;--valo:#fff;--display:"Cormorant Garamond",Georgia,serif;--body:"Jost",system-ui,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--yo);color:var(--utu);font-family:var(--body);font-weight:300;line-height:1.7;font-size:17px}.frame{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#111}.frame:before{content:"";position:absolute;inset:0;background-image:var(--img);background-size:cover;background-position:center;filter:grayscale(1) contrast(1.03) brightness(1.02)}.frame:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,3,22,.48),rgba(12,3,22,.78))}.wrap{position:relative;z-index:2;width:min(980px,100%);margin:0 auto;padding:54px 22px}.box{display:inline-block;background:var(--valo);color:#151515;padding:14px 18px;font-family:var(--display);font-size:clamp(1.7rem,6vw,3rem);line-height:1.06}.grid{display:grid;grid-template-columns:1fr .9fr;gap:48px;align-items:end;margin-top:30px}.lead{max-width:34em;color:rgba(244,241,246,.86)}.card{background:var(--yo2);border:1px solid rgba(196,181,232,.16);padding:30px}.silmays{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--hohde);margin-bottom:14px}.lomake{display:flex;flex-direction:column;gap:12px}.lomake input{font:300 1rem var(--body);padding:15px 16px;border:1px solid rgba(196,181,232,.26);background:#fff;color:#151515}.nappi{display:inline-block;border:0;background:linear-gradient(100deg,var(--hohde),var(--rose));color:#2A0F1A;padding:15px 30px;font:400 .86rem var(--body);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer}.pieni{font-size:.82rem;color:rgba(244,241,246,.62);line-height:1.55;margin:0}.takaisin{display:inline-block;margin-top:26px;color:var(--lav);text-decoration:none}@media(max-width:760px){.grid{grid-template-columns:1fr;gap:28px}.card{padding:24px}.frame{align-items:flex-end}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}:focus-visible{outline:2px solid var(--hohde);outline-offset:3px}
 </style>
 </head>
-<body>
-<main><section class="card">
-  <div class="brand">Hengittävä <em>Äiti</em></div>
-  <div class="eyebrow">Ilmainen opas</div>
-  <h1>Hermosto Reset · <em>Viikko 1</em></h1>
-  <p>Jätä etunimesi ja sähköpostisi, niin pääset lataamaan ilmaisen 7 päivän oppaan heti seuraavalla sivulla.</p>
-  <p>Opas auttaa tunnistamaan, mistä kuorma voi syntyä ja miten pysähtymistä voi alkaa opetella pienesti, ilman uutta suurta projektia.</p>
-  <form class="form" action="/kiitos/opas/" method="get" id="free-guide-form">
-    <div class="field"><label for="firstName">Etunimi</label><input id="firstName" name="firstName" autocomplete="given-name" required></div>
-    <div class="field"><label for="email">Sähköposti</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-    <button type="submit">Lataa ilmainen opas</button>
-  </form>
-  <p class="note">Saat oppaan heti seuraavalla sivulla. Tallenna se itsellesi, jotta voit palata siihen rauhassa.</p>
-  <div class="links"><a href="/">Takaisin etusivulle</a><a href="/hermosto-reset/">Tutustu 21 päivän oppaaseen</a></div>
-</section></main>
-<script>
-(function(){
-  var form=document.getElementById('free-guide-form');
-  form.addEventListener('submit',function(){
-    try{
-      sessionStorage.setItem('ha_free_guide_requested','1');
-      sessionStorage.setItem('ha_free_guide_email',document.getElementById('email').value || '');
-      sessionStorage.setItem('ha_free_guide_firstName',document.getElementById('firstName').value || '');
-    }catch(e){}
-  });
-})();
-</script>
-</body></html>
+<body><main class="frame" style="--img:url('/kuvat/opas.jpg')"><div class="wrap"><span class="box">Hermosto Reset — viikko 1</span><div class="grid"><div><div class="silmays">Ilmainen opas</div><p class="lead">Seitsemän päivää, yksi pieni hetki kerrallaan. Opas on äidille, joka kaipaa arkeen pehmeämpää alkua ja pientä tilaa hengittää.</p><a class="takaisin" href="/">← Takaisin etusivulle</a></div><form class="card lomake" action="/kiitos/opas/" method="get" id="free-guide-form"><input type="text" name="etunimi" placeholder="Etunimi" autocomplete="given-name" required><input type="email" name="email" placeholder="Sähköpostiosoite" autocomplete="email" required><button class="nappi" type="submit">Lataa ilmainen opas</button><p class="pieni">Pääset lataamaan oppaan heti seuraavalla sivulla. GHL-lomake voidaan upottaa tähän, kun sen embed-koodi on valmis.</p></form></div></div></main><script>document.getElementById('free-guide-form').addEventListener('submit',function(){try{sessionStorage.setItem('ha_free_guide_requested','1')}catch(e){}});</script></body></html>
