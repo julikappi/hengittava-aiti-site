@@ -1,367 +1,988 @@
 <!DOCTYPE html>
-<html lang="fi">
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  HENGITTÄVÄ ÄITI — hengittava-aiti.fi
+  Single-file brand site · v3.0 (Instagram-aligned: @hengittava_aiti)
+
+  PORTING NOTES (→ Next.js / React on Vercel)
+  · Every section is wrapped in <section data-component="..."> with an
+    @component comment — lift each one directly into components/*.tsx.
+  · Design tokens live in the tailwind.config block below (colors, fonts).
+    Move them to tailwind.config.ts as-is.
+  · All custom CSS is in one <style> block → becomes globals.css.
+    The .ig-frame / .ig-caption family is the shared IGCard component.
+  · All behavior is in one <script> block, grouped by feature — convert
+    to small client components / hooks (BreathingMoment, RevealOnScroll…).
+  · Images live in ./kuvat/ (IG grid in ./kuvat/ig/) → move to /public/kuvat/
+    and swap to next/image.
+  · No WordPress assumptions anywhere. No build step needed to preview.
+  ═══════════════════════════════════════════════════════════════════
+-->
+<html lang="fi" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hengittävä Äiti — apua kotiahdistukseen ja uupuneelle hermostolle</title>
-<meta name="description" content="Hengittävä Äiti. Hermoston rauhoittamista uupuneille äideille. Ilmainen opas: Hermosto Reset – viikko 1.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --yo:#0C0316;          /* syvin yö */
-  --yo-2:#150726;        /* hieman kevyempi violetti */
-  --yo-3:#1E0E38;        /* alkuperäinen brändivioletti, nyt korostus */
-  --laventeli:#C4B5E8;
-  --rose:#D4A5A0;
-  --hohde:#EBA97A;       /* auringon lämpö */
-  --utu:#F4F1F6;
-  --aamu:#FBF3ED;        /* aamunvalo, vaalea osio */
-  --valo:#FFFFFF;
-  --display:"Cormorant Garamond",Georgia,serif;
-  --body:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --raja:1120px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}
-body{
-  margin:0;background:var(--yo);color:var(--utu);
-  font-family:var(--body);font-weight:300;font-size:17px;line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-  max-width:100%;overflow-x:hidden;
-}
-img{max-width:100%;display:block}
-a{color:inherit}
-.wrap{max-width:var(--raja);margin:0 auto;padding:0 22px}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hengittävä Äiti — Apua kotiahdistukseen ja uupuneelle hermostolle</title>
+<meta name="description" content="Apua kotiahdistukseen ja yliaktiiviselle hermostolle. Hengittävä Äiti — äitiys & hermosto. Kolmen tyttären äiti, Juliana." />
+<meta name="theme-color" content="#141414" />
+<meta property="og:title" content="Hengittävä Äiti" />
+<meta property="og:description" content="Apua kotiahdistukseen ja uupuneelle hermostolle." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="kuvat/IMG_6335.jpg" />
+<link rel="icon" href="kuvat/logo-merkki.png" type="image/png" />
 
-/* ---------- KUVAKEHYS ---------- */
-/* Vaihda kuva näin:  <div class="frame" style="--img:url('kuvat/oma-kuva.jpg')"> */
-.frame{
-  position:relative;overflow:hidden;
-  background:linear-gradient(200deg,#c9c6c3 0%,#9d9a97 45%,#6e6b69 100%);
-}
-.frame::before{
-  content:"";position:absolute;inset:0;
-  background-image:var(--img,none);background-size:cover;background-position:center;
-  filter:grayscale(1) contrast(1.02) brightness(1.06);
-}
-.frame::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(12,3,22,.10) 0%,rgba(12,3,22,.38) 100%);
-}
-.frame > *{position:relative;z-index:2}
+<!-- Typography: Instrument Serif (IG caption serif) + Inter (UI) + Dancing Script (logo only) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
 
-/* lampo-luokka saa jäädä sommitteluun, mutta itse kuvat pysyvät mustavalkoisina */
-.frame.lampo::before{filter:grayscale(1) contrast(1.04) brightness(1.08)}
-.frame.lampo::after{
-  background:
-    radial-gradient(90% 70% at 50% 100%, rgba(255,255,255,.18) 0%, rgba(12,3,22,0) 65%),
-    linear-gradient(180deg,rgba(12,3,22,.06) 0%,rgba(12,3,22,.30) 100%);
-}
-
-.box{
-  display:inline-block;background:var(--valo);color:#151515;
-  padding:12px 16px;font-size:1.02rem;line-height:1.4;font-weight:400;
-  box-shadow:0 2px 24px rgba(0,0,0,.22);
-}
-.box.iso{font-family:var(--display);font-size:1.6rem;line-height:1.25;padding:16px 22px}
-
-/* ---------- HORISONTTI — valojuova osioiden välissä ---------- */
-.horisontti{position:relative;height:1px;background:linear-gradient(90deg,transparent,rgba(235,169,122,.55) 50%,transparent)}
-.horisontti::after{
-  content:"";position:absolute;left:50%;top:-70px;transform:translateX(-50%);
-  width:min(620px,86vw);height:140px;pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 50%, rgba(235,169,122,.20) 0%, rgba(235,169,122,0) 70%);
-}
-
-/* ---------- YLÄPALKKI ---------- */
-header{
-  position:sticky;top:0;z-index:50;background:rgba(12,3,22,.88);
-  backdrop-filter:blur(14px);border-bottom:1px solid rgba(196,181,232,.14);
-}
-.navi{display:flex;align-items:center;justify-content:space-between;height:62px}
-.merkki{font-family:var(--display);font-size:1.35rem;letter-spacing:.02em;text-decoration:none}
-.merkki em{font-style:italic;color:var(--laventeli)}
-.navi nav{display:flex;gap:26px;font-size:.85rem;letter-spacing:.06em;text-transform:lowercase}
-.navi nav a{text-decoration:none;opacity:.72;transition:opacity .3s}
-.navi nav a:hover{opacity:1}
-@media(max-width:760px){.navi nav{display:none}}
-
-/* ---------- HERO — auringonnousu horisontissa ---------- */
-.hero{min-height:80vh;display:flex;align-items:flex-end}
-.hero::after{
-  background:
-    radial-gradient(115% 72% at 50% 102%, rgba(255,255,255,.38) 0%, rgba(244,241,246,.18) 30%, rgba(12,3,22,0) 66%),
-    linear-gradient(180deg,rgba(12,3,22,.55) 0%,rgba(12,3,22,.10) 42%,rgba(12,3,22,.55) 100%);
-}
-.hero .sisus{width:100%;max-width:var(--raja);margin:0 auto;padding:0 22px 66px}
-.hero .box.iso{max-width:15em}
-.silmays{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--hohde);margin-bottom:18px}
-.hero p{max-width:min(34em,calc(100vw - 44px));margin:20px 0 26px;color:rgba(244,241,246,.92);overflow-wrap:break-word}
-
-/* ---------- NAPIT ---------- */
-.nappi{
-  display:inline-block;text-decoration:none;font-size:.86rem;letter-spacing:.1em;
-  text-transform:uppercase;padding:15px 30px;border:1px solid var(--laventeli);
-  color:var(--laventeli);background:transparent;cursor:pointer;
-  transition:background .35s,color .35s,border-color .35s;font-family:var(--body);
-}
-.nappi:hover{background:var(--laventeli);color:var(--yo)}
-.nappi.tayt{background:linear-gradient(100deg,var(--hohde),var(--rose));border-color:transparent;color:#2A0F1A}
-.nappi.tayt:hover{background:var(--valo);color:#2A0F1A}
-
-/* ---------- OSIOT ---------- */
-section{padding:96px 0}
-.otsikko{font-family:var(--display);font-weight:300;font-size:clamp(2rem,5vw,3.1rem);line-height:1.15;margin:0 0 18px}
-.otsikko em{font-style:italic;color:var(--hohde)}
-.johdanto{max-width:36em;color:rgba(244,241,246,.8);margin:0 0 44px}
-
-.tunnista{background:var(--yo-2)}
-.rivit{border-top:1px solid rgba(196,181,232,.16);max-width:44em;padding:0;margin:0}
-.rivit li{
-  list-style:none;padding:20px 0;border-bottom:1px solid rgba(196,181,232,.16);
-  font-family:var(--display);font-size:1.35rem;line-height:1.35;
-}
-.tunnista .loppu{margin-top:36px;max-width:36em;color:var(--laventeli)}
-
-/* ---------- FEED ---------- */
-.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
-@media(max-width:700px){.feed{grid-template-columns:repeat(2,1fr)}}
-.ruutu{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center;text-decoration:none}
-.ruutu .box{font-size:.94rem;transition:transform .5s}
-.ruutu:hover .box{transform:translateY(-4px)}
-.feed-alle{margin-top:26px;font-size:.9rem;color:rgba(244,241,246,.68)}
-.feed-alle a{color:var(--hohde)}
-
-/* ---------- ILMAINEN OPAS — aamunvalo ---------- */
-.opas{background:linear-gradient(180deg,var(--aamu) 0%,#F6F1F4 100%);color:#2A1033;position:relative}
-.opas::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:220px;pointer-events:none;
-  background:radial-gradient(70% 100% at 50% 0%, rgba(235,169,122,.30) 0%, rgba(235,169,122,0) 72%);
-}
-.opas .wrap{position:relative;z-index:2}
-.opas .otsikko em{color:#C07A4A}
-.opas .johdanto{color:#4A3A52}
-.opas-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-@media(max-width:860px){.opas-grid{grid-template-columns:1fr;gap:36px}}
-.lomake{display:flex;flex-direction:column;gap:12px;max-width:26em}
-.lomake input{font-family:var(--body);font-size:1rem;padding:15px 16px;border:1px solid #DCC9BD;background:var(--valo);color:#2A1033}
-.lomake input:focus{outline:2px solid #C07A4A;outline-offset:1px}
-.lomake .pieni{font-size:.78rem;color:#6B5A78;line-height:1.5}
-.opas .nappi.tayt{align-self:flex-start}
-.kansi{aspect-ratio:3/4;display:flex;align-items:flex-end;padding:24px}
-.kansi .box{font-family:var(--display);font-size:1.25rem}
-
-.hengitys{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#C07A4A}
-.piste{width:11px;height:11px;border-radius:50%;background:var(--hohde);box-shadow:0 0 18px rgba(235,169,122,.9);animation:hengita 9s ease-in-out infinite}
-@keyframes hengita{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(2.1);opacity:1}}
-
-/* ---------- OHJELMA ---------- */
-.ohjelma-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-top:8px}
-@media(max-width:760px){.ohjelma-grid{grid-template-columns:1fr}}
-.kortti{padding:38px 32px;background:var(--yo-2);border:1px solid rgba(196,181,232,.14)}
-.kortti h3{font-family:var(--display);font-weight:400;font-size:1.7rem;margin:0 0 6px}
-.kortti .hinta{color:var(--hohde);font-size:.9rem;letter-spacing:.1em;margin-bottom:18px}
-.kortti ul{padding-left:18px;margin:0 0 26px;color:rgba(244,241,246,.8);font-size:.95rem}
-.kortti li{margin-bottom:8px}
-
-/* ---------- KUKA ---------- */
-.kuka{background:var(--yo-2)}
-.kuka-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
-@media(max-width:860px){.kuka-grid{grid-template-columns:1fr;gap:32px}}
-.muotokuva{aspect-ratio:4/5}
-.kuka p{color:rgba(244,241,246,.85);max-width:34em}
-
-/* ---------- ALAPALKKI ---------- */
-footer{padding:64px 0 40px;font-size:.88rem;background:var(--yo)}
-.foot{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between}
-.foot a{color:rgba(244,241,246,.68);text-decoration:none;display:block;margin-bottom:8px}
-.foot a:hover{color:var(--hohde)}
-.foot h4{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--laventeli);margin:0 0 14px;font-weight:400}
-.oikeudet{margin-top:40px;color:rgba(244,241,246,.42);font-size:.78rem;max-width:46em}
-
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--hohde);outline-offset:3px}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}
-}
-@media(max-width:700px){
-  .hero::before{
-    background-image:url('kuvat/hero.jpg');
-    background-position:left center;
+<!-- Tailwind via CDN (single-file preview). On the Next.js port, move this config to tailwind.config.ts -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:   { DEFAULT:'#141414', soft:'#2E2E2E', mute:'#5A5A5A' },  /* tekstilaatikon musta */
+          paper: { DEFAULT:'#FFFFFF', warm:'#F7F5F2', deep:'#EDEAE5' },  /* valkoinen laatikko / tausta */
+          dawn:  { 50:'#FEFAF6', 100:'#F6E3D2', 200:'#F2D6BB', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' }, /* auringonnousu/-lasku */
+          plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }         /* vain logo + footer + väliote */
+        },
+        fontFamily: {
+          serif:  ['"Instrument Serif"','Georgia','"Times New Roman"','serif'],
+          sans:   ['Inter','system-ui','sans-serif'],
+          script: ['"Dancing Script"','cursive']   /* VAIN logo */
+        },
+        boxShadow: { none:'none' },
+        letterSpacing: { eyebrow: '0.24em' }
+      }
+    }
   }
-  .hero p{max-width:21em;font-size:.98rem;line-height:1.65}
-  .hero .box.iso{font-size:1.5rem;max-width:calc(100vw - 44px)}
-  .wrap{padding-left:22px;padding-right:22px;max-width:100vw;overflow:hidden}
-  .otsikko{font-size:2rem;line-height:1.12;max-width:calc(100vw - 44px);overflow-wrap:break-word}
-  .johdanto,.tunnista .loppu{max-width:calc(100vw - 44px);overflow-wrap:break-word}
-  .rivit{width:100%;max-width:calc(100vw - 44px);overflow:hidden}
-  .rivit li{font-size:1.05rem;line-height:1.48;max-width:19em;white-space:normal;overflow-wrap:break-word}
-}
+</script>
+
+<style>
+  /* ─── Global (→ globals.css) ─────────────────────────────────────── */
+  :root { --nav-h: 4.75rem; }
+  html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
+  body { text-rendering: optimizeLegibility; }
+  ::selection { background:#141414; color:#FFFFFF; }
+
+  /* ─── IGCard — the brand's core element ──────────────────────────── */
+  .ig-frame        { position:relative; overflow:hidden; background:#141414; }
+  .ig-frame--45    { aspect-ratio: 4/5; }
+  .ig-frame--11    { aspect-ratio: 1/1; }
+  .ig-photo        { width:100%; height:100%; object-fit:cover;
+                     filter: grayscale(1) contrast(1.04); }
+  .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }  /* auringonnousu/-lasku säilyy värillisenä */
+  .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
+                     border-radius:0; box-shadow:none; padding:.55em .9em;
+                     display:inline-block; max-width:86%; }
+  .ig-hook         { font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+                     font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
+  .ig-sub          { font-family:'Instrument Serif',Georgia,serif;
+                     font-size:.74em; line-height:1.25; color:#2E2E2E; }
+  .ig-caption--bottom { left:5%;  bottom:6%; }
+  .ig-caption--top    { left:5%;  top:8%; }
+  .ig-caption--center { left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; }
+  .ig-caption--right  { right:5%; bottom:6%; }
+  /* .ig-sub renders as its OWN white box, staggered under the hook.
+     .ig-stack positions the pair so the two boxes can never overlap. */
+  .ig-stack        { position:absolute; display:flex; flex-direction:column;
+                     align-items:flex-start; gap:.4em; max-width:90%; }
+  .ig-stack .ig-caption { position:static; max-width:100%; }
+  .ig-stack--bottom { left:5%;  bottom:6%; }
+  .ig-stack--top    { left:5%;  top:8%; }
+  .ig-stack--center { left:50%; top:50%; transform:translate(-50%,-50%);
+                      align-items:center; text-align:center; max-width:92%; }
+  .ig-stack--right  { right:5%; bottom:6%; align-items:flex-end; text-align:right; }
+  .ig-caption--sub  { margin-left:14%; }
+  .ig-stack--right .ig-caption--sub  { margin-left:0; margin-right:14%; }
+  .ig-stack--center .ig-caption--sub { margin-left:0; }
+
+  /* 2-up grid on small screens: keep the hook readable inside a narrow tile */
+  @media (max-width: 640px) {
+    .ig-hook    { font-size:.95rem; }
+    .ig-caption { padding:.45em .7em; max-width:92%; }
+    .ig-stack   { max-width:92%; }
+    /* a centred stack outgrows a narrow tile — anchor it top-left on small screens */
+    .ig-stack--center { left:5%; top:6%; transform:none;
+                        align-items:flex-start; text-align:left; }
+  }
+
+  /* ─── Auringonnousu: valoisat pinnat mustien tilalle ─────────────── */
+  .sunrise      { background: linear-gradient(168deg,#FEFAF6 0%,#FBF0E5 40%,#F5DFC9 74%,#EFD0B2 100%); }
+  .sunrise-soft { background: linear-gradient(168deg,#FFFDFB 0%,#FDF7F1 55%,#F9EBDD 100%); }
+  .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
+                  background: radial-gradient(closest-side, rgba(248,203,143,.80), rgba(246,227,210,0) 74%); }
+
+  /* Scroll reveals — quiet */
+  .reveal { opacity: 1; transform: none;
+            transition: opacity .55s ease, transform .55s ease; }
+
+  /* Header: white over hero → paper after scroll */
+  #site-header {
+    --fg: #141414; --fg-soft: #5A5A5A;
+    transition: background-color .35s ease, border-color .35s ease;
+    border-bottom: 1px solid transparent;
+  }
+  #site-header.is-scrolled {
+    --fg: #141414; --fg-soft: #5A5A5A;
+    background: rgba(255,255,255,.96);
+    border-color: rgba(20,20,20,.10);
+  }
+  #site-header .hdr-fg      { color: var(--fg); transition: color .35s ease; }
+  #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .35s ease; }
+  #site-header .hdr-stroke  { stroke: var(--fg); transition: stroke .35s ease; }
+  #site-header .hdr-fill    { fill: var(--fg); transition: fill .35s ease; }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content:""; position:absolute; left:0; right:100%; bottom:-6px; height:1px;
+    background:currentColor; transition: right .3s ease;
+  }
+  .nav-link:hover::after, .nav-link[aria-current="true"]::after { right:0; }
+
+  /* Breathing tool (functional — the only animated element left) */
+  @keyframes breathe { 0%,100% { transform: scale(1); opacity:.45; } 45% { transform: scale(1.07); opacity:.8; } }
+  .anim-breathe      { animation: breathe 9s ease-in-out infinite; }
+  .anim-breathe-slow { animation: breathe 13s ease-in-out infinite; }
+  #breath-circle { transition-property: transform; transition-timing-function: cubic-bezier(.45,0,.25,1); will-change: transform; }
+  #breath-label  { transition: opacity .5s ease; }
+  #breath-ring   { transition-property: stroke-dashoffset; transition-timing-function: linear; }
+  #breath-cta { transition: opacity .7s ease, transform .7s ease, max-height .7s ease; max-height: 0; overflow: hidden; }
+  #breath-cta.is-visible { opacity: 1; transform: none; max-height: 15rem; }
+  .music-wave span {
+    display:block; width:3px; height:14px; border-radius:999px; background:#D4A5A0;
+    animation: wave 1.8s ease-in-out infinite; opacity:.75;
+  }
+  .music-wave span:nth-child(2){animation-delay:.18s}.music-wave span:nth-child(3){animation-delay:.36s}.music-wave span:nth-child(4){animation-delay:.54s}
+  @keyframes wave { 0%,100%{transform:scaleY(.45);opacity:.45} 50%{transform:scaleY(1.25);opacity:1} }
+
+  /* Inputs */
+  .field { transition: border-color .2s ease; }
+  .field:focus { outline:none; border-color:#141414; box-shadow:0 0 0 2px rgba(20,20,20,.12); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-breathe, .anim-breathe-slow { animation: none; }
+    .reveal { opacity:1; transform:none; transition:none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
-<body>
 
-<header>
-  <div class="wrap navi">
-    <a class="merkki" href="#alku">Hengittävä <em>Äiti</em></a>
-    <nav>
-      <a href="#tunnista">tunnistatko</a>
-      <a href="#feed">ajatuksia</a>
-      <a href="#opas">ilmainen opas</a>
-      <a href="#ohjelma">hermosto reset</a>
-      <a href="#kuka">kuka olen</a>
-    </nav>
+<body class="bg-paper text-ink font-sans antialiased overflow-x-hidden">
+
+<!-- ═══════════════ @component: SiteHeader ═══════════════ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-6 h-[var(--nav-h)] flex items-center justify-between gap-3" aria-label="Päävalikko">
+    <!-- Logo: SubscribePage-merkki (profiili, kuu, tähdet) + serif-nimenkirjoitus -->
+    <a href="#alku" class="flex items-center gap-2.5 shrink-0">
+      <img src="kuvat/logo-merkki.png" alt="" class="h-11 w-auto" width="47" height="44">
+      <span class="hdr-fg font-serif text-[1.02rem] sm:text-[1.08rem] tracking-[0.16em] uppercase leading-tight">Hengittävä Äiti</span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden lg:flex items-center gap-7 text-[0.92rem] font-semibold">
+      <a class="nav-link hdr-fg-soft" href="#instagram">Instagram</a>
+      <a class="nav-link hdr-fg-soft" href="#tuntuuko">Tuntuuko tutulta</a>
+      <a class="nav-link hdr-fg-soft" href="#askeleet">Askeleesi</a>
+      <a class="nav-link hdr-fg-soft" href="#hetki">Saat hengittää</a>
+      <a class="nav-link hdr-fg-soft" href="#musiikki">Musiikki</a>
+      <a class="nav-link hdr-fg-soft" href="/minun-tarinani/">Minun tarinani</a>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <!-- Instagram icon link (desktop) -->
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
+         class="inline-flex items-center justify-center w-10 h-10 border border-current hdr-fg" aria-label="Hengittävä Äiti Instagramissa (@hengittava_aiti)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#askeleet"
+         class="hidden sm:inline-flex items-center gap-2 bg-ink text-paper text-[0.9rem] font-bold px-5 py-3 hover:bg-ink-soft transition-colors">
+        Aloita tästä
+      </a>
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="lg:hidden inline-flex items-center justify-center w-10 h-10 border border-current hdr-fg" aria-expanded="false" aria-controls="mobile-menu" aria-label="Avaa valikko">
+        <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="menu-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="hidden"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile panel -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-ink/10 bg-paper">
+    <div class="px-5 py-5 flex flex-col gap-3.5 text-lg font-semibold text-ink">
+      <a href="#instagram" class="mobile-link inline-flex items-center gap-2.5">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
+        Instagram
+      </a>
+      <a href="#tuntuuko" class="mobile-link">Tuntuuko tutulta</a>
+      <a href="#askeleet" class="mobile-link">Askeleesi</a>
+      <a href="#hetki" class="mobile-link">Saat hengittää</a>
+      <a href="#musiikki" class="mobile-link">Musiikki</a>
+      <a href="/minun-tarinani/" class="mobile-link">Minun tarinani</a>
+      <a href="#minusta" class="mobile-link">Minusta</a>
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="mobile-link inline-flex items-center gap-2.5 text-ink-mute">@hengittava_aiti</a>
+      <a href="#askeleet" class="mobile-link mt-1 inline-flex w-fit items-center bg-ink text-paper px-5 py-3 font-bold">Aloita tästä</a>
+    </div>
   </div>
 </header>
 
-<!-- HERO — laita tähän auringonnousukuva, jossa on horisontti alaosassa -->
-<div class="frame lampo hero" id="alku" style="--img:url('kuvat/hero.jpg')">
-  <div class="sisus">
-    <div class="silmays">Äitiys &amp; hermosto</div>
-    <span class="box iso">Et ole rikki. Hermostosi on väsynyt.</span>
-    <p>Apua kotiahdistukseen ja uupuneelle hermostolle. Ei suorittamista, ei täydellisyyttä — pieniä muutoksia, jotka kestävät arjessa.</p>
-    <a class="nappi tayt" href="#opas">Lataa ilmainen opas</a>
-  </div>
-</div>
+<main id="alku">
 
-<section class="tunnista" id="tunnista">
-  <div class="wrap">
-    <h2 class="otsikko">Tunnistatko <em>tämän</em>?</h2>
-    <ul class="rivit">
-      <li>Rakastat lapsiasi — ja silti odotat, että he menisivät nukkumaan.</li>
-      <li>Ääni nousee ennen kuin ehdit ajatella. Ja sitten harmittaa.</li>
-      <li>Illalla on hiljaista, mutta keho ei suostu rauhoittumaan.</li>
-      <li>Olet lukenut kaiken lempeästä vanhemmuudesta, eikä se toimi.</li>
-      <li>Halusit läheisyyttä — mutta tarvitsit unta.</li>
-    </ul>
-    <p class="loppu">Mikään näistä ei tarkoita, että olisit huono äiti. Ne tarkoittavat, että hermostosi on ollut liian kauan päällä.</p>
+<!-- ═══════════════ @component: InstagramHero — sivun avaus ═══════════════ -->
+<section id="instagram" data-component="InstagramHero" class="pt-28 md:pt-36 pb-14 md:pb-20 bg-paper">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+
+    <div class="max-w-3xl">
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
+         class="reveal inline-flex items-center gap-2 text-[0.82rem] font-semibold tracking-wide text-ink-mute hover:text-ink transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+        @hengittava_aiti · 5 500+ äitiä
+      </a>
+
+      <h1 class="reveal font-serif text-ink leading-[1.04] text-[clamp(2.1rem,5.6vw,4.2rem)] mt-4" data-delay="80">
+        Uupumus ei mene ohi tekemällä enemmän.
+      </h1>
+      <p class="reveal font-serif text-ink-soft leading-[1.25] text-[clamp(1.1rem,2.4vw,1.75rem)] mt-3 max-w-xl" data-delay="160">
+        Se hellittää, kun hermosto saa luvan.
+      </p>
+
+      <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-8" data-delay="240">
+        <a href="#askeleet" class="inline-flex items-center gap-2 bg-ink text-paper font-bold px-7 py-4 hover:bg-ink-soft transition-colors">
+          Aloita tästä
+        </a>
+        <a href="#hetki" class="inline-flex items-center gap-2.5 border border-ink/30 hover:border-ink text-ink font-bold px-7 py-4 transition-colors">
+          <svg width="14" height="14" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="32" r="10" fill="currentColor"/></svg>
+          Saat hengittää
+        </a>
+      </div>
+
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="reveal inline-flex items-center gap-2 mt-5 border border-ink/25 px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors" data-delay="320">
+        Ilmainen Hermosto Reset · Viikko 1
+      </a>
+    </div>
+
+    <div class="reveal mt-12 md:mt-16 max-w-2xl" data-delay="80">
+      <h2 class="font-serif text-2xl md:text-[2rem] leading-tight text-ink">
+        Tämä alkoi Instagramista.
+      </h2>
+      <p class="mt-2 text-ink-mute leading-relaxed">
+        5 500 äitiä lukee näitä joka viikko. Sama puhe jatkuu tällä sivulla.
+      </p>
+    </div>
+
+    <!-- 3×2 desktop · 2×3 mobile. Images go in kuvat/ig/. See README.md. -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-3.5 mt-10">
+
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/01.jpg" class="ig-photo" fetchpriority="high" alt="Kaksi tyttöä seisoo mökin oviaukossa selin kameraan" loading="eager" onerror="this.style.display='none'">
+          <figcaption class="ig-caption ig-caption--bottom">
+            <p class="ig-hook">Lapsesi ei ole vaikea. Hän on alfa-sukupolvea.</p>
+          </figcaption>
+        </figure>
+      </a>
+
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="60">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/02.jpg" class="ig-photo" alt="Äiti ja lapsi istuvat kivisellä rannalla selin kameraan" loading="eager" onerror="this.style.display='none'">
+          <figcaption class="ig-stack ig-stack--top">
+            <span class="ig-caption"><span class="ig-hook">Se ei ole sinun vikasi.</span></span>
+            <span class="ig-caption ig-caption--sub"><span class="ig-sub">Se on hyvä merkki.</span></span>
+          </figcaption>
+        </figure>
+      </a>
+
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="120">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/03.jpg" class="ig-photo" alt="Lapsen letitetyt hiukset takaa kuvattuna" loading="eager" onerror="this.style.display='none'">
+          <figcaption class="ig-caption ig-caption--bottom">
+            <p class="ig-hook">Mitä tapahtuu lapselle jonka äiti ei koskaan lepää?</p>
+          </figcaption>
+        </figure>
+      </a>
+
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="180">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/04.jpg" class="ig-photo" alt="Pieni lapsi seisoo veden äärellä auringonlaskussa" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="ig-stack ig-stack--top">
+            <span class="ig-caption"><span class="ig-hook">3 asiaa joita luulet lapsesi osaavan</span></span>
+            <span class="ig-caption ig-caption--sub"><span class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</span></span>
+          </figcaption>
+        </figure>
+      </a>
+
+      <!-- The dawn frame: the other half of the feed. Stays in colour. -->
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="240">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/05-auringonnousu.jpg" class="ig-photo ig-photo--dawn" alt="Lapsi juoksee niityllä kohti auringonlaskua" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="ig-stack ig-stack--bottom">
+            <span class="ig-caption"><span class="ig-hook">Jonain päivänä ymmärsin tämän äitiydestä.</span></span>
+            <span class="ig-caption ig-caption--sub"><span class="ig-sub">Ja rehellisesti… se sattui.</span></span>
+          </figcaption>
+        </figure>
+      </a>
+
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="300">
+        <figure class="ig-frame ig-frame--45">
+          <img src="kuvat/ig/06.jpg" class="ig-photo" alt="Äiti pitelee vauvaa hiekkarannalla meren äärellä" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="ig-caption ig-caption--right">
+            <p class="ig-hook">Lopulta vain tämä merkitsee.</p>
+          </figcaption>
+        </figure>
+      </a>
+    </div>
+
+    <div class="reveal mt-8">
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2.5 bg-ink text-paper font-bold px-7 py-4 hover:bg-ink-soft transition-colors">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+        Seuraa @hengittava_aiti 🕊️
+      </a>
+    </div>
   </div>
 </section>
 
-<div class="horisontti"></div>
-
-<section id="feed">
-  <div class="wrap">
-    <h2 class="otsikko">Ajatuksia, joita <em>moni ei sano ääneen</em></h2>
-    <p class="johdanto">Samat aiheet kuin Instagramissa — täällä ne pysyvät tallessa.</p>
-
-    <div class="feed">
-      <a class="ruutu frame" href="#opas" style="--img:url('kuvat/1.jpg')"><span class="box">Hermostosi ei tarvitse lisää kahvia. Se tarvitsee 10 minuuttia.</span></a>
-      <a class="ruutu frame lampo" href="#opas" style="--img:url('kuvat/2.jpg')"><span class="box">Lapsesi ei yritä tehdä elämästäsi vaikeaa. Hänellä on itsellään vaikeaa.</span></a>
-      <a class="ruutu frame" href="#ohjelma" style="--img:url('kuvat/3.jpg')"><span class="box">Olen uupunut siksi, että kestän.</span></a>
-      <a class="ruutu frame" href="#ohjelma" style="--img:url('kuvat/4.jpg')"><span class="box">Se, miten puhut lapsellesi, muuttuu vähitellen hänen sisäiseksi äänekseen.</span></a>
-      <a class="ruutu frame lampo" href="#retriitti" style="--img:url('kuvat/5.jpg')"><span class="box">Lapset eivät tarvitse täydellistä äitiä. Mieluummin turvallista.</span></a>
-      <a class="ruutu frame" href="#tunnista" style="--img:url('kuvat/6.jpg')"><span class="box">Kaikki rakkaus ei ole lapsen hyväksi.</span></a>
+<!-- ═══════════════ @component: ProblemEmpathy ("Tuntuuko tutulta?") ═══════════════ -->
+<section id="tuntuuko" data-component="ProblemEmpathy" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl reveal">
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
+        <span class="inline-block w-8 h-px bg-ink/30"></span> Tuntuuko tutulta?
+      </p>
+      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+        Se ei ole sinun vikasi. Se on hermostosi.
+      </h2>
+      <p class="mt-4 text-ink-mute leading-relaxed">Tunnistatko itsesi?</p>
     </div>
 
-    <p class="feed-alle">Uudet julkaisut ensin Instagramissa → <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener">@hengittava_aiti</a></p>
-  </div>
-</section>
+    <div class="grid sm:grid-cols-2 gap-3 md:gap-4 mt-10">
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="0">
+        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Et pysty pysähtymään.</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Vaikka voimat on lopussa. Keho on ollut varuillaan niin kauan, ettei se enää tunnista lepoa.</p>
+      </article>
 
-<section class="opas" id="opas">
-  <div class="wrap opas-grid">
-    <div>
-      <div class="hengitys"><span class="piste"></span> Aloita hengittäminen tästä</div>
-      <h2 class="otsikko">Hermosto Reset — <em>viikko 1</em></h2>
-      <p class="johdanto">Ilmainen opas. Seitsemän päivää, joiden aikana teet joka päivä yhden pienen asian — muutaman minuutin, ei enempää. Tarkoitus ei ole korjata sinua. Tarkoitus on antaa hermostollesi hetki, jolloin kukaan ei tarvitse sinua.</p>
-      <form class="lomake" action="/kiitos/opas/" method="get" id="free-guide-form">
-        <!-- Vaihda tämä GHL-lomakkeen embed-koodiin -->
-        <input type="text" name="etunimi" placeholder="Etunimi" autocomplete="given-name" required>
-        <input type="email" name="email" placeholder="Sähköpostiosoite" autocomplete="email" required>
-        <button class="nappi tayt" type="submit">Lataa ilmainen opas</button>
-        <p class="pieni">Pääset lataamaan oppaan heti seuraavalla sivulla. Kun GHL-lomakekoodi on valmis, tämä lomake vaihdetaan siihen, jotta sähköpostit menevät oikeaan listaan.</p>
-      </form>
-    </div>
-    <div class="frame lampo kansi" style="--img:url('kuvat/opas.jpg')">
-      <span class="box">7 päivää. Muutama minuutti kerrallaan.</span>
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="80">
+        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Keho on sängyssä. Pää käy edelleen.</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Uni jää kevyeksi ja rikkonaiseksi. Aamulla olet väsyneempi kuin illalla.</p>
+      </article>
+
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="160">
+        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Pinna palaa pienestä.</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Ja jälkeenpäin kaduttaa. Et ole huono äiti. Hermostosi käy ylikierroksilla, ja silloin pienikin asia tuntuu liialta.</p>
+      </article>
+
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="240">
+        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Teet koko ajan. Lista ei lyhene.</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Akku on tyhjä, ja jatkat silti. Se on opittu tapa, ja siitä voi oppia pois.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section id="ohjelma">
-  <div class="wrap">
-    <h2 class="otsikko">Kun viikko ei <em>enää riitä</em></h2>
-    <p class="johdanto">Kaksi tapaa jatkaa — kotoa käsin tai kokonaan pois arjesta.</p>
-    <div class="ohjelma-grid">
-      <div class="kortti">
-        <h3>Hermosto Reset — 21 päivää</h3>
-        <div class="hinta">19 €</div>
-        <ul>
-          <li>Kolme viikkoa, yksi harjoitus päivässä</li>
-          <li>Rauhoittuminen, rajat ja palautuminen arjen keskellä</li>
-          <li>Työkirja, jonka voit tulostaa tai täyttää puhelimella</li>
-          <li>Omaan tahtiin, ilman aikatauluja</li>
-        </ul>
-        <a class="nappi" href="https://maradevistore.com" target="_blank" rel="noopener">Katso ohjelma</a>
-      </div>
-      <div class="kortti" id="retriitti">
-        <h3>Joogaretriitit</h3>
-        <div class="hinta">Seuraava retriitti — katso päivämäärät</div>
-        <ul>
-          <li>Muutama päivä, jolloin kukaan ei tarvitse sinua</li>
-          <li>Shakta-joogaa, hengitystä ja lepoa</li>
-          <li>Opettajina Miska ja Juliana Käppi</li>
-          <li>Pieni ryhmä</li>
-        </ul>
-        <a class="nappi" href="https://maradevistore.com/pages/joogaretriitti-latvia" target="_blank" rel="noopener">Lue lisää</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="horisontti"></div>
-
-<section class="kuka" id="kuka">
-  <div class="wrap kuka-grid">
-    <div class="frame muotokuva" style="--img:url('kuvat/kuka.jpg')"></div>
-    <div>
-      <h2 class="otsikko">Kuka <em>tämän takana on</em></h2>
-      <p>Olen Juliana, kolmen tyttären äiti ja joogaopettaja. Hengittävä Äiti syntyi siitä, mitä en itse löytänyt silloin kun eniten tarvitsin: puhetta, joka ei syyllistä eikä vaadi olemaan parempi versio itsestä.</p>
-      <p>En opeta täydellisyyttä. Opetan pieniä, kestäviä muutoksia — sellaisia, jotka mahtuvat päivään, jossa on jo kaikkea muuta.</p>
-      <p style="color:var(--hohde);font-family:var(--display);font-size:1.3rem;line-height:1.4;margin-top:26px">Merkityksellisyys ja rauha äitiyden keskellä.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <div class="merkki" style="font-size:1.5rem;margin-bottom:10px">Hengittävä <em>Äiti</em></div>
-        <p style="color:rgba(244,241,246,.6);max-width:22em;margin:0">Apua kotiahdistukseen ja uupuneelle hermostolle.</p>
-      </div>
-      <div>
-        <h4>Sivut</h4>
-        <a href="#opas">Ilmainen opas</a>
-        <a href="#ohjelma">Hermosto Reset</a>
-        <a href="#retriitti">Retriitit</a>
-        <a href="#kuka">Kuka olen</a>
-      </div>
-      <div>
-        <h4>Yhteys</h4>
-        <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>
-      </div>
-      <div>
-        <h4>Ehdot</h4>
-        <a href="/tietosuoja/">Tietosuojaseloste</a>
-        <a href="/ostoehdot/">Toimitus- ja tilausehdot</a>
-        <a href="/vastuuvapaus/">Vastuuvapauslauseke</a>
-      </div>
-    </div>
-    <p class="oikeudet">
-      Hengittävä Äiti -sivuston sisältö on tarkoitettu tiedoksi ja tueksi arkeen. Se ei ole terveydenhuollon ammattilaisen antamaa hoitoa, diagnoosia tai hoito-ohjetta eikä korvaa sellaista. Jos olet huolissasi omasta tai lapsesi voinnista, ota yhteyttä terveydenhuoltoon.<br><br>
-      © <span id="vuosi">2026</span> Hengittävä Äiti
+<!-- ═══════════════ @component: BridgeStatement — the one plum section ═══════════════ -->
+<section data-component="BridgeStatement" class="py-16 md:py-24 bg-plum-900">
+  <div class="max-w-3xl mx-auto px-5 sm:px-6">
+    <p class="reveal font-serif text-[clamp(1.9rem,4.6vw,3.2rem)] leading-[1.15] text-paper">
+      Hermostosi ei tarvitse enemmän suorittamista. Se tarvitsee luvan levätä.
     </p>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: Offers ("Valitse oma askelesi") ═══════════════ -->
+<section id="askeleet" data-component="Offers" class="py-14 md:py-20 bg-paper">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl reveal">
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
+        <span class="inline-block w-8 h-px bg-ink/30"></span> Askeleesi
+      </p>
+      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+        Valitse se, mikä tuntuu tänään mahdolliselta.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-3 md:gap-4 mt-10 items-stretch">
+
+      <!-- 1 · Kun huusit taas -->
+      <article class="reveal relative flex flex-col bg-paper border border-ink/12 overflow-hidden" data-delay="0">
+        <a href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="block bg-paper-warm">
+          <img src="kuvat/kansi-kun-huusit-taas.jpg" alt="Kun huusit taas – minioppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · PDF miniopas</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Kun huusit taas – ja nyt hävettää</h3>
+          <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen miniopas äidille, joka katuu omaa reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
+          <a href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa miniopas</a>
+        </div>
+      </article>
+
+      <!-- 2 · Hermosto Reset viikko 1 -->
+      <article class="reveal relative flex flex-col bg-paper border border-ink/12 overflow-hidden" data-delay="80">
+        <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="block bg-paper-warm">
+          <img src="kuvat/kansi-hermosto-reset-viikko-1.jpg" alt="Hermosto Reset viikko 1 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · 7 päivää</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – viikko 1</h3>
+          <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen 7 päivän opas, joka auttaa sinua pysähtymään ja aloittamaan pienestä tavallisen arjen keskellä.</p>
+          <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Aloita ilmaisesta viikosta</a>
+        </div>
+      </article>
+
+      <!-- 3 · Hermosto Reset 21 -->
+      <article class="reveal relative flex flex-col overflow-hidden sunrise border border-dawn-300" data-delay="160">
+        <span class="sun-glow -top-28 -right-24 w-80 h-80" aria-hidden="true"></span>
+        <a href="/hermosto-reset/" class="relative block">
+          <img src="kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset 21 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="relative flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">PDF 33 sivua · 19 €</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
+          <p class="mt-3 text-ink-soft leading-relaxed flex-1">21 päivän digitaalinen opas äidille, joka kaipaa arkeen pysähtymistä, hengitystä ja lempeää rakennetta. Hinta 29 €.</p>
+          <p class="mt-2 text-sm font-bold text-ink">Oppaan lanseeraushinta 19 € (31.8. asti)</p>
+          <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: BreathingMoment — dark, interactive ═══════════════ -->
+<section id="hetki" data-component="BreathingMoment" class="relative py-16 md:py-24 overflow-hidden bg-ink">
+  <!-- Photo #8: sunrise, heavily darkened -->
+  <div class="absolute inset-0 ig-frame" aria-hidden="true">
+    <img src="kuvat/ig/breathing-auringonnousu.jpg" class="ig-photo ig-photo--dawn opacity-30" alt="" loading="lazy" onerror="this.style.display='none'">
+    <div class="absolute inset-0 bg-ink/75"></div>
+  </div>
+  <!-- Dawn glow -->
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46rem] h-[46rem] pointer-events-none opacity-50"
+       style="background: radial-gradient(closest-side, rgba(232,185,141,0.28), transparent 70%);" aria-hidden="true"></div>
+
+  <div class="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
+    <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-paper/70">
+      <span class="inline-block w-8 h-px bg-paper/40"></span> Saat hengittää <span class="inline-block w-8 h-px bg-paper/40"></span>
+    </p>
+    <h2 class="reveal font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-paper" data-delay="80">
+      Pysähdy. Tämä minuutti on sinun.
+    </h2>
+    <p class="reveal mt-5 text-paper/80 leading-relaxed max-w-xl mx-auto" data-delay="160">
+      Seuraa ympyrää. Sisään nenän kautta, ulos pitkään ja pehmeästi.
+      Rytmi <strong class="font-bold text-paper">4 sisään · 6–8 ulos</strong>: pidennetty uloshengitys viestii keholle rauhasta.
+    </p>
+
+    <!-- Breathing instrument (functionality unchanged) -->
+    <div class="reveal mt-12 flex flex-col items-center" data-delay="240">
+      <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center" id="breath-stage">
+        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true">
+          <circle cx="140" cy="140" r="132" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+          <circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#E8B98D" stroke-width="3"
+                  stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/>
+        </svg>
+        <div class="absolute w-56 h-56 rounded-full border border-paper/25 anim-breathe" aria-hidden="true"></div>
+        <div class="absolute w-64 h-64 rounded-full border border-dawn-300/30 anim-breathe-slow" aria-hidden="true"></div>
+        <div id="breath-circle"
+             class="w-40 h-40 sm:w-44 sm:h-44 rounded-full flex items-center justify-center"
+             style="background: radial-gradient(circle at 35% 30%, #F6E3D2 0%, #E8B98D 45%, #A65E3C 100%);">
+          <span id="breath-label" class="font-serif text-ink text-xl sm:text-2xl px-6 text-center leading-snug">Valmiina?</span>
+        </div>
+      </div>
+
+      <button id="breath-toggle"
+              class="mt-10 inline-flex items-center gap-2.5 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
+        <span class="music-wave hidden inline-flex items-center gap-1" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span id="breath-toggle-text">Aloita tästä</span>
+      </button>
+      <p id="breath-count" class="mt-4 text-sm text-paper/70 h-5" aria-live="polite"></p>
+      <div id="breath-cta" class="opacity-0 translate-y-3 mt-8 border border-paper/25 bg-paper/10 p-6 text-center">
+        <p class="font-serif text-2xl text-paper leading-tight">Huomasitko, miten pienikin hetki voi muuttaa kehon tunnetta?</p>
+        <p class="mt-3 text-paper/80 leading-relaxed">Hermosto Reset — 21 päivää auttaa rakentamaan tästä pienen tavan. Päivä kerrallaan, ilman suorittamista.</p>
+        <a href="/hermosto-reset/" class="mt-5 inline-flex items-center justify-center border border-paper/70 hover:border-paper text-paper font-bold px-6 py-3 transition-colors">Tutustu 21 päivän oppaaseen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: MusicList + SignupForm ═══════════════ -->
+<section id="musiikki" data-component="MusicSignup" class="py-14 md:py-20 bg-paper">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+
+      <!-- Soittolistat — sivun vasen puoli -->
+      <div class="reveal">
+        <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
+          <span class="inline-block w-8 h-px bg-ink/30"></span> Soittolistat
+        </p>
+        <h2 class="font-serif text-4xl md:text-[3rem] leading-[1.05] mt-5 text-ink">
+          Kaksi listaa. Toinen purkaa, toinen rauhoittaa.
+        </h2>
+        <p class="mt-4 text-ink-mute leading-relaxed">
+          Samat listat, jotka löytyvät Instagram-biosta. Laita taustalle aamuun, autoon tai siihen kohtaan päivää, jossa kaikki tuntuu vähän liialta.
+        </p>
+
+        <!-- Hermosto Reset -->
+        <div class="mt-8 border border-dawn-300/70 sunrise-soft">
+          <div class="px-6 py-4 border-b border-ink/10">
+            <p class="font-serif text-2xl text-ink">Hermosto Reset</p>
+            <p class="text-sm text-ink-mute mt-1">Rauhoittumiseen. Pidennetty uloshengitys, hiljainen piano.</p>
+          </div>
+          <div class="p-4">
+            <iframe src="https://open.spotify.com/embed/playlist/4q6gKFxvzFVMv64CR3KgC5?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Hermosto Reset -soittolista Spotifyssa" style="border:0"></iframe>
+            <a href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center border border-ink/70 hover:border-ink hover:bg-ink hover:text-paper text-ink font-bold px-6 py-3.5 transition-colors">
+              Avaa Hermosto Reset Spotifyssa
+            </a>
+          </div>
+        </div>
+
+        <!-- Tunnepurku -->
+        <div class="mt-4 border border-dawn-300/70 sunrise-soft">
+          <div class="px-6 py-4 border-b border-ink/10">
+            <p class="font-serif text-2xl text-ink">Tunnepurku</p>
+            <p class="text-sm text-ink-mute mt-1">Kun tunne pitää saada ulos ennen kuin se purkautuu muihin.</p>
+          </div>
+          <div class="p-4">
+            <iframe src="https://open.spotify.com/embed/playlist/5XBrhhlTN7PUO9JymHnEPN?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Tunnepurku-soittolista Spotifyssa" style="border:0"></iframe>
+            <a href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center border border-ink/70 hover:border-ink hover:bg-ink hover:text-paper text-ink font-bold px-6 py-3.5 transition-colors">
+              Avaa Tunnepurku Spotifyssa
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aloita jo tänään — yksi valikko, ei muita bokseja -->
+      <div class="reveal" data-delay="120">
+        <div class="relative overflow-hidden sunrise border border-dawn-300 p-8 md:p-10">
+          <span class="sun-glow -top-32 -right-28 w-[26rem] h-[26rem]" aria-hidden="true"></span>
+          <div class="relative">
+            <h3 class="font-serif text-3xl leading-tight text-ink">Aloita jo tänään</h3>
+            <p class="mt-4 text-ink-soft leading-relaxed">
+              Lataa ilmainen opas tai avaa hermostoa hellivä musiikkilista. Valitse alta, kumman haluat.
+            </p>
+
+            <div id="signup-form" class="mt-7 space-y-4">
+              <label class="block">
+                <span class="text-sm font-bold text-ink-mute">Mikä kiinnostaa sinua?</span>
+                <select id="signup-interest" class="field mt-2 w-full bg-paper text-ink font-semibold border border-ink/20 px-4 py-3.5">
+                  <option value="miniopas">Kun huusit taas · ilmainen miniopas</option>
+                  <option value="mini">Ilmainen opas · Hermosto Reset Viikko 1</option>
+                  <option value="musiikki">Hermostoa hellivä musiikkilista</option>
+                </select>
+              </label>
+              <a id="signup-action" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="w-full inline-flex items-center justify-center bg-ink text-paper font-bold px-8 py-4 hover:bg-ink-soft transition-colors">
+                Lataa miniopas
+              </a>
+              <p id="signup-note" class="text-sm text-ink-mute" aria-live="polite">Molemmat avautuvat heti. Jos linkki ei aukea, kirjoita <a class="font-bold underline underline-offset-4 hover:text-ink" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: ContentPromise ("Mitä saat mukaan") ═══════════════ -->
+<section id="mita-saat" data-component="ContentPromise" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl reveal">
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
+        <span class="inline-block w-8 h-px bg-ink/30"></span> Mitä saat mukaan
+      </p>
+      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+        Konkreettista tukea tavalliseen päivään.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-3 md:gap-4 mt-10">
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="0">
+        <h3 class="font-serif text-[1.6rem] text-ink">Yksi pieni askel kerrallaan</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Harjoitukset mahtuvat lapsiperheen arkeen: hengitys, kehon pehmentäminen, mikrotauot ja rajojen vahvistaminen.</p>
+      </article>
+
+      <article class="reveal bg-ink text-paper p-7 md:p-8" data-delay="80">
+        <h3 class="font-serif text-[1.6rem]">Kieli omalle kuormalle</h3>
+        <p class="mt-3 text-paper/85 leading-relaxed">Saat sanoja sille, miksi lepo voi tuntua vaikealta ja miksi keho jää varuilleen vielä silloinkin, kun hetki olisi rauhallinen.</p>
+      </article>
+
+      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="160">
+        <h3 class="font-serif text-[1.6rem] text-ink">Rauhaa ilman täydellistä hetkeä</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Opas auttaa palaamaan kehoon myös keskeneräisen kodin, äänten ja tavallisen arjen keskellä.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: FounderStory ("Minusta") ═══════════════ -->
+<section id="minusta" data-component="FounderStory" class="py-14 md:py-20 bg-paper">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- Photo #10: Juliana, black & white, documentary -->
+      <div class="reveal order-2 lg:order-1">
+        <figure class="ig-frame ig-frame--45 max-w-md">
+          <img src="kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa kotona" loading="lazy" onerror="this.style.display='none'">
+          <figcaption class="ig-caption ig-caption--bottom">
+            <p class="ig-hook">Kolmen tyttären äiti.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Story -->
+      <div class="reveal order-1 lg:order-2" data-delay="120">
+        <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
+          <span class="inline-block w-8 h-px bg-ink/30"></span> Minusta
+        </p>
+        <h2 class="font-serif text-4xl md:text-[3rem] leading-[1.05] mt-5 text-ink">
+          Hei, olen Juliana — äiti, jonka pahin rangaistus oli pysähtyä.
+        </h2>
+        <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
+          <p>
+            Kolmen tyttären äiti. Olin se, joka teki kaiken oikein ja jonka hermosto kävi silti koko ajan ylikierroksilla.
+            Kesti kauan ymmärtää, miten pitkään kehoni oli ollut varuillaan ja miten vaikealta lepo silloin tuntuu.
+          </p>
+          <p>
+            Kun löysin hermoston rauhoittamisen työkalut — pienet ja toistuvat teot — arkeen alkoi tulla tilaa. Hitaasti.
+          </p>
+          <p>
+            Nyt kirjoitan siitä joka viikko Instagramissa ja autan muita äitejä löytämään saman tilan. Kun äiti hengittää, koko koti hengittää.
+          </p>
+        </div>
+        <div class="mt-7">
+          <p class="font-script text-4xl text-ink">Juliana 🕊️</p>
+          <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="mt-2 inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-ink-mute transition-colors">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+            @hengittava_aiti
+          </a>
+          <p class="text-sm text-ink-mute mt-2">Hengittävän Äidin luoja · <a class="underline underline-offset-4 hover:text-ink" href="/minun-tarinani/">Lue koko tarinani</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: HonestDisclaimer ═══════════════ -->
+<section id="rehellisesti" data-component="HonestDisclaimer" class="py-12 md:py-16 bg-paper-warm border-t border-ink/10">
+  <div class="max-w-4xl mx-auto px-5 sm:px-6">
+    <div class="reveal bg-paper border border-ink/12 p-7 md:p-9">
+      <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Rehellisesti</p>
+      <div class="mt-4 space-y-3.5 text-ink-mute leading-relaxed">
+        <p>Tämä opas perustuu omaan kokemukseeni ja siihen, mitä olen oppinut hermostosta joogaopettajana. Se ei ole terveydenhuollon hoitoa eikä korvaa sitä.</p>
+        <p>Jos väsymys on jatkunut pitkään tai arki tuntuu ylivoimaiselta, sinä ansaitset muutakin tukea kuin tämän oppaan. Ota silloin yhteyttä työterveyteen tai omalle terveysasemallesi. Tätä opasta voi hyvin lukea myös hoidon rinnalla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: ClosingCTA ═══════════════ -->
+<section data-component="ClosingCTA" class="relative min-h-[70svh] flex items-center overflow-hidden bg-ink">
+  <!-- Photo #9: sunset, stays in colour, heavily darkened -->
+  <div class="absolute inset-0 ig-frame" aria-hidden="true">
+    <img src="kuvat/IMG_6335.jpg" class="ig-photo" alt="" loading="lazy" onerror="this.style.display='none'">
+    <div class="absolute inset-0 bg-ink/55"></div>
+  </div>
+
+  <div class="relative w-full max-w-5xl mx-auto px-5 sm:px-6 py-20">
+    <h2 class="reveal max-w-3xl">
+      <span class="ig-caption relative inline-block font-serif text-ink leading-[1.1] text-[clamp(1.9rem,5vw,3.8rem)] px-4 py-2">
+        Kun sinä hengität, koti hengittää.
+      </span>
+    </h2>
+    <p class="reveal mt-2.5 ml-[6%] max-w-lg" data-delay="120">
+      <span class="ig-caption relative inline-block font-serif text-ink-soft leading-[1.2] text-[clamp(1rem,2.2vw,1.6rem)] px-3.5 py-1.5">
+        Aloita tänään. Seitsemän päivää, yksi pieni askel kerrallaan.
+      </span>
+    </p>
+    <div class="reveal flex flex-col sm:flex-row items-start gap-3 mt-9" data-delay="240">
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="inline-flex items-center gap-2 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
+        Lataa ilmainen opas
+      </a>
+      <a href="/hermosto-reset/" class="inline-flex items-center gap-2 border border-paper/70 hover:border-paper text-paper font-bold px-8 py-4 transition-colors">
+        Tutustu Hermosto Reset 21:een
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ @component: SiteFooter ═══════════════ -->
+<footer data-component="SiteFooter" class="bg-plum-900 text-paper/70 pt-14 pb-9">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="grid md:grid-cols-[1.4fr_1fr_1fr] gap-9">
+      <div>
+        <a href="#alku" class="inline-block">
+          <img src="kuvat/logo.png" alt="Hengittävä Äiti" class="h-[5.5rem] w-auto brightness-0 invert">
+        </a>
+
+        <!-- Instagram first -->
+        <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
+           class="mt-5 inline-flex items-center gap-2.5 text-paper font-bold hover:opacity-80 transition-opacity">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+          @hengittava_aiti 🕊️
+        </a>
+
+        <div class="mt-3 flex flex-col gap-2">
+          <a href="mailto:hei@hengittava-aiti.fi" class="hover:text-paper transition-colors font-semibold">hei@hengittava-aiti.fi</a>
+        </div>
+        <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
+      </div>
+
+      <nav aria-label="Alatunnisteen sivustolinkit">
+        <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/50">Sivusto</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="hover:text-paper transition-colors" href="#instagram">Instagram</a></li>
+          <li><a class="hover:text-paper transition-colors" href="#tuntuuko">Tuntuuko tutulta</a></li>
+          <li><a class="hover:text-paper transition-colors" href="#hetki">Saat hengittää</a></li>
+          <li><a class="hover:text-paper transition-colors" href="#musiikki">Soittolistat</a></li>
+          <li><a class="hover:text-paper transition-colors" href="#mita-saat">Mitä saat mukaan</a></li>
+          <li><a class="hover:text-paper transition-colors" href="#minusta">Minusta</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/minun-tarinani/">Minun tarinani</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Alatunnisteen ohjelmalinkit">
+        <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/50">Ohjelmat &amp; musiikki</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share">Kun huusit taas — ilmainen miniopas</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01">Osta Hermosto Reset 21 · 19 €</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener">Spotify · Hermosto Reset</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-paper/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-paper/50">
+      <p>© <span id="year">2026</span> Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · ALV-velvollinen</p>
+      <p>Tehty rauhassa, Porvoossa.</p>
+    </div>
   </div>
 </footer>
 
 <script>
-  document.getElementById('vuosi').textContent = new Date().getFullYear();
-  var form=document.getElementById('free-guide-form');
-  if(form){form.addEventListener('submit',function(){try{sessionStorage.setItem('ha_free_guide_requested','1')}catch(e){}});}
+/* ═══════════ Behavior (→ small client components/hooks on React port) ═══════════ */
+(function () {
+  'use strict';
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 1. Sticky header state ─────────────────────────────────────── */
+  var header = document.getElementById('site-header');
+  function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── 2. Mobile menu ─────────────────────────────────────────────── */
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('menu-icon-open');
+  var iconClose = document.getElementById('menu-icon-close');
+  function setMenu(open) {
+    mobileMenu.classList.toggle('hidden', !open);
+    iconOpen.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Sulje valikko' : 'Avaa valikko');
+  }
+  menuBtn.addEventListener('click', function () {
+    setMenu(mobileMenu.classList.contains('hidden'));
+  });
+  document.querySelectorAll('.mobile-link').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+
+  /* ── 3. Scroll reveals ──────────────────────────────────────────── */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var delay = e.target.getAttribute('data-delay');
+          if (delay) e.target.style.transitionDelay = delay + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ── 4. Active nav link ─────────────────────────────────────────── */
+  var navLinks = document.querySelectorAll('.nav-link');
+  var sections = ['instagram', 'tuntuuko', 'askeleet', 'hetki', 'musiikki', 'minusta']
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) {
+            l.setAttribute('aria-current', l.getAttribute('href') === '#' + e.target.id ? 'true' : 'false');
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ── 5. Breathing exercise + soft generated music — 4 in, 6 out ─ */
+  var circle = document.getElementById('breath-circle');
+  var label  = document.getElementById('breath-label');
+  var ring   = document.getElementById('breath-ring');
+  var toggle = document.getElementById('breath-toggle');
+  var toggleText = document.getElementById('breath-toggle-text');
+  var musicWave = toggle ? toggle.querySelector('.music-wave') : null;
+  var count  = document.getElementById('breath-count');
+  var cta    = document.getElementById('breath-cta');
+  var RING_LEN = 829.4; // 2π · r132
+
+  var phases = [
+    { text: 'Hengitä sisään 4', dur: 4000, scale: 1.42 },
+    { text: 'Hengitä ulos 6',   dur: 6000, scale: 1.0  }
+  ];
+  var idx = 0, timer = null, completeTimer = null, running = false, breaths = 0;
+  var audioCtx = null, musicGain = null, musicNodes = [];
+
+  function setLabel(text) {
+    label.style.opacity = '0';
+    setTimeout(function () { label.textContent = text; label.style.opacity = '1'; }, 320);
+  }
+  function animateRing(dur) {
+    ring.style.transitionDuration = '0ms';
+    ring.style.strokeDashoffset = String(RING_LEN);
+    void ring.getBoundingClientRect();
+    ring.style.transitionDuration = dur + 'ms';
+    ring.style.strokeDashoffset = '0';
+  }
+  function startMusic() {
+    if (prefersReduced || (!(window.AudioContext || window.webkitAudioContext))) return;
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    stopMusic(true);
+
+    musicGain = audioCtx.createGain();
+    musicGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    musicGain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 2.4);
+    musicGain.connect(audioCtx.destination);
+
+    [196, 246.94, 293.66].forEach(function (freq, i) {
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      var lfo = audioCtx.createOscillator();
+      var lfoGain = audioCtx.createGain();
+      osc.type = i === 0 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.value = i === 0 ? 0.42 : 0.18;
+      lfo.frequency.value = 0.035 + i * 0.012;
+      lfoGain.gain.value = 0.045;
+      lfo.connect(lfoGain);
+      lfoGain.connect(gain.gain);
+      osc.connect(gain);
+      gain.connect(musicGain);
+      osc.start();
+      lfo.start();
+      musicNodes.push(osc, lfo, gain);
+    });
+  }
+  function stopMusic(instant) {
+    if (!audioCtx || !musicGain) return;
+    var now = audioCtx.currentTime;
+    musicGain.gain.cancelScheduledValues(now);
+    musicGain.gain.setValueAtTime(Math.max(musicGain.gain.value, 0.0001), now);
+    musicGain.gain.exponentialRampToValueAtTime(0.0001, now + (instant ? 0.05 : 1.4));
+    var oldNodes = musicNodes.slice();
+    setTimeout(function () {
+      oldNodes.forEach(function (node) { if (node.stop) { try { node.stop(); } catch (e) {} } if (node.disconnect) { try { node.disconnect(); } catch (e) {} } });
+    }, instant ? 80 : 1600);
+    musicNodes = [];
+    musicGain = null;
+  }
+  function runPhase() {
+    var p = phases[idx];
+    circle.style.transitionDuration = p.dur + 'ms';
+    circle.style.transform = 'scale(' + p.scale + ')';
+    setLabel(p.text);
+    animateRing(p.dur);
+    timer = setTimeout(function () {
+      idx = (idx + 1) % phases.length;
+      if (idx === 0) {
+        breaths += 1;
+        count.textContent = breaths === 1 ? '1 hengitys. Hyvin tehty.' : breaths + ' hengitystä. Jatka omaan tahtiin.';
+      }
+      runPhase();
+    }, p.dur);
+  }
+  function stopBreath(completed) {
+    running = false;
+    clearTimeout(timer);
+    clearTimeout(completeTimer);
+    idx = 0;
+    circle.style.transitionDuration = '900ms';
+    circle.style.transform = 'scale(1)';
+    ring.style.transitionDuration = '600ms';
+    ring.style.strokeDashoffset = String(RING_LEN);
+    setLabel(breaths > 0 ? 'Kiitos tästä hetkestä.' : 'Valmiina?');
+    toggleText.textContent = breaths > 0 ? 'Hengitä uudelleen' : 'Aloita tästä';
+    if (musicWave) musicWave.classList.add('hidden');
+    stopMusic(false);
+    if (completed || breaths > 0) cta.classList.add('is-visible');
+  }
+  toggle.addEventListener('click', function () {
+    if (running) { stopBreath(false); return; }
+    running = true;
+    breaths = 0;
+    count.textContent = 'Musiikki soi hiljaa. Hengitä rauhassa.';
+    cta.classList.remove('is-visible');
+    toggleText.textContent = 'Lopeta hetki';
+    if (musicWave) musicWave.classList.remove('hidden');
+    idx = 0;
+    startMusic();
+    runPhase();
+    completeTimer = setTimeout(function () {
+      count.textContent = '60 sekuntia. Riittää, että tulit tähän.';
+      stopBreath(true);
+    }, 60000);
+  });
+
+  /* ── 6. Plan preselect — offer CTAs feed the signup form ────────── */
+  var interest = document.getElementById('signup-interest');
+  document.querySelectorAll('[data-plan]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var plan = el.getAttribute('data-plan');
+      if (interest && plan) { interest.value = plan; updateActionLink(); }
+    });
+  });
+
+  /* ── 7. Direct launch links ─────────────────────────────────────── */
+  var HA_CONFIG = {
+    thankYou: {
+      miniopas: 'https://preview.mailerlite.io/forms/2565415/195422458022463204/share',
+      mini: 'https://preview.mailerlite.io/forms/2565415/195429375546492455/share',
+      musiikki: 'https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5'
+    }
+  };
+  var action = document.getElementById('signup-action');
+  function updateActionLink() {
+    if (!interest || !action) return;
+    var plan = interest.value || 'miniopas';
+    action.href = HA_CONFIG.thankYou[plan] || HA_CONFIG.thankYou.miniopas;
+    action.textContent = plan === 'musiikki' ? 'Avaa soittolista' : (plan === 'mini' ? 'Aloita ilmaisesta viikosta' : 'Lataa miniopas');
+    action.target = '_blank';
+    action.rel = 'noopener';
+  }
+  if (interest) interest.addEventListener('change', updateActionLink);
+  updateActionLink();
+
+  /* ── 8. Footer year ─────────────────────────────────────────────── */
+  document.getElementById('year').textContent = String(new Date().getFullYear());
+})();
 </script>
 </body>
 </html>
