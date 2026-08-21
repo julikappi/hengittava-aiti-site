@@ -29,7 +29,7 @@
 <meta property="og:description" content="Apua kotiahdistukseen ja uupuneelle hermostolle." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="kuvat/IMG_6335.jpg" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232A1845'/%3E%3Cpath d='M40 20a13 13 0 1 0 6 11 10 10 0 1 1-6-11Z' fill='%23FFFFFF'/%3E%3Ccircle cx='20' cy='19' r='1.7' fill='%23FFFFFF'/%3E%3Ccircle cx='26' cy='13' r='1.1' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+<link rel="icon" href="kuvat/logo-merkki.png" type="image/png" />
 
 <!-- Typography: Instrument Serif (IG caption serif) + Inter (UI) + Dancing Script (logo only) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,7 +45,7 @@
         colors: {
           ink:   { DEFAULT:'#141414', soft:'#2E2E2E', mute:'#5A5A5A' },  /* tekstilaatikon musta */
           paper: { DEFAULT:'#FFFFFF', warm:'#F7F5F2', deep:'#EDEAE5' },  /* valkoinen laatikko / tausta */
-          dawn:  { 100:'#F6E3D2', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' }, /* auringonnousu/-lasku */
+          dawn:  { 50:'#FEFAF6', 100:'#F6E3D2', 200:'#F2D6BB', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' }, /* auringonnousu/-lasku */
           plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }         /* vain logo + footer + väliote */
         },
         fontFamily: {
@@ -109,6 +109,12 @@
                         align-items:flex-start; text-align:left; }
   }
 
+  /* ─── Auringonnousu: valoisat pinnat mustien tilalle ─────────────── */
+  .sunrise      { background: linear-gradient(168deg,#FEFAF6 0%,#FBF0E5 40%,#F5DFC9 74%,#EFD0B2 100%); }
+  .sunrise-soft { background: linear-gradient(168deg,#FFFDFB 0%,#FDF7F1 55%,#F9EBDD 100%); }
+  .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
+                  background: radial-gradient(closest-side, rgba(248,203,143,.80), rgba(246,227,210,0) 74%); }
+
   /* Scroll reveals — quiet */
   .reveal { opacity: 1; transform: none;
             transition: opacity .55s ease, transform .55s ease; }
@@ -169,16 +175,10 @@
 <!-- ═══════════════ @component: SiteHeader ═══════════════ -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
   <nav class="max-w-6xl mx-auto px-5 sm:px-6 h-[var(--nav-h)] flex items-center justify-between gap-3" aria-label="Päävalikko">
-    <!-- Logo: plum circle, crescent moon + stars, handwritten name (from the IG profile picture) -->
+    <!-- Logo: SubscribePage-merkki (profiili, kuu, tähdet) + serif-nimenkirjoitus -->
     <a href="#alku" class="flex items-center gap-2.5 shrink-0">
-      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <circle cx="32" cy="32" r="30" fill="#2A1845"/>
-        <path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#FFFFFF"/>
-        <circle cx="19" cy="20" r="1.8" fill="#FFFFFF"/>
-        <circle cx="25.5" cy="13.5" r="1.1" fill="#FFFFFF"/>
-        <circle cx="16" cy="29" r="1" fill="#FFFFFF"/>
-      </svg>
-      <span class="hdr-fg font-script text-[1.5rem] leading-none">Hengittävä Äiti</span>
+      <img src="kuvat/logo-merkki.png" alt="" class="h-11 w-auto" width="47" height="44">
+      <span class="hdr-fg font-serif text-[1.02rem] sm:text-[1.08rem] tracking-[0.16em] uppercase leading-tight">Hengittävä Äiti</span>
     </a>
 
     <!-- Desktop links -->
@@ -262,7 +262,7 @@
         </a>
       </div>
 
-      <a href="#askeleet" class="reveal inline-flex items-center gap-2 mt-5 border border-ink/25 px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors" data-delay="320">
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="reveal inline-flex items-center gap-2 mt-5 border border-ink/25 px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors" data-delay="320">
         Ilmainen Hermosto Reset · Viikko 1
       </a>
     </div>
@@ -407,44 +407,46 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-3 md:gap-4 mt-10 items-stretch">
-      <article class="reveal relative flex flex-col bg-paper border border-ink/12 p-7 md:p-8" data-delay="0">
-        <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · 0 €</span>
-        <h3 class="font-serif text-[1.7rem] leading-tight mt-4 text-ink">Hermosto Reset · Viikko 1</h3>
-        <p class="text-sm font-bold text-ink-mute mt-1.5">7 päivää · PDF heti ladattavaksi</p>
-        <p class="mt-4 text-ink-mute leading-relaxed">Ensimmäiset 7 päivää 21 päivän oppaasta. Se osa, jossa alat nähdä mistä väsymys oikeasti tulee.</p>
-        <ul class="mt-5 space-y-2 text-ink-mute flex-1 text-[0.95rem]">
-          <li>Miksi olen puhki, vaikka en tehnyt mitään erityistä?</li>
-          <li>Miksi tyhjä hetki tuntuu väärältä, vaikka kaipaat lepoa</li>
-          <li>Missä elämä oikeastaan tapahtuu</li>
-          <li>Se mitä opit ennen sanoja</li>
-          <li>Työkalupakki: 7 harjoitusta ja 7 hemmottelua</li>
-        </ul>
-        <a href="/opas/" class="mt-7 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa ilmaiseksi</a>
+
+      <!-- 1 · Kun huusit taas -->
+      <article class="reveal relative flex flex-col bg-paper border border-ink/12 overflow-hidden" data-delay="0">
+        <a href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="block bg-paper-warm">
+          <img src="kuvat/kansi-kun-huusit-taas.jpg" alt="Kun huusit taas – minioppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · PDF miniopas</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Kun huusit taas – ja nyt hävettää</h3>
+          <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen miniopas äidille, joka katuu omaa reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
+          <a href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa miniopas</a>
+        </div>
       </article>
 
-      <article class="reveal relative flex flex-col bg-ink text-paper p-7 md:p-8" data-delay="80">
-        <span class="inline-flex w-fit items-center bg-paper text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Suosituin</span>
-        <h3 class="font-serif text-[1.7rem] leading-tight mt-4">Hermosto Reset — 21 päivää</h3>
-        <p class="text-sm font-bold text-paper/70 mt-2 leading-relaxed">Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.</p>
-        <p class="text-sm font-bold text-paper mt-2">19 € · digitaalinen opas</p>
-        <p class="mt-4 text-paper/85 leading-relaxed">33-sivuinen opas äidille, joka on väsynyt eikä kaipaa yhtä uutta projektia lisää. Yksi päivä kerrallaan, yksi pieni askel päivässä.</p>
-        <ul class="mt-5 space-y-2 text-paper/85 flex-1 text-[0.95rem]">
-          <li>Osa 1 · Pysähtyminen: näkymätön kuorma, lepo, läsnäolo ja opitut selviytymismallit</li>
-          <li>Osa 2 · Keho ja arki: hengitys, kehon viestit, turvan rituaalit ja rajat</li>
-          <li>Osa 3 · Uusi suunta: riittävyys, ilo, huonot päivät ja itsemyötätunto</li>
-          <li>Kolme työkalupakkia: 21 harjoitusta ja 21 hemmottelua</li>
-          <li>Viikkoreflektiot ja tilaa omille muistiinpanoille</li>
-        </ul>
-        <!-- The single dawn-coloured CTA on the page -->
-        <a href="/hermosto-reset/" class="mt-7 inline-flex items-center justify-center bg-dawn-500 hover:bg-dawn-700 text-ink font-bold px-6 py-3.5 transition-colors">Hanki opas · 19 €</a>
+      <!-- 2 · Hermosto Reset viikko 1 -->
+      <article class="reveal relative flex flex-col bg-paper border border-ink/12 overflow-hidden" data-delay="80">
+        <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="block bg-paper-warm">
+          <img src="kuvat/kansi-hermosto-reset-viikko-1.jpg" alt="Hermosto Reset viikko 1 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · 7 päivää</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – viikko 1</h3>
+          <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen 7 päivän opas, joka auttaa sinua pysähtymään ja aloittamaan pienestä tavallisen arjen keskellä.</p>
+          <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Aloita ilmaisesta viikosta</a>
+        </div>
       </article>
 
-      <article class="reveal relative flex flex-col bg-paper-warm border border-ink/12 p-7 md:p-8" data-delay="160">
-        <span class="inline-flex w-fit items-center border border-ink/25 text-ink-mute text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Tulossa</span>
-        <h3 class="font-serif text-[1.7rem] leading-tight mt-4 text-ink">Hengittävä äiti · 1:1 mentorointi</h3>
-        <p class="text-sm font-bold text-ink-mute mt-1.5">Kysy mentoroinnista</p>
-        <p class="mt-4 text-ink-mute leading-relaxed flex-1">Henkilökohtaista tukea äidille, joka kaipaa rauhaa, rakennetta ja lempeämpää suhdetta arkeen.<br><br>Kerron lisää, kun ensimmäiset paikat avautuvat. Voit jo nyt kysyä, sopisiko mentorointi sinulle.</p>
-        <a href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi" class="mt-7 inline-flex items-center justify-center border border-ink/25 hover:border-ink text-ink font-bold px-6 py-3.5 transition-colors">Kysy mentoroinnista</a>
+      <!-- 3 · Hermosto Reset 21 -->
+      <article class="reveal relative flex flex-col overflow-hidden sunrise border border-dawn-300" data-delay="160">
+        <span class="sun-glow -top-28 -right-24 w-80 h-80" aria-hidden="true"></span>
+        <a href="/hermosto-reset/" class="relative block">
+          <img src="kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset 21 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
+        </a>
+        <div class="relative flex flex-col flex-1 p-6 md:p-7">
+          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">PDF 33 sivua · 19 €</span>
+          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
+          <p class="mt-3 text-ink-soft leading-relaxed flex-1">21 päivän digitaalinen opas äidille, joka kaipaa arkeen pysähtymistä, hengitystä ja lempeää rakennetta. Hinta 29 €.</p>
+          <p class="mt-2 text-sm font-bold text-ink">Oppaan lanseeraushinta 19 € (31.8. asti)</p>
+          <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
+        </div>
       </article>
     </div>
   </div>
@@ -510,7 +512,7 @@
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
-      <!-- Playlists -->
+      <!-- Soittolistat — sivun vasen puoli -->
       <div class="reveal">
         <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
           <span class="inline-block w-8 h-px bg-ink/30"></span> Soittolistat
@@ -522,68 +524,59 @@
           Samat listat, jotka löytyvät Instagram-biosta. Laita taustalle aamuun, autoon tai siihen kohtaan päivää, jossa kaikki tuntuu vähän liialta.
         </p>
 
-        <!-- Hermosto Reset — verified playlist, existing embed kept -->
-        <div class="mt-8 border border-ink/10 bg-paper">
+        <!-- Hermosto Reset -->
+        <div class="mt-8 border border-dawn-300/70 sunrise-soft">
           <div class="px-6 py-4 border-b border-ink/10">
             <p class="font-serif text-2xl text-ink">Hermosto Reset</p>
             <p class="text-sm text-ink-mute mt-1">Rauhoittumiseen. Pidennetty uloshengitys, hiljainen piano.</p>
           </div>
           <div class="p-4">
-            <iframe src="https://open.spotify.com/embed/playlist/4q6gKFxvzFVMv64CR3KgC5?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Hermosto Reset -soittolista Spotifyssa" style="border:0"></iframe>
-            <a href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center bg-ink text-paper font-bold px-6 py-3.5 hover:bg-ink-soft transition-colors">
+            <iframe src="https://open.spotify.com/embed/playlist/4q6gKFxvzFVMv64CR3KgC5?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Hermosto Reset -soittolista Spotifyssa" style="border:0"></iframe>
+            <a href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center border border-ink/70 hover:border-ink hover:bg-ink hover:text-paper text-ink font-bold px-6 py-3.5 transition-colors">
               Avaa Hermosto Reset Spotifyssa
             </a>
           </div>
         </div>
 
-        <!-- Tunnepurku — playlist exists on Linktree, but its Spotify URL could not be
-             retrieved automatically. TODO: replace the Linktree href below with the real
-             open.spotify.com/playlist/... URL and add the matching embed iframe. -->
-        <div class="mt-4 border border-ink/10 bg-paper-warm">
+        <!-- Tunnepurku -->
+        <div class="mt-4 border border-dawn-300/70 sunrise-soft">
           <div class="px-6 py-4 border-b border-ink/10">
             <p class="font-serif text-2xl text-ink">Tunnepurku</p>
             <p class="text-sm text-ink-mute mt-1">Kun tunne pitää saada ulos ennen kuin se purkautuu muihin.</p>
           </div>
-          <div class="p-6">
-            <p class="text-sm text-ink-mute leading-relaxed">Suora Spotify-linkki lisätään tähän. Toistaiseksi lista avautuu Linktreen kautta.</p>
-            <a href="https://linktr.ee/hengittava_aiti" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">
-              Avaa Tunnepurku Linktreessä
+          <div class="p-4">
+            <iframe src="https://open.spotify.com/embed/playlist/5XBrhhlTN7PUO9JymHnEPN?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Tunnepurku-soittolista Spotifyssa" style="border:0"></iframe>
+            <a href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center border border-ink/70 hover:border-ink hover:bg-ink hover:text-paper text-ink font-bold px-6 py-3.5 transition-colors">
+              Avaa Tunnepurku Spotifyssa
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Signup side — functionality unchanged -->
+      <!-- Aloita jo tänään — yksi valikko, ei muita bokseja -->
       <div class="reveal" data-delay="120">
-        <div class="bg-ink text-paper p-8 md:p-10">
-          <h3 class="font-serif text-3xl leading-tight">Aloita tästä tänään</h3>
-          <p class="mt-4 text-paper/80 leading-relaxed">
-            Valitse pieni seuraava askel. Ilmainen opas ja soittolista avautuvat heti. Hermosto Reset 21 -valinnasta pääset ensin myyntisivulle.
-          </p>
+        <div class="relative overflow-hidden sunrise border border-dawn-300 p-8 md:p-10">
+          <span class="sun-glow -top-32 -right-28 w-[26rem] h-[26rem]" aria-hidden="true"></span>
+          <div class="relative">
+            <h3 class="font-serif text-3xl leading-tight text-ink">Aloita jo tänään</h3>
+            <p class="mt-4 text-ink-soft leading-relaxed">
+              Lataa ilmainen opas tai avaa hermostoa hellivä musiikkilista. Valitse alta, kumman haluat.
+            </p>
 
-          <div id="signup-form" class="mt-7 space-y-4">
-            <label class="block">
-              <span class="text-sm font-bold text-paper/70">Mikä kiinnostaa sinua?</span>
-              <select id="signup-interest" class="field mt-2 w-full bg-paper text-ink font-semibold border border-transparent px-4 py-3.5">
-                <option value="mini">Hermosto Reset · Viikko 1 — ilmainen</option>
-                <option value="hr21">Hermosto Reset — 21 päivää · 19 €</option>
-                <option value="koti">Hengittävä äiti · 1:1 mentorointi</option>
-                <option value="musiikki">Soittolista</option>
-              </select>
-            </label>
-            <label class="block">
-              <span class="text-sm font-bold text-paper/70">Tarvitsetko apua?</span>
-              <p class="mt-2 text-paper/80 leading-relaxed">Jos linkki tai lataus ei aukea, kirjoita: <a class="text-paper font-bold underline underline-offset-4" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a></p>
-            </label>
-            <a id="signup-action" href="/opas/" class="w-full inline-flex items-center justify-center bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
-              Jatka
-            </a>
-            <p id="signup-note" class="text-sm text-paper/70" aria-live="polite">Ei odottelua. Valitse askel ja jatka rauhassa.</p>
-          </div>
-
-          <div id="signup-success" class="hidden mt-7 border border-paper/30 p-6 text-center">
-            <p class="font-serif text-3xl text-paper">Kiitos.</p>
-            <p class="mt-2 text-paper/80">Hengitä rauhassa. Linkki avautuu seuraavassa vaiheessa.</p>
+            <div id="signup-form" class="mt-7 space-y-4">
+              <label class="block">
+                <span class="text-sm font-bold text-ink-mute">Mikä kiinnostaa sinua?</span>
+                <select id="signup-interest" class="field mt-2 w-full bg-paper text-ink font-semibold border border-ink/20 px-4 py-3.5">
+                  <option value="miniopas">Kun huusit taas · ilmainen miniopas</option>
+                  <option value="mini">Ilmainen opas · Hermosto Reset Viikko 1</option>
+                  <option value="musiikki">Hermostoa hellivä musiikkilista</option>
+                </select>
+              </label>
+              <a id="signup-action" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="w-full inline-flex items-center justify-center bg-ink text-paper font-bold px-8 py-4 hover:bg-ink-soft transition-colors">
+                Lataa miniopas
+              </a>
+              <p id="signup-note" class="text-sm text-ink-mute" aria-live="polite">Molemmat avautuvat heti. Jos linkki ei aukea, kirjoita <a class="font-bold underline underline-offset-4 hover:text-ink" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -703,7 +696,7 @@
       </span>
     </p>
     <div class="reveal flex flex-col sm:flex-row items-start gap-3 mt-9" data-delay="240">
-      <a href="/opas/" class="inline-flex items-center gap-2 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="inline-flex items-center gap-2 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
         Lataa ilmainen opas
       </a>
       <a href="/hermosto-reset/" class="inline-flex items-center gap-2 border border-paper/70 hover:border-paper text-paper font-bold px-8 py-4 transition-colors">
@@ -720,14 +713,8 @@
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid md:grid-cols-[1.4fr_1fr_1fr] gap-9">
       <div>
-        <a href="#alku" class="flex items-center gap-2.5">
-          <svg width="30" height="30" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <circle cx="32" cy="32" r="30" fill="#FFFFFF" fill-opacity="0.08"/>
-            <path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#FFFFFF"/>
-            <circle cx="19" cy="20" r="1.8" fill="#FFFFFF"/>
-            <circle cx="25.5" cy="13.5" r="1.1" fill="#FFFFFF"/>
-          </svg>
-          <span class="font-script text-2xl text-paper">Hengittävä Äiti</span>
+        <a href="#alku" class="inline-block">
+          <img src="kuvat/logo.png" alt="Hengittävä Äiti" class="h-[5.5rem] w-auto brightness-0 invert">
         </a>
 
         <!-- Instagram first -->
@@ -740,7 +727,7 @@
         <div class="mt-3 flex flex-col gap-2">
           <a href="mailto:hei@hengittava-aiti.fi" class="hover:text-paper transition-colors font-semibold">hei@hengittava-aiti.fi</a>
         </div>
-        <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · Fredrika Runebergin katu 1–3 H 16, 06100 Porvoo</p>
+        <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
       </div>
 
       <nav aria-label="Alatunnisteen sivustolinkit">
@@ -759,12 +746,12 @@
       <nav aria-label="Alatunnisteen ohjelmalinkit">
         <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/50">Ohjelmat &amp; musiikki</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-paper transition-colors" href="/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share">Kun huusit taas — ilmainen miniopas</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share">Hermosto Reset · Viikko 1 — ilmainen</a></li>
           <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
-          <li><a class="hover:text-paper transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi">Hengittävä äiti · 1:1 mentorointi</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01">Osta Hermosto Reset 21 · 19 €</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener">Spotify · Hermosto Reset</a></li>
-          <!-- TODO: swap to the direct open.spotify.com URL once available -->
-          <li><a class="hover:text-paper transition-colors" href="https://linktr.ee/hengittava_aiti" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
           <li><a class="hover:text-paper transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
           <li><a class="hover:text-paper transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
         </ul>
@@ -975,20 +962,20 @@
 
   /* ── 7. Direct launch links ─────────────────────────────────────── */
   var HA_CONFIG = {
-    checkoutUrlHr21: '/kauppa/hermosto-reset/',
     thankYou: {
-      mini: '/opas/',
-      musiikki: 'https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5',
-      koti: 'mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi',
-      hr21: '/hermosto-reset/'
+      miniopas: 'https://preview.mailerlite.io/forms/2565415/195422458022463204/share',
+      mini: 'https://preview.mailerlite.io/forms/2565415/195429375546492455/share',
+      musiikki: 'https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5'
     }
   };
   var action = document.getElementById('signup-action');
   function updateActionLink() {
     if (!interest || !action) return;
-    var plan = interest.value || 'mini';
-    action.href = HA_CONFIG.thankYou[plan] || '/opas/';
-    action.textContent = plan === 'hr21' ? 'Tutustu oppaaseen · 19 €' : plan === 'musiikki' ? 'Avaa soittolista' : plan === 'koti' ? 'Kysy mentoroinnista' : 'Lataa ilmainen opas';
+    var plan = interest.value || 'miniopas';
+    action.href = HA_CONFIG.thankYou[plan] || HA_CONFIG.thankYou.miniopas;
+    action.textContent = plan === 'musiikki' ? 'Avaa soittolista' : (plan === 'mini' ? 'Aloita ilmaisesta viikosta' : 'Lataa miniopas');
+    action.target = '_blank';
+    action.rel = 'noopener';
   }
   if (interest) interest.addEventListener('change', updateActionLink);
   updateActionLink();

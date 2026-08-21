@@ -4,42 +4,45 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 <title>Minun tarinani — Hengittävä Äiti</title>
 <style>
 :root{--ink:#141414;--ink-soft:#2E2E2E;--ink-mute:#5A5A5A;--paper:#fff;--paper-warm:#F7F5F2;--paper-deep:#EDEAE5;--dawn:#D08B5B;--plum:#2A1845}
 *{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7}
+body{margin:0;font-family:Inter,system-ui,sans-serif;font-weight:300;background:var(--paper);color:var(--ink);line-height:1.75;letter-spacing:.004em}
 a{color:inherit}
 .site-header{border-bottom:1px solid rgba(20,20,20,.10);background:var(--paper)}
 .site-header .bar{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand span{font-family:'Dancing Script',cursive;font-size:26px;line-height:1}
+.brand img{height:44px;width:auto;display:block}.brand span{font-family:'Instrument Serif',Georgia,serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;line-height:1.15}.site-footer .brand img{height:72px;filter:brightness(0) invert(1)}
 .hdr-links{display:flex;align-items:center;gap:10px}
 .iglink{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid currentColor}
-.back{display:inline-flex;align-items:center;text-decoration:none;border:1px solid rgba(20,20,20,.25);padding:9px 14px;font-weight:700;font-size:14px}
+.back{display:inline-flex;align-items:center;text-decoration:none;border:1px solid rgba(20,20,20,.22);padding:9px 14px;font-weight:400;font-size:14px;letter-spacing:.01em;color:var(--ink-soft)}
+.back:hover{border-color:rgba(20,20,20,.45);color:var(--ink)}
 .hero{position:relative;background:var(--ink);overflow:hidden;min-height:60svh;display:flex;align-items:flex-end}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}
 .hero .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,20,.78),rgba(20,20,20,.18) 55%,rgba(20,20,20,.35))}
 .hero-inner{position:relative;max-width:1040px;margin:0 auto;padding:96px 20px 40px;width:100%}
-.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:800}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:500}
 .box{display:inline-block;background:#fff;color:var(--ink);padding:8px 16px}
 h1{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-size:clamp(34px,6.6vw,64px);line-height:1.1;margin:16px 0 0;font-weight:400}
 .lead-box{display:inline-block;background:#fff;color:var(--ink-soft);padding:6px 14px;margin:10px 0 0 6%;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(17px,2.4vw,25px);line-height:1.25}
 .wrap{max-width:760px;margin:0 auto;padding:48px 20px 68px}
-p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
+p{font-size:18px;font-weight:300;color:#4F4F4F;margin:0 0 20px}
+em{font-style:italic}
+strong{font-weight:500}
 .quote{margin:28px 0;padding:22px 24px;background:var(--paper-warm);border:1px solid rgba(20,20,20,.10)}
 .quote p{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(23px,3.4vw,34px);line-height:1.14;color:var(--ink);margin:0}
 .sign{font-family:'Dancing Script',cursive;font-size:30px;color:var(--ink);margin-top:30px}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-.cta{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;padding:15px 22px}
+.cta{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;font-weight:500;text-decoration:none;padding:15px 22px}
 .cta--ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
 .site-footer{background:var(--plum);color:rgba(255,255,255,.72);padding:44px 20px 32px}
 .site-footer .inner{max-width:1040px;margin:0 auto}
 .site-footer a{color:rgba(255,255,255,.72);text-decoration:none}
 .site-footer a:hover{color:#fff}
 .site-footer .brand{color:#fff}
-.f-ig{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:700;margin-top:16px}
+.f-ig{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:500;margin-top:16px}
 .f-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:14px}
 .f-legal{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:rgba(255,255,255,.5)}
 @media(max-width:640px){
@@ -57,14 +60,14 @@ p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
 <header class="site-header" data-component="SiteHeader">
   <div class="bar">
     <a class="brand" href="/">
-      <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#2A1845"/><path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#fff"/><circle cx="19" cy="20" r="1.8" fill="#fff"/><circle cx="25.5" cy="13.5" r="1.1" fill="#fff"/></svg>
+      <img src="/kuvat/logo-merkki.png" alt="">
       <span>Hengittävä Äiti</span>
     </a>
     <div class="hdr-links">
       <a class="iglink" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" aria-label="Hengittävä Äiti Instagramissa (@hengittava_aiti)">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
       </a>
-      <a class="back" href="/hermosto-reset/">Takaisin oppaaseen</a>
+      <a class="back" href="/">Takaisin etusivulle</a>
     </div>
   </div>
 </header>
@@ -75,7 +78,7 @@ p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
   <div class="scrim"></div>
   <div class="hero-inner">
     <div class="eyebrow">Minun tarinani</div>
-    <h1><span class="box">Luulin olevani vain tulinen.</span></h1>
+    <h1><span class="box">Luulin olevani vain <em>tulinen</em>.</span></h1>
     <p class="lead-box">Kesti kauan tajuta, mistä oikeasti oli kyse.</p>
   </div>
 </section>
@@ -85,7 +88,7 @@ p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
 <p>En havahtunut yhdessä suuressa hetkessä. Se tapahtui pikkuhiljaa.</p>
 <p>Oma kuormitukseni oli kasvanut niin suureksi, että olin koko ajan tuliherkkä. Kotona se näkyi niille, joita rakastan eniten: lapsille ja puolisolle. Saatoin huutaa, purkautua ja olla epätoivoinen siitä, ettei kukaan kuuntele eikä kukaan tee. Ja sen jälkeen kadutti.</p>
 <div class="quote"><p>“Tätäkö tämä elämä nyt on? Mitä minulle on oikein tapahtunut?”</p></div>
-<p>Olin pitkään ajatellut, että olen vain temperamenttinen. Tällainen “tulinen” ihminen. Mutta vähitellen aloin ymmärtää, että hermostoni ei kokenut olevansa turvassa. Kun keho elää jatkuvassa ylivireydessä, pienikin asia voi tuntua liialta.</p>
+<p>Olin pitkään ajatellut, että olen vain temperamenttinen. Tällainen “<em>tulinen</em>” ihminen. Mutta vähitellen aloin ymmärtää, että hermostoni ei kokenut olevansa turvassa. Kun keho elää jatkuvassa ylivireydessä, pienikin asia voi tuntua liialta.</p>
 <p>Silloin minun oli pakko opetella pysähtymään. Ei täydellisesti. Ei niin, että kaikki olisi kerralla muuttunut rauhalliseksi. Pienissä kohdissa: hengittää ennen kuin räjähdän, lähteä kävelylle, jättää jokin kesken, ottaa tauko ennen kuin olen aivan lopussa.</p>
 <div class="quote"><p>“Tilaa ei löydy arjesta vahingossa. Sitä pitää luoda uudelleen, joskus joka päivä.”</p></div>
 <p>Samalla minussa heräsi toinen oivallus: itsepä olin mennyt rakentamaan tätä perhettä ja tekemään lapsia. Pakkohan tästä elämästä on opetella myös nauttimaan.</p>
@@ -104,8 +107,7 @@ p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
 <footer class="site-footer" data-component="SiteFooter">
   <div class="inner">
     <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#fff" fill-opacity=".08"/><path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#fff"/><circle cx="19" cy="20" r="1.8" fill="#fff"/></svg>
-      <span>Hengittävä Äiti</span>
+      <img src="/kuvat/logo.png" alt="Hengittävä Äiti">
     </a>
     <a class="f-ig" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
@@ -114,14 +116,13 @@ p{font-size:18px;color:var(--ink-mute);margin:0 0 20px}
     <div class="f-links">
       <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>
       <a href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener">Spotify · Hermosto Reset</a>
-      <!-- TODO: swap to the direct open.spotify.com URL once available -->
-      <a href="https://linktr.ee/hengittava_aiti" target="_blank" rel="noopener">Spotify · Tunnepurku</a>
-      <a href="/opas/">Ilmainen opas</a>
+      <a href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener">Spotify · Tunnepurku</a>
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share">Ilmainen opas</a>
       <a href="/hermosto-reset/">Hermosto Reset — 21 päivää</a>
       <a href="/tietosuoja/">Tietosuojaseloste</a>
       <a href="/ostoehdot/">Ostoehdot</a>
     </div>
-    <p class="f-legal">© 2026 Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · Fredrika Runebergin katu 1–3 H 16, 06100 Porvoo</p>
+    <p class="f-legal">© 2026 Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
   </div>
 </footer>
 </body></html>

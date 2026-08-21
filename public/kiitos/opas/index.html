@@ -14,7 +14,7 @@ a{color:inherit}
 .site-header{border-bottom:1px solid rgba(20,20,20,.10);background:var(--paper)}
 .site-header .bar{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand span{font-family:'Dancing Script',cursive;font-size:26px;line-height:1}
+.brand img{height:44px;width:auto;display:block}.brand span{font-family:'Instrument Serif',Georgia,serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;line-height:1.15}.site-footer .brand img{height:72px;filter:brightness(0) invert(1)}
 .iglink{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid currentColor}
 .page{flex:1;max-width:760px;width:100%;margin:0 auto;padding:52px 20px 68px}
 .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute);font-weight:800}
@@ -38,15 +38,7 @@ p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
 .f-legal{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:rgba(255,255,255,.5)}
 @media(max-width:640px){.page{padding:34px 18px 52px}.buttons{flex-direction:column}.btn{width:100%}}
 </style>
-<script>
-(function(){
-  var params = new URLSearchParams(window.location.search);
-  var hasEmail = params.has('email') && /@/.test(params.get('email') || '');
-  var hasSession = false;
-  try { hasSession = sessionStorage.getItem('ha_free_guide_requested') === '1'; } catch(e) {}
-  if (!hasEmail && !hasSession) window.location.replace('/opas/');
-})();
-</script>
+
 </head>
 <body>
 
@@ -54,7 +46,7 @@ p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
 <header class="site-header" data-component="SiteHeader">
   <div class="bar">
     <a class="brand" href="/">
-      <svg width="32" height="32" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#2A1845"/><path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#fff"/><circle cx="19" cy="20" r="1.8" fill="#fff"/><circle cx="25.5" cy="13.5" r="1.1" fill="#fff"/></svg>
+      <img src="/kuvat/logo-merkki.png" alt="">
       <span>Hengittävä Äiti</span>
     </a>
     <a class="iglink" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" aria-label="Hengittävä Äiti Instagramissa (@hengittava_aiti)">
@@ -68,12 +60,12 @@ p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
   <section class="card">
     <div class="eyebrow">Hermosto Reset · Viikko 1</div>
     <h1>Opas on tässä. Aloita rauhassa.</h1>
-    <p>Ihanaa, että aloitit. 7 päivää, yksi askel kerrallaan. Pieniä hetkiä, joissa hermosto saa hengähtää.</p>
+    <p>Ihanaa, että aloitit. Opas lähti juuri sähköpostiisi. 7 päivää, yksi askel kerrallaan. Pieniä hetkiä, joissa hermosto saa hengähtää.</p>
     <div class="buttons">
-      <a class="btn primary" href="/materiaalit/Hermosto-Reset-Viikko-1-Ilmaisopas.pdf" download>Lataa Hermosto Reset · Viikko 1</a>
-      <a class="btn secondary" href="/">Palaa etusivulle</a>
+      <a class="btn primary" href="/">Palaa etusivulle</a>
+      <a class="btn secondary" href="/hermosto-reset/">Tutustu 21 päivän oppaaseen</a>
     </div>
-    <p class="note">Jos lataus ei aukea, kirjoita meille: hei@hengittava-aiti.fi</p>
+    <p class="note">Opas on lähetetty sähköpostiisi. Jos viesti ei näy muutamassa minuutissa, tarkista roskapostikansio tai kirjoita: hei@hengittava-aiti.fi</p>
     <p class="sign">Lämmöllä,<br>Juliana · Hengittävä äiti</p>
   </section>
 </main>
@@ -82,8 +74,7 @@ p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
 <footer class="site-footer" data-component="SiteFooter">
   <div class="inner">
     <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#fff" fill-opacity=".08"/><path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#fff"/><circle cx="19" cy="20" r="1.8" fill="#fff"/></svg>
-      <span>Hengittävä Äiti</span>
+      <img src="/kuvat/logo.png" alt="Hengittävä Äiti">
     </a>
     <a class="f-ig" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
@@ -96,7 +87,7 @@ p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
       <a href="/tietosuoja/">Tietosuojaseloste</a>
       <a href="/ostoehdot/">Ostoehdot</a>
     </div>
-    <p class="f-legal">© 2026 Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · Fredrika Runebergin katu 1–3 H 16, 06100 Porvoo</p>
+    <p class="f-legal">© 2026 Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
   </div>
 </footer>
 </body></html>

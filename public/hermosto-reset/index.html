@@ -16,13 +16,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hermosto Reset — 21 päivää · Hengittävä Äiti</title>
-<meta name="description" content="34-sivuinen digitaalinen opas äidille, jonka hermosto on ollut liian kauan varuillaan. 21 päivää, yksi pieni askel kerrallaan. 19 €." />
+<meta name="description" content="33-sivuinen digitaalinen opas äidille, jonka hermosto on ollut liian kauan varuillaan. 21 päivää, yksi pieni askel kerrallaan. 19 €." />
 <meta name="theme-color" content="#141414" />
 <meta property="og:title" content="Hermosto Reset — 21 päivää" />
 <meta property="og:description" content="Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="/kuvat/IMG_6335.jpg" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232A1845'/%3E%3Cpath d='M40 20a13 13 0 1 0 6 11 10 10 0 1 1-6-11Z' fill='%23FFFFFF'/%3E%3Ccircle cx='20' cy='19' r='1.7' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+<link rel="icon" href="/kuvat/logo-merkki.png" type="image/png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,7 +36,7 @@
         colors: {
           ink:   { DEFAULT:'#141414', soft:'#2E2E2E', mute:'#5A5A5A' },
           paper: { DEFAULT:'#FFFFFF', warm:'#F7F5F2', deep:'#EDEAE5' },
-          dawn:  { 100:'#F6E3D2', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' },
+          dawn:  { 50:'#FEFAF6', 100:'#F6E3D2', 200:'#F2D6BB', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' },
           plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }
         },
         fontFamily: {
@@ -74,6 +74,12 @@
     .ig-hook    { font-size:.95rem; }
     .ig-caption { padding:.45em .7em; max-width:92%; }
   }
+
+  /* Auringonnousu: valoisat pinnat mustien tilalle */
+  .sunrise      { background: linear-gradient(168deg,#FEFAF6 0%,#FBF0E5 40%,#F5DFC9 74%,#EFD0B2 100%); }
+  .sunrise-soft { background: linear-gradient(168deg,#FFFDFB 0%,#FDF7F1 55%,#F9EBDD 100%); }
+  .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
+                  background: radial-gradient(closest-side, rgba(248,203,143,.80), rgba(246,227,210,0) 74%); }
 
   .reveal { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
 
@@ -118,14 +124,8 @@
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
   <nav class="max-w-6xl mx-auto px-5 sm:px-6 h-[var(--nav-h)] flex items-center justify-between gap-3" aria-label="Päävalikko">
     <a href="/" class="flex items-center gap-2.5 shrink-0">
-      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <circle cx="32" cy="32" r="30" fill="#2A1845"/>
-        <path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#FFFFFF"/>
-        <circle cx="19" cy="20" r="1.8" fill="#FFFFFF"/>
-        <circle cx="25.5" cy="13.5" r="1.1" fill="#FFFFFF"/>
-        <circle cx="16" cy="29" r="1" fill="#FFFFFF"/>
-      </svg>
-      <span class="hdr-fg font-script text-[1.5rem] leading-none">Hengittävä Äiti</span>
+      <img src="/kuvat/logo-merkki.png" alt="" class="h-11 w-auto" width="47" height="44">
+      <span class="hdr-fg font-serif text-[1.02rem] sm:text-[1.08rem] tracking-[0.16em] uppercase leading-tight">Hengittävä Äiti</span>
     </a>
 
     <div class="hidden lg:flex items-center gap-7 text-[0.92rem] font-semibold">
@@ -185,7 +185,7 @@
     <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
        class="reveal inline-flex items-center gap-2 text-ink-mute hover:text-ink transition-colors text-[0.82rem] font-semibold tracking-wide">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
-      @hengittava_aiti · 34-sivuinen digitaalinen opas
+      @hengittava_aiti · 33-sivuinen digitaalinen opas
     </a>
 
     <h1 class="reveal mt-4 max-w-3xl font-serif text-ink leading-[1.03] text-[clamp(2.2rem,5.8vw,4.4rem)]" data-delay="80">
@@ -203,11 +203,14 @@
     </p>
 
     <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8" data-delay="360">
-      <a href="/kauppa/hermosto-reset/" class="inline-flex items-center gap-2 bg-dawn-500 hover:bg-dawn-700 text-ink font-bold px-8 py-4 transition-colors whitespace-nowrap">
-        Aloita 21 päivää · 19 €
+      <a href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01" class="inline-flex items-center gap-2 bg-dawn-500 hover:bg-dawn-700 text-ink font-bold px-8 py-4 transition-colors whitespace-nowrap">
+        Osta opas · 19 €
       </a>
-      <p class="text-sm max-w-sm text-ink-mute">Maksun jälkeen saat latauslinkin heti. Luettavissa puhelimella.</p>
+      <a href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share" class="inline-flex items-center gap-2 border border-ink/30 hover:border-ink text-ink font-bold px-7 py-4 transition-colors whitespace-nowrap">
+        Aloita ilmaisesta viikosta
+      </a>
     </div>
+    <p class="reveal mt-4 text-sm max-w-sm text-ink-mute" data-delay="400">Lanseeraushinta 19 € 31.8. asti (norm. 29 €). Maksun jälkeen saat latauslinkin heti.</p>
   </div>
 </section>
 
@@ -234,7 +237,7 @@
 <section id="opas" data-component="WhatItIs" class="py-14 md:py-20 bg-paper">
   <div class="max-w-5xl mx-auto px-5 sm:px-6 grid lg:grid-cols-[1fr_1.1fr] gap-10 items-center">
     <figure class="reveal ig-frame ig-frame--45">
-      <img src="/kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa" loading="lazy" onerror="this.style.display='none'" />
+      <img src="/kuvat/ranta-aiti-lapsi.jpg" class="ig-photo ig-photo--dawn" alt="Äiti ja lapsi istuvat rantakivikossa katsomassa merelle" loading="lazy" onerror="this.style.display='none'" />
       <figcaption class="ig-caption ig-caption--bottom">
         <p class="ig-hook">21 päivää. Yksi askel päivässä.</p>
       </figcaption>
@@ -243,7 +246,7 @@
       <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Askeleesi</p>
       <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Kokonaiset 21 päivää pysähtymiseen ja palautumiseen.</h2>
       <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
-        <p>Hermosto Reset on 34-sivuinen opas äidille, joka on niin väsynyt, ettei kaipaa yhtä uutta projektia lisää.</p>
+        <p>Hermosto Reset on 33-sivuinen opas äidille, joka on niin väsynyt, ettei kaipaa yhtä uutta projektia lisää.</p>
         <p>Opas kuljettaa sinua 21 päivän ajan pienissä, arkeen mahtuvissa kohdissa: hengityksessä, kehon viesteissä, levossa, rajoissa, ilossa ja itsemyötätunnossa.</p>
         <p>Tarkoitus on auttaa sinua tunnistamaan oma kuormasi aiemmin ja löytämään pysähtymisen hetkiä ennen kuin keho joutuu jatkuvasti äärirajoille.</p>
       </div>
@@ -345,11 +348,43 @@
 <section id="hinta" data-component="Price" class="py-14 md:py-20 bg-paper">
   <div class="max-w-4xl mx-auto px-5 sm:px-6 reveal">
     <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Hinta</p>
-    <div class="mt-6 bg-paper border border-dawn-300 p-9 md:p-14">
-      <span class="inline-flex w-fit items-center border border-ink/25 text-ink-mute text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Hermosto Reset — 21 päivää</span>
-      <h2 class="font-serif text-5xl md:text-6xl mt-6 text-ink leading-none">34-sivuinen opas · 19 €</h2>
-      <p class="mt-5 text-ink-mute leading-relaxed max-w-2xl">Maksun jälkeen saat latauslinkin kiitos-sivulta. Opas on sinun pysyvästi, ja voit palata siihen niin monta kertaa kuin haluat.</p>
-      <a href="/kauppa/hermosto-reset/" class="mt-7 inline-flex items-center justify-center bg-dawn-500 hover:bg-dawn-700 text-ink font-bold px-8 py-4 transition-colors">Aloita 21 päivää · 19 €</a>
+    <div class="mt-6 relative overflow-hidden sunrise border border-dawn-300 p-9 md:p-14">
+      <span class="sun-glow -top-40 -right-32 w-[34rem] h-[34rem]" aria-hidden="true"></span>
+      <div class="relative grid md:grid-cols-[minmax(0,1fr)_13rem] gap-8 md:gap-12 items-start">
+        <div>
+          <span class="inline-flex w-fit items-center border border-ink/25 text-ink-mute text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Hermosto Reset — 21 päivää</span>
+          <h2 class="font-serif text-5xl md:text-6xl mt-6 text-ink leading-none">33-sivuinen opas · 19 €</h2>
+          <p class="mt-3 text-sm font-bold text-ink">Lanseeraushinta 31.8. asti (norm. 29 €)</p>
+          <ul class="mt-7 space-y-2.5 text-ink-soft leading-relaxed">
+            <li>21 päivää kolmessa osassa: pysähtyminen, keho ja arki, uusi suunta</li>
+            <li>Joka päivälle oivallus, sinulle-osio, päivän askel ja hermoston tuki</li>
+            <li>Kolme työkalupakkia: 21 hengitys- ja kehoharjoitusta sekä 21 hemmottelua</li>
+            <li>Viikkoreflektio jokaisen osan päätteeksi</li>
+            <li>Lukemiseen 2–3 minuuttia, päivän askeleeseen alle viisi</li>
+            <li>Tilaa muistiinpanoille joka päivälle</li>
+          </ul>
+          <p class="mt-6 text-ink-mute leading-relaxed">Maksun jälkeen saat latauslinkin heti. Opas on sinun pysyvästi, ja voit palata siihen niin monta kertaa kuin haluat.</p>
+          <a href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01" class="mt-7 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-8 py-4 transition-colors">Osta opas · 19 €</a>
+        </div>
+        <figure class="justify-self-center md:justify-self-end">
+          <img src="/kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset — 21 päivää -oppaan kansi" class="w-44 md:w-52" loading="lazy">
+          <figcaption class="mt-3 text-xs text-ink-mute text-center">33 sivua · PDF</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: FAQ ═══════════════ -->
+<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper">
+  <div class="max-w-4xl mx-auto px-5 sm:px-6">
+    <div class="reveal"><p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Kysymyksiä ennen ostoa</p><h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Käytännön asiat rauhassa.</h2></div>
+    <div class="mt-9 space-y-2.5">
+      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Kuinka paljon aikaa tarvitsen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Muutaman minuutin päivässä. Päivän lukemiseen menee 2–3 minuuttia ja päivän askeleeseen useimmiten alle viisi.</p></details>
+      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Entä jos jään jälkeen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei haittaa. Opas on sinun, ja voit jatkaa omaan tahtiisi. Hermosto oppii turvallisesta toistosta.</p></details>
+      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Pitääkö minun osata joogata tai meditoida?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei. Harjoitukset ovat arkisia: hengitystä, hetkiä ja pieniä pysähdyksiä. Osan voi tehdä tiskatessa.</p></details>
+      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Missä muodossa opas on?</summary><p class="mt-3 text-ink-mute leading-relaxed">PDF, jonka voit lukea puhelimella, tabletilla tai tietokoneella. Halutessasi voit myös tulostaa sen.</p></details>
+      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Onko tämä sama kuin ilmainen Viikko 1?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ilmainen osa sisältää ensimmäisen viikon. Tässä ovat kaikki 21 päivää: kolme osaa, kolme työkalupakkia ja viikkoreflektiot.</p></details>
     </div>
   </div>
 </section>
@@ -363,11 +398,21 @@
       <p class="mt-4 text-ink-mute leading-relaxed">Hermosto Reset auttaa pysähtymään ja kuulemaan omaa kuormaa aikaisemmin. Sen rinnalle rakentuu käytännön tukea arjen systeemien, rytmin ja kodin rakenteiden luomiseen.</p>
     </div>
     <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
-      <article class="reveal bg-paper border border-ink/12 p-7 md:p-9">
-        <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Tulossa</p>
-        <h3 class="font-serif text-4xl text-ink mt-3">Hengittävä Koti</h3>
-        <p class="mt-2 font-bold text-ink-mute">6 viikon videovalmennus</p>
-        <p class="mt-4 text-ink-mute leading-relaxed">Käytännön valmennus arjen raameihin: systeemit, ennakointi, viikon suunnittelu, kauppareissut ja kodin rakenteet, jotka kannattelevat lapsiperhearkea.</p>
+      <article class="reveal relative overflow-hidden sunrise border border-dawn-300 p-7 md:p-9">
+        <span class="sun-glow -top-28 -right-24 w-80 h-80" aria-hidden="true"></span>
+        <div class="relative">
+          <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-dawn-700">Ennakkomyynti · 31.8. asti</p>
+          <h3 class="font-serif text-4xl text-ink mt-3">Hengittävä Koti</h3>
+          <p class="mt-2 font-bold text-ink-mute">6 viikon videovalmennus · alkaa 1.10.2026</p>
+          <p class="mt-4 text-ink-soft leading-relaxed">Käytännön valmennus arjen raameihin: systeemit, ennakointi, viikon suunnittelu, kauppareissut ja kodin rakenteet, jotka kannattelevat lapsiperhearkea.</p>
+          <ul class="mt-5 space-y-2 text-ink-soft leading-relaxed">
+            <li>Kurssin tarkka ohjelma ilmoitetaan pian</li>
+            <li>Ennakkoilmoittautumiset 31.8.2026 mennessä</li>
+          </ul>
+          <p class="mt-6 font-serif text-4xl text-ink">199 € <span class="text-xl text-ink-mute line-through align-middle">299 €</span></p>
+          <p class="mt-1 text-sm text-ink-mute">Early Bird -etu 100 € ennakkoon ilmoittautuville.</p>
+          <a href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20Koti%20-%20ennakkoilmoittautuminen" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-7 py-3.5 transition-colors">Ilmoittaudu ennakkoon · 199 €</a>
+        </div>
       </article>
       <article class="reveal bg-ink text-paper p-7 md:p-9" data-delay="120">
         <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/60">Saatavilla henkilökohtaisesti</p>
@@ -375,20 +420,6 @@
         <p class="mt-4 text-paper/85 leading-relaxed">Henkilökohtaista tukea silloin, kun kaipaat rinnalle ihmistä katsomaan arkeasi, kuormaasi ja seuraavia pieniä muutoksia sinun elämäntilanteestasi käsin.</p>
         <a href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi" class="mt-6 inline-flex items-center justify-center bg-paper text-ink font-bold px-7 py-3.5 hover:bg-paper-deep transition-colors">Kysy mentoroinnista</a>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: FAQ ═══════════════ -->
-<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper">
-  <div class="max-w-4xl mx-auto px-5 sm:px-6">
-    <div class="reveal"><p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Kysymyksiä ennen ostoa</p><h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Käytännön asiat rauhassa.</h2></div>
-    <div class="mt-9 space-y-2.5">
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Kuinka paljon aikaa tämä vie?</summary><p class="mt-3 text-ink-mute leading-relaxed">Muutaman minuutin päivässä. Päivän lukemiseen menee 2–3 minuuttia ja päivän askeleeseen useimmiten alle viisi.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Entä jos jään jälkeen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei haittaa. Opas on sinun, ja voit jatkaa omaan tahtiisi. Hermosto oppii turvallisesta toistosta.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Pitääkö minun osata joogata tai meditoida?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei. Harjoitukset ovat arkisia: hengitystä, hetkiä ja pieniä pysähdyksiä. Osan voi tehdä tiskatessa.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Missä muodossa opas on?</summary><p class="mt-3 text-ink-mute leading-relaxed">PDF, jonka voit lukea puhelimella, tabletilla tai tietokoneella. Halutessasi voit myös tulostaa sen.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Onko tämä sama kuin ilmainen Viikko 1?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ilmainen osa sisältää ensimmäisen viikon. Tässä ovat kaikki 21 päivää: kolme osaa, kolme työkalupakkia ja viikkoreflektiot.</p></details>
     </div>
   </div>
 </section>
@@ -413,14 +444,8 @@
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid md:grid-cols-[1.4fr_1fr_1fr] gap-9">
       <div>
-        <a href="/" class="flex items-center gap-2.5">
-          <svg width="30" height="30" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <circle cx="32" cy="32" r="30" fill="#FFFFFF" fill-opacity="0.08"/>
-            <path d="M41 21a13.5 13.5 0 1 0 6.5 11.5A10.5 10.5 0 1 1 41 21Z" fill="#FFFFFF"/>
-            <circle cx="19" cy="20" r="1.8" fill="#FFFFFF"/>
-            <circle cx="25.5" cy="13.5" r="1.1" fill="#FFFFFF"/>
-          </svg>
-          <span class="font-script text-2xl text-paper">Hengittävä Äiti</span>
+        <a href="/" class="inline-block">
+          <img src="/kuvat/logo.png" alt="Hengittävä Äiti" class="h-[5.5rem] w-auto brightness-0 invert">
         </a>
 
         <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
@@ -432,7 +457,7 @@
         <div class="mt-3 flex flex-col gap-2">
           <a href="mailto:hei@hengittava-aiti.fi" class="hover:text-paper transition-colors font-semibold">hei@hengittava-aiti.fi</a>
         </div>
-        <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · Fredrika Runebergin katu 1–3 H 16, 06100 Porvoo</p>
+        <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
       </div>
 
       <nav aria-label="Alatunnisteen sivustolinkit">
@@ -450,12 +475,11 @@
       <nav aria-label="Alatunnisteen ohjelmalinkit">
         <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/50">Ohjelmat &amp; musiikki</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-paper transition-colors" href="/opas/">Hermosto Reset · Viikko 1 — ilmainen</a></li>
-          <li><a class="hover:text-paper transition-colors" href="/kauppa/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
-          <li><a class="hover:text-paper transition-colors" href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi">Hengittävä äiti · 1:1 mentorointi</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share">Kun huusit taas — ilmainen miniopas</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share">Hermosto Reset · Viikko 1 — ilmainen</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01">Osta Hermosto Reset 21 · 19 €</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener">Spotify · Hermosto Reset</a></li>
-          <!-- TODO: swap to the direct open.spotify.com URL once available -->
-          <li><a class="hover:text-paper transition-colors" href="https://linktr.ee/hengittava_aiti" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
           <li><a class="hover:text-paper transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
           <li><a class="hover:text-paper transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
         </ul>
