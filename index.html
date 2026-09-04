@@ -80,13 +80,15 @@
                      border-radius:0; box-shadow:none; padding:.38em .65em;
                      display:inline-block; max-width:82%; }
   .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
-                     font-size:clamp(0.68rem,1.25vw,0.95rem); line-height:1.25; }
+                     font-size:clamp(0.64rem,1.15vw,0.88rem); line-height:1.28; }
   .ig-sub          { font-family:'Playfair Display',Georgia,serif;
                      font-size:.78em; line-height:1.28; color:#4A423E; }
   .ig-caption--bottom { left:8%;  bottom:8%; }
   .ig-caption--top    { left:8%;  top:8%; }
   .ig-caption--center { left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; }
   .ig-caption--right  { right:8%; bottom:8%; }
+  .ig-caption--bottom-center { left:50%; bottom:8%; transform:translateX(-50%); text-align:center; max-width:76%; }
+  .ig-caption--ruu { left:8%; bottom:8%; max-width:72%; }
   /* .ig-sub renders as its OWN white box, staggered under the hook.
      .ig-stack positions the pair so the two boxes can never overlap. */
   .ig-stack        { position:absolute; display:flex; flex-direction:column;
@@ -106,14 +108,15 @@
 
   /* 2-up grid on small screens: keep the hook quiet inside a narrow tile */
   @media (max-width: 640px) {
-    .ig-hook    { font-size:.72rem; }
-    .ig-caption { padding:.32em .55em; max-width:88%; }
+    .ig-hook    { font-size:.62rem; }
+    .ig-caption { padding:.28em .5em; max-width:88%; }
     .ig-stack   { max-width:88%; }
     /* a centred stack outgrows a narrow tile — keep it in the lower third */
     .ig-stack--center { left:8%; top:auto; bottom:8%; transform:none;
                         align-items:flex-start; text-align:left; }
     .ig-stack--bottom-center { left:50%; bottom:8%; transform:translateX(-50%);
                                align-items:center; text-align:center; }
+    .ig-caption--ruu { max-width:90%; bottom:7%; }
   }
 
   /* ─── Auringonnousu: valoisat pinnat mustien tilalle ─────────────── */
@@ -317,9 +320,9 @@
       <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="180">
         <figure class="ig-frame ig-frame--45">
           <img src="kuvat/ig/04.jpg" class="ig-photo" alt="Pieni lapsi seisoo veden äärellä auringonlaskussa" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="ig-stack ig-stack--bottom-center">
-            <span class="ig-caption"><span class="ig-hook">3 asiaa joita luulet lapsesi osaavan</span></span>
-            <span class="ig-caption ig-caption--sub"><span class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</span></span>
+          <figcaption class="ig-caption ig-caption--ruu">
+            <p class="ig-hook">3 asiaa joita luulet lapsesi osaavan</p>
+            <p class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</p>
           </figcaption>
         </figure>
       </a>
