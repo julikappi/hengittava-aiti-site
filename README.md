@@ -2,7 +2,7 @@
 
 Static site for **Hengittävä Äiti** (`hengittava-aiti.fi`).
 Ilme seuraa Instagram-tiliä [@hengittava_aiti](https://instagram.com/hengittava_aiti):
-mustavalkoinen dokumentaarinen valokuva, valkoinen terävä tekstilaatikko, Playfair Display.
+mustavalkoinen dokumentaarinen valokuva, kermapohja, vanha roosa ja tummaliila, Playfair Display.
 
 ## Local preview
 
@@ -45,13 +45,13 @@ Kaikki värit ja fontit ovat `tailwind.config`-lohkossa `index.html`:ssä ja
 
 | Token | Käyttö |
 |---|---|
-| `ink` `#141414` | tekstilaatikon musta, tumma tausta |
-| `paper` `#FFFFFF` / `warm` `#F7F5F2` / `deep` `#EDEAE5` | valkoinen laatikko, taustat |
-| `dawn` `#F6E3D2 → #A65E3C` | vain auringonnousu/-lasku, BreathingMomentin hehku, yksi CTA |
-| `plum` `#2A1845` | **vain** logo, footer ja yksi väliotesektio |
+| `ink` `#2A2320` | leipäteksti, primääri-CTA (tumma ruskea / near-black) |
+| `paper` `#FFFCFA` / `warm` `#FBF7F1` kerma / `deep` `#F0E8DF` beige | laatikot, sivun pohja, hillityt vyöhykkeet |
+| `dawn` `#A8827A` vanha roosa | viivat, hehku, pehmeät aksentit — ei kirkasta pinkkiä |
+| `plum` `#3B2A45` tummaliila | footer, väliote, tummat paneelit — rauhallinen, ei neon |
 | `Playfair Display` | otsikot ja leipäteksti (Google Fonts) |
 
-Laventeli ja nude on poistettu. Ei varjoja, ei gradientteja korteissa, ei pyöristyksiä.
+Instagram-kuvat ovat mustavalkoisia (yksi auringonnousu saa jäädä hillityn värilliseksi). Ei kovia oranssigradientteja, ei karkkililaa. Ei varjoja, ei pyöristyksiä.
 
 ## Vercel
 
