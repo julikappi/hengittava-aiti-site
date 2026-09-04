@@ -31,10 +31,10 @@
 <meta property="og:image" content="kuvat/IMG_6335.jpg" />
 <link rel="icon" href="kuvat/logo-merkki.png" type="image/png" />
 
-<!-- Typography: Instrument Serif (IG caption serif) + Inter (UI) + Dancing Script (logo only) -->
+<!-- Typography: Playfair Display (headings + body) + Dancing Script (Julianan allekirjoitus) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
 
 <!-- Tailwind via CDN (single-file preview). On the Next.js port, move this config to tailwind.config.ts -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -49,9 +49,9 @@
           plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }         /* vain logo + footer + väliote */
         },
         fontFamily: {
-          serif:  ['"Instrument Serif"','Georgia','"Times New Roman"','serif'],
-          sans:   ['Inter','system-ui','sans-serif'],
-          script: ['"Dancing Script"','cursive']   /* VAIN logo */
+          serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
+          sans:   ['"Playfair Display"','Georgia','serif'],
+          script: ['"Dancing Script"','cursive']   /* Julianan allekirjoitus */
         },
         boxShadow: { none:'none' },
         letterSpacing: { eyebrow: '0.24em' }
@@ -66,6 +66,8 @@
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   body { text-rendering: optimizeLegibility; }
   ::selection { background:#141414; color:#FFFFFF; }
+  /* Tiny uppercase UI labels stay a simple sans; prose uses Playfair Display */
+  .tracking-eyebrow { font-family: system-ui, sans-serif; }
 
   /* ─── IGCard — the brand's core element ──────────────────────────── */
   .ig-frame        { position:relative; overflow:hidden; background:#141414; }
@@ -77,9 +79,9 @@
   .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
                      border-radius:0; box-shadow:none; padding:.55em .9em;
                      display:inline-block; max-width:86%; }
-  .ig-hook         { font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
                      font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
-  .ig-sub          { font-family:'Instrument Serif',Georgia,serif;
+  .ig-sub          { font-family:'Playfair Display',Georgia,serif;
                      font-size:.74em; line-height:1.25; color:#2E2E2E; }
   .ig-caption--bottom { left:5%;  bottom:6%; }
   .ig-caption--top    { left:5%;  top:8%; }

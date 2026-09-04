@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -40,9 +40,9 @@
           plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }
         },
         fontFamily: {
-          serif:  ['"Instrument Serif"','Georgia','"Times New Roman"','serif'],
-          sans:   ['Inter','system-ui','sans-serif'],
-          script: ['"Dancing Script"','cursive']
+          serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
+          sans:   ['"Playfair Display"','Georgia','serif'],
+          script: ['"Playfair Display"','Georgia','serif']
         },
         boxShadow: { none:'none' },
         letterSpacing: { eyebrow: '0.24em' }
@@ -56,6 +56,7 @@
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   body { text-rendering: optimizeLegibility; }
   ::selection { background:#141414; color:#FFFFFF; }
+  .tracking-eyebrow { font-family: system-ui, sans-serif; }
 
   /* IGCard — shared with index.html */
   .ig-frame        { position:relative; overflow:hidden; background:#141414; }
@@ -65,9 +66,9 @@
   .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
                      border-radius:0; box-shadow:none; padding:.55em .9em;
                      display:inline-block; max-width:86%; }
-  .ig-hook         { font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
                      font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
-  .ig-sub          { font-family:'Instrument Serif',Georgia,serif;
+  .ig-sub          { font-family:'Playfair Display',Georgia,serif;
                      font-size:.74em; line-height:1.25; color:#2E2E2E; }
   .ig-caption--bottom { left:5%; bottom:6%; }
   @media (max-width: 640px) {
@@ -353,7 +354,7 @@
       <div class="relative grid md:grid-cols-[minmax(0,1fr)_13rem] gap-8 md:gap-12 items-start">
         <div>
           <span class="inline-flex w-fit items-center border border-ink/25 text-ink-mute text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Hermosto Reset — 21 päivää</span>
-          <h2 class="font-serif text-5xl md:text-6xl mt-6 text-ink leading-none">33-sivuinen opas · 29 €</h2>
+          <h2 class="font-serif text-5xl md:text-6xl mt-6 text-ink leading-[1.08]">33-sivuinen opas · 29 €</h2>
           <ul class="mt-7 space-y-2.5 text-ink-soft leading-relaxed">
             <li>21 päivää kolmessa osassa: pysähtyminen, keho ja arki, uusi suunta</li>
             <li>Joka päivälle oivallus, sinulle-osio, päivän askel ja hermoston tuki</li>
