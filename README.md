@@ -17,7 +17,7 @@ Then open <http://localhost:7100>.
 | Polku | Tiedosto |
 |---|---|
 | `/` | `index.html` |
-| `/hermosto-reset/` | myyntisivu, 19 € |
+| `/hermosto-reset/` | myyntisivu, 29 € |
 | `/kauppa/hermosto-reset/` | kassa (Paytrail, `api/create-payment`) |
 | `/opas/` | ilmaisen oppaan lomake |
 | `/kiitos/opas/`, `/kiitos/musiikki/`, `/kiitos/hermosto-reset-21/` | kiitos-sivut |

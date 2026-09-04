@@ -63,7 +63,7 @@ ostoehdoissa.
 3. Remove Tag: `ilmaisopas` (jotta ostaja ei saa enää myyntiviestejä samasta tuotteesta)
 4. Send Email: tilausvahvistus ja latauslinkki
 
-Tilausvahvistuksessa pitää lukea myyjä (Maradevi Oy, Y-tunnus 3323765-3), tuote, hinta 19 €,
+Tilausvahvistuksessa pitää lukea myyjä (Maradevi Oy, Y-tunnus 3323765-3), tuote, hinta 29 €,
 sisältyvä alv 25,5 %, tilausnumero ja tieto peruutusoikeuden raukeamisesta. Etämyynnissä
 vahvistus on annettava pysyvällä tavalla, ja sähköposti täyttää tämän.
 
@@ -106,7 +106,7 @@ palauttaa virheen 500 eikä kukaan pysty ostamaan.
 
 `/materiaalit/Hermosto-Reset-21-paivaa.pdf` on tavallinen staattinen tiedosto. Kiitos-sivulla
 `/kiitos/hermosto-reset-21/` ei ole minkäänlaista tarkistusta siitä, onko maksu tehty. Kuka
-tahansa, joka arvaa tai löytää osoitteen, lataa 19 euron oppaan ilmaiseksi. Google indeksoi sen
+tahansa, joka arvaa tai löytää osoitteen, lataa 29 euron oppaan ilmaiseksi. Google indeksoi sen
 myös, koska sivustolla ei ole robots.txt-tiedostoa.
 
 Kaksi tapaa korjata:
@@ -140,7 +140,7 @@ tietosuojaselosteeseen. Nyt kumpaakaan ei ole.
 otetaan käyttöön, selosteeseen nimetään käsittelijät (Paytrail, GoHighLevel, Vercel) ja mainitaan
 tietojen siirto EU:n ulkopuolelle, koska GHL on yhdysvaltalainen palvelu.
 
-**Hinnan esitys.** Kassalla lukee 19 €. Varmista, että se on arvonlisäverollinen loppuhinta.
+**Hinnan esitys.** Kassalla lukee 29 €. Varmista, että se on arvonlisäverollinen loppuhinta.
 Koodissa alv-prosentti on 25,5.
 
 ---
