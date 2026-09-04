@@ -77,38 +77,43 @@
                      filter: grayscale(1) contrast(1.04); }
   .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }  /* auringonnousu/-lasku säilyy värillisenä */
   .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
-                     border-radius:0; box-shadow:none; padding:.55em .9em;
-                     display:inline-block; max-width:86%; }
+                     border-radius:0; box-shadow:none; padding:.38em .65em;
+                     display:inline-block; max-width:82%; }
   .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
-                     font-size:clamp(0.88rem,2vw,1.45rem); line-height:1.22; }
+                     font-size:clamp(0.68rem,1.25vw,0.95rem); line-height:1.25; }
   .ig-sub          { font-family:'Playfair Display',Georgia,serif;
-                     font-size:.74em; line-height:1.25; color:#4A423E; }
-  .ig-caption--bottom { left:5%;  bottom:6%; }
-  .ig-caption--top    { left:5%;  top:8%; }
+                     font-size:.78em; line-height:1.28; color:#4A423E; }
+  .ig-caption--bottom { left:8%;  bottom:8%; }
+  .ig-caption--top    { left:8%;  top:8%; }
   .ig-caption--center { left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; }
-  .ig-caption--right  { right:5%; bottom:6%; }
+  .ig-caption--right  { right:8%; bottom:8%; }
   /* .ig-sub renders as its OWN white box, staggered under the hook.
      .ig-stack positions the pair so the two boxes can never overlap. */
   .ig-stack        { position:absolute; display:flex; flex-direction:column;
-                     align-items:flex-start; gap:.4em; max-width:90%; }
+                     align-items:flex-start; gap:.32em; max-width:84%; }
   .ig-stack .ig-caption { position:static; max-width:100%; }
-  .ig-stack--bottom { left:5%;  bottom:6%; }
-  .ig-stack--top    { left:5%;  top:8%; }
+  .ig-stack--bottom { left:8%;  bottom:8%; }
+  .ig-stack--top    { left:8%;  top:8%; }
   .ig-stack--center { left:50%; top:50%; transform:translate(-50%,-50%);
-                      align-items:center; text-align:center; max-width:92%; }
-  .ig-stack--right  { right:5%; bottom:6%; align-items:flex-end; text-align:right; }
+                      align-items:center; text-align:center; max-width:86%; }
+  .ig-stack--bottom-center { left:50%; bottom:9%; transform:translateX(-50%);
+                             align-items:center; text-align:center; max-width:78%; }
+  .ig-stack--right  { right:8%; bottom:8%; align-items:flex-end; text-align:right; }
   .ig-caption--sub  { margin-left:14%; }
   .ig-stack--right .ig-caption--sub  { margin-left:0; margin-right:14%; }
-  .ig-stack--center .ig-caption--sub { margin-left:0; }
+  .ig-stack--center .ig-caption--sub,
+  .ig-stack--bottom-center .ig-caption--sub { margin-left:0; }
 
-  /* 2-up grid on small screens: keep the hook readable inside a narrow tile */
+  /* 2-up grid on small screens: keep the hook quiet inside a narrow tile */
   @media (max-width: 640px) {
-    .ig-hook    { font-size:.95rem; }
-    .ig-caption { padding:.45em .7em; max-width:92%; }
-    .ig-stack   { max-width:92%; }
-    /* a centred stack outgrows a narrow tile — anchor it top-left on small screens */
-    .ig-stack--center { left:5%; top:6%; transform:none;
+    .ig-hook    { font-size:.72rem; }
+    .ig-caption { padding:.32em .55em; max-width:88%; }
+    .ig-stack   { max-width:88%; }
+    /* a centred stack outgrows a narrow tile — keep it in the lower third */
+    .ig-stack--center { left:8%; top:auto; bottom:8%; transform:none;
                         align-items:flex-start; text-align:left; }
+    .ig-stack--bottom-center { left:50%; bottom:8%; transform:translateX(-50%);
+                               align-items:center; text-align:center; }
   }
 
   /* ─── Auringonnousu: valoisat pinnat mustien tilalle ─────────────── */
@@ -312,7 +317,7 @@
       <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="180">
         <figure class="ig-frame ig-frame--45">
           <img src="kuvat/ig/04.jpg" class="ig-photo" alt="Pieni lapsi seisoo veden äärellä auringonlaskussa" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="ig-stack ig-stack--top">
+          <figcaption class="ig-stack ig-stack--bottom-center">
             <span class="ig-caption"><span class="ig-hook">3 asiaa joita luulet lapsesi osaavan</span></span>
             <span class="ig-caption ig-caption--sub"><span class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</span></span>
           </figcaption>
@@ -443,7 +448,7 @@
           <img src="kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset 21 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
         </a>
         <div class="relative flex flex-col flex-1 p-6 md:p-7">
-          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Opas 33 sivua · 29 €</span>
+          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Opas 36 sivua · 29 €</span>
           <h3 class="font-serif text-[1.22rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
           <p class="mt-3 text-ink-soft leading-relaxed flex-1">21 päivän digitaalinen opas äidille, joka kaipaa arkeen pysähtymistä, hengitystä ja lempeää rakennetta. Hinta 29 €.</p>
           <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
@@ -687,12 +692,12 @@
 
   <div class="relative w-full max-w-5xl mx-auto px-5 sm:px-6 py-20">
     <h2 class="reveal max-w-3xl">
-      <span class="ig-caption relative inline-block font-serif text-ink leading-[1.1] text-[clamp(1.45rem,3.8vw,2.5rem)] px-4 py-2">
+      <span class="ig-caption relative inline-block font-serif text-ink leading-[1.12] text-[clamp(1.15rem,2.8vw,1.85rem)] px-3.5 py-1.5">
         Kun sinä hengität, koti hengittää.
       </span>
     </h2>
     <p class="reveal mt-2.5 ml-[6%] max-w-lg" data-delay="120">
-      <span class="ig-caption relative inline-block font-serif text-ink-soft leading-[1.2] text-[clamp(0.95rem,1.8vw,1.25rem)] px-3.5 py-1.5">
+      <span class="ig-caption relative inline-block font-serif text-ink-soft leading-[1.25] text-[clamp(0.82rem,1.5vw,1.05rem)] px-3 py-1">
         Aloita tänään. Seitsemän päivää, yksi pieni askel kerrallaan.
       </span>
     </p>
