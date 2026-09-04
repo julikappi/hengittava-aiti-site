@@ -27,6 +27,20 @@
       "status": 404
     },
     {
+      "src": "^/hermosto-reset-viikko-1/?$",
+      "status": 302,
+      "headers": {
+        "Location": "https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS"
+      }
+    },
+    {
+      "src": "^/tietosuojaseloste/?$",
+      "status": 302,
+      "headers": {
+        "Location": "https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH"
+      }
+    },
+    {
       "src": "/hermosto-reset/?",
       "dest": "/hermosto-reset/index.html"
     },
@@ -45,7 +59,7 @@
       "src": "/opas/?",
       "status": 302,
       "headers": {
-        "Location": "https://preview.mailerlite.io/forms/2565415/195429375546492455/share"
+        "Location": "https://hengittava-aiti.fi/hermosto-reset-viikko-1"
       }
     },
     {

@@ -33,9 +33,22 @@ const mime = {
   '.pdf': 'application/pdf',
 };
 
+const redirects = {
+  '/hermosto-reset-viikko-1': 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS',
+  '/hermosto-reset-viikko-1/': 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS',
+  '/tietosuojaseloste': 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH',
+  '/tietosuojaseloste/': 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH',
+  '/opas': 'https://hengittava-aiti.fi/hermosto-reset-viikko-1',
+  '/opas/': 'https://hengittava-aiti.fi/hermosto-reset-viikko-1',
+};
+
 createServer(async (req, res) => {
   try {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    if (redirects[pathname]) {
+      res.writeHead(302, { Location: redirects[pathname] });
+      return res.end();
+    }
     if (pathname === '/') pathname = '/index.html';
     if (pathname.endsWith('/')) pathname += 'index.html';
     let file = normalize(join(root, pathname));
