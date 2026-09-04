@@ -4,7 +4,7 @@ const PRODUCT = {
   name: 'Hermosto Reset — 21 päivää',
   description: 'Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.',
   productCode: 'HR21',
-  amount: 1900,
+  amount: 2900,
   vatPercentage: Number(process.env.PAYTRAIL_VAT_PERCENTAGE || '25.5'),
 };
 

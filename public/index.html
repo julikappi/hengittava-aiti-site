@@ -31,10 +31,10 @@
 <meta property="og:image" content="kuvat/IMG_6335.jpg" />
 <link rel="icon" href="kuvat/logo-merkki.png" type="image/png" />
 
-<!-- Typography: Instrument Serif (IG caption serif) + Inter (UI) + Dancing Script (logo only) -->
+<!-- Typography: Playfair Display (headings + body) + Dancing Script (Julianan allekirjoitus) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
 
 <!-- Tailwind via CDN (single-file preview). On the Next.js port, move this config to tailwind.config.ts -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -49,9 +49,9 @@
           plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }         /* vain logo + footer + väliote */
         },
         fontFamily: {
-          serif:  ['"Instrument Serif"','Georgia','"Times New Roman"','serif'],
-          sans:   ['Inter','system-ui','sans-serif'],
-          script: ['"Dancing Script"','cursive']   /* VAIN logo */
+          serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
+          sans:   ['"Playfair Display"','Georgia','serif'],
+          script: ['"Dancing Script"','cursive']   /* Julianan allekirjoitus */
         },
         boxShadow: { none:'none' },
         letterSpacing: { eyebrow: '0.24em' }
@@ -66,6 +66,8 @@
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   body { text-rendering: optimizeLegibility; }
   ::selection { background:#141414; color:#FFFFFF; }
+  /* Tiny uppercase UI labels stay a simple sans; prose uses Playfair Display */
+  .tracking-eyebrow { font-family: system-ui, sans-serif; }
 
   /* ─── IGCard — the brand's core element ──────────────────────────── */
   .ig-frame        { position:relative; overflow:hidden; background:#141414; }
@@ -77,9 +79,9 @@
   .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
                      border-radius:0; box-shadow:none; padding:.55em .9em;
                      display:inline-block; max-width:86%; }
-  .ig-hook         { font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
                      font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
-  .ig-sub          { font-family:'Instrument Serif',Georgia,serif;
+  .ig-sub          { font-family:'Playfair Display',Georgia,serif;
                      font-size:.74em; line-height:1.25; color:#2E2E2E; }
   .ig-caption--bottom { left:5%;  bottom:6%; }
   .ig-caption--top    { left:5%;  top:8%; }
@@ -441,10 +443,9 @@
           <img src="kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset 21 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
         </a>
         <div class="relative flex flex-col flex-1 p-6 md:p-7">
-          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">PDF 33 sivua · 19 €</span>
+          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Opas 33 sivua · 29 €</span>
           <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
           <p class="mt-3 text-ink-soft leading-relaxed flex-1">21 päivän digitaalinen opas äidille, joka kaipaa arkeen pysähtymistä, hengitystä ja lempeää rakennetta. Hinta 29 €.</p>
-          <p class="mt-2 text-sm font-bold text-ink">Oppaan lanseeraushinta 19 € (31.8. asti)</p>
           <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
         </div>
       </article>
@@ -749,7 +750,7 @@
           <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share">Kun huusit taas — ilmainen miniopas</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://preview.mailerlite.io/forms/2565415/195429375546492455/share">Hermosto Reset · Viikko 1 — ilmainen</a></li>
           <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
-          <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01">Osta Hermosto Reset 21 · 19 €</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01">Osta Hermosto Reset 21 · 29 €</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5" target="_blank" rel="noopener">Spotify · Hermosto Reset</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://open.spotify.com/playlist/5XBrhhlTN7PUO9JymHnEPN" target="_blank" rel="noopener">Spotify · Tunnepurku</a></li>
           <li><a class="hover:text-paper transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>

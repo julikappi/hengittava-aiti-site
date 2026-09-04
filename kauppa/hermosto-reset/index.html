@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <title>Osta — Hermosto Reset — 21 päivää</title>
 <style>
 :root{--ink:#141414;--ink-soft:#2E2E2E;--ink-mute:#5A5A5A;--paper:#fff;--paper-warm:#F7F5F2;--paper-deep:#EDEAE5;--dawn:#D08B5B;--dawn-deep:#A65E3C;--plum:#2A1845}
 *{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--paper-warm);color:var(--ink);line-height:1.7;display:flex;flex-direction:column;min-height:100svh}
+body{margin:0;font-family:'Playfair Display',Georgia,serif;background:var(--paper-warm);color:var(--ink);line-height:1.7;display:flex;flex-direction:column;min-height:100svh}
 a{color:inherit}
 .site-header{border-bottom:1px solid rgba(20,20,20,.10);background:var(--paper)}
 .site-header .bar{max-width:1040px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand img{height:44px;width:auto;display:block}.brand span{font-family:'Instrument Serif',Georgia,serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;line-height:1.15}.site-footer .brand img{height:72px;filter:brightness(0) invert(1)}
+.brand img{height:44px;width:auto;display:block}.brand span{font-family:'Playfair Display',Georgia,serif;font-size:18px;letter-spacing:.14em;text-transform:uppercase;line-height:1.15}.site-footer .brand img{height:72px;filter:brightness(0) invert(1)}
 .iglink{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid currentColor}
 .page{flex:1;max-width:760px;width:100%;margin:0 auto;padding:52px 20px 68px}
-.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute);font-weight:800}
-h1{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-size:clamp(34px,6.4vw,58px);line-height:1.06;margin:14px 0 16px;font-weight:400}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute);font-weight:800;font-family:system-ui,sans-serif}
+h1{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(34px,6.4vw,58px);line-height:1.06;margin:14px 0 16px;font-weight:400}
 p{font-size:17px;color:var(--ink-mute);margin:0 0 14px}
 .price{font-weight:700;color:var(--ink)}
 .card{background:var(--paper);border:1px solid rgba(20,20,20,.12);padding:clamp(24px,5vw,40px)}
@@ -63,14 +63,14 @@ button,.secondary{display:inline-flex;align-items:center;justify-content:center;
 <main class="page" data-component="Checkout">
   <section class="card">
     <div class="eyebrow">Hermosto Reset — 21 päivää</div>
-    <h1>Osta opas. 19 €.</h1>
+    <h1>Osta opas. 29 €.</h1>
     <p>Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua.</p>
     <p class="price">Digitaalinen PDF-opas · maksu Paytrailin kautta</p>
     <div id="error" class="error">Kirjoita sähköpostiosoite ennen maksua.</div>
     <form action="/api/create-payment" method="get">
       <label for="email">Sähköpostiosoite maksua varten</label>
       <input id="email" name="email" type="email" autocomplete="email" required placeholder="sinun@sahkoposti.fi">
-      <button class="primary" type="submit">Siirry maksamaan — 19 €</button>
+      <button class="primary" type="submit">Siirry maksamaan — 29 €</button>
     </form>
     <div class="buttons"><a class="secondary" href="/hermosto-reset/">Takaisin myyntisivulle</a></div>
     <p class="note">Maksun jälkeen palaat kiitos-sivulle, josta voit ladata PDF:n heti. Sähköpostia käytetään tässä vaiheessa maksua varten.</p>
