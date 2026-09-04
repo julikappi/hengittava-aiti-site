@@ -16,8 +16,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hermosto Reset — 21 päivää · Hengittävä Äiti</title>
-<meta name="description" content="33-sivuinen digitaalinen opas äidille, jonka hermosto on ollut liian kauan varuillaan. 21 päivää, yksi pieni askel kerrallaan. 29 €." />
-<meta name="theme-color" content="#141414" />
+<meta name="description" content="36-sivuinen digitaalinen opas äidille, jonka hermosto on ollut liian kauan varuillaan. 21 päivää, yksi pieni askel kerrallaan. 29 €." />
+<meta name="theme-color" content="#2A2320" />
 <meta property="og:title" content="Hermosto Reset — 21 päivää" />
 <meta property="og:description" content="Kohti levollisempaa arkea, rauhallisempaa vanhemmuutta ja vahvempaa sinua." />
 <meta property="og:type" content="website" />
@@ -34,10 +34,10 @@
     theme: {
       extend: {
         colors: {
-          ink:   { DEFAULT:'#141414', soft:'#2E2E2E', mute:'#5A5A5A' },
-          paper: { DEFAULT:'#FFFFFF', warm:'#F7F5F2', deep:'#EDEAE5' },
-          dawn:  { 50:'#FEFAF6', 100:'#F6E3D2', 200:'#F2D6BB', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' },
-          plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }
+          ink:   { DEFAULT:'#2A2320', soft:'#4A423E', mute:'#6F6560' },
+          paper: { DEFAULT:'#FFFCFA', warm:'#FBF7F1', deep:'#F0E8DF' },
+          dawn:  { 50:'#F8F3F1', 100:'#F0E6E3', 200:'#E4D2CD', 300:'#C9A8A1', 500:'#A8827A', 700:'#8A6A64' },
+          plum:  { 900:'#3B2A45', 800:'#4A3854', 600:'#6B5675' }
         },
         fontFamily: {
           serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
@@ -55,44 +55,44 @@
   :root { --nav-h: 4.75rem; }
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   body { text-rendering: optimizeLegibility; }
-  ::selection { background:#141414; color:#FFFFFF; }
+  ::selection { background:#3B2A45; color:#FBF7F1; }
   .tracking-eyebrow { font-family: system-ui, sans-serif; }
 
   /* IGCard — shared with index.html */
-  .ig-frame        { position:relative; overflow:hidden; background:#141414; }
+  .ig-frame        { position:relative; overflow:hidden; background:#1A1816; }
   .ig-frame--45    { aspect-ratio: 4/5; }
   .ig-photo        { width:100%; height:100%; object-fit:cover; filter: grayscale(1) contrast(1.04); }
   .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }
-  .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
-                     border-radius:0; box-shadow:none; padding:.55em .9em;
-                     display:inline-block; max-width:86%; }
+  .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
+                     border-radius:0; box-shadow:none; padding:.38em .65em;
+                     display:inline-block; max-width:82%; }
   .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
-                     font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
+                     font-size:clamp(0.64rem,1.15vw,0.88rem); line-height:1.28; }
   .ig-sub          { font-family:'Playfair Display',Georgia,serif;
-                     font-size:.74em; line-height:1.25; color:#2E2E2E; }
-  .ig-caption--bottom { left:5%; bottom:6%; }
+                     font-size:.78em; line-height:1.28; color:#4A423E; }
+  .ig-caption--bottom { left:8%; bottom:8%; }
   @media (max-width: 640px) {
-    .ig-hook    { font-size:.95rem; }
-    .ig-caption { padding:.45em .7em; max-width:92%; }
+    .ig-hook    { font-size:.62rem; }
+    .ig-caption { padding:.32em .55em; max-width:88%; }
   }
 
   /* Auringonnousu: valoisat pinnat mustien tilalle */
-  .sunrise      { background: linear-gradient(168deg,#FEFAF6 0%,#FBF0E5 40%,#F5DFC9 74%,#EFD0B2 100%); }
-  .sunrise-soft { background: linear-gradient(168deg,#FFFDFB 0%,#FDF7F1 55%,#F9EBDD 100%); }
+  .sunrise      { background: linear-gradient(168deg,#FBF7F1 0%,#F6EFE8 42%,#EFE4DC 78%,#E8D8D2 100%); }
+  .sunrise-soft { background: linear-gradient(168deg,#FFFCFA 0%,#FBF7F1 55%,#F3EBE3 100%); }
   .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
-                  background: radial-gradient(closest-side, rgba(248,203,143,.80), rgba(246,227,210,0) 74%); }
+                  background: radial-gradient(closest-side, rgba(168,130,122,.38), rgba(251,247,241,0) 74%); }
 
   .reveal { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
 
   #site-header {
-    --fg: #141414; --fg-soft: #5A5A5A;
+    --fg: #2A2320; --fg-soft: #6F6560;
     transition: background-color .35s ease, border-color .35s ease;
     border-bottom: 1px solid transparent;
   }
   #site-header.is-scrolled {
-    --fg: #141414; --fg-soft: #5A5A5A;
-    background: rgba(255,255,255,.96);
-    border-color: rgba(20,20,20,.10);
+    --fg: #2A2320; --fg-soft: #6F6560;
+    background: rgba(251,247,241,.96);
+    border-color: rgba(42,35,32,.10);
   }
   #site-header .hdr-fg      { color: var(--fg); transition: color .35s ease; }
   #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .35s ease; }
@@ -119,7 +119,7 @@
 </style>
 </head>
 
-<body class="bg-paper text-ink font-sans antialiased overflow-x-hidden">
+<body class="bg-paper-warm text-ink font-sans antialiased overflow-x-hidden">
 
 <!-- ═══════════════ @component: SiteHeader ═══════════════ -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
@@ -153,7 +153,7 @@
   </nav>
 
   <div id="mobile-menu" class="lg:hidden hidden border-t border-ink/10 bg-paper">
-    <div class="px-5 py-5 flex flex-col gap-3.5 text-lg font-semibold text-ink">
+    <div class="px-5 py-5 flex flex-col gap-3.5 text-base font-semibold text-ink">
       <a href="#tuntuuko" class="mobile-link">Tuntuuko tutulta</a>
       <a href="#opas" class="mobile-link">Askeleesi</a>
       <a href="#hetki" class="mobile-link">Hengitä kanssani</a>
@@ -186,25 +186,25 @@
     <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
        class="reveal inline-flex items-center gap-2 text-ink-mute hover:text-ink transition-colors text-[0.82rem] font-semibold tracking-wide">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
-      @hengittava_aiti · 33-sivuinen digitaalinen opas
+      @hengittava_aiti · 36-sivuinen digitaalinen opas
     </a>
 
-    <h1 class="reveal mt-4 max-w-3xl font-serif text-ink leading-[1.03] text-[clamp(2.2rem,5.8vw,4.4rem)]" data-delay="80">
+    <h1 class="reveal mt-4 max-w-3xl font-serif text-ink leading-[1.14] text-[clamp(1.75rem,4.4vw,2.95rem)]" data-delay="80">
         Hermosto Reset — 21 päivää
       </h1>
-    <p class="reveal mt-3 max-w-xl font-serif text-ink-soft leading-[1.25] text-[clamp(1.1rem,2.4vw,1.7rem)]" data-delay="180">
+    <p class="reveal mt-3 max-w-xl font-serif text-ink-soft leading-[1.25] text-[clamp(1rem,1.8vw,1.28rem)]" data-delay="180">
         Kohti levollisempaa arkea ja rauhallisempaa vanhemmuutta.
       </p>
 
     <p class="reveal mt-6 max-w-2xl text-ink-mute leading-relaxed" data-delay="260">
       Opas äidille, joka kaipaa konkreettisia pieniä askelia hermoston rauhoittamiseen arjen keskellä.
     </p>
-    <p class="reveal mt-5 max-w-2xl font-serif text-ink-soft text-lg md:text-xl leading-snug border-l-2 border-dawn-300 pl-5" data-delay="300">
+    <p class="reveal mt-5 max-w-2xl font-serif text-ink-soft text-base md:text-lg leading-snug border-l-2 border-dawn-300 pl-5" data-delay="300">
       “Illalla mieheni kysyi, mitä olin päivällä tehnyt. En osannut vastata mitään erityistä, silti olin aivan poikki.”
     </p>
 
     <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8" data-delay="360">
-      <a href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01" class="inline-flex items-center gap-2 bg-dawn-500 hover:bg-dawn-700 text-ink font-bold px-8 py-4 transition-colors whitespace-nowrap">
+      <a href="https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01" class="inline-flex items-center gap-2 bg-ink hover:bg-ink-soft text-paper font-bold px-8 py-4 transition-colors whitespace-nowrap">
         Osta opas · 29 €
       </a>
       <a href="https://hengittava-aiti.fi/hermosto-reset-viikko-1" class="inline-flex items-center gap-2 border border-ink/30 hover:border-ink text-ink font-bold px-7 py-4 transition-colors whitespace-nowrap">
@@ -216,26 +216,26 @@
 </section>
 
 <!-- ═══════════════ @component: ProblemEmpathy ═══════════════ -->
-<section id="tuntuuko" data-component="ProblemEmpathy" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+<section id="tuntuuko" data-component="ProblemEmpathy" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Tunnistatko tämän</p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Et ole laiska. Kehosi on ollut liian pitkään varuillaan.</h2>
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Tunnistatko tämän</p>
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Et ole laiska. Kehosi on ollut liian pitkään varuillaan.</h2>
       <p class="mt-4 text-ink-mute leading-relaxed">Ehkä tunnistat jotain tästä:</p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-10">
-      <article class="reveal bg-paper border border-ink/10 p-7"><h3 class="font-serif text-[1.45rem] text-ink">Nukahdat vasta, kun koko talo on hiljainen</h3></article>
-      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="60"><h3 class="font-serif text-[1.45rem] text-ink">Istut sohvalla, mutta mieli suunnittelee jo huomista</h3></article>
-      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="120"><h3 class="font-serif text-[1.45rem] text-ink">Lepo tuntuu väärältä, jos jotain on vielä kesken</h3></article>
-      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="180"><h3 class="font-serif text-[1.45rem] text-ink">Ärsyynnyt äänistä, joita ennen et huomannut</h3></article>
-      <article class="reveal bg-paper border border-ink/10 p-7 sm:col-span-2 lg:col-span-1" data-delay="240"><h3 class="font-serif text-[1.45rem] text-ink">Odotat elämää, joka olisi joskus helpompi</h3></article>
+      <article class="reveal bg-paper border border-ink/10 p-7"><h3 class="font-serif text-[1.22rem] text-ink">Nukahdat vasta, kun koko talo on hiljainen</h3></article>
+      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="60"><h3 class="font-serif text-[1.22rem] text-ink">Istut sohvalla, mutta mieli suunnittelee jo huomista</h3></article>
+      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="120"><h3 class="font-serif text-[1.22rem] text-ink">Lepo tuntuu väärältä, jos jotain on vielä kesken</h3></article>
+      <article class="reveal bg-paper border border-ink/10 p-7" data-delay="180"><h3 class="font-serif text-[1.22rem] text-ink">Ärsyynnyt äänistä, joita ennen et huomannut</h3></article>
+      <article class="reveal bg-paper border border-ink/10 p-7 sm:col-span-2 lg:col-span-1" data-delay="240"><h3 class="font-serif text-[1.22rem] text-ink">Odotat elämää, joka olisi joskus helpompi</h3></article>
     </div>
-    <p class="reveal mt-8 max-w-3xl text-xl leading-relaxed text-ink font-semibold">Ne voivat olla merkkejä hermostosta, joka on ollut kauan varuillaan.</p>
+    <p class="reveal mt-8 max-w-3xl text-lg leading-relaxed text-ink font-semibold">Ne voivat olla merkkejä hermostosta, joka on ollut kauan varuillaan.</p>
   </div>
 </section>
 
 <!-- ═══════════════ @component: WhatItIs ═══════════════ -->
-<section id="opas" data-component="WhatItIs" class="py-14 md:py-20 bg-paper">
+<section id="opas" data-component="WhatItIs" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-5xl mx-auto px-5 sm:px-6 grid lg:grid-cols-[1fr_1.1fr] gap-10 items-center">
     <figure class="reveal ig-frame ig-frame--45">
       <img src="/kuvat/ranta-aiti-lapsi.jpg" class="ig-photo ig-photo--dawn" alt="Äiti ja lapsi istuvat rantakivikossa katsomassa merelle" loading="lazy" onerror="this.style.display='none'" />
@@ -244,10 +244,10 @@
       </figcaption>
     </figure>
     <div class="reveal" data-delay="120">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Askeleesi</p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Kokonaiset 21 päivää pysähtymiseen ja palautumiseen.</h2>
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Askeleesi</p>
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Kokonaiset 21 päivää pysähtymiseen ja palautumiseen.</h2>
       <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
-        <p>Hermosto Reset on 33-sivuinen opas äidille, joka on niin väsynyt, ettei kaipaa yhtä uutta projektia lisää.</p>
+        <p>Hermosto Reset on 36-sivuinen opas äidille, joka on niin väsynyt, ettei kaipaa yhtä uutta projektia lisää.</p>
         <p>Opas kuljettaa sinua 21 päivän ajan pienissä, arkeen mahtuvissa kohdissa: hengityksessä, kehon viesteissä, levossa, rajoissa, ilossa ja itsemyötätunnossa.</p>
         <p>Tarkoitus on auttaa sinua tunnistamaan oma kuormasi aiemmin ja löytämään pysähtymisen hetkiä ennen kuin keho joutuu jatkuvasti äärirajoille.</p>
       </div>
@@ -256,15 +256,15 @@
 </section>
 
 <!-- ═══════════════ @component: Contents ═══════════════ -->
-<section id="sisalto" data-component="Contents" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+<section id="sisalto" data-component="Contents" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Mitä opas sisältää</p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Kolme osaa, 21 päivää ja arkeen mahtuvat työkalut.</h2>
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Mitä opas sisältää</p>
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Kolme osaa, 21 päivää ja arkeen mahtuvat työkalut.</h2>
     </div>
     <div class="grid lg:grid-cols-3 gap-3 md:gap-4 mt-10">
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8"><p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Osa 1 · Pysähtyminen — päivät 1–7</p><p class="mt-4 text-ink-mute leading-relaxed">Miksi olen aivan puhki? · Lepo ei ole palkinto · Missä elämä oikeastaan tapahtuu? · Pysähtyminen ja palautuminen · Se mitä opit ennen sanoja · Muutos syntyy pienistä valinnoista · Lempeys ei ole luovuttamista</p></article>
-      <article class="reveal bg-ink text-paper p-7 md:p-8" data-delay="80"><p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/60">Osa 2 · Keho ja arki — päivät 8–14</p><p class="mt-4 text-paper/85 leading-relaxed">Turva alkaa kehosta · Jokainen uloshengitys on viesti turvasta · Pienet rituaalit rakentavat turvaa · Suunnittele vähemmän stressiä huomiseen · Tunteet muuttuvat, kun hermosto saa levätä · Puhutaanko hieman rajoista · Sinä olet jo muuttunut</p></article>
+      <article class="reveal bg-plum-900 text-paper p-7 md:p-8" data-delay="80"><p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/60">Osa 2 · Keho ja arki — päivät 8–14</p><p class="mt-4 text-paper/85 leading-relaxed">Turva alkaa kehosta · Jokainen uloshengitys on viesti turvasta · Pienet rituaalit rakentavat turvaa · Suunnittele vähemmän stressiä huomiseen · Tunteet muuttuvat, kun hermosto saa levätä · Puhutaanko hieman rajoista · Sinä olet jo muuttunut</p></article>
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="160"><p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Osa 3 · Uusi suunta — päivät 15–21</p><p class="mt-4 text-ink-mute leading-relaxed">Kohti uutta suuntaa · Milloin on tarpeeksi? · Saat iloita · Elämä on tämä hetki · Sinä et ole projekti · Mitä jos on huono päivä? · Tämä on vasta alku</p></article>
     </div>
     <div class="reveal mt-4 bg-paper border border-ink/10 p-7 md:p-8">
@@ -279,40 +279,40 @@
 </section>
 
 <!-- ═══════════════ @component: ForWhom ═══════════════ -->
-<section id="kenelle" data-component="ForWhom" class="py-14 md:py-20 bg-paper">
+<section id="kenelle" data-component="ForWhom" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-3 md:gap-4">
-    <article class="reveal bg-paper border border-ink/12 p-7 md:p-9"><h2 class="font-serif text-4xl text-ink">Tämä on sinulle, jos</h2><ul class="mt-5 space-y-2.5 text-ink-mute leading-relaxed"><li>olet väsynyt tavalla, jota nukkuminen ei korjaa</li><li>haluat rauhoittua, mutta et jaksa uutta ohjelmaa tai sovellusta</li><li>sinulla on päivässä viisi minuuttia. Ei enempää.</li></ul></article>
-    <article class="reveal bg-paper-warm border border-ink/12 p-7 md:p-9" data-delay="120"><h2 class="font-serif text-4xl text-ink">Harkitse toista vaihtoehtoa, jos</h2><ul class="mt-5 space-y-2.5 text-ink-mute leading-relaxed"><li>etsit nopeaa ratkaisua yhdessä viikossa</li><li>haluat tieteellisen perusteoksen hermostosta</li><li>odotat, että joku muuttaa arkesi puolestasi</li></ul></article>
+    <article class="reveal bg-paper border border-ink/12 p-7 md:p-9"><h2 class="font-serif text-xl text-ink">Tämä on sinulle, jos</h2><ul class="mt-5 space-y-2.5 text-ink-mute leading-relaxed"><li>olet väsynyt tavalla, jota nukkuminen ei korjaa</li><li>haluat rauhoittua, mutta et jaksa uutta ohjelmaa tai sovellusta</li><li>sinulla on päivässä viisi minuuttia. Ei enempää.</li></ul></article>
+    <article class="reveal bg-paper-deep border border-ink/12 p-7 md:p-9" data-delay="120"><h2 class="font-serif text-xl text-ink">Harkitse toista vaihtoehtoa, jos</h2><ul class="mt-5 space-y-2.5 text-ink-mute leading-relaxed"><li>etsit nopeaa ratkaisua yhdessä viikossa</li><li>haluat tieteellisen perusteoksen hermostosta</li><li>odotat, että joku muuttaa arkesi puolestasi</li></ul></article>
   </div>
 </section>
 
 <!-- ═══════════════ @component: BridgeStatement — the one plum section ═══════════════ -->
-<section data-component="BridgeStatement" class="py-16 md:py-24 bg-paper-warm border-y border-dawn-300/60">
+<section data-component="BridgeStatement" class="py-16 md:py-24 bg-paper-deep border-y border-dawn-300/60">
   <div class="max-w-3xl mx-auto px-5 sm:px-6">
-    <p class="reveal font-serif text-[clamp(1.9rem,4.6vw,3.2rem)] leading-[1.15] text-ink">
+    <p class="reveal font-serif text-[clamp(1.4rem,3.2vw,2.2rem)] leading-[1.15] text-ink">
       Hermostosi ei tarvitse enemmän suorittamista. Se tarvitsee luvan levätä.
     </p>
   </div>
 </section>
 
 <!-- ═══════════════ @component: FounderStory ═══════════════ -->
-<section id="juliana" data-component="FounderStory" class="py-14 md:py-20 bg-paper">
+<section id="juliana" data-component="FounderStory" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
     <figure class="reveal order-2 lg:order-1 ig-frame ig-frame--45 max-w-md mx-auto">
       <img src="/kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa" loading="lazy" onerror="this.style.display='none'" />
       <figcaption class="ig-caption ig-caption--bottom"><p class="ig-hook">Kolmen tyttären äiti.</p></figcaption>
     </figure>
     <div class="reveal order-1 lg:order-2" data-delay="120">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Tarina</p>
-      <h2 class="font-serif text-4xl md:text-[3rem] leading-[1.05] mt-5 text-ink">Jonain päivänä ymmärsin tämän äitiydestä. Ja rehellisesti… se sattui.</h2>
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Tarina</p>
+      <h2 class="font-serif text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">Jonain päivänä ymmärsin tämän äitiydestä. Ja rehellisesti… se sattui.</h2>
       <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
         <p>Oma kuormitukseni oli kasvanut niin suureksi, että olin koko ajan tuliherkkä. Purkauduin lapsille ja puolisolle. Saatoin huutaa. Ja sen jälkeen kadutti.</p>
         <p>Jossain kohtaa pysähdyin kysymään: tämäkö tämä elämä on? Olin pitkään ajatellut, että olen vain temperamenttinen ihminen. Vähitellen aloin ymmärtää, että hermostoni ei kokenut olevansa turvassa.</p>
         <p>Minun oli pakko opetella hidastamaan ja peilaamaan itseäni ennen kuin kuorma purkautuu muihin. Hengittävä äiti syntyi tästä: kaoottisenkin perhearjen keskelle voi alkaa luoda hengitystä, iloa ja tilaa.</p>
       </div>
       <div class="mt-6 grid gap-3">
-        <blockquote class="bg-paper-warm border border-ink/10 p-5"><p class="font-serif text-2xl leading-snug text-ink">“Itsepä menin rakentamaan tätä perhettä. Pakkohan tästä on opetella myös nauttimaan.”</p></blockquote>
-        <blockquote class="bg-paper-warm border border-ink/10 p-5"><p class="font-serif text-2xl leading-snug text-ink">“Tilaa ei löydy arjesta vahingossa. Sitä pitää luoda uudelleen, joskus joka päivä.”</p></blockquote>
+        <blockquote class="bg-paper-deep border border-ink/10 p-5"><p class="font-serif text-xl leading-snug text-ink">“Itsepä menin rakentamaan tätä perhettä. Pakkohan tästä on opetella myös nauttimaan.”</p></blockquote>
+        <blockquote class="bg-paper-deep border border-ink/10 p-5"><p class="font-serif text-xl leading-snug text-ink">“Tilaa ei löydy arjesta vahingossa. Sitä pitää luoda uudelleen, joskus joka päivä.”</p></blockquote>
       </div>
       <a href="/minun-tarinani/" class="mt-6 inline-flex items-center justify-center border border-ink/25 hover:border-ink text-ink font-bold px-6 py-3.5 transition-colors">Lue koko tarinani</a>
     </div>
@@ -326,18 +326,18 @@
     <div class="absolute inset-0 bg-ink/58"></div>
   </div>
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46rem] h-[46rem] pointer-events-none opacity-50"
-       style="background: radial-gradient(closest-side, rgba(232,185,141,0.28), transparent 70%);" aria-hidden="true"></div>
+       style="background: radial-gradient(closest-side, rgba(168,130,122,0.26), rgba(59,42,69,0.14) 58%, transparent 72%);" aria-hidden="true"></div>
 
   <div class="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
     <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-paper/70"><span class="inline-block w-8 h-px bg-paper/40"></span> Hengittävä hetki <span class="inline-block w-8 h-px bg-paper/40"></span></p>
-    <h2 class="reveal font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-paper" data-delay="80">Kokeile pidennettyä uloshengitystä.</h2>
+    <h2 class="reveal font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-paper" data-delay="80">Kokeile pidennettyä uloshengitystä.</h2>
     <p class="reveal mt-5 text-paper/80 leading-relaxed max-w-xl mx-auto" data-delay="160">Tämä työkalu antaa pienen maistiaisen oppaan hengitystavasta. Hengitä sisään neljään ja ulos kuuteen tai kahdeksaan, ilman pidätystä.</p>
     <div class="reveal mt-12 flex flex-col items-center" data-delay="240">
       <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center" id="breath-stage">
-        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true"><circle cx="140" cy="140" r="132" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/><circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#E8B98D" stroke-width="3" stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/></svg>
+        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true"><circle cx="140" cy="140" r="132" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/><circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#A8827A" stroke-width="3" stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/></svg>
         <div class="absolute w-56 h-56 rounded-full border border-paper/25 anim-breathe" aria-hidden="true"></div>
         <div class="absolute w-64 h-64 rounded-full border border-dawn-300/30 anim-breathe-slow" aria-hidden="true"></div>
-        <div id="breath-circle" class="w-40 h-40 sm:w-44 sm:h-44 rounded-full flex items-center justify-center" style="background: radial-gradient(circle at 35% 30%, #F6E3D2 0%, #E8B98D 45%, #A65E3C 100%);"><span id="breath-label" class="font-serif text-ink text-xl sm:text-2xl px-6 text-center leading-snug">Valmiina?</span></div>
+        <div id="breath-circle" class="w-40 h-40 sm:w-44 sm:h-44 rounded-full flex items-center justify-center" style="background: radial-gradient(circle at 35% 30%, #E4D2CD 0%, #A8827A 52%, #8A6A64 100%);"><span id="breath-label" class="font-serif text-ink text-base sm:text-lg px-6 text-center leading-snug">Valmiina?</span></div>
       </div>
       <button id="breath-toggle" class="mt-10 inline-flex items-center gap-2 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">Aloita hengitys</button>
       <p id="breath-count" class="mt-4 text-sm text-paper/70 h-5" aria-live="polite"></p>
@@ -346,15 +346,15 @@
 </section>
 
 <!-- ═══════════════ @component: Price ═══════════════ -->
-<section id="hinta" data-component="Price" class="py-14 md:py-20 bg-paper">
+<section id="hinta" data-component="Price" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-4xl mx-auto px-5 sm:px-6 reveal">
-    <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Hinta</p>
+    <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Hinta</p>
     <div class="mt-6 relative overflow-hidden sunrise border border-dawn-300 p-9 md:p-14">
       <span class="sun-glow -top-40 -right-32 w-[34rem] h-[34rem]" aria-hidden="true"></span>
       <div class="relative grid md:grid-cols-[minmax(0,1fr)_13rem] gap-8 md:gap-12 items-start">
         <div>
           <span class="inline-flex w-fit items-center border border-ink/25 text-ink-mute text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Hermosto Reset — 21 päivää</span>
-          <h2 class="font-serif text-5xl md:text-6xl mt-6 text-ink leading-[1.08]">33-sivuinen opas · 29 €</h2>
+          <h2 class="font-serif text-3xl md:text-4xl mt-6 text-ink leading-[1.08]">36-sivuinen opas · 29 €</h2>
           <ul class="mt-7 space-y-2.5 text-ink-soft leading-relaxed">
             <li>21 päivää kolmessa osassa: pysähtyminen, keho ja arki, uusi suunta</li>
             <li>Joka päivälle oivallus, sinulle-osio, päivän askel ja hermoston tuki</li>
@@ -368,7 +368,7 @@
         </div>
         <figure class="justify-self-center md:justify-self-end">
           <img src="/kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset — 21 päivää -oppaan kansi" class="w-44 md:w-52" loading="lazy">
-          <figcaption class="mt-3 text-xs text-ink-mute text-center">33 sivua · PDF</figcaption>
+          <figcaption class="mt-3 text-xs text-ink-mute text-center">36 sivua · PDF</figcaption>
         </figure>
       </div>
     </div>
@@ -376,25 +376,25 @@
 </section>
 
 <!-- ═══════════════ @component: FAQ ═══════════════ -->
-<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper">
+<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-4xl mx-auto px-5 sm:px-6">
-    <div class="reveal"><p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Kysymyksiä ennen ostoa</p><h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">Käytännön asiat rauhassa.</h2></div>
+    <div class="reveal"><p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Kysymyksiä ennen ostoa</p><h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Käytännön asiat rauhassa.</h2></div>
     <div class="mt-9 space-y-2.5">
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Kuinka paljon aikaa tarvitsen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Muutaman minuutin päivässä. Päivän lukemiseen menee 2–3 minuuttia ja päivän askeleeseen useimmiten alle viisi.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Entä jos jään jälkeen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei haittaa. Opas on sinun, ja voit jatkaa omaan tahtiisi. Hermosto oppii turvallisesta toistosta.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Pitääkö minun osata joogata tai meditoida?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei. Harjoitukset ovat arkisia: hengitystä, hetkiä ja pieniä pysähdyksiä. Osan voi tehdä tiskatessa.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Missä muodossa opas on?</summary><p class="mt-3 text-ink-mute leading-relaxed">PDF, jonka voit lukea puhelimella, tabletilla tai tietokoneella. Halutessasi voit myös tulostaa sen.</p></details>
-      <details class="reveal bg-paper-warm border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Onko tämä sama kuin ilmainen Viikko 1?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ilmainen osa sisältää ensimmäisen viikon. Tässä ovat kaikki 21 päivää: kolme osaa, kolme työkalupakkia ja viikkoreflektiot.</p></details>
+      <details class="reveal bg-paper border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Kuinka paljon aikaa tarvitsen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Muutaman minuutin päivässä. Päivän lukemiseen menee 2–3 minuuttia ja päivän askeleeseen useimmiten alle viisi.</p></details>
+      <details class="reveal bg-paper border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Entä jos jään jälkeen?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei haittaa. Opas on sinun, ja voit jatkaa omaan tahtiisi. Hermosto oppii turvallisesta toistosta.</p></details>
+      <details class="reveal bg-paper border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Pitääkö minun osata joogata tai meditoida?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ei. Harjoitukset ovat arkisia: hengitystä, hetkiä ja pieniä pysähdyksiä. Osan voi tehdä tiskatessa.</p></details>
+      <details class="reveal bg-paper border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Missä muodossa opas on?</summary><p class="mt-3 text-ink-mute leading-relaxed">PDF, jonka voit lukea puhelimella, tabletilla tai tietokoneella. Halutessasi voit myös tulostaa sen.</p></details>
+      <details class="reveal bg-paper border border-ink/10 p-6"><summary class="font-bold text-ink cursor-pointer">Onko tämä sama kuin ilmainen Viikko 1?</summary><p class="mt-3 text-ink-mute leading-relaxed">Ilmainen osa sisältää ensimmäisen viikon. Tässä ovat kaikki 21 päivää: kolme osaa, kolme työkalupakkia ja viikkoreflektiot.</p></details>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════ @component: NextOffers ═══════════════ -->
-<section id="seuraavaksi" data-component="NextOffers" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+<section id="seuraavaksi" data-component="NextOffers" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-ink/30"></span> Mitä seuraavaksi</p>
-      <h2 class="font-serif text-4xl md:text-[3.1rem] leading-[1.05] mt-5 text-ink">Kun kaipaat oppaan lisäksi arjen rakenteita tai henkilökohtaista tukea.</h2>
+      <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Mitä seuraavaksi</p>
+      <h2 class="font-serif text-3xl md:text-[2.3rem] leading-[1.14] mt-5 text-ink">Kun kaipaat oppaan lisäksi arjen rakenteita tai henkilökohtaista tukea.</h2>
       <p class="mt-4 text-ink-mute leading-relaxed">Hermosto Reset auttaa pysähtymään ja kuulemaan omaa kuormaa aikaisemmin. Sen rinnalle rakentuu käytännön tukea arjen systeemien, rytmin ja kodin rakenteiden luomiseen.</p>
     </div>
     <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
@@ -402,21 +402,21 @@
         <span class="sun-glow -top-28 -right-24 w-80 h-80" aria-hidden="true"></span>
         <div class="relative">
           <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-dawn-700">Seuraava valmennus</p>
-          <h3 class="font-serif text-4xl text-ink mt-3">Hengittävä Koti</h3>
+          <h3 class="font-serif text-xl text-ink mt-3">Hengittävä Koti</h3>
           <p class="mt-2 font-bold text-ink-mute">6 viikon videovalmennus · alkaa 1.10.2026</p>
           <p class="mt-4 text-ink-soft leading-relaxed">Käytännön valmennus arjen raameihin: systeemit, ennakointi, viikon suunnittelu, kauppareissut ja kodin rakenteet, jotka kannattelevat lapsiperhearkea.</p>
           <ul class="mt-5 space-y-2 text-ink-soft leading-relaxed">
             <li>Kurssin tarkka ohjelma ilmoitetaan pian</li>
             <li>Ilmoittaudu, jos haluat mukaan ensimmäiseen ryhmään</li>
           </ul>
-          <p class="mt-6 font-serif text-4xl text-ink">199 € <span class="text-xl text-ink-mute line-through align-middle">299 €</span></p>
+          <p class="mt-6 font-serif text-2xl text-ink">199 € <span class="text-xl text-ink-mute line-through align-middle">299 €</span></p>
           <p class="mt-1 text-sm text-ink-mute">Etu 100 € ensimmäiseen ryhmään ilmoittautuville.</p>
           <a href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20Koti%20-%20ennakkoilmoittautuminen" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-7 py-3.5 transition-colors">Ilmoittaudu ennakkoon · 199 €</a>
         </div>
       </article>
-      <article class="reveal bg-ink text-paper p-7 md:p-9" data-delay="120">
+      <article class="reveal bg-plum-900 text-paper p-7 md:p-9" data-delay="120">
         <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/60">Saatavilla henkilökohtaisesti</p>
-        <h3 class="font-serif text-4xl mt-3">Hengittävä äiti · 1:1 mentorointi</h3>
+        <h3 class="font-serif text-2xl mt-3">Hengittävä äiti · 1:1 mentorointi</h3>
         <p class="mt-4 text-paper/85 leading-relaxed">Henkilökohtaista tukea silloin, kun kaipaat rinnalle ihmistä katsomaan arkeasi, kuormaasi ja seuraavia pieniä muutoksia sinun elämäntilanteestasi käsin.</p>
         <a href="mailto:hei@hengittava-aiti.fi?subject=Hengittava%20aiti%201-1%20mentorointi" class="mt-6 inline-flex items-center justify-center bg-paper text-ink font-bold px-7 py-3.5 hover:bg-paper-deep transition-colors">Kysy mentoroinnista</a>
       </article>
@@ -425,7 +425,7 @@
 </section>
 
 <!-- ═══════════════ @component: HonestDisclaimer ═══════════════ -->
-<section id="rehellisesti" data-component="HonestDisclaimer" class="py-12 md:py-16 bg-paper-warm border-t border-ink/10">
+<section id="rehellisesti" data-component="HonestDisclaimer" class="py-12 md:py-16 bg-paper-deep border-t border-ink/10">
   <div class="max-w-4xl mx-auto px-5 sm:px-6">
     <div class="reveal bg-paper border border-ink/12 p-7 md:p-9">
       <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Rehellisesti</p>

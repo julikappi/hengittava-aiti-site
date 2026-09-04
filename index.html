@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hengittävä Äiti — Apua kotiahdistukseen ja uupuneelle hermostolle</title>
 <meta name="description" content="Apua kotiahdistukseen ja yliaktiiviselle hermostolle. Hengittävä Äiti — äitiys & hermosto. Kolmen tyttären äiti, Juliana." />
-<meta name="theme-color" content="#141414" />
+<meta name="theme-color" content="#2A2320" />
 <meta property="og:title" content="Hengittävä Äiti" />
 <meta property="og:description" content="Apua kotiahdistukseen ja uupuneelle hermostolle." />
 <meta property="og:type" content="website" />
@@ -43,10 +43,10 @@
     theme: {
       extend: {
         colors: {
-          ink:   { DEFAULT:'#141414', soft:'#2E2E2E', mute:'#5A5A5A' },  /* tekstilaatikon musta */
-          paper: { DEFAULT:'#FFFFFF', warm:'#F7F5F2', deep:'#EDEAE5' },  /* valkoinen laatikko / tausta */
-          dawn:  { 50:'#FEFAF6', 100:'#F6E3D2', 200:'#F2D6BB', 300:'#E8B98D', 500:'#D08B5B', 700:'#A65E3C' }, /* auringonnousu/-lasku */
-          plum:  { 900:'#2A1845', 800:'#3D2963', 600:'#5C4190' }         /* vain logo + footer + väliote */
+          ink:   { DEFAULT:'#2A2320', soft:'#4A423E', mute:'#6F6560' },  /* leipäteksti, tumma ruskea */
+          paper: { DEFAULT:'#FFFCFA', warm:'#FBF7F1', deep:'#F0E8DF' },  /* laatikko / kerma / beige */
+          dawn:  { 50:'#F8F3F1', 100:'#F0E6E3', 200:'#E4D2CD', 300:'#C9A8A1', 500:'#A8827A', 700:'#8A6A64' }, /* vanha roosa */
+          plum:  { 900:'#3B2A45', 800:'#4A3854', 600:'#6B5675' }         /* tummaliila */
         },
         fontFamily: {
           serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
@@ -65,72 +65,80 @@
   :root { --nav-h: 4.75rem; }
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   body { text-rendering: optimizeLegibility; }
-  ::selection { background:#141414; color:#FFFFFF; }
+  ::selection { background:#3B2A45; color:#FBF7F1; }
   /* Tiny uppercase UI labels stay a simple sans; prose uses Playfair Display */
   .tracking-eyebrow { font-family: system-ui, sans-serif; }
 
   /* ─── IGCard — the brand's core element ──────────────────────────── */
-  .ig-frame        { position:relative; overflow:hidden; background:#141414; }
+  .ig-frame        { position:relative; overflow:hidden; background:#1A1816; }
   .ig-frame--45    { aspect-ratio: 4/5; }
   .ig-frame--11    { aspect-ratio: 1/1; }
   .ig-photo        { width:100%; height:100%; object-fit:cover;
                      filter: grayscale(1) contrast(1.04); }
   .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }  /* auringonnousu/-lasku säilyy värillisenä */
-  .ig-caption      { position:absolute; background:#FFFFFF; color:#141414;
-                     border-radius:0; box-shadow:none; padding:.55em .9em;
-                     display:inline-block; max-width:86%; }
+  .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
+                     border-radius:0; box-shadow:none; padding:.38em .65em;
+                     display:inline-block; max-width:82%; }
   .ig-hook         { font-family:'Playfair Display',Georgia,'Times New Roman',serif;
-                     font-size:clamp(1rem,2.4vw,1.85rem); line-height:1.18; }
+                     font-size:clamp(0.64rem,1.15vw,0.88rem); line-height:1.28; }
   .ig-sub          { font-family:'Playfair Display',Georgia,serif;
-                     font-size:.74em; line-height:1.25; color:#2E2E2E; }
-  .ig-caption--bottom { left:5%;  bottom:6%; }
-  .ig-caption--top    { left:5%;  top:8%; }
+                     font-size:.78em; line-height:1.28; color:#4A423E; }
+  .ig-caption--bottom { left:8%;  bottom:8%; }
+  .ig-caption--top    { left:8%;  top:8%; }
   .ig-caption--center { left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; }
-  .ig-caption--right  { right:5%; bottom:6%; }
+  .ig-caption--right  { right:8%; bottom:8%; }
+  .ig-caption--bottom-center { left:50%; bottom:8%; transform:translateX(-50%); text-align:center; max-width:76%; }
+  .ig-caption--ruu { left:8%; bottom:8%; max-width:72%; }
   /* .ig-sub renders as its OWN white box, staggered under the hook.
      .ig-stack positions the pair so the two boxes can never overlap. */
   .ig-stack        { position:absolute; display:flex; flex-direction:column;
-                     align-items:flex-start; gap:.4em; max-width:90%; }
+                     align-items:flex-start; gap:.32em; max-width:84%; }
   .ig-stack .ig-caption { position:static; max-width:100%; }
-  .ig-stack--bottom { left:5%;  bottom:6%; }
-  .ig-stack--top    { left:5%;  top:8%; }
+  .ig-stack--bottom { left:8%;  bottom:8%; }
+  .ig-stack--top    { left:8%;  top:8%; }
   .ig-stack--center { left:50%; top:50%; transform:translate(-50%,-50%);
-                      align-items:center; text-align:center; max-width:92%; }
-  .ig-stack--right  { right:5%; bottom:6%; align-items:flex-end; text-align:right; }
+                      align-items:center; text-align:center; max-width:86%; }
+  .ig-stack--bottom-center { left:50%; bottom:9%; transform:translateX(-50%);
+                             align-items:center; text-align:center; max-width:78%; }
+  .ig-stack--right  { right:8%; bottom:8%; align-items:flex-end; text-align:right; }
   .ig-caption--sub  { margin-left:14%; }
   .ig-stack--right .ig-caption--sub  { margin-left:0; margin-right:14%; }
-  .ig-stack--center .ig-caption--sub { margin-left:0; }
+  .ig-stack--center .ig-caption--sub,
+  .ig-stack--bottom-center .ig-caption--sub { margin-left:0; }
 
-  /* 2-up grid on small screens: keep the hook readable inside a narrow tile */
+  /* 2-up grid on small screens: keep the hook quiet inside a narrow tile */
   @media (max-width: 640px) {
-    .ig-hook    { font-size:.95rem; }
-    .ig-caption { padding:.45em .7em; max-width:92%; }
-    .ig-stack   { max-width:92%; }
-    /* a centred stack outgrows a narrow tile — anchor it top-left on small screens */
-    .ig-stack--center { left:5%; top:6%; transform:none;
+    .ig-hook    { font-size:.62rem; }
+    .ig-caption { padding:.28em .5em; max-width:88%; }
+    .ig-stack   { max-width:88%; }
+    /* a centred stack outgrows a narrow tile — keep it in the lower third */
+    .ig-stack--center { left:8%; top:auto; bottom:8%; transform:none;
                         align-items:flex-start; text-align:left; }
+    .ig-stack--bottom-center { left:50%; bottom:8%; transform:translateX(-50%);
+                               align-items:center; text-align:center; }
+    .ig-caption--ruu { max-width:90%; bottom:7%; }
   }
 
   /* ─── Auringonnousu: valoisat pinnat mustien tilalle ─────────────── */
-  .sunrise      { background: linear-gradient(168deg,#FEFAF6 0%,#FBF0E5 40%,#F5DFC9 74%,#EFD0B2 100%); }
-  .sunrise-soft { background: linear-gradient(168deg,#FFFDFB 0%,#FDF7F1 55%,#F9EBDD 100%); }
+  .sunrise      { background: linear-gradient(168deg,#FBF7F1 0%,#F6EFE8 42%,#EFE4DC 78%,#E8D8D2 100%); }
+  .sunrise-soft { background: linear-gradient(168deg,#FFFCFA 0%,#FBF7F1 55%,#F3EBE3 100%); }
   .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
-                  background: radial-gradient(closest-side, rgba(248,203,143,.80), rgba(246,227,210,0) 74%); }
+                  background: radial-gradient(closest-side, rgba(168,130,122,.38), rgba(251,247,241,0) 74%); }
 
   /* Scroll reveals — quiet */
   .reveal { opacity: 1; transform: none;
             transition: opacity .55s ease, transform .55s ease; }
 
-  /* Header: white over hero → paper after scroll */
+  /* Header: cream over hero after scroll */
   #site-header {
-    --fg: #141414; --fg-soft: #5A5A5A;
+    --fg: #2A2320; --fg-soft: #6F6560;
     transition: background-color .35s ease, border-color .35s ease;
     border-bottom: 1px solid transparent;
   }
   #site-header.is-scrolled {
-    --fg: #141414; --fg-soft: #5A5A5A;
-    background: rgba(255,255,255,.96);
-    border-color: rgba(20,20,20,.10);
+    --fg: #2A2320; --fg-soft: #6F6560;
+    background: rgba(251,247,241,.96);
+    border-color: rgba(42,35,32,.10);
   }
   #site-header .hdr-fg      { color: var(--fg); transition: color .35s ease; }
   #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .35s ease; }
@@ -162,7 +170,7 @@
 
   /* Inputs */
   .field { transition: border-color .2s ease; }
-  .field:focus { outline:none; border-color:#141414; box-shadow:0 0 0 2px rgba(20,20,20,.12); }
+  .field:focus { outline:none; border-color:#2A2320; box-shadow:0 0 0 2px rgba(42,35,32,.12); }
 
   @media (prefers-reduced-motion: reduce) {
     .anim-breathe, .anim-breathe-slow { animation: none; }
@@ -172,7 +180,7 @@
 </style>
 </head>
 
-<body class="bg-paper text-ink font-sans antialiased overflow-x-hidden">
+<body class="bg-paper-warm text-ink font-sans antialiased overflow-x-hidden">
 
 <!-- ═══════════════ @component: SiteHeader ═══════════════ -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
@@ -217,7 +225,7 @@
 
   <!-- Mobile panel -->
   <div id="mobile-menu" class="lg:hidden hidden border-t border-ink/10 bg-paper">
-    <div class="px-5 py-5 flex flex-col gap-3.5 text-lg font-semibold text-ink">
+    <div class="px-5 py-5 flex flex-col gap-3.5 text-base font-semibold text-ink">
       <a href="#instagram" class="mobile-link inline-flex items-center gap-2.5">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
         Instagram
@@ -237,20 +245,20 @@
 <main id="alku">
 
 <!-- ═══════════════ @component: InstagramHero — sivun avaus ═══════════════ -->
-<section id="instagram" data-component="InstagramHero" class="pt-28 md:pt-36 pb-14 md:pb-20 bg-paper">
+<section id="instagram" data-component="InstagramHero" class="pt-28 md:pt-36 pb-14 md:pb-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
 
     <div class="max-w-3xl">
       <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
          class="reveal inline-flex items-center gap-2 text-[0.82rem] font-semibold tracking-wide text-ink-mute hover:text-ink transition-colors">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
-        @hengittava_aiti · yli 7000 äitiä
+        @hengittava_aiti · yli 15 000 äitiä
       </a>
 
-      <h1 class="reveal font-serif text-ink leading-[1.04] text-[clamp(2.1rem,5.6vw,4.2rem)] mt-4" data-delay="80">
+      <h1 class="reveal font-serif text-ink leading-[1.14] text-[clamp(1.7rem,4.2vw,2.85rem)] mt-4" data-delay="80">
         Uupumus ei mene ohi tekemällä enemmän.
       </h1>
-      <p class="reveal font-serif text-ink-soft leading-[1.25] text-[clamp(1.1rem,2.4vw,1.75rem)] mt-3 max-w-xl" data-delay="160">
+      <p class="reveal font-serif text-ink-soft leading-[1.25] text-[clamp(1rem,1.8vw,1.3rem)] mt-3 max-w-xl" data-delay="160">
         Se hellittää, kun hermosto saa luvan.
       </p>
 
@@ -270,11 +278,11 @@
     </div>
 
     <div class="reveal mt-12 md:mt-16 max-w-2xl" data-delay="80">
-      <h2 class="font-serif text-2xl md:text-[2rem] leading-tight text-ink">
+      <h2 class="font-serif text-xl md:text-[1.5rem] leading-tight text-ink">
         Tämä alkoi Instagramista.
       </h2>
       <p class="mt-2 text-ink-mute leading-relaxed">
-        Yli 7000 äitiä lukee näitä joka viikko. Sama puhe jatkuu tällä sivulla.
+        Yli 15 000 äitiä lukee näitä joka viikko. Sama puhe jatkuu tällä sivulla.
       </p>
     </div>
 
@@ -312,9 +320,9 @@
       <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="reveal block group" data-delay="180">
         <figure class="ig-frame ig-frame--45">
           <img src="kuvat/ig/04.jpg" class="ig-photo" alt="Pieni lapsi seisoo veden äärellä auringonlaskussa" loading="lazy" onerror="this.style.display='none'">
-          <figcaption class="ig-stack ig-stack--top">
-            <span class="ig-caption"><span class="ig-hook">3 asiaa joita luulet lapsesi osaavan</span></span>
-            <span class="ig-caption ig-caption--sub"><span class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</span></span>
+          <figcaption class="ig-caption ig-caption--ruu">
+            <p class="ig-hook">3 asiaa joita luulet lapsesi osaavan</p>
+            <p class="ig-sub">— mutta hän ei osaa vielä yhtäkään.</p>
           </figcaption>
         </figure>
       </a>
@@ -351,13 +359,13 @@
 </section>
 
 <!-- ═══════════════ @component: ProblemEmpathy ("Tuntuuko tutulta?") ═══════════════ -->
-<section id="tuntuuko" data-component="ProblemEmpathy" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+<section id="tuntuuko" data-component="ProblemEmpathy" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl reveal">
       <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
-        <span class="inline-block w-8 h-px bg-ink/30"></span> Tuntuuko tutulta?
+        <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Tuntuuko tutulta?
       </p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">
         Se ei ole sinun vikasi. Se on hermostosi.
       </h2>
       <p class="mt-4 text-ink-mute leading-relaxed">Tunnistatko itsesi?</p>
@@ -365,22 +373,22 @@
 
     <div class="grid sm:grid-cols-2 gap-3 md:gap-4 mt-10">
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="0">
-        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Et pysty pysähtymään.</h3>
+        <h3 class="font-serif text-[1.35rem] leading-tight text-ink">Et pysty pysähtymään.</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Vaikka voimat on lopussa. Keho on ollut varuillaan niin kauan, ettei se enää tunnista lepoa.</p>
       </article>
 
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="80">
-        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Keho on sängyssä. Pää käy edelleen.</h3>
+        <h3 class="font-serif text-[1.35rem] leading-tight text-ink">Keho on sängyssä. Pää käy edelleen.</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Uni jää kevyeksi ja rikkonaiseksi. Aamulla olet väsyneempi kuin illalla.</p>
       </article>
 
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="160">
-        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Pinna palaa pienestä.</h3>
+        <h3 class="font-serif text-[1.35rem] leading-tight text-ink">Pinna palaa pienestä.</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Ja jälkeenpäin kaduttaa. Et ole huono äiti. Hermostosi käy ylikierroksilla, ja silloin pienikin asia tuntuu liialta.</p>
       </article>
 
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="240">
-        <h3 class="font-serif text-[1.6rem] leading-tight text-ink">Teet koko ajan. Lista ei lyhene.</h3>
+        <h3 class="font-serif text-[1.35rem] leading-tight text-ink">Teet koko ajan. Lista ei lyhene.</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Akku on tyhjä, ja jatkat silti. Se on opittu tapa, ja siitä voi oppia pois.</p>
       </article>
     </div>
@@ -390,20 +398,20 @@
 <!-- ═══════════════ @component: BridgeStatement — the one plum section ═══════════════ -->
 <section data-component="BridgeStatement" class="py-16 md:py-24 bg-plum-900">
   <div class="max-w-3xl mx-auto px-5 sm:px-6">
-    <p class="reveal font-serif text-[clamp(1.9rem,4.6vw,3.2rem)] leading-[1.15] text-paper">
+    <p class="reveal font-serif text-[clamp(1.4rem,3.2vw,2.2rem)] leading-[1.15] text-paper">
       Hermostosi ei tarvitse enemmän suorittamista. Se tarvitsee luvan levätä.
     </p>
   </div>
 </section>
 
 <!-- ═══════════════ @component: Offers ("Valitse oma askelesi") ═══════════════ -->
-<section id="askeleet" data-component="Offers" class="py-14 md:py-20 bg-paper">
+<section id="askeleet" data-component="Offers" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl reveal">
       <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
-        <span class="inline-block w-8 h-px bg-ink/30"></span> Askeleesi
+        <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Askeleesi
       </p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">
         Valitse se, mikä tuntuu tänään mahdolliselta.
       </h2>
     </div>
@@ -417,7 +425,7 @@
         </a>
         <div class="flex flex-col flex-1 p-6 md:p-7">
           <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · PDF miniopas</span>
-          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Kun huusit taas – ja nyt hävettää</h3>
+          <h3 class="font-serif text-[1.22rem] leading-tight mt-4 text-ink">Kun huusit taas – ja nyt hävettää</h3>
           <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen miniopas äidille, joka katuu omaa reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
           <a href="https://preview.mailerlite.io/forms/2565415/195422458022463204/share" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa miniopas</a>
         </div>
@@ -430,7 +438,7 @@
         </a>
         <div class="flex flex-col flex-1 p-6 md:p-7">
           <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · 7 päivää</span>
-          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – viikko 1</h3>
+          <h3 class="font-serif text-[1.22rem] leading-tight mt-4 text-ink">Hermosto Reset – viikko 1</h3>
           <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen 7 päivän opas, joka auttaa sinua pysähtymään ja aloittamaan pienestä tavallisen arjen keskellä.</p>
           <a href="https://hengittava-aiti.fi/hermosto-reset-viikko-1" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Aloita ilmaisesta viikosta</a>
         </div>
@@ -443,8 +451,8 @@
           <img src="kuvat/kansi-hermosto-reset-21.jpg" alt="Hermosto Reset 21 -oppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
         </a>
         <div class="relative flex flex-col flex-1 p-6 md:p-7">
-          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Opas 33 sivua · 29 €</span>
-          <h3 class="font-serif text-[1.45rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
+          <span class="inline-flex w-fit items-center bg-ink text-paper text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Opas 36 sivua · 29 €</span>
+          <h3 class="font-serif text-[1.22rem] leading-tight mt-4 text-ink">Hermosto Reset – 21 askelta kohti levollisempaa arkea</h3>
           <p class="mt-3 text-ink-soft leading-relaxed flex-1">21 päivän digitaalinen opas äidille, joka kaipaa arkeen pysähtymistä, hengitystä ja lempeää rakennetta. Hinta 29 €.</p>
           <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
         </div>
@@ -462,13 +470,13 @@
   </div>
   <!-- Dawn glow -->
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46rem] h-[46rem] pointer-events-none opacity-50"
-       style="background: radial-gradient(closest-side, rgba(232,185,141,0.28), transparent 70%);" aria-hidden="true"></div>
+       style="background: radial-gradient(closest-side, rgba(168,130,122,0.26), rgba(59,42,69,0.14) 58%, transparent 72%);" aria-hidden="true"></div>
 
   <div class="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
     <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-paper/70">
       <span class="inline-block w-8 h-px bg-paper/40"></span> Saat hengittää <span class="inline-block w-8 h-px bg-paper/40"></span>
     </p>
-    <h2 class="reveal font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-paper" data-delay="80">
+    <h2 class="reveal font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-paper" data-delay="80">
       Pysähdy. Tämä minuutti on sinun.
     </h2>
     <p class="reveal mt-5 text-paper/80 leading-relaxed max-w-xl mx-auto" data-delay="160">
@@ -481,15 +489,15 @@
       <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center" id="breath-stage">
         <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true">
           <circle cx="140" cy="140" r="132" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
-          <circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#E8B98D" stroke-width="3"
+          <circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#A8827A" stroke-width="3"
                   stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/>
         </svg>
         <div class="absolute w-56 h-56 rounded-full border border-paper/25 anim-breathe" aria-hidden="true"></div>
         <div class="absolute w-64 h-64 rounded-full border border-dawn-300/30 anim-breathe-slow" aria-hidden="true"></div>
         <div id="breath-circle"
              class="w-40 h-40 sm:w-44 sm:h-44 rounded-full flex items-center justify-center"
-             style="background: radial-gradient(circle at 35% 30%, #F6E3D2 0%, #E8B98D 45%, #A65E3C 100%);">
-          <span id="breath-label" class="font-serif text-ink text-xl sm:text-2xl px-6 text-center leading-snug">Valmiina?</span>
+             style="background: radial-gradient(circle at 35% 30%, #E4D2CD 0%, #A8827A 52%, #8A6A64 100%);">
+          <span id="breath-label" class="font-serif text-ink text-base sm:text-lg px-6 text-center leading-snug">Valmiina?</span>
         </div>
       </div>
 
@@ -500,7 +508,7 @@
       </button>
       <p id="breath-count" class="mt-4 text-sm text-paper/70 h-5" aria-live="polite"></p>
       <div id="breath-cta" class="opacity-0 translate-y-3 mt-8 border border-paper/25 bg-paper/10 p-6 text-center">
-        <p class="font-serif text-2xl text-paper leading-tight">Huomasitko, miten pienikin hetki voi muuttaa kehon tunnetta?</p>
+        <p class="font-serif text-xl text-paper leading-tight">Huomasitko, miten pienikin hetki voi muuttaa kehon tunnetta?</p>
         <p class="mt-3 text-paper/80 leading-relaxed">Hermosto Reset — 21 päivää auttaa rakentamaan tästä pienen tavan. Päivä kerrallaan, ilman suorittamista.</p>
         <a href="/hermosto-reset/" class="mt-5 inline-flex items-center justify-center border border-paper/70 hover:border-paper text-paper font-bold px-6 py-3 transition-colors">Tutustu 21 päivän oppaaseen</a>
       </div>
@@ -509,16 +517,16 @@
 </section>
 
 <!-- ═══════════════ @component: MusicList + SignupForm ═══════════════ -->
-<section id="musiikki" data-component="MusicSignup" class="py-14 md:py-20 bg-paper">
+<section id="musiikki" data-component="MusicSignup" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
       <!-- Soittolistat — sivun vasen puoli -->
       <div class="reveal">
         <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
-          <span class="inline-block w-8 h-px bg-ink/30"></span> Soittolistat
+          <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Soittolistat
         </p>
-        <h2 class="font-serif text-4xl md:text-[3rem] leading-[1.05] mt-5 text-ink">
+        <h2 class="font-serif text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">
           Kaksi listaa. Toinen purkaa, toinen rauhoittaa.
         </h2>
         <p class="mt-4 text-ink-mute leading-relaxed">
@@ -528,7 +536,7 @@
         <!-- Hermosto Reset -->
         <div class="mt-8 border border-dawn-300/70 sunrise-soft">
           <div class="px-6 py-4 border-b border-ink/10">
-            <p class="font-serif text-2xl text-ink">Hermosto Reset</p>
+            <p class="font-serif text-xl text-ink">Hermosto Reset</p>
             <p class="text-sm text-ink-mute mt-1">Rauhoittumiseen. Pidennetty uloshengitys, hiljainen piano.</p>
           </div>
           <div class="p-4">
@@ -542,7 +550,7 @@
         <!-- Tunnepurku -->
         <div class="mt-4 border border-dawn-300/70 sunrise-soft">
           <div class="px-6 py-4 border-b border-ink/10">
-            <p class="font-serif text-2xl text-ink">Tunnepurku</p>
+            <p class="font-serif text-xl text-ink">Tunnepurku</p>
             <p class="text-sm text-ink-mute mt-1">Kun tunne pitää saada ulos ennen kuin se purkautuu muihin.</p>
           </div>
           <div class="p-4">
@@ -559,7 +567,7 @@
         <div class="relative overflow-hidden sunrise border border-dawn-300 p-8 md:p-10">
           <span class="sun-glow -top-32 -right-28 w-[26rem] h-[26rem]" aria-hidden="true"></span>
           <div class="relative">
-            <h3 class="font-serif text-3xl leading-tight text-ink">Aloita jo tänään</h3>
+            <h3 class="font-serif text-xl leading-tight text-ink">Aloita jo tänään</h3>
             <p class="mt-4 text-ink-soft leading-relaxed">
               Lataa ilmainen opas tai avaa hermostoa hellivä musiikkilista. Valitse alta, kumman haluat.
             </p>
@@ -586,30 +594,30 @@
 </section>
 
 <!-- ═══════════════ @component: ContentPromise ("Mitä saat mukaan") ═══════════════ -->
-<section id="mita-saat" data-component="ContentPromise" class="py-14 md:py-20 bg-paper-warm border-t border-ink/10">
+<section id="mita-saat" data-component="ContentPromise" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="max-w-2xl reveal">
       <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
-        <span class="inline-block w-8 h-px bg-ink/30"></span> Mitä saat mukaan
+        <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Mitä saat mukaan
       </p>
-      <h2 class="font-serif text-4xl md:text-[3.2rem] leading-[1.05] mt-5 text-ink">
+      <h2 class="font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">
         Konkreettista tukea tavalliseen päivään.
       </h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-3 md:gap-4 mt-10">
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="0">
-        <h3 class="font-serif text-[1.6rem] text-ink">Yksi pieni askel kerrallaan</h3>
+        <h3 class="font-serif text-[1.35rem] text-ink">Yksi pieni askel kerrallaan</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Harjoitukset mahtuvat lapsiperheen arkeen: hengitys, kehon pehmentäminen, mikrotauot ja rajojen vahvistaminen.</p>
       </article>
 
-      <article class="reveal bg-ink text-paper p-7 md:p-8" data-delay="80">
-        <h3 class="font-serif text-[1.6rem]">Kieli omalle kuormalle</h3>
+      <article class="reveal bg-plum-900 text-paper p-7 md:p-8" data-delay="80">
+        <h3 class="font-serif text-[1.35rem]">Kieli omalle kuormalle</h3>
         <p class="mt-3 text-paper/85 leading-relaxed">Saat sanoja sille, miksi lepo voi tuntua vaikealta ja miksi keho jää varuilleen vielä silloinkin, kun hetki olisi rauhallinen.</p>
       </article>
 
       <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="160">
-        <h3 class="font-serif text-[1.6rem] text-ink">Rauhaa ilman täydellistä hetkeä</h3>
+        <h3 class="font-serif text-[1.35rem] text-ink">Rauhaa ilman täydellistä hetkeä</h3>
         <p class="mt-3 text-ink-mute leading-relaxed">Opas auttaa palaamaan kehoon myös keskeneräisen kodin, äänten ja tavallisen arjen keskellä.</p>
       </article>
     </div>
@@ -617,7 +625,7 @@
 </section>
 
 <!-- ═══════════════ @component: FounderStory ("Minusta") ═══════════════ -->
-<section id="minusta" data-component="FounderStory" class="py-14 md:py-20 bg-paper">
+<section id="minusta" data-component="FounderStory" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -634,9 +642,9 @@
       <!-- Story -->
       <div class="reveal order-1 lg:order-2" data-delay="120">
         <p class="inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-ink-mute">
-          <span class="inline-block w-8 h-px bg-ink/30"></span> Minusta
+          <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Minusta
         </p>
-        <h2 class="font-serif text-4xl md:text-[3rem] leading-[1.05] mt-5 text-ink">
+        <h2 class="font-serif text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">
           Hei, olen Juliana — äiti, jonka pahin rangaistus oli pysähtyä.
         </h2>
         <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
@@ -652,7 +660,7 @@
           </p>
         </div>
         <div class="mt-7">
-          <p class="font-script text-4xl text-ink">Juliana 🕊️</p>
+          <p class="font-script text-3xl text-ink">Juliana 🕊️</p>
           <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="mt-2 inline-flex items-center gap-2 text-sm font-bold text-ink hover:text-ink-mute transition-colors">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
             @hengittava_aiti
@@ -665,7 +673,7 @@
 </section>
 
 <!-- ═══════════════ @component: HonestDisclaimer ═══════════════ -->
-<section id="rehellisesti" data-component="HonestDisclaimer" class="py-12 md:py-16 bg-paper-warm border-t border-ink/10">
+<section id="rehellisesti" data-component="HonestDisclaimer" class="py-12 md:py-16 bg-paper-deep border-t border-ink/10">
   <div class="max-w-4xl mx-auto px-5 sm:px-6">
     <div class="reveal bg-paper border border-ink/12 p-7 md:p-9">
       <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-ink-mute">Rehellisesti</p>
@@ -687,12 +695,12 @@
 
   <div class="relative w-full max-w-5xl mx-auto px-5 sm:px-6 py-20">
     <h2 class="reveal max-w-3xl">
-      <span class="ig-caption relative inline-block font-serif text-ink leading-[1.1] text-[clamp(1.9rem,5vw,3.8rem)] px-4 py-2">
+      <span class="ig-caption relative inline-block font-serif text-ink leading-[1.12] text-[clamp(1.15rem,2.8vw,1.85rem)] px-3.5 py-1.5">
         Kun sinä hengität, koti hengittää.
       </span>
     </h2>
     <p class="reveal mt-2.5 ml-[6%] max-w-lg" data-delay="120">
-      <span class="ig-caption relative inline-block font-serif text-ink-soft leading-[1.2] text-[clamp(1rem,2.2vw,1.6rem)] px-3.5 py-1.5">
+      <span class="ig-caption relative inline-block font-serif text-ink-soft leading-[1.25] text-[clamp(0.82rem,1.5vw,1.05rem)] px-3 py-1">
         Aloita tänään. Seitsemän päivää, yksi pieni askel kerrallaan.
       </span>
     </p>
