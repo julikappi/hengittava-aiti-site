@@ -21,6 +21,7 @@ Then open <http://localhost:7100>.
 | `/kauppa/hermosto-reset/` | kassa (Paytrail, `api/create-payment`) |
 | `/opas/` | ilmaisen oppaan lomake |
 | `/kiitos/opas/`, `/kiitos/musiikki/`, `/kiitos/hermosto-reset-21/` | kiitos-sivut |
+| `/guides/*.pdf` | staattiset opas-PDF:t sähköpostilinkeille (`guides/`) |
 | `/minun-tarinani/` | Julianan tarina |
 | `/ostoehdot/`, `/tietosuoja/` | lakisääteiset sivut |
 
