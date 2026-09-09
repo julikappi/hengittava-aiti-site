@@ -20,6 +20,7 @@ Then open <http://localhost:7100>.
 | `/hermosto-reset/` | myyntisivu, 29 € |
 | `/kauppa/hermosto-reset/` | kassa (Paytrail, `api/create-payment`) |
 | `/opas/` | ilmaisen oppaan lomake |
+| `/kun-huusit/` | Kun huusit taas -minioppaan lomake (GoHighLevel) |
 | `/kiitos/kun-huusit/` | kiitos-sivu, Kun huusit taas -miniopas |
 | `/guides/Kun-huusit-taas-miniopas.pdf` | Kun huusit taas -opas (sivustolla hostattu tiedosto) |
 | `/kiitos/opas/`, `/kiitos/musiikki/`, `/kiitos/hermosto-reset-21/` | kiitos-sivut |
