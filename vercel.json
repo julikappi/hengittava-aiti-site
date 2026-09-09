@@ -52,7 +52,7 @@
       "src": "/kauppa/hermosto-reset/?",
       "status": 302,
       "headers": {
-        "Location": "https://buy.stripe.com/cNi6oHgs86xV8GJ2jl1Fe01"
+        "Location": "https://buy.stripe.com/cNi14nb7O7BZf573np1Fe02"
       }
     },
     {
@@ -61,6 +61,10 @@
       "headers": {
         "Location": "https://hengittava-aiti.fi/hermosto-reset-viikko-1"
       }
+    },
+    {
+      "src": "/kiitos/kun-huusit/?",
+      "dest": "/kiitos/kun-huusit/index.html"
     },
     {
       "src": "/kiitos/opas/?",
