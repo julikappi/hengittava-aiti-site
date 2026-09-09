@@ -63,6 +63,10 @@
       }
     },
     {
+      "src": "/kun-huusit/?",
+      "dest": "/kun-huusit/index.html"
+    },
+    {
       "src": "/kiitos/kun-huusit/?",
       "dest": "/kiitos/kun-huusit/index.html"
     },

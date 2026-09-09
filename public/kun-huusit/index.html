@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kun huusit taas — Hengittävä Äiti</title>
+<meta name="description" content="Pieni miniopas äidille, joka katuu reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.">
+<meta name="theme-color" content="#E8E6E3">
+<link rel="icon" href="/kuvat/logo-merkki.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2A2320;
+    --cream: #FBF7F1;
+    --grey: #E8E6E3;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px;
+    background: var(--grey);
+    color: var(--ink);
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--cream);
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(42, 35, 32, 0.10);
+    padding: 52px 44px 48px;
+    text-align: left;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.7rem, 4.8vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 0.55em;
+    color: var(--ink);
+  }
+  .lead {
+    margin: 0 0 1.4em;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  form { margin: 0; }
+  label {
+    display: block;
+    margin: 0 0 0.35em;
+    font-size: 0.95rem;
+  }
+  .field { margin: 0 0 1em; }
+  input {
+    width: 100%;
+    border: 1px solid rgba(42, 35, 32, 0.22);
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 1.05rem;
+    padding: 13px 14px;
+    border-radius: 6px;
+    outline: none;
+  }
+  input:focus {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px rgba(42, 35, 32, 0.12);
+  }
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.35em;
+    border: 0;
+    border-radius: 6px;
+    background: var(--ink);
+    color: var(--cream);
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 14px 18px;
+    cursor: pointer;
+  }
+  button:hover { opacity: 0.88; }
+  button:disabled { opacity: 0.55; cursor: wait; }
+  .error {
+    display: none;
+    margin: 0.85em 0 0;
+    font-size: 0.95rem;
+    color: #7d2b2b;
+  }
+  .error.is-visible { display: block; }
+  .note {
+    margin: 1.1em 0 0;
+    font-size: 0.92rem;
+    color: var(--ink);
+  }
+  @media (max-width: 480px) {
+    .card { padding: 40px 28px 36px; }
+  }
+</style>
+</head>
+<body>
+  <main class="card" data-component="KunHuusitForm">
+    <h1>Kun huusit taas</h1>
+    <p class="lead">Pieni miniopas äidille, joka katuu reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
+
+    <form id="miniopas-form" action="https://link.apisystem.tech/widget/form/KwdnBPweNizsuCijX5sr" method="post" novalidate>
+      <div class="field">
+        <label for="first_name">Etunimi <span style="font-weight:400">(vapaaehtoinen)</span></label>
+        <input id="first_name" name="first_name" type="text" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="email">Sähköposti</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <button type="submit" id="miniopas-submit">Lähetä miniopas minulle</button>
+      <p class="error" id="miniopas-error" role="alert">Lomakkeen lähetys ei onnistunut. Tarkista sähköposti ja kokeile uudelleen.</p>
+    </form>
+    <p class="note">Opas lähtee sähköpostiisi heti lähetyksen jälkeen.</p>
+  </main>
+
+  <iframe name="ghl-submit" title="" style="display:none" hidden></iframe>
+
+  <script>
+  (function () {
+    var FORM_ID = 'KwdnBPweNizsuCijX5sr';
+    var LOCATION_ID = 'I3cu8ZF9ixvviG2oTLGF';
+    var GHL_URL = 'https://backend.leadconnectorhq.com/forms/submit?formId=' + encodeURIComponent(FORM_ID) + '&locationId=' + encodeURIComponent(LOCATION_ID);
+    var THANKS = '/kiitos/kun-huusit/';
+
+    var form = document.getElementById('miniopas-form');
+    var emailEl = document.getElementById('email');
+    var nameEl = document.getElementById('first_name');
+    var btn = document.getElementById('miniopas-submit');
+    var err = document.getElementById('miniopas-error');
+
+    function showError(msg) {
+      if (msg) err.textContent = msg;
+      err.classList.add('is-visible');
+      btn.disabled = false;
+    }
+
+    function payloadFromForm() {
+      var email = (emailEl.value || '').trim();
+      var first = (nameEl.value || '').trim();
+      var data = { email: email };
+      if (first) data.first_name = first;
+      return data;
+    }
+
+    function ghlFormData(fields) {
+      var data = {
+        formId: FORM_ID,
+        location_id: LOCATION_ID,
+        email: fields.email
+      };
+      if (fields.first_name) data.first_name = fields.first_name;
+      var body = new FormData();
+      body.set('formData', JSON.stringify(data));
+      body.append('locationId', LOCATION_ID);
+      body.append('formId', FORM_ID);
+      return body;
+    }
+
+    function isAccepted(res, json) {
+      if (!res || !res.ok) return false;
+      if (!json || json.error === true || json.status === false) return false;
+      return true;
+    }
+
+    function postJson(url, fields) {
+      return fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fields)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (json) {
+          return { res: res, json: json };
+        });
+      });
+    }
+
+    function postGhlDirect(fields) {
+      return fetch(GHL_URL, {
+        method: 'POST',
+        body: ghlFormData(fields),
+        credentials: 'omit',
+        mode: 'cors'
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (json) {
+          return { res: res, json: json };
+        });
+      });
+    }
+
+    function postGhlIframe(fields) {
+      return new Promise(function (resolve, reject) {
+        var iframe = document.querySelector('iframe[name="ghl-submit"]');
+        var bridge = document.createElement('form');
+        bridge.method = 'POST';
+        bridge.action = GHL_URL;
+        bridge.target = 'ghl-submit';
+        bridge.style.display = 'none';
+        var data = {
+          formId: FORM_ID,
+          location_id: LOCATION_ID,
+          email: fields.email
+        };
+        if (fields.first_name) data.first_name = fields.first_name;
+        [['formData', JSON.stringify(data)], ['locationId', LOCATION_ID], ['formId', FORM_ID]].forEach(function (pair) {
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = pair[0];
+          input.value = pair[1];
+          bridge.appendChild(input);
+        });
+        document.body.appendChild(bridge);
+        function onLoad() {
+          try {
+            var href = iframe.contentWindow.location.href;
+            if (!href || href === 'about:blank') return;
+            reject(new Error('same-origin'));
+          } catch (crossOrigin) {
+            resolve();
+          }
+        }
+        iframe.addEventListener('load', onLoad);
+        setTimeout(function () { reject(new Error('timeout')); }, 8000);
+        bridge.submit();
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      err.classList.remove('is-visible');
+      var fields = payloadFromForm();
+      if (!fields.email || fields.email.indexOf('@') < 1) {
+        emailEl.focus();
+        showError('Kirjoita sähköpostiosoite, niin lähetän minioppaan sinulle.');
+        return;
+      }
+      btn.disabled = true;
+
+      function goThanks() {
+        window.location.href = THANKS;
+      }
+
+      postJson('/api/kun-huusit', fields).then(function (result) {
+        if (isAccepted(result.res, result.json)) {
+          goThanks();
+          return;
+        }
+        throw new Error('api');
+      }).catch(function () {
+        return postGhlDirect(fields).then(function (direct) {
+          if (isAccepted(direct.res, direct.json)) {
+            goThanks();
+            return;
+          }
+          throw new Error('ghl');
+        });
+      }).catch(function () {
+        return postGhlIframe(fields).then(goThanks);
+      }).catch(function () {
+        showError('Lomakkeen lähetys ei onnistunut. Tarkista sähköposti ja kokeile uudelleen.');
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

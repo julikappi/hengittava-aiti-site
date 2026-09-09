@@ -420,14 +420,14 @@
 
       <!-- 1 · Kun huusit taas -->
       <article class="reveal relative flex flex-col bg-paper border border-ink/12 overflow-hidden" data-delay="0">
-        <a href="/kiitos/kun-huusit/" class="block bg-paper-warm">
+        <a href="/kun-huusit/" class="block bg-paper-warm">
           <img src="kuvat/kansi-kun-huusit-taas.jpg" alt="Kun huusit taas – minioppaan kansi" class="w-full aspect-[4/5] object-contain p-4" loading="lazy">
         </a>
         <div class="flex flex-col flex-1 p-6 md:p-7">
           <span class="inline-flex w-fit items-center border border-ink/25 text-ink text-[0.7rem] font-extrabold uppercase tracking-wider px-3 py-1.5">Ilmainen · miniopas</span>
           <h3 class="font-serif text-[1.22rem] leading-tight mt-4 text-ink">Kun huusit taas – ja nyt hävettää</h3>
           <p class="mt-3 text-ink-mute leading-relaxed flex-1">Ilmainen miniopas äidille, joka katuu omaa reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
-          <a href="/kiitos/kun-huusit/" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa miniopas</a>
+          <a href="/kun-huusit/" class="mt-6 inline-flex items-center justify-center border border-ink text-ink hover:bg-ink hover:text-paper font-bold px-6 py-3.5 transition-colors">Lataa miniopas</a>
         </div>
       </article>
 
@@ -581,7 +581,7 @@
                   <option value="musiikki">Hermostoa hellivä musiikkilista</option>
                 </select>
               </label>
-              <a id="signup-action" href="/kiitos/kun-huusit/" class="w-full inline-flex items-center justify-center bg-ink text-paper font-bold px-8 py-4 hover:bg-ink-soft transition-colors">
+              <a id="signup-action" href="/kun-huusit/" class="w-full inline-flex items-center justify-center bg-ink text-paper font-bold px-8 py-4 hover:bg-ink-soft transition-colors">
                 Lataa miniopas
               </a>
               <p id="signup-note" class="text-sm text-ink-mute" aria-live="polite">Molemmat avautuvat heti. Jos linkki ei aukea, kirjoita <a class="font-bold underline underline-offset-4 hover:text-ink" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
@@ -755,7 +755,7 @@
       <nav aria-label="Alatunnisteen ohjelmalinkit">
         <p class="text-[0.72rem] font-extrabold uppercase tracking-eyebrow text-paper/50">Ohjelmat &amp; musiikki</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-paper transition-colors" href="/kiitos/kun-huusit/">Kun huusit taas — ilmainen miniopas</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/kun-huusit/">Kun huusit taas — ilmainen miniopas</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://hengittava-aiti.fi/hermosto-reset-viikko-1">Hermosto Reset · Viikko 1 — ilmainen</a></li>
           <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
           <li><a class="hover:text-paper transition-colors" href="https://buy.stripe.com/cNi14nb7O7BZf573np1Fe02">Osta Hermosto Reset 21 · 29 €</a></li>
@@ -972,7 +972,7 @@
   /* ── 7. Direct launch links ─────────────────────────────────────── */
   var HA_CONFIG = {
     thankYou: {
-      miniopas: '/kiitos/kun-huusit/',
+      miniopas: '/kun-huusit/',
       mini: 'https://hengittava-aiti.fi/hermosto-reset-viikko-1',
       musiikki: 'https://open.spotify.com/playlist/4q6gKFxvzFVMv64CR3KgC5'
     }
@@ -983,8 +983,8 @@
     var plan = interest.value || 'miniopas';
     action.href = HA_CONFIG.thankYou[plan] || HA_CONFIG.thankYou.miniopas;
     action.textContent = plan === 'musiikki' ? 'Avaa soittolista' : (plan === 'mini' ? 'Aloita ilmaisesta viikosta' : 'Lataa miniopas');
-    action.target = '_blank';
-    action.rel = 'noopener';
+    action.target = plan === 'miniopas' ? '_self' : '_blank';
+    action.rel = plan === 'miniopas' ? '' : 'noopener';
   }
   if (interest) interest.addEventListener('change', updateActionLink);
   updateActionLink();
