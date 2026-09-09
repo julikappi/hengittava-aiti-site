@@ -108,6 +108,24 @@ const htmlFetch = async () => ({
 }
 
 {
+  const calls = [];
+  const fallbackFetch = async (url, opts) => {
+    calls.push(url);
+    if (String(url).includes('/forms/submit')) {
+      return { status: 403, text: async () => '<title>Attention Required! | Cloudflare</title>' };
+    }
+    return {
+      status: 200,
+      text: async () => JSON.stringify({ status: true, fingerprint: 'fp_legacy', contactId: 'ct_legacy' }),
+    };
+  };
+  const result = await call({ email: 'test@example.com' }, fallbackFetch);
+  assert(calls[0] && calls[0].includes('/forms/submit'), 'tries documented forms/submit first');
+  assert(calls[1] === handler.LEGACY_SUBMIT_URL, 'falls back to appengine/form when submit is blocked');
+  assert(result.status === 200 && result.json.fingerprint === 'fp_legacy', 'legacy GHL fingerprint is accepted');
+}
+
+{
   const result = await call({ email: 'not-an-email' }, okFetch);
   assert(result.status === 400, 'invalid email is rejected before GHL');
 }

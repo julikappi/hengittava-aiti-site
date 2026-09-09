@@ -4,6 +4,7 @@ const LOCATION_ID = 'l3cu8ZF9ixwviG2oTLGF';
 const SUBMIT_URL =
   `https://backend.leadconnectorhq.com/forms/submit?formId=${encodeURIComponent(FORM_ID)}` +
   `&locationId=${encodeURIComponent(LOCATION_ID)}`;
+const LEGACY_SUBMIT_URL = 'https://backend.leadconnectorhq.com/appengine/form';
 
 const GHL_HEADERS = {
   channel: 'APP',
@@ -40,7 +41,7 @@ function readBody(req) {
   });
 }
 
-function ghlFormData(email, firstName) {
+function jsonPayload(email, firstName) {
   const payload = {
     formId: FORM_ID,
     location_id: LOCATION_ID,
@@ -48,9 +49,12 @@ function ghlFormData(email, firstName) {
     eventData: { medium: 'form', mediumId: FORM_ID },
   };
   if (firstName) payload.first_name = firstName;
+  return payload;
+}
 
+function ghlFormData(email, firstName) {
   const form = new FormData();
-  form.set('formData', JSON.stringify(payload));
+  form.set('formData', JSON.stringify(jsonPayload(email, firstName)));
   form.append('locationId', LOCATION_ID);
   form.append('formId', FORM_ID);
   return form;
@@ -72,14 +76,30 @@ function isAccepted(status, parsed) {
   return Boolean(parsed.fingerprint || parsed.contactId);
 }
 
-async function postToGhl(email, firstName, fetchImpl) {
-  const response = await fetchImpl(SUBMIT_URL, {
-    method: 'POST',
-    body: ghlFormData(email, firstName),
-    headers: GHL_HEADERS,
-  });
+async function readResult(response) {
   const text = await response.text();
   return { status: response.status, parsed: parseGhlBody(text), text };
+}
+
+async function postToGhl(email, firstName, fetchImpl) {
+  const primary = await readResult(
+    await fetchImpl(SUBMIT_URL, {
+      method: 'POST',
+      body: ghlFormData(email, firstName),
+      headers: GHL_HEADERS,
+    })
+  );
+  if (isAccepted(primary.status, primary.parsed)) return primary;
+
+  const legacy = await readResult(
+    await fetchImpl(LEGACY_SUBMIT_URL, {
+      method: 'POST',
+      headers: { ...GHL_HEADERS, 'Content-Type': 'application/json' },
+      body: JSON.stringify(jsonPayload(email, firstName)),
+    })
+  );
+  if (isAccepted(legacy.status, legacy.parsed)) return legacy;
+  return primary.status === 403 && legacy.status ? legacy : primary;
 }
 
 async function handler(req, res, fetchImpl = fetch) {
@@ -120,6 +140,7 @@ async function handler(req, res, fetchImpl = fetch) {
 handler.FORM_ID = FORM_ID;
 handler.LOCATION_ID = LOCATION_ID;
 handler.SUBMIT_URL = SUBMIT_URL;
+handler.LEGACY_SUBMIT_URL = LEGACY_SUBMIT_URL;
 handler.isAccepted = isAccepted;
 
 module.exports = handler;
