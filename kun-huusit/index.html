@@ -56,26 +56,8 @@
   }
   .ghl-embed {
     width: 100%;
-    min-height: 390px;
-    margin: 0 -6px;
+    height: 480px;
   }
-  .ghl-embed iframe {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 100% !important;
-    height: 390px;
-    min-height: 390px;
-    border: 0;
-    background: transparent;
-  }
-  .error {
-    display: none;
-    margin: 0.85em 0 0;
-    font-size: 0.95rem;
-    color: #7d2b2b;
-  }
-  .error.is-visible { display: block; }
   .note {
     margin: 1.1em 0 0;
     font-size: 0.92rem;
@@ -94,6 +76,7 @@
     <div class="ghl-embed">
       <iframe
         src="https://api.leadconnectorhq.com/widget/form/KwdnBPweNizsuCijX5sr"
+        style="width:100%;height:100%;border:none;border-radius:3px"
         id="inline-KwdnBPweNizsuCijX5sr"
         data-layout="{'id':'INLINE'}"
         data-trigger-type="alwaysShow"
@@ -103,13 +86,12 @@
         data-deactivation-type="neverDeactivate"
         data-deactivation-value=""
         data-form-name="Kun huusit taas"
-        data-height="390"
+        data-height="480"
         data-layout-iframe-id="inline-KwdnBPweNizsuCijX5sr"
         data-form-id="KwdnBPweNizsuCijX5sr"
         title="Kun huusit taas">
       </iframe>
     </div>
-    <p class="error" id="miniopas-error" role="alert">Lomakkeen lähetys ei onnistunut. Tarkista sähköposti ja kokeile uudelleen.</p>
     <p class="note">Opas lähtee sähköpostiisi heti lähetyksen jälkeen.</p>
   </main>
 
@@ -125,10 +107,6 @@
       'https://msgsndr.com': true,
       'https://link.msgsndr.com': true
     };
-
-    function goThanks() {
-      window.location.href = THANKS;
-    }
 
     function payloadOf(data) {
       if (Array.isArray(data)) return data[1] || {};
@@ -151,32 +129,11 @@
       return Boolean(payload.fingerprint || payload.contactId);
     }
 
-    function revealIframe() {
-      var iframe = document.getElementById('inline-' + FORM_ID);
-      if (!iframe) return;
-      iframe.style.setProperty('display', 'block', 'important');
-      iframe.style.setProperty('visibility', 'visible', 'important');
-      iframe.style.setProperty('opacity', '1', 'important');
-    }
-
     window.addEventListener('message', function (event) {
       if (!ALLOWED[event.origin]) return;
-      var type = typeOf(event.data);
-      var payload = payloadOf(event.data);
-      if (type === 'highlevel.setHeight' && payload && payload.height) {
-        var iframe = document.getElementById('inline-' + FORM_ID);
-        if (iframe) iframe.style.height = Math.max(390, Number(payload.height) || 0) + 'px';
-        revealIframe();
-      }
       if (!isConfirmedSubmit(event.data)) return;
-      goThanks();
+      window.location.href = THANKS;
     });
-
-    var iframe = document.getElementById('inline-' + FORM_ID);
-    if (iframe) iframe.addEventListener('load', revealIframe);
-    revealIframe();
-    setTimeout(revealIframe, 800);
-    setTimeout(revealIframe, 2500);
   })();
   </script>
 </body>

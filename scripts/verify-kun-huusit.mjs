@@ -35,8 +35,7 @@ assert(page.includes('https://link.msgsndr.com/js/form_embed.js'), 'page loads o
 assert(page.includes("THANKS = '" + THANKS + "'"), 'success still goes to /kiitos/kun-huusit/');
 assert(page.includes("type !== 'msgsndr-form-submit'"), 'thank-you waits for GHL submit postMessage');
 assert(page.includes('payload.fingerprint || payload.contactId'), 'thank-you requires fingerprint or contactId');
-assert(page.includes("type === 'highlevel.setHeight'"), 'height messages are not treated as success');
-assert(page.includes("type === 'set-sticky-contacts'"), 'sticky-contact messages are not treated as success');
+assert(page.includes("type === 'highlevel.setHeight' || type === 'set-sticky-contacts'"), 'height/sticky messages are not treated as success');
 assert(!page.includes(WRONG_HOMEMADE), 'page does not homemade-post to forms/submit');
 assert(!page.includes('/api/kun-huusit'), 'page does not use the homemade API proxy');
 assert(!page.includes('mailerlite'), 'no MailerLite');
