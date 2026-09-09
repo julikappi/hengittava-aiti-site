@@ -114,7 +114,7 @@
     <h1>Kun huusit taas</h1>
     <p class="lead">Pieni miniopas äidille, joka katuu reaktiotaan ja haluaa ymmärtää, mitä kehossa tapahtui.</p>
 
-    <form id="miniopas-form" action="https://link.apisystem.tech/widget/form/KwdnBPweNizsuCijX5sr" method="post" novalidate>
+    <form id="miniopas-form" action="/api/kun-huusit" method="post" novalidate>
       <div class="field">
         <label for="first_name">Etunimi <span style="font-weight:400">(vapaaehtoinen)</span></label>
         <input id="first_name" name="first_name" type="text" autocomplete="given-name">
@@ -129,12 +129,10 @@
     <p class="note">Opas lähtee sähköpostiisi heti lähetyksen jälkeen.</p>
   </main>
 
-  <iframe name="ghl-submit" title="" style="display:none" hidden></iframe>
-
   <script>
   (function () {
     var FORM_ID = 'KwdnBPweNizsuCijX5sr';
-    var LOCATION_ID = 'I3cu8ZF9ixvviG2oTLGF';
+    var LOCATION_ID = 'l3cu8ZF9ixwviG2oTLGF';
     var GHL_URL = 'https://backend.leadconnectorhq.com/forms/submit?formId=' + encodeURIComponent(FORM_ID) + '&locationId=' + encodeURIComponent(LOCATION_ID);
     var THANKS = '/kiitos/kun-huusit/';
 
@@ -162,7 +160,8 @@
       var data = {
         formId: FORM_ID,
         location_id: LOCATION_ID,
-        email: fields.email
+        email: fields.email,
+        eventData: { medium: 'form', mediumId: FORM_ID }
       };
       if (fields.first_name) data.first_name = fields.first_name;
       var body = new FormData();
@@ -172,10 +171,15 @@
       return body;
     }
 
-    function isAccepted(res, json) {
-      if (!res || !res.ok) return false;
+    function ghlAccepted(json) {
       if (!json || json.error === true || json.status === false) return false;
-      return true;
+      return Boolean(json.fingerprint || json.contactId);
+    }
+
+    function readJson(res) {
+      return res.json().catch(function () { return {}; }).then(function (json) {
+        return { res: res, json: json };
+      });
     }
 
     function postJson(url, fields) {
@@ -183,11 +187,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(fields)
-      }).then(function (res) {
-        return res.json().catch(function () { return {}; }).then(function (json) {
-          return { res: res, json: json };
-        });
-      });
+      }).then(readJson);
     }
 
     function postGhlDirect(fields) {
@@ -195,49 +195,13 @@
         method: 'POST',
         body: ghlFormData(fields),
         credentials: 'omit',
-        mode: 'cors'
-      }).then(function (res) {
-        return res.json().catch(function () { return {}; }).then(function (json) {
-          return { res: res, json: json };
-        });
-      });
-    }
-
-    function postGhlIframe(fields) {
-      return new Promise(function (resolve, reject) {
-        var iframe = document.querySelector('iframe[name="ghl-submit"]');
-        var bridge = document.createElement('form');
-        bridge.method = 'POST';
-        bridge.action = GHL_URL;
-        bridge.target = 'ghl-submit';
-        bridge.style.display = 'none';
-        var data = {
-          formId: FORM_ID,
-          location_id: LOCATION_ID,
-          email: fields.email
-        };
-        if (fields.first_name) data.first_name = fields.first_name;
-        [['formData', JSON.stringify(data)], ['locationId', LOCATION_ID], ['formId', FORM_ID]].forEach(function (pair) {
-          var input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = pair[0];
-          input.value = pair[1];
-          bridge.appendChild(input);
-        });
-        document.body.appendChild(bridge);
-        function onLoad() {
-          try {
-            var href = iframe.contentWindow.location.href;
-            if (!href || href === 'about:blank') return;
-            reject(new Error('same-origin'));
-          } catch (crossOrigin) {
-            resolve();
-          }
+        mode: 'cors',
+        headers: {
+          channel: 'APP',
+          source: 'WEB_USER',
+          version: '2021-04-15'
         }
-        iframe.addEventListener('load', onLoad);
-        setTimeout(function () { reject(new Error('timeout')); }, 8000);
-        bridge.submit();
-      });
+      }).then(readJson);
     }
 
     form.addEventListener('submit', function (e) {
@@ -256,21 +220,19 @@
       }
 
       postJson('/api/kun-huusit', fields).then(function (result) {
-        if (isAccepted(result.res, result.json)) {
+        if (result.res.ok && ghlAccepted(result.json)) {
           goThanks();
           return;
         }
         throw new Error('api');
       }).catch(function () {
         return postGhlDirect(fields).then(function (direct) {
-          if (isAccepted(direct.res, direct.json)) {
+          if (direct.res.ok && ghlAccepted(direct.json)) {
             goThanks();
             return;
           }
           throw new Error('ghl');
         });
-      }).catch(function () {
-        return postGhlIframe(fields).then(goThanks);
       }).catch(function () {
         showError('Lomakkeen lähetys ei onnistunut. Tarkista sähköposti ja kokeile uudelleen.');
       });

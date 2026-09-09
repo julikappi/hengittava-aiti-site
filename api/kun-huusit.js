@@ -1,8 +1,18 @@
 const FORM_ID = 'KwdnBPweNizsuCijX5sr';
-const LOCATION_ID = 'I3cu8ZF9ixvviG2oTLGF';
+// GHL dashboard location id: lowercase L, then ixwvi (not uppercase I / ixvvi).
+const LOCATION_ID = 'l3cu8ZF9ixwviG2oTLGF';
 const SUBMIT_URL =
   `https://backend.leadconnectorhq.com/forms/submit?formId=${encodeURIComponent(FORM_ID)}` +
   `&locationId=${encodeURIComponent(LOCATION_ID)}`;
+
+const GHL_HEADERS = {
+  channel: 'APP',
+  source: 'WEB_USER',
+  version: '2021-04-15',
+  timezone: 'Europe/Helsinki',
+  Origin: 'https://api.leadconnectorhq.com',
+  Referer: `https://api.leadconnectorhq.com/widget/form/${FORM_ID}`,
+};
 
 function json(res, status, body) {
   res.statusCode = status;
@@ -30,7 +40,49 @@ function readBody(req) {
   });
 }
 
-module.exports = async function handler(req, res) {
+function ghlFormData(email, firstName) {
+  const payload = {
+    formId: FORM_ID,
+    location_id: LOCATION_ID,
+    email,
+    eventData: { medium: 'form', mediumId: FORM_ID },
+  };
+  if (firstName) payload.first_name = firstName;
+
+  const form = new FormData();
+  form.set('formData', JSON.stringify(payload));
+  form.append('locationId', LOCATION_ID);
+  form.append('formId', FORM_ID);
+  return form;
+}
+
+function parseGhlBody(text) {
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+function isAccepted(status, parsed) {
+  if (status < 200 || status >= 300) return false;
+  if (!parsed || typeof parsed !== 'object') return false;
+  if (parsed.error === true || parsed.status === false) return false;
+  return Boolean(parsed.fingerprint || parsed.contactId);
+}
+
+async function postToGhl(email, firstName, fetchImpl) {
+  const response = await fetchImpl(SUBMIT_URL, {
+    method: 'POST',
+    body: ghlFormData(email, firstName),
+    headers: GHL_HEADERS,
+  });
+  const text = await response.text();
+  return { status: response.status, parsed: parseGhlBody(text), text };
+}
+
+async function handler(req, res, fetchImpl = fetch) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return json(res, 405, { error: true, message: 'Method not allowed' });
@@ -43,51 +95,31 @@ module.exports = async function handler(req, res) {
     return json(res, 400, { error: true, message: 'email required' });
   }
 
-  const payload = {
-    formId: FORM_ID,
-    location_id: LOCATION_ID,
-    email,
-  };
-  if (firstName) payload.first_name = firstName;
-
-  const form = new FormData();
-  form.set('formData', JSON.stringify(payload));
-  form.append('locationId', LOCATION_ID);
-  form.append('formId', FORM_ID);
-
-  let ghl;
+  let result;
   try {
-    ghl = await fetch(SUBMIT_URL, { method: 'POST', body: form });
+    result = await postToGhl(email, firstName, fetchImpl);
   } catch {
     return json(res, 502, { error: true, message: 'ghl unreachable' });
   }
 
-  const text = await ghl.text();
-  let parsed = null;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    parsed = null;
-  }
-
-  const accepted =
-    ghl.ok &&
-    parsed &&
-    parsed.error !== true &&
-    parsed.status !== false &&
-    (parsed.fingerprint || parsed.contactId || parsed.status === true || parsed.ok === true);
-
-  if (!accepted) {
+  if (!isAccepted(result.status, result.parsed)) {
     return json(res, 502, {
       error: true,
-      status: ghl.status,
-      message: (parsed && (parsed.message || parsed.msg)) || 'ghl rejected',
+      status: result.status,
+      message: (result.parsed && (result.parsed.message || result.parsed.msg)) || 'ghl rejected',
     });
   }
 
   return json(res, 200, {
     ok: true,
-    fingerprint: parsed.fingerprint || null,
-    contactId: parsed.contactId || null,
+    fingerprint: result.parsed.fingerprint || null,
+    contactId: result.parsed.contactId || null,
   });
-};
+}
+
+handler.FORM_ID = FORM_ID;
+handler.LOCATION_ID = LOCATION_ID;
+handler.SUBMIT_URL = SUBMIT_URL;
+handler.isAccepted = isAccepted;
+
+module.exports = handler;

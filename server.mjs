@@ -3,7 +3,10 @@
 // (On the Next.js port this file is deleted — `next dev` takes over.)
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { extname, join, normalize } from 'node:path';
+
+const require = createRequire(import.meta.url);
 
 const args = process.argv.slice(2);
 const opt = (name, fallback) => {
@@ -45,6 +48,10 @@ const redirects = {
 createServer(async (req, res) => {
   try {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    if (pathname === '/api/kun-huusit') {
+      const handler = require('./api/kun-huusit.js');
+      return handler(req, res);
+    }
     if (redirects[pathname]) {
       res.writeHead(302, { Location: redirects[pathname] });
       return res.end();
