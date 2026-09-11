@@ -19,15 +19,15 @@ a{color:inherit}
 .iglink{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid currentColor}
 .back{display:inline-flex;align-items:center;text-decoration:none;border:1px solid rgba(42,35,32,.22);padding:9px 14px;font-weight:400;font-size:14px;letter-spacing:.01em;color:var(--ink-soft)}
 .back:hover{border-color:rgba(42,35,32,.45);color:var(--ink)}
-.hero{position:relative;background:var(--ink);overflow:hidden;min-height:60svh;display:flex;align-items:flex-end}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04)}
-.hero .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(42,35,32,.78),rgba(42,35,32,.18) 55%,rgba(42,35,32,.35))}
-.hero-inner{position:relative;max-width:1040px;margin:0 auto;padding:96px 20px 40px;width:100%}
-.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.82);font-weight:500;font-family:system-ui,sans-serif}
+.hero{background:var(--paper-warm)}
+.hero-photo{position:relative;background:var(--ink);overflow:hidden;min-height:min(66svh,700px)}
+.hero-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 58%;filter:grayscale(1) contrast(1.04)}
+.hero-inner{max-width:1040px;margin:0 auto;padding:28px 20px 8px;width:100%}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-mute);font-weight:500;font-family:system-ui,sans-serif}
 .box{display:inline-block;background:var(--paper);color:var(--ink);padding:8px 16px}
 h1{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(26px,4.8vw,38px);line-height:1.14;margin:16px 0 0;font-weight:400}
 .lead-box{display:inline-block;background:var(--paper);color:var(--ink-soft);padding:6px 14px;margin:10px 0 0 6%;font-family:'Playfair Display',Georgia,serif;font-size:clamp(15px,2vw,20px);line-height:1.25}
-.wrap{max-width:760px;margin:0 auto;padding:48px 20px 68px}
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 68px}
 p{font-size:16px;font-weight:400;color:var(--ink-mute);margin:0 0 20px}
 em{font-style:italic}
 strong{font-weight:500}
@@ -48,7 +48,9 @@ strong{font-weight:500}
 @media(max-width:640px){
   .wrap{padding:34px 18px 56px}
   p{font-size:16px}
-  .hero-inner{padding:88px 18px 30px}
+  .hero-photo{min-height:68svh}
+  .hero-photo>img{object-position:60% 70%}
+  .hero-inner{padding:24px 18px 4px}
   .lead-box{margin-left:0}
   .cta{width:100%}
 }
@@ -74,11 +76,12 @@ strong{font-weight:500}
 
 <!-- @component: StoryHero -->
 <section class="hero" data-component="StoryHero">
-  <img src="/kuvat/IMG_6335.jpg" alt="" onerror="this.style.display='none'">
-  <div class="scrim"></div>
+  <div class="hero-photo">
+    <img src="/kuvat/IMG_6335.jpg" alt="Juliana istuu nurmikolla ja katsoo auringonlaskua metsän yli" onerror="this.style.display='none'">
+  </div>
   <div class="hero-inner">
     <div class="eyebrow">Minun tarinani</div>
-    <h1><span class="box">Luulin olevani vain temperamenttinen, ns. nopeasti syttyvä, mutta se ei ollut koko totuus.</span></h1>
+    <h1><span class="box">Luulin olevani vain nopeasti syttyvä, mutta se ei ollut koko totuus.</span></h1>
     <p class="lead-box">Kesti kauan tajuta, mistä oikeasti oli kyse.</p>
   </div>
 </section>
@@ -88,7 +91,7 @@ strong{font-weight:500}
 <p>En havahtunut yhdessä suuressa hetkessä. Se tapahtui pikkuhiljaa.</p>
 <p>Oma kuormitukseni oli kasvanut niin suureksi, että olin koko ajan tuliherkkä. Kotona se näkyi niille, joita rakastan eniten: lapsille ja puolisolle. Saatoin huutaa, purkautua ja olla epätoivoinen siitä, ettei kukaan kuuntele eikä kukaan tee. Ja sen jälkeen kadutti.</p>
 <div class="quote"><p>“Tätäkö tämä elämä nyt on? Mitä minulle on oikein tapahtunut?”</p></div>
-<p>Luulin olevani vain temperamenttinen, ns. nopeasti syttyvä, mutta se ei ollut koko totuus. Tajusin, että turva tulee useimmiten mukaan jo lapsuudesta. Muttei minulle. Jostain syystä siitä sain mukaani ylivirittyneen hermoston ja turvattomuuden. Kun keho elää jatkuvassa ylivireydessä, pienikin asia voi tuntua liialta.</p>
+<p>Luulin olevani vain nopeasti syttyvä, mutta se ei ollut koko totuus. Tajusin, että turva tulee useimmiten mukaan jo lapsuudesta. Muttei minulle. Jostain syystä siitä sain mukaani ylivirittyneen hermoston ja turvattomuuden. Kun keho elää jatkuvassa ylivireydessä, pienikin asia voi tuntua liialta.</p>
 <p>Silloin minun oli pakko opetella pysähtymään. Ei täydellisesti. Ei niin, että kaikki olisi kerralla muuttunut rauhalliseksi. Pienissä kohdissa: hengittää ennen kuin räjähdän, lähteä kävelylle, jättää jokin kesken, ottaa tauko ennen kuin olen aivan lopussa.</p>
 <div class="quote"><p>“Tilaa ei löydy arjesta vahingossa. Sitä pitää luoda uudelleen, joskus joka päivä.”</p></div>
 <p>Samalla minussa heräsi toinen oivallus: itsepä olin mennyt rakentamaan tätä perhettä ja tekemään lapsia. Pakkohan tästä elämästä on opetella myös nauttimaan.</p>
