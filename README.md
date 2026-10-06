@@ -17,7 +17,7 @@ Then open <http://localhost:7100>.
 | Polku | Tiedosto |
 |---|---|
 | `/` | `index.html` |
-| `/hermosto-reset/` | myyntisivu, 29 € |
+| `/klubi/` | Hengittävien äitien klubi — kuukausijäsenyys |
 | `/kauppa/hermosto-reset/` | kassa (Paytrail, `api/create-payment`) |
 | `/opas/` | ilmaisen oppaan lomake |
 | `/kun-huusit/` | Kun huusit taas -minioppaan lomake (GoHighLevel) |
