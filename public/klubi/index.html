@@ -68,6 +68,7 @@
 <style>
   :root { --nav-h: 4.75rem; }
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
+  section[id] { scroll-margin-top: calc(var(--nav-h) + 0.75rem); }
   body { text-rendering: optimizeLegibility; }
   ::selection { background:#3B2A45; color:#FBF7F1; }
 
@@ -205,9 +206,9 @@
 <!-- ═══════════════ @component: Hero ═══════════════ -->
 <section data-component="Hero" class="relative min-h-[84svh] flex items-end overflow-hidden bg-paper-warm">
   <div class="absolute inset-0 ig-frame" aria-hidden="true">
-    <img src="/kuvat/IMG_6335.jpg" class="ig-photo" alt="" fetchpriority="high" onerror="this.style.display='none'" />
+    <img src="/kuvat/IMG_6335.jpg" class="ig-photo opacity-80" alt="" fetchpriority="high" onerror="this.style.display='none'" />
   </div>
-  <div class="absolute inset-0 bg-gradient-to-t from-paper via-paper/88 to-paper/40" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-paper via-paper/70 to-paper/15" aria-hidden="true"></div>
 
   <div class="relative w-full max-w-6xl mx-auto px-5 sm:px-6 pb-16 md:pb-24 pt-32">
     <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute">
