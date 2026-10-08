@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <!--
   ═══════════════════════════════════════════════════════════════════
-  HENGITTÄVIEN ÄITIEN KLUBI — myyntisivu  /klubi/
-  Single-file page · matches site tokens (paper / ink / plum)
+  HENGITTÄVIEN ÄITIEN KLUBI · myyntisivu  /klubi/
+  Conversion landing · site tokens (paper / ink / plum)
 
-  Typography for this page follows Juliana's brief:
-  EB Garamond (otsikot) + Karla (leipä + napit).
-  The rest of the site uses Playfair Display — swap the Google Fonts
-  link and tailwind fontFamily if this page should match homepage fonts.
+  Font: Playfair Display (otsikot + leipä) + Dancing Script (allekirjoitus),
+  same as hengittava-aiti.fi. The 8.10. brief asked for EB Garamond + Karla;
+  this page follows the live site so /klubi/ feels like the same brand.
 
-  SCHEDULE + PAYMENT LINKS: one object in the <script> at the bottom
-  named KLUBI. Edit dates and hrefs there. Preview with ?at=2026-11-02
+  SCHEDULE + PLACEHOLDERS: one object named KLUBI in the <script> below.
+  Preview dates: /klubi/?at=2026-11-02  or  /klubi/?at=2026-12-01
   ═══════════════════════════════════════════════════════════════════
 -->
 <html lang="fi" class="scroll-smooth" data-klubi-founder="true" data-klubi-meetup="true">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hengittävien äitien klubi — Hengittävä Äiti</title>
-<meta name="description" content="Yhteisö ja matkasi kohti nautinnollisempaa äitiyttä. Klubi starttaa sunnuntaina 18.10. Täällä saa hengittää." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Hengittävien äitien klubi · Hengittävä Äiti</title>
+<meta name="description" content="Paikka, jossa sinäkin saat vihdoin hengittää. Hengittävien äitien klubi alkaa sunnuntaina 18.10." />
 <meta name="theme-color" content="#3B2A45" />
 <meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://hengittava-aiti.fi/klubi/" />
 
-<meta property="og:title" content="Hengittävien äitien klubi — Hengittävä Äiti" />
-<meta property="og:description" content="Yhteisö ja matkasi kohti nautinnollisempaa äitiyttä. Klubi starttaa sunnuntaina 18.10." />
+<meta property="og:title" content="Hengittävien äitien klubi · Hengittävä Äiti" />
+<meta property="og:description" content="Paikka, jossa sinäkin saat vihdoin hengittää. Klubi alkaa sunnuntaina 18.10." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hengittava-aiti.fi/klubi/" />
 <meta property="og:locale" content="fi_FI" />
@@ -33,15 +32,15 @@
 <meta property="og:image:alt" content="Nainen istuu nurmella ja katsoo auringonlaskua metsän yli" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Hengittävien äitien klubi — Hengittävä Äiti" />
-<meta name="twitter:description" content="Yhteisö ja matkasi kohti nautinnollisempaa äitiyttä. Klubi starttaa sunnuntaina 18.10." />
+<meta name="twitter:title" content="Hengittävien äitien klubi · Hengittävä Äiti" />
+<meta name="twitter:description" content="Paikka, jossa sinäkin saat vihdoin hengittää. Klubi alkaa sunnuntaina 18.10." />
 <meta name="twitter:image" content="https://hengittava-aiti.fi/kuvat/IMG_6335.jpg" />
 
 <link rel="icon" href="/kuvat/logo-merkki.png" type="image/png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -55,8 +54,9 @@
           plum:  { 900:'#3B2A45', 800:'#4A3854', 600:'#6B5675' }
         },
         fontFamily: {
-          serif: ['"EB Garamond"','Georgia','"Times New Roman"','serif'],
-          sans:  ['Karla','system-ui','sans-serif']
+          serif:  ['"Playfair Display"','Georgia','"Times New Roman"','serif'],
+          sans:   ['"Playfair Display"','Georgia','serif'],
+          script: ['"Dancing Script"','cursive']
         },
         boxShadow: { none:'none' },
         letterSpacing: { eyebrow: '0.22em' }
@@ -66,34 +66,27 @@
 </script>
 
 <style>
-  :root { --nav-h: 4.75rem; }
+  :root { --nav-h: 4.75rem; --sticky-cta-h: 4.75rem; }
   html { scroll-padding-top: calc(var(--nav-h) + 1rem); }
   section[id] { scroll-margin-top: calc(var(--nav-h) + 0.75rem); }
   body { text-rendering: optimizeLegibility; }
   ::selection { background:#3B2A45; color:#FBF7F1; }
 
-  /* Hide founder / meetup blocks after the dates in KLUBI (script below). */
   html[data-klubi-founder="false"] [data-show="founder"] { display: none !important; }
   html[data-klubi-founder="true"]  [data-show="regular"] { display: none !important; }
   html[data-klubi-meetup="false"]  [data-show="meetup"]  { display: none !important; }
 
   .ig-frame        { position:relative; overflow:hidden; background:#1A1816; }
   .ig-frame--45    { aspect-ratio: 4/5; }
-  .ig-frame--wide  { aspect-ratio: 16/10; }
+  .ig-frame--hero  { aspect-ratio: 4/5; }
   .ig-photo        { width:100%; height:100%; object-fit:cover; filter: grayscale(1) contrast(1.04); }
-  .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }
   .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
-                     border-radius:0; box-shadow:none; padding:.38em .65em;
-                     display:inline-block; max-width:82%; }
-  .ig-hook         { font-family:'EB Garamond',Georgia,'Times New Roman',serif;
+                     padding:.38em .65em; display:inline-block; max-width:82%; }
+  .ig-hook         { font-family:'Playfair Display',Georgia,serif;
                      font-size:clamp(0.72rem,1.2vw,0.95rem); line-height:1.28; }
   .ig-caption--bottom { left:8%; bottom:8%; }
 
-  .sunrise      { background: linear-gradient(168deg,#FBF7F1 0%,#F6EFE8 42%,#EFE4DC 78%,#E8D8D2 100%); }
-  .sun-glow     { position:absolute; pointer-events:none; border-radius:9999px;
-                  background: radial-gradient(closest-side, rgba(168,130,122,.38), rgba(251,247,241,0) 74%); }
-
-  .reveal { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
+  .reveal { opacity: 1; transform: none; }
 
   #site-header {
     --fg: #2A2320; --fg-soft: #6F6560;
@@ -104,8 +97,8 @@
     background: rgba(251,247,241,.96);
     border-color: rgba(42,35,32,.10);
   }
-  #site-header .hdr-fg      { color: var(--fg); transition: color .35s ease; }
-  #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .35s ease; }
+  #site-header .hdr-fg      { color: var(--fg); }
+  #site-header .hdr-fg-soft { color: var(--fg-soft); }
 
   .nav-link { position: relative; }
   .nav-link::after {
@@ -115,37 +108,68 @@
   .nav-link:hover::after, .nav-link[aria-current="true"]::after { right:0; }
 
   .todo-slot {
-    display:inline; font-family:Karla,system-ui,sans-serif; font-weight:600;
-    color:#3B2A45; background:#F8F3F1; border-bottom:1px dashed rgba(59,42,69,.45);
-    padding:0 .12em;
+    display:inline; font-weight:500; color:#3B2A45; background:#F8F3F1;
+    border-bottom:1px dashed rgba(59,42,69,.45); padding:0 .12em;
   }
 
-  .faq-item summary { list-style:none; }
+  .dots li { position:relative; padding-left:1.15rem; }
+  .dots li::before {
+    content:""; position:absolute; left:0; top:.55em; width:.45rem; height:.45rem;
+    border-radius:999px; background:#3B2A45;
+  }
+  .dots-on-plum li::before { background:#FFFCFA; }
+
+  .list-yes li, .list-no li { position:relative; padding-left:1.35rem; }
+  .list-yes li::before {
+    content:""; position:absolute; left:0; top:.45em; width:.55rem; height:.32rem;
+    border-left:1.5px solid #3B2A45; border-bottom:1.5px solid #3B2A45;
+    transform:rotate(-45deg);
+  }
+  .list-no li::before {
+    content:""; position:absolute; left:0; top:.7em; width:.7rem; height:1px;
+    background:#6F6560;
+  }
+
+  .faq-item summary { list-style:none; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; cursor:pointer; }
   .faq-item summary::-webkit-details-marker { display:none; }
-  .faq-item summary { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
   .faq-item .faq-mark {
-    flex:0 0 auto; width:1.25rem; height:1.25rem; margin-top:.15rem;
-    border:1px solid rgba(42,35,32,.28); color:#2A2320;
+    flex:0 0 auto; width:1.2rem; height:1.2rem; margin-top:.12rem;
+    color:#3B2A45; border:1px solid #3B2A45;
     display:inline-flex; align-items:center; justify-content:center;
     font-size:.95rem; line-height:1;
   }
-  .faq-item[open] .faq-mark { background:#3B2A45; color:#FFFCFA; border-color:#3B2A45; }
-  .faq-item[open] .faq-mark::before { content:"–"; }
   .faq-item .faq-mark::before { content:"+"; }
+  .faq-item[open] .faq-mark { background:#3B2A45; color:#FFFCFA; }
+  .faq-item[open] .faq-mark::before { content:"–"; }
 
-  @media (max-width: 640px) {
-    .ig-hook    { font-size:.68rem; }
-    .ig-caption { padding:.32em .55em; max-width:88%; }
+  .countdown { display:flex; justify-content:center; gap:.6rem; flex-wrap:wrap; }
+  .countdown-cell {
+    min-width:4.2rem; background:rgba(255,252,250,.1); border:1px solid rgba(255,252,250,.22);
+    padding:.55rem .4rem .45rem; text-align:center;
+  }
+  .countdown-cell strong { display:block; font-family:'Playfair Display',Georgia,serif; font-size:1.45rem; font-weight:400; line-height:1; }
+  .countdown-cell span { display:block; margin-top:.2rem; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; opacity:.7; }
+
+  #sticky-cta {
+    display:none;
+    padding-bottom: calc(.7rem + env(safe-area-inset-bottom));
+  }
+  @media (max-width: 1023px) {
+    body { padding-bottom: calc(var(--sticky-cta-h) + env(safe-area-inset-bottom)); }
+    #sticky-cta { display:block; }
+    .ig-frame--hero { aspect-ratio: 16/10; max-height: 220px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity:1; transform:none; transition:none; }
     html { scroll-behavior: auto; }
+    #site-header { transition: none; }
   }
 </style>
 </head>
 
 <body class="bg-paper-warm text-ink font-sans antialiased overflow-x-hidden">
+
+<a href="#alku" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] bg-paper text-ink px-4 py-2">Siirry sisältöön</a>
 
 <!-- ═══════════════ @component: SiteHeader ═══════════════ -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
@@ -155,8 +179,8 @@
       <span class="hdr-fg font-serif text-[1.02rem] sm:text-[1.08rem] tracking-[0.16em] uppercase leading-tight">Hengittävä Äiti</span>
     </a>
 
-    <div class="hidden lg:flex items-center gap-7 text-[0.92rem] font-medium">
-      <a class="nav-link hdr-fg-soft" href="#sinulle">Sinulle</a>
+    <div class="hidden lg:flex items-center gap-7 text-[0.92rem] font-semibold">
+      <a class="nav-link hdr-fg-soft" href="#tunnistatko">Tunnistatko</a>
       <a class="nav-link hdr-fg-soft" href="#viikko">Viikko</a>
       <a class="nav-link hdr-fg-soft" data-show="meetup" href="#valo">Helsinki</a>
       <a class="nav-link hdr-fg-soft" href="#hinta">Hinta</a>
@@ -188,13 +212,13 @@
   </nav>
 
   <div id="mobile-menu" class="lg:hidden hidden border-t border-ink/10 bg-paper">
-    <div class="px-5 py-5 flex flex-col gap-3.5 text-base font-medium text-ink">
-      <a href="#sinulle" class="mobile-link">Sinulle</a>
+    <div class="px-5 py-5 flex flex-col gap-3.5 text-base font-semibold text-ink">
+      <a href="#tunnistatko" class="mobile-link">Tunnistatko</a>
       <a href="#viikko" class="mobile-link">Viikko</a>
       <a href="#valo" class="mobile-link" data-show="meetup">Helsinki</a>
       <a href="#hinta" class="mobile-link">Hinta</a>
       <a href="#kysymykset" class="mobile-link">Kysymyksiä</a>
-      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="mobile-link inline-flex items-center gap-2.5 text-ink-mute">@hengittava_aiti</a>
+      <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" class="mobile-link text-ink-mute">@hengittava_aiti</a>
       <a href="#" data-todo="klubi-checkout-founder" data-show="founder" class="mobile-link mt-1 inline-flex w-fit items-center bg-plum-900 text-paper px-5 py-3 font-semibold">Liity klubiin</a>
       <a href="#" data-todo="klubi-checkout-regular" data-show="regular" class="mobile-link mt-1 inline-flex w-fit items-center bg-plum-900 text-paper px-5 py-3 font-semibold">Liity klubiin</a>
     </div>
@@ -203,79 +227,53 @@
 
 <main id="alku">
 
-<!-- ═══════════════ @component: Hero ═══════════════ -->
-<section data-component="Hero" class="relative min-h-[84svh] flex items-end overflow-hidden bg-paper-warm">
-  <div class="absolute inset-0 ig-frame" aria-hidden="true">
-    <img src="/kuvat/IMG_6335.jpg" class="ig-photo opacity-80" alt="" fetchpriority="high" onerror="this.style.display='none'" />
-  </div>
-  <div class="absolute inset-0 bg-gradient-to-t from-paper via-paper/70 to-paper/15" aria-hidden="true"></div>
-
-  <div class="relative w-full max-w-6xl mx-auto px-5 sm:px-6 pb-16 md:pb-24 pt-32">
-    <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute">
-      <span class="inline-block w-8 h-px bg-dawn-500/55"></span>
-      Hengittävä Äiti
-    </p>
-    <h1 class="reveal mt-4 max-w-3xl font-serif text-ink leading-[1.12] text-[clamp(1.85rem,4.6vw,3.1rem)] font-normal" data-delay="80">
-      Hengittävien äitien klubi
-    </h1>
-    <p class="reveal mt-4 max-w-xl font-serif text-ink-soft leading-[1.3] text-[clamp(1.05rem,1.9vw,1.35rem)]" data-delay="160">
-      Yhteisö ja matkasi kohti nautinnollisempaa äitiyttä. Klubi starttaa sunnuntaina 18.10.
-    </p>
-
-    <div class="reveal flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-8" data-delay="240">
-      <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
-         class="inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">
-        Liity klubiin
-      </a>
-      <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
-         class="inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">
-        Liity klubiin
-      </a>
-      <p data-show="founder" class="text-sm text-ink-mute leading-relaxed max-w-xs">Perustajahinta 19&nbsp;€/kk 1.11. asti.</p>
-      <p data-show="regular" class="text-sm text-ink-mute leading-relaxed max-w-xs">Klubi 25&nbsp;€/kk</p>
-    </div>
-
-    <p class="reveal mt-6 max-w-xl text-ink-mute leading-relaxed" data-delay="320">
-      Jos syysloma vei viimeisetkin voimat, tule mukaan. Täällä saa hengittää.
-    </p>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: ForYou ═══════════════ -->
-<section id="sinulle" data-component="ForYou" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Kenelle</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Klubi on sinulle, jos</h2>
-    </div>
-    <ul class="grid sm:grid-cols-2 gap-3 md:gap-4 mt-10">
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed">muistat koko perheen menot, mutta omat tarpeesi jäävät aina viimeiseksi</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="40">et muista, milloin viimeksi istuit hetken niin, ettei kukaan tarvinnut sinua</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="80">toivoisit, että pinnaa riittäisi lasten kanssa pidempään kuin iltapäivään asti</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="120">olet illalla niin väsynyt, että selaat puhelinta, vaikka uni auttaisi enemmän</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="160">tiedät, että pitäisi levätä, mutta lepo tuntuu siltä, että se pitää ensin ansaita</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="200">lähelläsi ei ole omaa kylää: mummoa, naapuria tai ystävää, joka ottaisi lapset hetkeksi</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="240">kaipaat toista aikuista, jolle voi sanoa ääneen, että tämä on raskasta</li>
-      <li class="reveal bg-paper border border-ink/10 p-6 md:p-7 text-ink-soft leading-relaxed" data-delay="280">haluat oppia pysähtymään, mutta et jaksa enää yhtä uutta suoritettavaa asiaa</li>
-    </ul>
-    <p class="reveal mt-8 max-w-3xl font-serif text-xl md:text-[1.45rem] leading-snug text-ink">Jos tunnistit itsesi yhdestäkin kohdasta, tervetuloa.</p>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: WhatItIs ═══════════════ -->
-<section id="mika" data-component="WhatItIs" class="py-14 md:py-20 bg-paper-warm">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-14 items-center">
-    <figure class="reveal ig-frame ig-frame--45 max-w-md">
-      <img src="/kuvat/ig/02.jpg" class="ig-photo" alt="Äiti ja lapsi istuvat rannalla selin kameraan" loading="lazy" onerror="this.style.display='none'" />
-      <figcaption class="ig-caption ig-caption--bottom">
-        <p class="ig-hook">Täällä saa hengittää.</p>
-      </figcaption>
+<!-- 1. Hero -->
+<section data-component="Hero" class="pt-[var(--nav-h)] bg-paper-warm">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-8 md:py-14 lg:py-10 lg:min-h-[calc(100svh-var(--nav-h))] grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <figure class="ig-frame ig-frame--hero order-1 lg:order-2">
+      <img src="/kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa ikkunalla" fetchpriority="high" onerror="this.style.display='none'" />
     </figure>
-    <div class="reveal" data-delay="120">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Klubi</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Mikä klubi on</h2>
-      <p class="mt-5 text-ink-mute leading-relaxed">Klubi on sinun yhteisösi ja tukipilarisi. Ketään ei arvostella, ja toisia kannustetaan. Täällä opetellaan yhdessä:</p>
-      <ul class="mt-5 space-y-2.5 text-ink-soft leading-relaxed">
+    <div class="order-2 lg:order-1">
+      <p class="text-[0.78rem] tracking-eyebrow uppercase text-ink-mute">Klubi alkaa sunnuntaina 18.10.</p>
+      <h1 class="mt-4 font-serif font-normal text-ink leading-[1.12] text-[clamp(1.85rem,4.8vw,3.15rem)]">Hengittävien äitien klubi</h1>
+      <p class="mt-5 max-w-xl text-ink-soft leading-relaxed text-[1.05rem] md:text-[1.12rem]">Paikka, jossa sinäkin saat vihdoin hengittää. Viikoittaiset hengitys- ja kehoharjoitukset, jotka mahtuvat äidin arkeen, ja yhteisö, joka kantaa myös raskaina viikkoina.</p>
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+        <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
+           class="inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">Liity klubiin</a>
+        <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
+           class="inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">Liity klubiin</a>
+      </div>
+      <p class="mt-3 text-sm text-ink-mute" data-show="founder">Perustajahinta 19 €/kk, kun liityt 1.11. mennessä. Ei sitoutumisaikaa.</p>
+      <p class="mt-3 text-sm text-ink-mute" data-show="regular">Klubi 25 €/kk. Ei sitoutumisaikaa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Kipupisteet -->
+<section id="tunnistatko" data-component="PainPoints" class="py-14 md:py-20 bg-paper border-t border-ink/10">
+  <div class="max-w-5xl mx-auto px-5 sm:px-6">
+    <h2 class="font-serif font-normal text-3xl md:text-[2.2rem] leading-[1.16] text-ink text-center max-w-3xl mx-auto">Kannatko sinäkin koko perhettä, mutta kukaan ei kanna sinua?</h2>
+    <ul class="dots grid sm:grid-cols-2 gap-x-10 gap-y-3.5 mt-10 text-ink-soft leading-relaxed">
+      <li>Muistat koko perheen menot, mutta omat tarpeesi jäävät aina viimeiseksi.</li>
+      <li>Et muista, milloin viimeksi istuit hetken niin, ettei kukaan tarvinnut sinua.</li>
+      <li>Toivoisit, että pinnaa riittäisi lasten kanssa pidempään kuin iltapäivään asti.</li>
+      <li>Olet illalla niin väsynyt, että selaat puhelinta, vaikka uni auttaisi enemmän.</li>
+      <li>Tiedät, että pitäisi levätä, mutta lepo tuntuu siltä, että se pitää ensin ansaita.</li>
+      <li>Lähelläsi ei ole omaa kylää: mummoa, naapuria tai ystävää, joka ottaisi lapset hetkeksi.</li>
+      <li>Kaipaat toista aikuista, jolle voi sanoa ääneen, että tämä on raskasta.</li>
+      <li>Haluat oppia pysähtymään, mutta et jaksa enää yhtä uutta suoritettavaa asiaa.</li>
+    </ul>
+    <p class="mt-10 text-center font-serif italic text-lg md:text-xl text-ink leading-snug max-w-2xl mx-auto">Jos tunnistit itsesi yhdestäkin kohdasta, et ole yksin. Ja sinun ei tarvitse jaksaa tätä yksin.</p>
+  </div>
+</section>
+
+<!-- 3. Ratkaisu -->
+<section id="mika" data-component="WhatItIs" class="py-14 md:py-20 bg-paper-warm">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div>
+      <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Klubi on sinun yhteisösi ja tukipilarisi</h2>
+      <p class="mt-5 text-ink-mute leading-relaxed">Hengittävien äitien klubissa ketään ei arvostella, ja toisia kannustetaan. Täällä opetellaan yhdessä</p>
+      <ul class="dots mt-4 space-y-2 text-ink-soft leading-relaxed">
         <li>pysähtymään keskellä arkea</li>
         <li>keventämään kuormaa</li>
         <li>kuuntelemaan itseä</li>
@@ -284,239 +282,281 @@
       </ul>
       <p class="mt-6 text-ink-mute leading-relaxed">Klubissa avataan hiljalleen kehoa ja mieltä ja vapautetaan hengitystä. Se on tie kohti harmoniaa ja rentoutta, sekä omassa mielessäsi että kotona.</p>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: CoRegulation ═══════════════ -->
-<section id="rauha" data-component="CoRegulation" class="py-14 md:py-20 bg-paper-deep border-y border-ink/10">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-    <div class="reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Yhteissäätely</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">Sinun rauhasi tarttuu lapsiin</h2>
-      <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
-        <p>Lapsen hermosto oppii rauhoittumaan aikuisen hermoston kautta. Kun sinä pysähdyt ja hengität, lapsi näkee, miten kiukusta tai pelosta palataan takaisin rauhaan. Tätä kutsutaan yhteissäätelyksi, ja sitä tapahtuu kotona joka päivä.</p>
-        <p>Siksi aika, jonka annat itsellesi, kantaa myös lapsiasi. Sinun ei tarvitse olla aina rauhallinen. Riittää, että opit palaamaan rauhaan yhä useammin ja että lapsesi näkevät sen. Klubissa harjoittelemme sitä yhdessä ja tsemppaamme toisiamme, myös niinä viikkoina, kun voimat ovat vähäiset.</p>
-      </div>
-    </div>
-    <figure class="reveal ig-frame ig-frame--45 max-w-md lg:justify-self-end" data-delay="80">
+    <figure class="ig-frame ig-frame--45 max-w-md lg:justify-self-end">
       <img src="/kuvat/ranta-aiti-lapsi.jpg" class="ig-photo" alt="Äiti istuu rantakivikossa lapsi kainalossa ja katsoo merelle" loading="lazy" onerror="this.style.display='none'" />
-      <figcaption class="ig-caption ig-caption--bottom">
-        <p class="ig-hook">Kun sinä hengität, koti hengittää.</p>
-      </figcaption>
+      <figcaption class="ig-caption ig-caption--bottom"><p class="ig-hook">Kun sinä hengität, koti hengittää.</p></figcaption>
     </figure>
   </div>
+
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 mt-10 md:mt-14">
+    <div class="bg-plum-900 text-paper p-7 md:p-12">
+      <h3 class="font-serif font-normal text-2xl md:text-[1.85rem] leading-snug">Sinun rauhasi tarttuu lapsiin</h3>
+      <div class="mt-5 space-y-4 text-paper/85 leading-relaxed max-w-3xl">
+        <p>Lapsen hermosto oppii rauhoittumaan aikuisen hermoston kautta. Kun sinä pysähdyt ja hengität, lapsi näkee, miten kiukusta tai pelosta palataan takaisin rauhaan. Tätä kutsutaan yhteissäätelyksi, ja sitä tapahtuu kotona joka päivä.</p>
+        <p>Siksi aika, jonka annat itsellesi, kantaa myös lapsiasi. Sinun ei tarvitse olla aina rauhallinen. Riittää, että opit palaamaan rauhaan yhä useammin ja että lapsesi näkevät sen.</p>
+      </div>
+      <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
+         class="mt-8 inline-flex items-center justify-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">Liity klubiin</a>
+      <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
+         class="mt-8 inline-flex items-center justify-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">Liity klubiin</a>
+    </div>
+  </div>
 </section>
 
-<!-- ═══════════════ @component: WeekRhythm ═══════════════ -->
-<section id="viikko" data-component="WeekRhythm" class="py-14 md:py-20 bg-paper-warm">
+<!-- 4. Mitä klubiin sisältyy -->
+<section id="viikko" data-component="Includes" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Rytmi</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Näin klubiviikko kulkee</h2>
-    </div>
+    <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Näin klubiviikko kulkee</h2>
     <div class="grid md:grid-cols-3 gap-3 md:gap-4 mt-10">
-      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute">Maanantai</p>
-        <h3 class="font-serif font-normal text-[1.4rem] text-ink mt-3 leading-snug">Viikon aihe ja harjoitus</h3>
-        <p class="mt-4 text-ink-mute leading-relaxed">Maanantaina saat viikon aiheen ja nauhoitetun harjoituksen. Harjoitukseen menee 15–20 minuuttia, ja sitä voi toistaa koko viikon.</p>
+      <article class="bg-paper border border-ink/10 p-7">
+        <svg class="text-plum-900" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" stroke="currentColor" stroke-width="1.4"/><path d="M4 9h16M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.4"/></svg>
+        <h3 class="font-serif font-normal text-xl mt-4 text-ink">Maanantai</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Saat viikon aiheen ja nauhoitetun harjoituksen. Harjoitukseen menee vartista kahteenkymmeneen minuuttiin, ja sitä voi toistaa koko viikon.</p>
       </article>
-      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="80">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute">Perjantai</p>
-        <h3 class="font-serif font-normal text-[1.4rem] text-ink mt-3 leading-snug">Lyhyt muistutus</h3>
-        <p class="mt-4 text-ink-mute leading-relaxed">Perjantaina saat lyhyen muistutuksen.</p>
+      <article class="bg-paper border border-ink/10 p-7">
+        <svg class="text-plum-900" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v2M12 18v2M5 12H3M21 12h-2M6.2 6.2l1.4 1.4M16.4 16.4l1.4 1.4M6.2 17.8l1.4-1.4M16.4 7.6l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.4"/></svg>
+        <h3 class="font-serif font-normal text-xl mt-4 text-ink">Perjantai</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Saat lyhyen muistutuksen, joka auttaa palaamaan harjoitukseen.</p>
       </article>
-      <article class="reveal bg-plum-900 text-paper p-7 md:p-8" data-delay="160">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-paper/60">Sunnuntai</p>
-        <h3 class="font-serif font-normal text-[1.4rem] mt-3 leading-snug">Zoom klo 20</h3>
-        <p class="mt-4 text-paper/85 leading-relaxed">Sunnuntai-iltana klo 20 kokoonnutaan Zoomiin. Teemme viikon harjoituksen yhdessä, puhumme siitä, miltä viikko tuntui, ja vastaan kysymyksiin. Jos et pääse, katsot tallenteen silloin kun ehdit.</p>
+      <article class="bg-paper border border-ink/10 p-7">
+        <svg class="text-plum-900" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.4"/><path d="M10 9.2v5.6l5-2.8-5-2.8Z" fill="currentColor"/></svg>
+        <h3 class="font-serif font-normal text-xl mt-4 text-ink">Sunnuntai klo 20</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Kokoonnutaan Zoomiin. Teemme viikon harjoituksen yhdessä, puhumme siitä, miltä viikko tuntui, ja vastaan kysymyksiisi. Jos et pääse, katsot tallenteen silloin kun ehdit.</p>
       </article>
     </div>
-    <p class="reveal mt-8 max-w-3xl text-ink-mute leading-relaxed">Kaikki luennot, tallenteet ja harjoitukset jäävät kurssialustalle.</p>
+    <p class="mt-8 text-ink-mute leading-relaxed max-w-3xl">Kaikki luennot, tallenteet ja harjoitukset jäävät kurssialustalle, joten voit palata niihin milloin vain.</p>
+
+    <div class="mt-10 bg-paper border border-plum-900/35 p-7 md:p-9">
+      <h3 class="font-serif font-normal text-2xl text-ink">Saat heti liittyessäsi</h3>
+      <ul class="mt-5 space-y-3 text-ink-soft leading-relaxed">
+        <li><strong class="text-ink font-semibold">Aloitusäänitteen</strong>, jossa kerron, miten klubi toimii ja mistä aloitat.</li>
+        <li><strong class="text-ink font-semibold">Kolme SOS-hengähdystä</strong> niihin hetkiin, kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle.</li>
+        <li><strong class="text-ink font-semibold">Hermosto Reset -käsikirjan klubilaisen hintaan</strong> 20 € (normaalisti 29 €).</li>
+      </ul>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-4">
+      <article class="bg-paper border border-ink/10 p-7">
+        <h3 class="font-serif font-normal text-xl text-ink">Yhteisö, joka on lähellä</h3>
+        <p class="mt-3 text-ink-mute leading-relaxed">Klubilaiset kohtaavat toisensa yhteisössä sekä GHL-alustalla että WhatsAppissa. Siellä saat sanoa ääneen, että tämä on raskasta, ja muut äidit ovat tukenasi.</p>
+        <p id="community-detail" class="todo-slot mt-4 block text-sm leading-relaxed">[Paikkamerkki: tarkennus siitä, mitä GHL-yhteisössä ja WhatsApp-ryhmässä tapahtuu, jos Juliana haluaa kertoa enemmän]</p>
+      </article>
+      <article class="bg-paper border border-ink/10 p-7">
+        <p class="text-ink-mute leading-relaxed"><strong class="text-ink font-semibold">Etkö ole vielä varma?</strong> Tule ensin maksuttomaan nollaushetkeen. Ne pidetään täydenkuun päivinä klo 21.00 Zoomissa: 26.10., 24.11., 22.1. ja 21.2.</p>
+        <a href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" class="mt-5 inline-flex items-center justify-center border border-ink/25 hover:border-ink text-ink font-semibold px-6 py-3.5 transition-colors">Ilmoittaudu nollaushetkeen</a>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════ @component: ImmediateGifts ═══════════════ -->
-<section id="heti" data-component="ImmediateGifts" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Heti mukaan</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Saat heti liittyessäsi</h2>
-    </div>
-    <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
-      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8">
-        <h3 class="font-serif font-normal text-[1.35rem] text-ink">Aloitusäänite</h3>
-        <p class="mt-3 text-ink-mute leading-relaxed">näin klubi toimii ja mistä aloitat</p>
-      </article>
-      <article class="reveal bg-paper border border-ink/10 p-7 md:p-8" data-delay="80">
-        <h3 class="font-serif font-normal text-[1.35rem] text-ink">Kolme SOS-hengähdystä</h3>
-        <p class="mt-3 text-ink-mute leading-relaxed">kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</p>
-      </article>
-    </div>
-    <p class="reveal mt-8 max-w-3xl text-ink-soft leading-relaxed">Klubilaisena saat Hermosto Reset -käsikirjan 20 eurolla (normaalisti 29&nbsp;€).</p>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: HelsinkiMeetup ═══════════════ -->
 <section id="valo" data-component="HelsinkiMeetup" data-show="meetup" class="py-14 md:py-20 bg-paper-warm">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <figure class="ig-frame ig-frame--45 max-w-md">
+      <img src="/kuvat/ig/06.jpg" class="ig-photo" alt="Äiti pitelee vauvaa hiekkarannalla meren äärellä" loading="lazy" onerror="this.style.display='none'" />
+      <figcaption class="ig-caption ig-caption--bottom"><p class="ig-hook">Hengitetään yhdessä.</p></figcaption>
+    </figure>
+    <div>
+      <h2 class="font-serif font-normal text-3xl md:text-[2.2rem] leading-[1.14] text-ink">Syksyn kohokohta: tavataan Helsingissä</h2>
+      <p class="mt-5 text-ink-mute leading-relaxed">Marraskuun viimeisenä viikonloppuna tapaamme Hotelli Valossa Helsingissä. Mukana on Hengittävän Äidin tervehdys ja hengityshetki yhdessä muiden äitien kanssa. Voit tulla päiväksi tai jäädä yöksi hotelliin. Ohjelmaan voi sisältyä myös rentoutus spassa.</p>
+      <ul class="mt-6 space-y-2.5 text-ink-soft leading-relaxed">
+        <li>Päivälippu <span class="todo-slot" data-fill="meetup-day-price">[hinta]</span>, klubilaisille <span class="todo-slot" data-fill="meetup-day-price-club">[hinta]</span></li>
+        <li>Päivä ja yöpyminen <span class="todo-slot" data-fill="meetup-night-price">[hinta]</span>, klubilaisille <span class="todo-slot" data-fill="meetup-night-price-club">[hinta]</span></li>
+        <li>Kellonaika <span class="todo-slot" data-fill="meetup-time">[kellonaika]</span></li>
+        <li>Paikkoja on <span class="todo-slot" data-fill="meetup-spots">[määrä]</span>.</li>
+      </ul>
+      <a href="#" data-todo="hotelli-valo-tickets"
+         class="mt-7 inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">Varaa paikkasi</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Kenelle -->
+<section id="kenelle" data-component="ForWhom" class="py-14 md:py-20 bg-paper border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="relative overflow-hidden sunrise border border-dawn-300 p-7 md:p-12">
-      <span class="sun-glow -top-28 -right-24 w-80 h-80" aria-hidden="true"></span>
-      <div class="relative grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
-        <div class="reveal">
-          <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-dawn-700"><span class="inline-block w-8 h-px bg-dawn-500/70"></span> Marraskuu</p>
-          <h2 class="font-serif font-normal text-3xl md:text-[2.3rem] leading-[1.14] mt-5 text-ink">Syksyn kohokohta: tavataan Helsingissä</h2>
-          <p class="mt-5 text-ink-soft leading-relaxed">Marraskuun viimeisenä viikonloppuna tapaamme hotelli Valossa Helsingissä ja hengitämme yhdessä. Lauantaina <span class="todo-slot">[kellonaika]</span> on luento, yhteinen hengitys- ja kehoharjoitus ja aikaa tutustua muihin klubilaisiin. Voit tulla vain päiväksi tai jäädä yöksi hotelliin.</p>
-          <ul class="mt-6 space-y-2.5 text-ink-soft leading-relaxed">
-            <li>Päivälippu <span class="todo-slot">[hinta]</span>, klubilaisille <span class="todo-slot">[hinta]</span></li>
-            <li>Päivä ja yöpyminen <span class="todo-slot">[hinta]</span>, klubilaisille <span class="todo-slot">[hinta]</span></li>
-          </ul>
-          <p class="mt-5 text-ink-mute">Paikkoja on <span class="todo-slot">[määrä]</span>.</p>
-          <a href="#" data-todo="hotelli-valo-tickets"
-             class="mt-7 inline-flex items-center justify-center bg-plum-900 text-paper font-semibold px-8 py-4 hover:bg-plum-800 transition-colors">
-            Varaa paikkasi
-          </a>
-        </div>
-        <figure class="reveal ig-frame ig-frame--45 max-w-sm mx-auto lg:mx-0 lg:justify-self-end" data-delay="80">
-          <img src="/kuvat/ig/06.jpg" class="ig-photo" alt="Äiti pitelee vauvaa hiekkarannalla meren äärellä" loading="lazy" onerror="this.style.display='none'" />
-          <figcaption class="ig-caption ig-caption--bottom">
-            <p class="ig-hook">Hengitetään yhdessä.</p>
-          </figcaption>
-        </figure>
+    <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Onko klubi sinulle?</h2>
+    <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
+      <article class="bg-paper-warm border border-ink/10 p-7 md:p-8">
+        <h3 class="font-serif font-normal text-xl text-plum-900">Klubi on sinulle, jos</h3>
+        <ul class="list-yes mt-5 space-y-2.5 text-ink-soft leading-relaxed">
+          <li>olet äiti, joka antaa paljon ja kaipaa hetkeä myös itselleen</li>
+          <li>haluat oppia rauhoittamaan hermostoasi pienin, arkeen sopivin harjoituksin</li>
+          <li>kaipaat vertaistukea ja muita äitejä, jotka ymmärtävät</li>
+          <li>haluat, että lapsesi oppivat rauhoittumaan sinun kauttasi</li>
+          <li>tarvitset jotain, joka ei ole taas yksi uusi suoritus</li>
+        </ul>
+      </article>
+      <article class="bg-paper-deep border border-ink/10 p-7 md:p-8">
+        <h3 class="font-serif font-normal text-xl text-ink-mute">Klubi ei ole sinulle, jos</h3>
+        <ul class="list-no mt-5 space-y-2.5 text-ink-mute leading-relaxed">
+          <li>etsit pikaratkaisua, joka muuttaa kaiken viikossa</li>
+          <li>kaipaat tiukkaa ohjelmaa, jossa mitataan suorituksia</li>
+          <li>tarvitset terapiaa tai lääkärin hoitoa. Klubi on ohjausta, harjoituksia ja vertaistukea, eikä se korvaa niitä.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="mt-12 max-w-3xl">
+      <h3 class="font-serif font-normal text-2xl md:text-[1.7rem] text-ink">Täällä ei suoriteta</h3>
+      <div class="mt-4 space-y-4 text-ink-mute leading-relaxed">
+        <p>Lähtötasoa ei tarvita. Tulet sellaisena kuin olet ja otat sen, mitä tarvitset. Jos jokin jää tekemättä, se jää. Kiriä ei tarvitse, ja joka maanantai alkaa uusi viikko.</p>
+        <p>Suosittelen antamaan itsellesi kolme kuukautta. Hermosto oppii toistojen kautta, ja kolmessa kuukaudessa ehdit huomata muutoksen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ @component: NoPerforming ═══════════════ -->
-<section id="suoriteta" data-component="NoPerforming" class="py-16 md:py-24 bg-plum-900 text-paper">
-  <div class="max-w-3xl mx-auto px-5 sm:px-6">
-    <h2 class="reveal font-serif font-normal text-[clamp(1.55rem,3.2vw,2.2rem)] leading-[1.16]">Täällä ei suoriteta</h2>
-    <div class="reveal mt-6 space-y-4 text-paper/85 leading-relaxed" data-delay="80">
-      <p>Lähtötasoa ei tarvita. Tulet sellaisena kuin olet ja otat sen, mitä tarvitset. Jos jokin jää tekemättä, se jää. Kiriä ei tarvitse, ja joka maanantai alkaa uusi viikko.</p>
-      <p>Suosittelen antamaan itsellesi kolme kuukautta. Hermosto oppii toistojen kautta, ja kolmessa kuukaudessa ehdit huomata muutoksen.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: FounderStory ═══════════════ -->
-<section id="minusta" data-component="FounderStory" class="py-14 md:py-20 bg-paper-warm">
+<!-- 6. Juliana -->
+<section id="juliana" data-component="Juliana" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-    <figure class="reveal order-2 lg:order-1 ig-frame ig-frame--45 max-w-md mx-auto">
-      <img src="/kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa ikkunalla" loading="lazy" onerror="this.style.display='none'" />
-      <figcaption class="ig-caption ig-caption--bottom"><p class="ig-hook">Kolmen lapsen äiti.</p></figcaption>
+    <figure class="ig-frame ig-frame--45 max-w-md">
+      <img src="/kuvat/IMG_6335.jpg" class="ig-photo" alt="Juliana istuu nurmella ja katsoo auringonlaskua metsän yli" loading="lazy" onerror="this.style.display='none'" />
     </figure>
-    <div class="reveal order-1 lg:order-2" data-delay="120">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Juliana</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">Kuka minä olen</h2>
-      <p class="mt-5 text-ink-mute leading-relaxed">Olen Juliana, kolmen lapsen äiti ja joogaopettaja. Olen itse käynyt läpi kaksi burnoutia, ja tiedän, miltä tuntuu, kun voimat loppuvat kesken päivän eikä apua ole lähellä. Opetan hengitys- ja kehoharjoituksia, jotka mahtuvat äidin arkeen myös silloin, kun lapset ovat kotona.</p>
-      <a href="/minun-tarinani/" class="mt-6 inline-flex items-center justify-center border border-ink/25 hover:border-ink text-ink font-semibold px-6 py-3.5 transition-colors">Lue koko tarinani</a>
+    <div>
+      <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Hei, olen Juliana</h2>
+      <div class="mt-5 space-y-4 text-ink-mute leading-relaxed">
+        <p>Olen kolmen lapsen äiti ja joogaopettaja. Olen itse käynyt läpi kaksi burnoutia, ja tiedän, miltä tuntuu, kun voimat loppuvat kesken päivän eikä apua ole lähellä.</p>
+        <p>Siksi opetan hengitys- ja kehoharjoituksia, jotka mahtuvat äidin arkeen myös silloin, kun lapset ovat kotona.</p>
+      </div>
+      <p id="juliana-sentence" class="todo-slot mt-5 block leading-relaxed">[Paikkamerkki: Julianan oma lause siitä, miksi hän perusti klubin]</p>
+      <p class="font-script text-3xl text-ink mt-6">Juliana</p>
+      <blockquote id="member-quote-block" data-optional hidden class="mt-8 bg-paper border border-ink/10 p-6">
+        <p id="member-quote" class="font-serif italic text-xl leading-snug text-ink"></p>
+        <footer id="member-quote-attr" class="mt-3 text-sm text-ink-mute"></footer>
+      </blockquote>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ @component: Pricing ═══════════════ -->
+<!-- 7. Hinnat -->
 <section id="hinta" data-component="Pricing" class="py-14 md:py-20 bg-paper-deep border-t border-ink/10">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="max-w-3xl reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Jäsenyys</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Hinta</h2>
-    </div>
-
+    <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Valitse itsellesi sopiva tapa</h2>
     <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
-      <article class="reveal bg-paper border border-ink/12 p-7 md:p-9">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-dawn-700" data-show="founder">Perustajahinta 1.11. asti</p>
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute" data-show="regular">Kuukausijäsenyys</p>
-        <h3 class="font-serif font-normal text-2xl text-ink mt-3">Klubi</h3>
-        <p class="mt-5 font-serif text-[2.15rem] leading-none text-ink" data-show="founder">19&nbsp;€<span class="text-xl text-ink-mute">/kk</span></p>
-        <p class="mt-5 font-serif text-[2.15rem] leading-none text-ink" data-show="regular">25&nbsp;€<span class="text-xl text-ink-mute">/kk</span></p>
-        <p class="mt-4 text-ink-soft leading-relaxed" data-show="founder">Klubi 19&nbsp;€/kk, kun liityt 1.11. mennessä. Hintasi pysyy samana niin kauan kuin olet jäsen. 2.11. alkaen hinta on 25&nbsp;€/kk.</p>
-        <p class="mt-4 text-ink-soft leading-relaxed" data-show="regular">Klubi 25&nbsp;€/kk</p>
+      <article class="bg-paper border border-ink/12 p-7 md:p-9">
+        <h3 class="font-serif font-normal text-2xl text-ink">Klubi</h3>
+        <p class="mt-4 font-serif text-[1.85rem] leading-none text-ink" data-show="founder">19 €/kk perustajahinnalla</p>
+        <p class="mt-4 font-serif text-[1.85rem] leading-none text-ink" data-show="regular">25 €/kk</p>
+        <p class="mt-4 text-ink-soft leading-relaxed" data-show="founder">Liity 1.11. mennessä, niin hintasi pysyy samana niin kauan kuin olet jäsen. 2.11. alkaen hinta on 25 €/kk.</p>
+        <p class="mt-4 text-ink-soft leading-relaxed" data-show="regular">Klubi 25 €/kk</p>
+        <ul class="dots mt-6 space-y-2 text-ink-soft leading-relaxed">
+          <li>Viikon aihe ja nauhoitettu harjoitus joka maanantai</li>
+          <li>Muistutus perjantaisin</li>
+          <li>Yhteinen Zoom sunnuntaisin klo 20 ja tallenne</li>
+          <li>Kaikki harjoitukset ja tallenteet kurssialustalla</li>
+          <li>Yhteisö GHL:ssä ja WhatsAppissa</li>
+          <li>Aloitusäänite ja kolme SOS-hengähdystä heti</li>
+          <li>Hermosto Reset -käsikirja 20 eurolla</li>
+        </ul>
         <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
-           class="mt-7 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">
-          Liity klubiin
-        </a>
+           class="mt-8 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
         <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
-           class="mt-7 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">
-          Liity klubiin
-        </a>
+           class="mt-8 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
       </article>
 
-      <article class="reveal bg-plum-900 text-paper p-7 md:p-9" data-delay="80">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-paper/60">10 paikkaa</p>
+      <article class="bg-plum-900 text-paper p-7 md:p-9">
+        <p class="text-[0.72rem] tracking-eyebrow uppercase text-paper/60">10 paikkaa</p>
         <h3 class="font-serif font-normal text-2xl mt-3">Klubi PLUS</h3>
-        <p class="mt-5 font-serif text-[2.15rem] leading-none">89&nbsp;€<span class="text-xl text-paper/65">/kk</span></p>
-        <p class="mt-4 text-paper/85 leading-relaxed">Klubi PLUS 89&nbsp;€/kk. Kaikki klubin sisältö ja lisäksi henkilökohtainen tuki. Aloitamme kahdenkeskisellä 45 minuutin Zoom-kartoituksella, ja joka viikko saat minulta oman ääniviestin reflektiosi pohjalta. Paikkoja on 10.</p>
+        <p class="mt-4 font-serif text-[1.85rem] leading-none">89 €/kk</p>
+        <p class="mt-4 text-paper/85 leading-relaxed">Kaikki klubin sisältö ja lisäksi henkilökohtainen tuki.</p>
+        <ul class="dots dots-on-plum mt-6 space-y-2 text-paper/85 leading-relaxed">
+          <li>Kahdenkeskinen 45 minuutin Zoom-kartoitus aluksi</li>
+          <li>Joka viikko oma ääniviesti minulta reflektiosi pohjalta</li>
+          <li>Paikkoja on vain 10</li>
+        </ul>
         <a href="#" data-todo="klubi-plus-checkout"
-           class="mt-7 inline-flex items-center justify-center bg-paper text-ink hover:bg-paper-deep font-semibold px-7 py-3.5 transition-colors">
-          Liity PLUS-jäseneksi
-        </a>
+           class="mt-8 inline-flex items-center justify-center bg-paper text-ink hover:bg-paper-deep font-semibold px-7 py-3.5 transition-colors">Liity PLUS-jäseneksi</a>
       </article>
     </div>
-
-    <p class="reveal mt-8 max-w-3xl text-ink-mute leading-relaxed">Sitoutumisaikaa ei ole. Voit perua jäsenyyden tai pitää 1–3 kuukauden tauon milloin vain.</p>
+    <p class="mt-8 text-ink-mute leading-relaxed">Sitoutumisaikaa ei ole. Voit perua jäsenyyden tai pitää yhden, kahden tai kolmen kuukauden tauon milloin vain.</p>
   </div>
 </section>
 
-<!-- ═══════════════ @component: FAQ ═══════════════ -->
-<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper-warm">
-  <div class="max-w-4xl mx-auto px-5 sm:px-6">
-    <div class="reveal">
-      <p class="inline-flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-eyebrow text-ink-mute"><span class="inline-block w-8 h-px bg-dawn-500/55"></span> Usein kysyttyä</p>
-      <h2 class="font-serif font-normal text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-ink">Kysymyksiä</h2>
+<!-- 8. Perustajahinnan kiireellisyys -->
+<section id="kiire" data-component="FounderUrgency" data-show="founder" class="bg-plum-900 text-paper py-12 md:py-16">
+  <div class="max-w-3xl mx-auto px-5 sm:px-6 text-center">
+    <h2 class="font-serif font-normal text-[clamp(1.45rem,3vw,2rem)] leading-snug">Perustajahinta on voimassa 1.11. asti</h2>
+    <p class="mt-4 text-paper/85 leading-relaxed">Kun liityt nyt, maksat 19 €/kk ja hinta pysyy samana koko jäsenyytesi ajan. Ma 2.11. alkaen uudet jäsenet maksavat 25 €/kk.</p>
+    <div id="founder-countdown" class="countdown mt-8" aria-live="polite">
+      <div class="countdown-cell"><strong id="cd-d">0</strong><span>päivää</span></div>
+      <div class="countdown-cell"><strong id="cd-h">0</strong><span>tuntia</span></div>
+      <div class="countdown-cell"><strong id="cd-m">0</strong><span>min</span></div>
+      <div class="countdown-cell"><strong id="cd-s">0</strong><span>sek</span></div>
     </div>
-    <div class="mt-9 space-y-2.5">
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Entä jos en ehdi liveen?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+    <p class="mt-3 text-sm text-paper/55">Laskuri 1.11. klo 23.59 asti.</p>
+    <a href="#" data-todo="klubi-checkout-founder"
+       class="mt-8 inline-flex items-center justify-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">Liity perustajahinnalla</a>
+    <p class="mt-8 text-paper/85 leading-relaxed"><strong class="text-paper font-semibold">Etkö ole vielä varma?</strong> Tule ensin maksuttomaan nollaushetkeen. Ne pidetään täydenkuun päivinä klo 21.00 Zoomissa: 26.10., 24.11., 22.1. ja 21.2.</p>
+    <a href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu"
+       class="mt-5 inline-flex items-center justify-center border border-paper/50 hover:border-paper text-paper font-semibold px-7 py-3.5 transition-colors">Ilmoittaudu nollaushetkeen</a>
+  </div>
+</section>
+
+<!-- 9. UKK -->
+<section id="kysymykset" data-component="FAQ" class="py-14 md:py-20 bg-paper-warm">
+  <div class="max-w-[40rem] mx-auto px-5 sm:px-6">
+    <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Kysymyksiä</h2>
+    <div class="mt-9 space-y-2">
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Entä jos en ehdi liveen?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <p class="mt-3 text-ink-mute leading-relaxed">Tallenne tulee alustalle samana iltana. Voit kuunnella sen vaikka kävellen.</p>
       </details>
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Pitääkö kameran olla päällä?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Pitääkö kameran olla päällä?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <p class="mt-3 text-ink-mute leading-relaxed">Ei tarvitse. Voit osallistua pelkällä äänellä tai kuunnella hiljaa.</p>
       </details>
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Pitääkö asua pääkaupunkiseudulla?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Pitääkö asua pääkaupunkiseudulla?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <p class="mt-3 text-ink-mute leading-relaxed">Ei tarvitse. Klubi toimii verkossa, ja tapaaminen Helsingissä on vapaaehtoinen.</p>
       </details>
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Entä jos tulee huono kuukausi?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-        <p class="mt-3 text-ink-mute leading-relaxed">Voit pitää lukuloman. Veloitus pysähtyy 1–3 kuukaudeksi, ja perustajahintasi säilyy.</p>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Entä jos tulee huono kuukausi?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <p class="mt-3 text-ink-mute leading-relaxed">Voit pitää tauon. Veloitus pysähtyy yhdeksi, kahdeksi tai kolmeksi kuukaudeksi, ja perustajahintasi säilyy.</p>
       </details>
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Onko klubi terapiaa?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Onko klubi terapiaa?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <p class="mt-3 text-ink-mute leading-relaxed">Klubi on ohjausta, harjoituksia ja vertaistukea. Se ei korvaa terapiaa tai lääkärin hoitoa. Jos voimasi ovat lopussa, hae apua myös omalta terveysasemalta.</p>
       </details>
-      <details class="faq-item reveal bg-paper border border-ink/10 p-6">
-        <summary class="font-medium text-ink cursor-pointer"><span>Miten maksu toimii?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Miten maksu toimii?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <p class="mt-3 text-ink-mute leading-relaxed">Maksat kortilla, ja veloitus tapahtuu automaattisesti kerran kuukaudessa liittymispäivänä. Voit perua jäsenyyden itse.</p>
+      </details>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Missä yhteisö toimii?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <p class="mt-3 text-ink-mute leading-relaxed">Yhteisö on sekä GHL-alustalla että WhatsAppissa.</p>
+      </details>
+      <details class="faq-item bg-paper border border-ink/10 p-5">
+        <summary class="font-semibold text-ink"><span>Voinko kokeilla ensin?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <p class="mt-3 text-ink-mute leading-relaxed">Voit tulla maksuttomaan nollaushetkeen täydenkuun päivänä klo 21.00. Seuraavat ovat 26.10., 24.11., 22.1. ja 21.2.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ @component: ClosingCTA ═══════════════ -->
-<section data-component="ClosingCTA" class="relative min-h-[64svh] flex items-center overflow-hidden bg-ink">
-  <div class="absolute inset-0 ig-frame" aria-hidden="true">
+<!-- 10. Loppu-CTA -->
+<section data-component="ClosingCTA" class="relative overflow-hidden bg-plum-900 text-paper">
+  <div class="absolute inset-0 ig-frame opacity-25" aria-hidden="true">
     <img src="/kuvat/2.jpg" class="ig-photo" alt="" loading="lazy" onerror="this.style.display='none'">
-    <div class="absolute inset-0 bg-ink/55"></div>
   </div>
-  <div class="relative w-full max-w-5xl mx-auto px-5 sm:px-6 py-20">
-    <h2 class="reveal max-w-3xl font-serif font-normal text-paper leading-[1.16] text-[clamp(1.45rem,3.2vw,2.2rem)]">
-      Tule Hengittävien äitien yhteisöön! Klubi avautuu sunnuntaina 18.10.
-    </h2>
-    <div class="reveal flex flex-col sm:flex-row items-start gap-3 mt-8" data-delay="160">
-      <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
-         class="inline-flex items-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">
-        Liity klubiin
-      </a>
-      <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
-         class="inline-flex items-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">
-        Liity klubiin
-      </a>
-    </div>
+  <div class="relative max-w-3xl mx-auto px-5 sm:px-6 py-20 md:py-28 text-center">
+    <h2 class="font-serif font-normal text-[clamp(1.7rem,4vw,2.55rem)] leading-[1.14]">Sinäkin ansaitset hengähdyksen</h2>
+    <p class="mt-5 text-paper/85 leading-relaxed">Sinun ei tarvitse muuttaa kaikkea kerralla. Riittää, että otat ensimmäisen hengenvedon. Hengittävien äitien klubi alkaa sunnuntaina 18.10., ja paikkasi odottaa.</p>
+    <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
+       class="mt-8 inline-flex items-center justify-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">Liity klubiin</a>
+    <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
+       class="mt-8 inline-flex items-center justify-center bg-paper text-ink font-semibold px-8 py-4 hover:bg-paper-deep transition-colors">Liity klubiin</a>
+    <p class="mt-4 text-sm text-paper/65" data-show="founder">Perustajahinta 19 €/kk 1.11. asti. Ei sitoutumisaikaa.</p>
+    <p class="mt-4 text-sm text-paper/65" data-show="regular">Klubi 25 €/kk. Ei sitoutumisaikaa.</p>
   </div>
 </section>
 
 </main>
+
+<!-- Sticky mobile CTA -->
+<div id="sticky-cta" class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-plum-900 text-paper border-t border-paper/15 px-4 pt-3">
+  <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
+     class="flex items-center justify-center bg-paper text-ink font-semibold px-5 py-3.5">Liity klubiin · 19 €/kk</a>
+  <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
+     class="flex items-center justify-center bg-paper text-ink font-semibold px-5 py-3.5">Liity klubiin · 25 €/kk</a>
+</div>
 
 <!-- ═══════════════ @component: SiteFooter ═══════════════ -->
 <footer data-component="SiteFooter" class="bg-plum-900 text-paper/70 pt-14 pb-9">
@@ -536,7 +576,6 @@
         </div>
         <p class="mt-4 text-sm text-paper/50">Maradevi Oy · Y-tunnus 3323765-3 · 06100 Porvoo</p>
       </div>
-
       <nav aria-label="Alatunnisteen sivustolinkit">
         <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-paper/50">Sivusto</p>
         <ul class="mt-4 space-y-2.5">
@@ -546,19 +585,18 @@
           <li><a class="hover:text-paper transition-colors" href="#kysymykset">Kysymyksiä</a></li>
         </ul>
       </nav>
-
       <nav aria-label="Alatunnisteen ohjelmalinkit">
-        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-paper/50">Ohjelmat &amp; musiikki</p>
+        <p class="text-[0.72rem] font-medium uppercase tracking-eyebrow text-paper/50">Ohjelmat ja musiikki</p>
         <ul class="mt-4 space-y-2.5">
-          <li><a class="hover:text-paper transition-colors" href="/kun-huusit/">Kun huusit taas — ilmainen miniopas</a></li>
-          <li><a class="hover:text-paper transition-colors" href="https://hengittava-aiti.fi/hermosto-reset-viikko-1">Hermosto Reset · Viikko 1 — ilmainen</a></li>
-          <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset — 21 päivää</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/kun-huusit/">Kun huusit taas · ilmainen miniopas</a></li>
+          <li><a class="hover:text-paper transition-colors" href="https://hengittava-aiti.fi/hermosto-reset-viikko-1">Hermosto Reset · Viikko 1 · ilmainen</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/hermosto-reset/">Hermosto Reset · 21 päivää</a></li>
+          <li><a class="hover:text-paper transition-colors" href="/perjantain-nollaushetki/">Perjantain nollaushetki</a></li>
           <li><a class="hover:text-paper transition-colors" href="/tietosuoja/">Tietosuojaseloste</a></li>
           <li><a class="hover:text-paper transition-colors" href="/ostoehdot/">Ostoehdot ja toimitusehdot</a></li>
         </ul>
       </nav>
     </div>
-
     <div class="mt-12 pt-6 border-t border-paper/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-paper/50">
       <p>© <span id="year">2026</span> Hengittävä Äiti · Maradevi Oy · Y-tunnus 3323765-3 · ALV-velvollinen</p>
       <p>Tehty rauhassa, Porvoossa.</p>
@@ -567,34 +605,41 @@
 </footer>
 
 <script>
-/* ═══════════ Behavior ═══════════ */
 (function () {
   'use strict';
 
   /* ─────────────────────────────────────────────────────────────────
-     KLUBI — edit dates and payment links in this one object.
+     KLUBI: fill payment links and leftover copy here.
 
-     Dates use Europe/Helsinki (EET, UTC+2 in November 2026).
-     - FOUNDER_ENDS: Mon 2.11.2026 00:00 → text becomes "Klubi 25 €/kk"
-       and every [data-todo="klubi-checkout-founder"] link is hidden.
-       Regular 25 € join links ([data-todo="klubi-checkout-regular"]) show.
-     - MEETUP_HIDES: Mon 30.11.2026 00:00 → #valo (Hotelli Valo) hides.
+     Dates are Europe/Helsinki.
+     - FOUNDER_ENDS 2.11.2026 00:00 = 1.11. klo 23.59. After this:
+       urgency band + countdown + founder checkout hide,
+       price text becomes "Klubi 25 €/kk".
+     - MEETUP_HIDES 30.11.2026 00:00: Hotelli Valo section hides.
 
-     Preview any date:  /klubi/?at=2026-11-02
-                        /klubi/?at=2026-12-01
-
-     Replace '#' below when Stripe / lipunmyynti URLs exist.
-     Do not wire live checkout until Juliana has the links.
+     Preview: /klubi/?at=2026-11-02   /klubi/?at=2026-12-01
      ───────────────────────────────────────────────────────────────── */
   var KLUBI = {
     FOUNDER_ENDS: '2026-11-02T00:00:00+02:00',
     MEETUP_HIDES: '2026-11-30T00:00:00+02:00',
     LINKS: {
-      founder: '#', // TODO: klubi 19 €/kk checkout
-      regular: '#', // TODO: klubi 25 €/kk checkout
-      plus:    '#', // TODO: PLUS 89 €/kk checkout
-      meetup:  '#'  // TODO: Hotelli Valo ticket sales
-    }
+      founder: '#', // TODO: klubi 19 €/kk
+      regular: '#', // TODO: klubi 25 €/kk
+      plus:    '#', // TODO: PLUS 89 €/kk
+      meetup:  '#'  // TODO: Hotelli Valo tickets
+    },
+    MEETUP: {
+      dayPrice: '[hinta]',
+      dayPriceClub: '[hinta]',
+      nightPrice: '[hinta]',
+      nightPriceClub: '[hinta]',
+      time: '[kellonaika]',
+      spots: '[määrä]'
+    },
+    COMMUNITY_DETAIL: '', // fill to replace the [Paikkamerkki] under Yhteisö
+    JULIANA_SENTENCE: '', // fill to replace the [Paikkamerkki] under Juliana
+    MEMBER_QUOTE: '',     // hide the quote block while empty
+    MEMBER_QUOTE_ATTR: ''
   };
 
   function previewNow() {
@@ -621,7 +666,55 @@
   applyHrefs('klubi-plus-checkout', KLUBI.LINKS.plus);
   applyHrefs('hotelli-valo-tickets', KLUBI.LINKS.meetup);
 
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fill(sel, value) {
+    if (!value) return;
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.textContent = value;
+      if (value.charAt(0) !== '[') el.classList.remove('todo-slot');
+    });
+  }
+  fill('[data-fill="meetup-day-price"]', KLUBI.MEETUP.dayPrice);
+  fill('[data-fill="meetup-day-price-club"]', KLUBI.MEETUP.dayPriceClub);
+  fill('[data-fill="meetup-night-price"]', KLUBI.MEETUP.nightPrice);
+  fill('[data-fill="meetup-night-price-club"]', KLUBI.MEETUP.nightPriceClub);
+  fill('[data-fill="meetup-time"]', KLUBI.MEETUP.time);
+  fill('[data-fill="meetup-spots"]', KLUBI.MEETUP.spots);
+
+  var community = document.getElementById('community-detail');
+  if (community && KLUBI.COMMUNITY_DETAIL) {
+    community.textContent = KLUBI.COMMUNITY_DETAIL;
+    community.classList.remove('todo-slot');
+  }
+  var sentence = document.getElementById('juliana-sentence');
+  if (sentence && KLUBI.JULIANA_SENTENCE) {
+    sentence.textContent = KLUBI.JULIANA_SENTENCE;
+    sentence.classList.remove('todo-slot');
+  }
+  var quoteBlock = document.getElementById('member-quote-block');
+  var quoteEl = document.getElementById('member-quote');
+  var quoteAttr = document.getElementById('member-quote-attr');
+  if (quoteBlock) {
+    if (KLUBI.MEMBER_QUOTE) {
+      quoteEl.textContent = KLUBI.MEMBER_QUOTE;
+      if (quoteAttr) quoteAttr.textContent = KLUBI.MEMBER_QUOTE_ATTR || '';
+      quoteBlock.hidden = false;
+    } else {
+      quoteBlock.hidden = true;
+    }
+  }
+
+  function tickCountdown() {
+    var dEl = document.getElementById('cd-d');
+    if (!dEl || !founderOpen) return;
+    var left = Math.max(0, Date.parse(KLUBI.FOUNDER_ENDS) - previewNow());
+    var s = Math.floor(left / 1000);
+    dEl.textContent = String(Math.floor(s / 86400));
+    document.getElementById('cd-h').textContent = String(Math.floor((s % 86400) / 3600));
+    document.getElementById('cd-m').textContent = String(Math.floor((s % 3600) / 60));
+    document.getElementById('cd-s').textContent = String(s % 60);
+  }
+  tickCountdown();
+  if (founderOpen) setInterval(tickCountdown, 1000);
 
   var header = document.getElementById('site-header');
   function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
@@ -646,25 +739,8 @@
     a.addEventListener('click', function () { setMenu(false); });
   });
 
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !prefersReduced) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          var delay = e.target.getAttribute('data-delay');
-          if (delay) e.target.style.transitionDelay = delay + 'ms';
-          e.target.classList.add('is-visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('is-visible'); });
-  }
-
   var navLinks = document.querySelectorAll('.nav-link');
-  var sections = ['sinulle', 'viikko', 'valo', 'hinta', 'kysymykset']
+  var sections = ['tunnistatko', 'viikko', 'valo', 'hinta', 'kysymykset']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   if ('IntersectionObserver' in window) {
