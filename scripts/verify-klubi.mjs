@@ -72,9 +72,15 @@ assert(page.includes('Klubi + Hengitystila 249 €/kk'), 'Hengitystila price ver
 assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading verbatim');
 assert(page.includes('Mitä jos sinun ei tarvitsisi selvitä tästä kaikesta yksin?'), 'closing breath verbatim');
 assert(page.includes('Tule Hengittävien äitien yhteisöön! Ilmoittautuminen alkaa 18.10.'), 'closing lead verbatim');
-assert(page.includes('[kellonaika]'), 'meetup time placeholder kept');
-assert(page.includes('[hinta]'), 'meetup price placeholders kept');
-assert(page.includes('[määrä]'), 'meetup capacity placeholder kept');
+assert(page.includes('Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo prices-coming-soon line verbatim');
+assert(!page.includes('[kellonaika]'), 'meetup time placeholder removed');
+assert(!page.includes('[hinta]'), 'meetup price placeholders removed');
+assert(!page.includes('[määrä]'), 'meetup capacity placeholder removed');
+assert(!page.includes('Päivälippu'), 'Valo day-ticket placeholder line removed');
+assert(!page.includes('Päivä ja yöpyminen'), 'Valo overnight placeholder line removed');
+assert(!page.includes('Paikkoja on [määrä]'), 'Valo capacity placeholder line removed');
+assert(page.includes('Lauantaina on luento, yhteinen hengitys- ja kehoharjoitus ja aikaa tutustua muihin klubilaisiin.'), 'Saturday sentence kept without time slot');
+assert(page.includes('Voit tulla vain päiväksi tai jäädä yöksi hotelliin.'), 'day-or-night sentence kept');
 assert(page.includes('Voit perua jäsenyyden itse.'), 'FAQ cancel verb is perua');
 assert(!page.includes('Voit peroa'), 'FAQ cancel verb is perua, not typo peroa');
 
