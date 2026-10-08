@@ -116,11 +116,23 @@ assert(page.includes('https://hengittava-aiti.fi/klubi/'), 'canonical / og:url p
 
 assert(!/buy\.stripe\.com/.test(page), 'no live Stripe checkout wired');
 assert(page.includes('var KLUBI'), 'KLUBI config object present');
-assert(page.includes("klubi: '#'"), 'klubi checkout still a placeholder');
-assert(page.includes("plus: '#'"), 'PLUS checkout still a placeholder');
+assert(
+  page.includes("klubi: 'https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237'"),
+  'klubi 19 €/kk founder checkout in KLUBI.LINKS',
+);
+assert(
+  page.includes("regular: 'https://link.fastpaydirect.com/payment-link/6ac7ae22075ea22a20cdd23b'"),
+  'regular 25 €/kk stored as LINKS.regular',
+);
+assert(
+  page.includes("plus: 'https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499'"),
+  'PLUS 89 €/kk checkout in KLUBI.LINKS',
+);
 assert(page.includes("hengitystila: '#'"), 'Hengitystila checkout still a placeholder');
 assert(page.includes("meetup: '#'"), 'Valo tickets still a placeholder');
-assert(page.includes('data-klubi-link="klubi"'), 'klubi checkout marked for later fill');
+assert(!page.includes('data-klubi-link="regular"'), 'regular checkout is stored only, not wired');
+assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder checkout on price card, closing CTA, sticky bar');
+assert((page.match(/href="#hinta"/g) || []).length === 4, 'upper-page CTAs still scroll to #hinta');
 assert(page.includes('Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk'), 'GHL comment kept for club checkout');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 

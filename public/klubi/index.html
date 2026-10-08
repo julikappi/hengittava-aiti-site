@@ -535,17 +535,19 @@
 <!-- Kiinnitetty liittymispalkki mobiilissa: näkyy, kun hero on ohitettu, ja piiloutuu hinnan, Täysikuun nollauksen ja loppukehotuksen kohdalla -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true" inert>
   <p>Klubi <span class="nw">19 €/kk</span></p>
-  <!-- Linkki: vierittää hintoihin (#hinta) -->
-  <a class="btn" href="#hinta">Liity klubiin</a>
+  <!-- Linkki: GHL-tilauslinkki Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
+  <a class="btn" href="#" data-klubi-link="klubi">Liity klubiin</a>
 </div>
 
 <script>
 (function () {
-  /* Fill GHL checkout URLs here later. "#" keeps the placeholder href. Visible copy stays unchanged. */
+  /* Checkout URLs. "#" keeps a placeholder href. Visible copy stays unchanged.
+     No date switch on this page: LINKS.regular is stored for 2.11. onward. */
   var KLUBI = {
     LINKS: {
-      klubi: '#',         // GHL Klubi 19 €/kk
-      plus: '#',          // GHL Klubi PLUS 89 €/kk
+      klubi: 'https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237', // 19 €/kk founder (current)
+      regular: 'https://link.fastpaydirect.com/payment-link/6ac7ae22075ea22a20cdd23b', // 25 €/kk from 2.11.
+      plus: 'https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499', // PLUS 89 €/kk
       hengitystila: '#',  // GHL Klubi + Hengitystila 249 €/kk
       meetup: '#',        // Hotelli Valo tickets
       nollaushetki: 'https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu'
