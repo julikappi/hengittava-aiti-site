@@ -431,7 +431,7 @@
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
     <h2 class="font-serif font-normal text-3xl md:text-[2.25rem] leading-[1.14] text-ink">Valitse itsellesi sopiva tapa</h2>
     <div class="grid md:grid-cols-2 gap-3 md:gap-4 mt-10">
-      <article class="bg-paper border border-ink/12 p-7 md:p-9">
+      <article class="bg-paper border border-ink/12 p-7 md:p-9 flex flex-col">
         <h3 class="font-serif font-normal text-2xl text-ink">Klubi</h3>
         <p class="mt-4 font-serif text-[1.85rem] leading-none text-ink" data-show="founder">19 €/kk perustajahinnalla</p>
         <p class="mt-4 font-serif text-[1.85rem] leading-none text-ink" data-show="regular">25 €/kk</p>
@@ -446,13 +446,15 @@
           <li>Aloitusäänite ja kolme SOS-hengähdystä heti</li>
           <li>Hermosto Reset -käsikirja 20 eurolla</li>
         </ul>
+        <div class="mt-auto pt-8">
         <a href="#" data-todo="klubi-checkout-founder" data-show="founder"
-           class="mt-8 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
+           class="inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
         <a href="#" data-todo="klubi-checkout-regular" data-show="regular"
-           class="mt-8 inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
+           class="inline-flex items-center justify-center bg-plum-900 text-paper hover:bg-plum-800 font-semibold px-7 py-3.5 transition-colors">Liity klubiin</a>
+        </div>
       </article>
 
-      <article class="bg-plum-900 text-paper p-7 md:p-9">
+      <article class="bg-plum-900 text-paper p-7 md:p-9 flex flex-col">
         <p class="text-[0.72rem] tracking-eyebrow uppercase text-paper/60">10 paikkaa</p>
         <h3 class="font-serif font-normal text-2xl mt-3">Klubi PLUS</h3>
         <p class="mt-4 font-serif text-[1.85rem] leading-none">89 €/kk</p>
@@ -463,7 +465,7 @@
           <li>Paikkoja on vain 10</li>
         </ul>
         <a href="#" data-todo="klubi-plus-checkout"
-           class="mt-8 inline-flex items-center justify-center bg-paper text-ink hover:bg-paper-deep font-semibold px-7 py-3.5 transition-colors">Liity PLUS-jäseneksi</a>
+           class="mt-auto pt-8 inline-flex items-center justify-center bg-paper text-ink hover:bg-paper-deep font-semibold px-7 py-3.5 transition-colors">Liity PLUS-jäseneksi</a>
       </article>
     </div>
     <p class="mt-8 text-ink-mute leading-relaxed">Sitoutumisaikaa ei ole. Voit perua jäsenyyden tai pitää yhden, kahden tai kolmen kuukauden tauon milloin vain.</p>
