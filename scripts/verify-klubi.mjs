@@ -111,7 +111,11 @@ assert(
 );
 assert(
   page.includes('Kyllä. Jäsenyydessä ei ole sitoutumisaikaa. Voit perua jäsenyyden milloin vain viestillä osoitteeseen'),
-  'cancel FAQ is anytime by email, no access-end clause',
+  'cancel FAQ is anytime by email',
+);
+assert(
+  page.includes('ja pääsy päättyy maksetun kuukauden lopussa.'),
+  'cancel FAQ says access ends at the end of the paid month',
 );
 assert(
   page.includes('Kyllä. Voit pitää 1–3 kuukauden tauon pyytämällä sitä viestillä osoitteeseen'),
@@ -121,6 +125,10 @@ assert(page.includes('Tauon aikana sinua ei laskuteta.'), 'pause FAQ says no bil
 assert(
   page.includes('Maksu veloitetaan liittyessä ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä.'),
   'Ehdot block uses join-date billing',
+);
+assert(
+  page.includes('Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa.'),
+  'Ehdot cancel access-end',
 );
 assert(page.includes('1–3 kuukauden tauon voi pitää pyynnöstä, ja tauon aikana ei laskuteta.'), 'Ehdot pause is on request');
 assert((page.match(/hei@hengittava-aiti.fi/g) || []).length >= 2, 'cancel and pause FAQs use the contact email');
