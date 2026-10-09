@@ -29,14 +29,15 @@ const requiredImages = [
   'rauha-otsat-yhdessa.jpg',
   'juliana-kasi-leualla.jpg',
   'taysikuu-rajattu.jpg',
+  'taysikuu-meri.jpg',
 ];
 
 assert(page === publicPage, 'public/klubi mirrors root page');
 assert(page.includes('lang="fi"'), 'html lang is fi');
 assert(page.includes('<title>Hengittävien äitien klubi</title>'), 'title is Juliana’s');
 assert(
-  page.includes('Äitien oma pieni kylä keskellä kaikkea. Yhteisö ja tukipilari kohti nautinnollisempaa äitiyttä.'),
-  'meta description taken from her copy',
+  page.includes('Äitien oma pieni kylä keskellä arkea.'),
+  'meta description taken from new hero copy',
 );
 assert(page.includes('Hengittävien äitien klubi'), 'club name kept');
 assert(
@@ -44,59 +45,49 @@ assert(
   'club name not title-cased in copy',
 );
 
-assert(
-  page.includes('Ovet aukeavat sunnuntaina 18.10., ja ensimmäinen kuukausi alkaa 1.11.'),
-  'hero dates verbatim',
-);
-assert(
-  page.includes('Jos syysloma vei viimeisetkin voimat, tule mukaan. Täällä saa hengittää.'),
-  'hero note verbatim',
-);
-assert(
-  page.includes('Tuntuuko joskus siltä, että kaikki tarvitsevat sinua, mutta kukaan ei kysy, miten sinä voit?'),
-  'breath line verbatim',
-);
-assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading verbatim');
-assert(page.includes('Täällä ei tarvitse olla valmis eikä suorittaa mitään. Riittää, että tulet sellaisena kuin olet.'), 'intro close verbatim');
-assert(page.includes('Klubi on sinulle, jos'), 'recognition heading verbatim');
-assert(page.includes('Keskellä kaikkea'), 'community heading verbatim');
-assert(page.includes('Mitä klubi antaa sinulle'), 'gives heading verbatim');
-assert(!page.includes('Mikä klubi on'), 'old what-is heading removed');
-assert(!page.includes('Mitä klubissa opetellaan'), 'superseded B heading not used');
-assert(!page.includes('Puhumme rehellisesti äitiyden kuormasta'), 'honest-load paragraph removed');
-assert(page.includes('Näin se näkyy arjessasi:'), 'gives lead verbatim');
-assert(page.includes('Löydät äitiydestä enemmän hetkiä, joista nautit.'), 'eighth give item verbatim');
-assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'gives list has 8 items');
-assert(page.includes('Klubissa avataan hiljalleen kehoa ja mieltä'), 'vision paragraph kept');
-assert(page.includes('Hengittävä äiti huomaa, kun kierrokset nousevat'), 'hengittävä äiti paragraph kept');
-assert(page.includes('Sinun rauhasi tarttuu lapsiin'), 'co-regulation heading verbatim');
-assert(page.includes('Näin klubikuukausi kulkee'), 'month heading verbatim');
+assert(page.includes('Ovet aukeavat 18.10. Ensimmäinen klubikuukausi alkaa 1.11.'), 'hero dates from brief');
+assert(page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'hero tagline from brief');
+assert(!page.includes('syysloma'), 'autumn-holiday hook removed');
+assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading kept');
+assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close from brief');
+assert(page.includes('Klubi on sinulle, jos'), 'recognition heading kept');
+assert(page.includes('Keskellä kaikkea'), 'community heading kept');
+assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
+assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'learn list has 8 items');
+assert(page.includes('Pienet harjoitukset eivät poista kaikkia arjen haasteita.'), 'no-miracle closing on learn list');
+assert(page.includes('Hengittävä äiti ei ole äiti, joka ei koskaan hermostu tai väsy.'), 'hengittävä äiti reframed');
+assert(page.includes('Sinun rauhasi tarttuu lapsiin'), 'co-regulation heading kept');
+assert(page.includes('Hyvinvointisi on arvokasta myös sinun itsesi vuoksi'), 'wellbeing for mother herself');
+assert(page.includes('Näin klubikuukausi kulkee'), 'month heading kept');
+assert(page.includes('Pysähtymisen taito'), 'November theme kept');
+assert(page.includes('Riittävä joulu'), 'December theme kept');
 assert(page.includes('Saat heti liittyessäsi'), 'immediate gifts heading kept');
-assert(page.includes('Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet.'), 'intro evening sentence kept');
+assert(page.includes('sunnuntaina 25.10. klo 20'), 'intro evening date kept');
+assert(page.includes('Täydenkuun syvän rentoutuksen harjoituksen'), 'October moon bonus named');
+assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
+assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
 assert(page.includes('Syksyn kohokohta: tavataan Helsingissä'), 'Valo meetup heading kept');
-assert(page.includes('Klubilaiset saavat lipun etuhintaan, ja kerromme tarkemmat tiedot pian.'), 'Helsinki paragraph verbatim ending');
-assert(!page.includes('Hinnat ilmoitetaan pian'), 'old Valo prices-soon line removed');
-assert(!page.includes('Varaa paikkasi'), 'Valo booking button removed');
-assert(!page.includes('[Oma kuva: joogatunnilta tai retriitistä]'), 'empty yoga placeholder removed');
-assert(page.includes('Täällä ei suoriteta'), 'anti-hustle heading verbatim');
-assert(page.includes('Kuka minä olen'), 'about heading verbatim');
-assert(page.includes('Klubi 19 €/kk'), 'club price verbatim');
-assert(page.includes('kun liityt lokakuussa.'), 'october price line verbatim');
-assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price verbatim');
+assert(page.includes('Täällä ei suoriteta'), 'anti-hustle heading kept');
+assert(page.includes('Kuka minä olen'), 'about heading kept');
+assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
+assert(page.includes('Klubi 19 €/kk'), 'club price kept');
+assert(page.includes('kun liityt lokakuussa.'), 'october price line kept');
+assert(page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'November coverage wording kept');
+assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price kept');
+assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
-assert(!page.includes('Liity Hengitystila-tasolle'), 'Hengitystila button removed');
-assert(page.includes('Tulossa 2027: Hengittävä Koti'), '2027 heading verbatim');
-assert(page.includes('Klubilaiset kuulevat valmennuksista ensimmäisinä ja saavat ne etuhintaan.'), '2027 second paragraph verbatim');
-assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading verbatim');
-assert(page.includes('Mitä jos sinun ei tarvitsisi selvitä tästä kaikesta yksin?'), 'closing breath verbatim');
-assert(page.includes('Tule Hengittävien äitien yhteisöön! Ilmoittautuminen alkaa 18.10.'), 'closing lead verbatim');
+assert(page.includes('Tulossa 2027: Hengittävä Koti'), '2027 heading kept');
+assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading kept');
+assert(page.includes('Täysikuun nollaukseen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
+assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing lead from brief');
+assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
+assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
+assert(page.includes('Sitoutumisaikaa ei ole, ja jäsenyyden voi perua.'), 'cancel FAQ does not invent the method');
 assert(!page.includes('[kellonaika]'), 'meetup time placeholder removed');
 assert(!page.includes('[hinta]'), 'meetup price placeholders removed');
-assert(!page.includes('[määrä]'), 'meetup capacity placeholder removed');
-assert(page.includes('Maksat kortilla liittyessäsi, ja veloitus toistuu automaattisesti kuukausittain. Voit perua jäsenyyden itse.'), 'FAQ payment answer verbatim');
-assert(page.includes('Voit perua jäsenyyden itse.'), 'FAQ cancel verb is perua');
 assert(!page.includes('Voit peroa'), 'FAQ cancel verb is perua, not typo peroa');
+assert(!page.includes('—'), 'no em-dashes in the page');
 
 assert(page.includes('#FAF8F4'), 'paper colour kept');
 assert(page.includes('#3B2A4A'), 'violet colour kept');
