@@ -92,7 +92,10 @@ assert(page.includes('Kuka minä olen'), 'about heading kept');
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
 assert(page.includes('Klubi 19 €/kk'), 'club price kept');
 assert(page.includes('kun liityt lokakuussa.'), 'october price line kept');
-assert(page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'November coverage wording kept');
+assert(page.includes('Saat heti pääsyn klubiin.'), 'Klubi card grants access immediately');
+assert(!page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'calendar-month first-charge line removed');
+assert(!page.includes('kalenterikuukauden'), 'payment does not cover a calendar month');
+assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on 1.11.');
 assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price kept');
 assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
@@ -103,17 +106,24 @@ assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing
 assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
 assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
 assert(
-  page.includes('Kyseessä on kuukausijäsenyys. Veloitus tapahtuu automaattisesti kerran kuukaudessa. Lokakuussa liittyvien ensimmäinen veloitus on 1.11. Jokainen maksu kattaa kalenterikuukauden.'),
-  'payment FAQ states monthly billing and 1.11. first charge',
+  page.includes('Kyseessä on kuukausijäsenyys. Maksu veloitetaan kortilla liittyessäsi ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet.'),
+  'payment FAQ is join-date monthly billing',
 );
 assert(
-  page.includes('Kyllä. Sitoutumisaikaa ei ole, ja jäsenyyden voi perua. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a>'),
-  'cancel FAQ stays non-committal and points to terms',
+  page.includes('Kyllä. Jäsenyydessä ei ole sitoutumisaikaa. Voit perua jäsenyyden milloin vain viestillä osoitteeseen'),
+  'cancel FAQ is anytime by email, no access-end clause',
 );
 assert(
-  page.includes('Kyllä. Voit pitää 1–3 kuukauden tauon. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a>'),
-  'pause FAQ stays non-committal and points to terms',
+  page.includes('Kyllä. Voit pitää 1–3 kuukauden tauon pyytämällä sitä viestillä osoitteeseen'),
+  'pause FAQ is 1–3 months by email, no billing during pause',
 );
+assert(page.includes('Tauon aikana sinua ei laskuteta.'), 'pause FAQ says no billing during pause');
+assert(
+  page.includes('Maksu veloitetaan liittyessä ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä.'),
+  'Ehdot block uses join-date billing',
+);
+assert(page.includes('1–3 kuukauden tauon voi pitää pyynnöstä, ja tauon aikana ei laskuteta.'), 'Ehdot pause is on request');
+assert((page.match(/hei@hengittava-aiti.fi/g) || []).length >= 2, 'cancel and pause FAQs use the contact email');
 assert(page.includes('<h3>Ehdot</h3>'), 'Ehdot heading under prices');
 assert(page.includes('Lue tarkemmin ehdoista'), 'Ehdot block links to terms page');
 assert(!page.includes('class="pricing-note"'), 'old pricing-note is merged into Ehdot');
