@@ -17,6 +17,8 @@ function assert(cond, msg) {
 
 const page = readFileSync(join(root, 'klubi/index.html'), 'utf8');
 const publicPage = readFileSync(join(root, 'public/klubi/index.html'), 'utf8');
+const terms = readFileSync(join(root, 'klubi/ehdot/index.html'), 'utf8');
+const publicTerms = readFileSync(join(root, 'public/klubi/ehdot/index.html'), 'utf8');
 const vercel = readFileSync(join(root, 'vercel.json'), 'utf8');
 const imgDir = join(root, 'klubi/img');
 const publicImgDir = join(root, 'public/klubi/img');
@@ -50,6 +52,23 @@ assert(page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'hero tagline f
 assert(!page.includes('syysloma'), 'autumn-holiday hook removed');
 assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading kept');
 assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close from brief');
+assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading verbatim');
+assert(
+  page.includes('Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia. Se ei myöskään ole joogakerho, jumpparyhmä tai tiettyyn maailmankatsomukseen sitoutunut yhteisö.'),
+  'not-this paragraph verbatim',
+);
+assert(page.includes('Mitä se sitten on?'), 'is-this heading verbatim');
+assert(
+  page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
+  'is-this paragraph verbatim',
+);
+assert(page.includes('Hyvinvoiva nainen ja äiti'), 'pillar 1 title verbatim');
+assert(page.includes('Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.'), 'pillar 1 text verbatim');
+assert(page.includes('Kasvua äitiydessä'), 'pillar 2 title verbatim');
+assert(page.includes('Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.'), 'pillar 2 text verbatim');
+assert(page.includes('Hyvinvoivempi perhe ja koti'), 'pillar 3 title verbatim');
+assert(page.includes('Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.'), 'pillar 3 text verbatim');
+assert((page.match(/<article class="pillar"/g) || []).length === 3, 'three is-this cards');
 assert(page.includes('Klubi on sinulle, jos'), 'recognition heading kept');
 assert(page.includes('Keskellä kaikkea'), 'community heading kept');
 assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
@@ -63,7 +82,7 @@ assert(page.includes('Pysähtymisen taito'), 'November theme kept');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
 assert(page.includes('Saat heti liittyessäsi'), 'immediate gifts heading kept');
 assert(page.includes('sunnuntaina 25.10. klo 20'), 'intro evening date kept');
-assert(page.includes('Täydenkuun syvän rentoutuksen harjoituksen'), 'October moon bonus named');
+assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen'), 'October moon bonus is the recording plus a surprise');
 assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
 assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
@@ -83,7 +102,23 @@ assert(page.includes('Täysikuun nollaukseen maanantaina 26.10. klo 21.00'), 'no
 assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing lead from brief');
 assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
 assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
-assert(page.includes('Sitoutumisaikaa ei ole, ja jäsenyyden voi perua.'), 'cancel FAQ does not invent the method');
+assert(
+  page.includes('Kyseessä on kuukausijäsenyys. Veloitus tapahtuu automaattisesti kerran kuukaudessa. Lokakuussa liittyvien ensimmäinen veloitus on 1.11. Jokainen maksu kattaa kalenterikuukauden.'),
+  'payment FAQ states monthly billing and 1.11. first charge',
+);
+assert(
+  page.includes('Kyllä. Sitoutumisaikaa ei ole, ja jäsenyyden voi perua. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a>'),
+  'cancel FAQ stays non-committal and points to terms',
+);
+assert(
+  page.includes('Kyllä. Voit pitää 1–3 kuukauden tauon. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a>'),
+  'pause FAQ stays non-committal and points to terms',
+);
+assert(page.includes('<h3>Ehdot</h3>'), 'Ehdot heading under prices');
+assert(page.includes('Lue tarkemmin ehdoista'), 'Ehdot block links to terms page');
+assert(!page.includes('class="pricing-note"'), 'old pricing-note is merged into Ehdot');
+assert(!page.includes('class="price-terms"'), 'old price-terms is merged into Ehdot');
+assert(page.includes('Voit osallistua liveen myös ilman kameraa.'), 'camera-off FAQ kept');
 assert(!page.includes('[kellonaika]'), 'meetup time placeholder removed');
 assert(!page.includes('[hinta]'), 'meetup price placeholders removed');
 assert(!page.includes('Voit peroa'), 'FAQ cancel verb is perua, not typo peroa');
@@ -140,6 +175,12 @@ assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder che
 assert((page.match(/href="#hinta"/g) || []).length === 4, 'upper-page CTAs still scroll to #hinta');
 assert(page.includes('Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk'), 'GHL comment kept for club checkout');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
+assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
+assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
+assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
+assert(terms.includes('Ehdot päivitetään tähän ennen klubin avautumista.'), 'terms page placeholder copy');
+assert(terms.includes('href="/klubi/"'), 'terms page links back to /klubi/');
+assert(/<meta name="robots" content="noindex/.test(terms), 'terms page is noindex');
 
 assert((page.match(/Liity klubiin/g) || []).length >= 3, 'club join buttons present');
 assert(page.includes('Liity PLUS-jäseneksi'), 'PLUS button label kept');

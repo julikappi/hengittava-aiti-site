@@ -113,10 +113,11 @@
   .divider { width: 2.5rem; height: 2px; border: 0; background: var(--peach); margin: 0 auto; }
 
   /* ---------- Typography ---------- */
-  h1, h2, .breath, .tier-lead { color: var(--violet); font-weight: 500; letter-spacing: -0.005em; }
+  h1, h2, h3, .breath, .tier-lead { color: var(--violet); font-weight: 500; letter-spacing: -0.005em; }
   h1 { font-size: clamp(2.5rem, 10.5vw, 4.25rem); line-height: 1.05; margin: 0 0 1.25rem; }
   h2 { font-size: clamp(1.85rem, 6.5vw, 2.5rem); line-height: 1.15; margin: 0 0 1.5rem; }
   h2::after { content: ""; display: block; width: 2rem; height: 2px; background: var(--peach); margin-top: 1rem; }
+  h3 { font-size: 1.25rem; line-height: 1.3; margin: 0 0 .75rem; }
   p { margin: 0 0 1.25rem; max-width: 62ch; }
   p:last-child { margin-bottom: 0; }
   .lead { font-size: 1.1875rem; line-height: 1.6; }
@@ -234,8 +235,7 @@
   .tier--featured .btn { min-height: 3.5rem; font-size: 1.125rem; }
   @media (min-width: 48rem) { .tier--featured { padding-top: 2.75rem; padding-bottom: 2.75rem; } }
   .tier .btn--outline { background: transparent; }
-  .pricing-note { text-align: center; margin: 1.25rem auto 0; color: var(--ink-soft); }
-  .price-terms {
+  .ehdot {
     max-width: 40rem;
     margin: 1.75rem auto 0;
     padding-top: 1.5rem;
@@ -244,36 +244,117 @@
     font-size: .95rem;
     line-height: 1.65;
   }
+  .ehdot h3 { margin-bottom: .85rem; }
+  .ehdot p { max-width: none; margin: 0 0 1rem; }
+  .ehdot p:last-child { margin-bottom: 0; }
+  .ehdot a, .faq a {
+    color: var(--violet);
+    text-underline-offset: .18em;
+  }
   .bonus {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.1rem;
     margin: 1.2rem 0 0;
-    padding: .85rem .9rem;
-    border: 1px solid rgba(242, 196, 168, .5);
-    border-radius: 1.1rem;
+    padding: .95rem 1rem;
+    border: 1px solid rgba(242, 196, 168, .55);
+    border-radius: 1.15rem;
     background: rgba(250, 248, 244, .08);
   }
   .bonus img {
     flex: none;
-    width: 4.75rem;
-    height: 4.75rem;
+    width: 6.5rem;
+    height: 6.5rem;
     object-fit: cover;
-    object-position: 50% 35%;
-    border-radius: .85rem;
+    object-position: 50% 28%;
+    border-radius: .9rem;
     filter: grayscale(1);
     background: var(--ph-bg);
   }
   .bonus p { margin: 0; max-width: none; font-size: 1.02rem; line-height: 1.5; }
-  .gets-bonus { margin-top: .25rem; }
+  @media (max-width: 47.99rem) {
+    .bonus {
+      flex-direction: column;
+      align-items: stretch;
+      gap: .9rem;
+      padding: .7rem .7rem 1.05rem;
+    }
+    .bonus img {
+      width: 100%;
+      height: 10.5rem;
+      object-position: 50% 22%;
+      border-radius: .95rem;
+    }
+  }
 
   /* ---------- Ensimmäinen sisältöjakso: Mikä on klubi ---------- */
-  .intro { padding: 3.25rem 0 4rem; }
+  .intro { padding: 3.25rem 0 2.5rem; }
   .intro p { font-size: 1.1875rem; line-height: 1.8; }
   .intro p + p { margin-top: 1.5rem; }
   @media (min-width: 48rem) {
-    .intro { padding: 4.5rem 0 5.5rem; }
+    .intro { padding: 4.5rem 0 3rem; }
     .intro p { font-size: 1.3125rem; }
+  }
+
+  /* ---------- Mitä klubi ei ole (hillitty) ---------- */
+  .not-this { padding: 0 0 1.75rem; }
+  .not-this h2 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin: 0 0 .55rem;
+    letter-spacing: 0;
+  }
+  .not-this h2::after { display: none; }
+  .not-this p {
+    font-size: .95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (min-width: 48rem) {
+    .not-this { padding: 0 0 2rem; }
+    .not-this h2 { font-size: 1.1rem; }
+  }
+
+  /* ---------- Mitä se sitten on + kolme korttia ---------- */
+  .is-this { padding: 1.5rem 0 4.5rem; }
+  .is-this-lead { max-width: var(--measure); }
+  .pillars { display: grid; gap: 1.15rem; margin: 2rem 0 0; }
+  .pillar {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 1.15rem;
+    padding: 1.7rem 1.4rem 1.45rem;
+  }
+  .pillar::before {
+    content: "";
+    position: absolute;
+    left: 1.4rem;
+    right: 1.4rem;
+    top: 0;
+    height: .35rem;
+    background: var(--peach);
+    border-radius: 0 0 .35rem .35rem;
+  }
+  .pillar h3 {
+    font-size: 1.12rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 .7rem;
+  }
+  .pillar p {
+    margin: 0;
+    max-width: none;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 48rem) {
+    .is-this { padding: 2rem 0 6.5rem; }
+    .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
   }
 
   /* ---------- Tulossa 2027: Hengittävä Koti ---------- */
@@ -356,6 +437,36 @@
       <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.</p>
       <p>Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.</p>
       <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
+    </div>
+  </section>
+
+  <section class="not-this" aria-labelledby="h-eiole">
+    <div class="wrap">
+      <h2 id="h-eiole">Mitä Hengittävien äitien klubi ei ole?</h2>
+      <p>Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia. Se ei myöskään ole joogakerho, jumpparyhmä tai tiettyyn maailmankatsomukseen sitoutunut yhteisö.</p>
+    </div>
+  </section>
+
+  <section class="is-this" aria-labelledby="h-sitten">
+    <div class="wrap wrap--wide">
+      <div class="is-this-lead">
+        <h2 id="h-sitten">Mitä se sitten on?</h2>
+        <p>Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <h3>Hyvinvoiva nainen ja äiti</h3>
+          <p>Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.</p>
+        </article>
+        <article class="pillar">
+          <h3>Kasvua äitiydessä</h3>
+          <p>Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.</p>
+        </article>
+        <article class="pillar">
+          <h3>Hyvinvoivempi perhe ja koti</h3>
+          <p>Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -451,7 +562,7 @@
         <li>Kolme SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
       </ul>
       <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet.</p>
-      <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen harjoituksen.</p>
+      <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen.</p>
       <p class="btn-row">
         <!-- Linkki: vierittää hintoihin (#hinta) -->
         <a class="btn" href="#hinta">Liity klubiin</a>
@@ -504,7 +615,7 @@
           <div class="bonus">
             <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968/ kuvaaja Aleksandr Maksin (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
             <img src="/klubi/img/taysikuu-meri.jpg" width="5656" height="3560" loading="lazy" decoding="async" alt="Täysikuu tyynen meren yllä, kuunvalo heijastuu veteen.">
-            <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen harjoituksen.</p>
+            <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen.</p>
           </div>
           <p class="btn-row">
             <!-- Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk -->
@@ -524,8 +635,13 @@
           </p>
         </article>
       </div>
-      <p class="pricing-note">Sitoutumisaikaa ei ole. Voit perua jäsenyyden tai pitää 1–3 kuukauden tauon milloin vain.</p>
-      <p class="price-terms">Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa. Pidätämme oikeuden muuttaa jäsenmaksua perustellusta syystä. Mahdollisesta muutoksesta ilmoitetaan jäsenille etukäteen, ja voit päättää jäsenyytesi ennen kuin uusi hinta astuu voimaan.</p>
+      <div class="ehdot">
+        <h3>Ehdot</h3>
+        <p>Kyseessä on kuukausijäsenyys. Veloitus tapahtuu automaattisesti kerran kuukaudessa, ja jokainen maksu kattaa kalenterikuukauden.</p>
+        <p>Sitoutumisaikaa ei ole. Jäsenyyden voi perua tai pitää 1–3 kuukauden tauon.</p>
+        <p>Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa. Pidätämme oikeuden muuttaa jäsenmaksua perustellusta syystä. Mahdollisesta muutoksesta ilmoitetaan jäsenille etukäteen, ja voit päättää jäsenyytesi ennen kuin uusi hinta astuu voimaan.</p>
+        <p><a href="/klubi/ehdot/">Lue tarkemmin ehdoista</a></p>
+      </div>
     </div>
   </section>
 
@@ -580,15 +696,15 @@
         </details>
         <details>
           <summary>Miten maksu toimii?</summary>
-          <p>Kyseessä on kuukausijäsenyys. Maksu veloitetaan kuukausittain käytössä olevan maksupalvelun kautta. Ensimmäinen maksu kattaa marraskuun, jos liityt lokakuussa.</p>
+          <p>Kyseessä on kuukausijäsenyys. Veloitus tapahtuu automaattisesti kerran kuukaudessa. Lokakuussa liittyvien ensimmäinen veloitus on 1.11. Jokainen maksu kattaa kalenterikuukauden.</p>
         </details>
         <details>
           <summary>Voinko lopettaa jäsenyyden?</summary>
-          <p>Kyllä. Sitoutumisaikaa ei ole, ja jäsenyyden voi perua.</p>
+          <p>Kyllä. Sitoutumisaikaa ei ole, ja jäsenyyden voi perua. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a></p>
         </details>
         <details>
           <summary>Voinko pitää taukoa?</summary>
-          <p>Kyllä. Voit pitää 1–3 kuukauden tauon.</p>
+          <p>Kyllä. Voit pitää 1–3 kuukauden tauon. <a href="/klubi/ehdot/">Katso tarkemmin ehdoista.</a></p>
         </details>
         <details>
           <summary>Mitä PLUS-jäsenyys sisältää?</summary>
