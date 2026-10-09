@@ -133,6 +133,12 @@
   ul.soft li { position: relative; padding-left: 1.6rem; margin-bottom: .85rem; }
   ul.soft li::before { content: ""; position: absolute; left: 0; top: .7em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
 
+  /* Mitä klubi antaa: yksi palsta mobiilissa, kaksi leveällä */
+  ul.gives { list-style: none; padding: 0; margin: 0 0 2.25rem; display: grid; gap: 1.15rem 2.75rem; }
+  ul.gives li { position: relative; padding-left: 1.7rem; margin: 0; line-height: 1.7; }
+  ul.gives li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
+  @media (min-width: 60rem) { ul.gives { grid-template-columns: 1fr 1fr; } }
+
   /* Tunnistuslista: selkeät rivit, helppo silmäillä */
   ul.recognize { list-style: none; padding: 0; margin: 0 0 2rem; border-top: 1px solid var(--line); max-width: 62ch; }
   ul.recognize li { position: relative; padding: .9rem 0 .9rem 2rem; border-bottom: 1px solid var(--line); line-height: 1.55; }
@@ -213,8 +219,8 @@
 
   /* ---------- Pricing ---------- */
   #hinta { scroll-margin-top: 1rem; }
-  .tiers { display: grid; gap: 1.5rem; margin: 2.5rem 0; }
-  @media (min-width: 60rem) { .tiers { grid-template-columns: 1.2fr 1fr 1fr; align-items: stretch; } }
+  .tiers { display: grid; gap: 1.5rem; margin: 2.5rem auto; max-width: 48rem; }
+  @media (min-width: 48rem) { .tiers { grid-template-columns: 1fr 1fr; align-items: stretch; } }
   .tier { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; padding: 2rem 1.75rem; }
   .tier p { max-width: none; }
   .tier .btn-row { margin-top: auto; padding-top: 1.75rem; }
@@ -225,9 +231,30 @@
   .tier--featured::before { content: ""; position: absolute; left: 2rem; right: 2rem; top: 0; height: .4rem; background: var(--peach); border-radius: 0 0 .4rem .4rem; }
   .tier--featured .tier-lead { color: #fff; font-size: 1.85rem; }
   .tier--featured .btn { min-height: 3.5rem; font-size: 1.125rem; }
-  @media (min-width: 60rem) { .tier--featured { margin: -1rem 0; padding-top: 3rem; padding-bottom: 3rem; } }
+  @media (min-width: 48rem) { .tier--featured { padding-top: 2.75rem; padding-bottom: 2.75rem; } }
   .tier .btn--outline { background: transparent; }
   .pricing-note { text-align: center; margin: 0 auto; color: var(--ink-soft); }
+
+  /* ---------- Ensimmäinen sisältöjakso: Mikä on klubi ---------- */
+  .intro { padding: 3.25rem 0 4rem; }
+  .intro p { font-size: 1.1875rem; line-height: 1.8; }
+  .intro p + p { margin-top: 1.5rem; }
+  @media (min-width: 48rem) {
+    .intro { padding: 4.5rem 0 5.5rem; }
+    .intro p { font-size: 1.3125rem; }
+  }
+
+  /* ---------- Tulossa 2027: Hengittävä Koti ---------- */
+  .coming { padding: 1rem 0 4.5rem; }
+  .coming-inner {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 3.25rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .coming-inner p { max-width: none; }
+  @media (min-width: 48rem) { .coming { padding: 1.5rem 0 5.5rem; } .coming-inner { padding: 3.75rem 0; } }
 
   /* ---------- Etkö ole vielä varma? (pehmeä, riskitön askel) ---------- */
   .soft-step { max-width: 40rem; margin: 0 auto; border: 1px solid var(--line); border-radius: 1.5rem; padding: 2.5rem 1.5rem; background: var(--paper); }
@@ -293,6 +320,15 @@
     <p class="breath">Tuntuuko joskus siltä, että kaikki tarvitsevat sinua, mutta kukaan ei kysy, miten sinä voit?</p>
   </div>
 
+  <section class="intro" aria-labelledby="h-mikaon">
+    <div class="wrap">
+      <h2 id="h-mikaon">Mikä on Hengittävien äitien klubi?</h2>
+      <p>Hengittävien äitien klubi on äitien oma paikka keskellä kaikkea. Täällä pysähdytään ennen kuin on pakko, opetellaan kuuntelemaan omaa kehoa ja hermostoa ja puhutaan rehellisesti siitä, mitä äitiys tässä ajassa vaatii: kuormasta, kiireestä, ruuduista, yksinäisyydestä, levosta ja rajoista.</p>
+      <p>Klubi on kuukausijäsenyys. Joka kuukausi harjoittelemme yhtä taitoa, joka helpottaa arkea ja jonka voit opettaa myös lapsellesi. Saat lyhyitä harjoituksia ja luentoja, sunnuntain yhteisen liven ja oman kyläryhmän, jossa muut äidit kulkevat rinnallasi.</p>
+      <p>Täällä ei tarvitse olla valmis eikä suorittaa mitään. Riittää, että tulet sellaisena kuin olet.</p>
+    </div>
+  </section>
+
   <section aria-labelledby="h-sinulle">
     <div class="wrap">
       <h2 id="h-sinulle">Klubi on sinulle, jos</h2>
@@ -324,18 +360,20 @@
   </section>
 
   <!-- ===================== 4. MIKÄ KLUBI ON + visio ===================== -->
-  <section aria-labelledby="h-mika">
-    <div class="wrap">
-      <h2 id="h-mika">Mikä klubi on</h2>
-      <p>Klubi on sinun kyläsi ja tukipilarisi, paikka jossa äidit eivät jää yksin kantamaan liikaa. Ketään ei arvostella, ja toisia kannustetaan. Täällä opetellaan yhdessä:</p>
-      <ul class="soft">
-        <li>pysähtymään keskellä arkea</li>
-        <li>keventämään kuormaa</li>
-        <li>kuuntelemaan itseä</li>
-        <li>asettamaan rajoja</li>
-        <li>sanomaan kyllä itselle ja ei sille, mikä vie liikaa.</li>
+  <section aria-labelledby="h-antaa">
+    <div class="wrap wrap--wide">
+      <h2 id="h-antaa">Mitä klubi antaa sinulle</h2>
+      <p>Klubi on sinun kyläsi ja tukipilarisi. Ketään ei arvostella, ja toisia kannustetaan. Näin se näkyy arjessasi:</p>
+      <ul class="gives">
+        <li>Huomaat, milloin kierrokset nousevat, ennen kuin pinna palaa.</li>
+        <li>Osaat rauhoittaa itsesi muutamassa minuutissa keskellä arkea: keittiössä, autossa tai illalla sängyssä.</li>
+        <li>Saat keinoja, joilla autat lastasi rauhoittumaan, ja opetat sitä omalla esimerkilläsi.</li>
+        <li>Lepäät ilman syyllisyyttä, koska tiedät, miksi lepo on tärkeää.</li>
+        <li>Kuorma kevenee, kun opit sanomaan kyllä itsellesi ja ei sille, mikä vie liikaa.</li>
+        <li>Sinulla on kylä: äidit, joille voit sanoa ääneen, että tämä on raskasta.</li>
+        <li>Arkeesi tulee rytmi, joka kantaa. Yksi pieni harjoitus viikossa riittää.</li>
+        <li>Löydät äitiydestä enemmän hetkiä, joista nautit.</li>
       </ul>
-      <p>Puhumme rehellisesti äitiyden kuormasta, kiireestä, ruuduista ja sirpaloituneesta keskittymisestä, yksinäisyydestä, levosta ja rajoista. Sinun ei tarvitse olla valmis.</p>
       <p>Klubissa avataan hiljalleen kehoa ja mieltä ja vapautetaan hengitystä. Se on tie kohti harmoniaa ja rentoutta, sekä omassa mielessäsi että kotona.</p>
       <!-- Kuvapankkikuva (väliaikainen, mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/mother-and-child-enjoying-natural-light-indoors-29973427/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
       <img class="photo photo--inline" src="/klubi/img/hero-aiti-ja-lapsi-ikkunalla.jpg" width="1200" height="1500" loading="lazy" decoding="async" style="object-position: 50% 18%;" alt="Äiti ja pieni lapsi seisovat selin ikkunan äärellä ja katsovat talvista pihaa aamun valossa.">
@@ -384,7 +422,7 @@
         <li>Aloitusäänitteen: näin klubi toimii ja mistä aloitat</li>
         <li>Kolme SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
       </ul>
-      <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet. Liittyessäsi voit ottaa mukaan uuden Hermosto Reset -käsikirjan 20 eurolla (normaalisti 29 €). Siinä on neljä viikkoa, ja saat sen puhelimeen, tulostettavana ja äänitteenä.</p>
+      <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet.</p>
       <p class="btn-row">
         <!-- Linkki: vierittää hintoihin (#hinta) -->
         <a class="btn" href="#hinta">Liity klubiin</a>
@@ -396,14 +434,7 @@
   <section aria-labelledby="h-helsinki">
     <div class="wrap">
       <h2 id="h-helsinki">Syksyn kohokohta: tavataan Helsingissä</h2>
-      <p>Marraskuun viimeisenä viikonloppuna tapaamme hotelli Valossa Helsingissä ja hengitämme yhdessä. Lauantaina on luento, yhteinen hengitys- ja kehoharjoitus ja aikaa tutustua muihin klubilaisiin. Voit tulla vain päiväksi tai jäädä yöksi hotelliin.</p>
-      <p>Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.</p>
-      <p class="btn-row">
-        <!-- Linkki: Hotelli Valon tapaamisen lippujen varaus (maksulinkki tulee myöhemmin) -->
-        <a class="btn btn--outline" href="#" data-klubi-link="meetup">Varaa paikkasi</a>
-      </p>
-      <!-- Kuvapaikka: Julianan OMA kuva joogatunnilta tai retriitistä (mustavalkoinen). Ei kuvapankkikuvaa. -->
-      <div class="ph ph--wide" role="img" aria-label="Kuvapaikka: oma kuva joogatunnilta tai retriitistä">[Oma kuva: joogatunnilta tai retriitistä]</div>
+      <p>Marraskuun viimeisenä viikonloppuna tapaamme hotelli Valossa Helsingissä ja hengitämme yhdessä. Luvassa on luento, yhteinen hengitys- ja kehoharjoitus ja aikaa tutustua muihin klubilaisiin. Voit tulla päiväksi tai jäädä yöksi. Klubilaiset saavat lipun etuhintaan, ja kerromme tarkemmat tiedot pian.</p>
     </div>
   </section>
 
@@ -456,15 +487,19 @@
             <a class="btn btn--outline" href="#" data-klubi-link="plus">Liity PLUS-jäseneksi</a>
           </p>
         </article>
-        <article class="tier" aria-label="Klubi + Hengitystila 249 €/kk">
-          <p><span class="tier-lead">Klubi + Hengitystila <span class="price nw">249 €/kk</span>.</span> Kaikki PLUS-tason sisältö ja lisäksi kaksi 45 minuutin kahdenkeskistä tapaamista kuukaudessa sekä viestituki arkisin. Paikkoja on 3.</p>
-          <p class="btn-row">
-            <!-- Linkki: GHL-tilauslinkki (Stripe) Klubi + Hengitystila 249 €/kk -->
-            <a class="btn btn--outline" href="#" data-klubi-link="hengitystila">Liity Hengitystila-tasolle</a>
-          </p>
-        </article>
       </div>
       <p class="pricing-note">Sitoutumisaikaa ei ole. Voit perua jäsenyyden tai pitää 1–3 kuukauden tauon milloin vain.</p>
+    </div>
+  </section>
+
+  <!-- ===================== Tulossa 2027: Hengittävä Koti ===================== -->
+  <section class="coming" aria-labelledby="h-koti">
+    <div class="wrap">
+      <div class="coming-inner">
+        <h2 id="h-koti">Tulossa 2027: Hengittävä Koti</h2>
+        <p>Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi polku niille, jotka haluavat enemmän: ylikuormittuneesta äidistä hengittäväksi äidiksi ja kotiin, joka kantaa koko perhettä.</p>
+        <p>Klubilaiset kuulevat valmennuksista ensimmäisinä ja saavat ne etuhintaan.</p>
+      </div>
     </div>
   </section>
 
@@ -511,7 +546,7 @@
         </details>
         <details>
           <summary>Miten maksu toimii?</summary>
-          <p>Maksat kortilla liittyessäsi. Lokakuussa liittyvän ensimmäinen maksu kattaa marraskuun, ja sen jälkeen veloitus tapahtuu automaattisesti kuun ensimmäisenä päivänä. Voit perua jäsenyyden itse.</p>
+          <p>Maksat kortilla liittyessäsi, ja veloitus toistuu automaattisesti kuukausittain. Voit perua jäsenyyden itse.</p>
         </details>
       </div>
     </div>
@@ -548,8 +583,6 @@
       klubi: 'https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237', // 19 €/kk founder (current)
       regular: 'https://link.fastpaydirect.com/payment-link/6ac7ae22075ea22a20cdd23b', // 25 €/kk from 2.11.
       plus: 'https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499', // PLUS 89 €/kk
-      hengitystila: '#',  // GHL Klubi + Hengitystila 249 €/kk
-      meetup: '#',        // Hotelli Valo tickets
       nollaushetki: 'https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu'
     }
   };
