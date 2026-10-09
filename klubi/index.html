@@ -219,9 +219,9 @@
 
   /* ---------- Pricing ---------- */
   #hinta { scroll-margin-top: 1rem; }
-  .tiers { display: grid; gap: 1.5rem; margin: 2.5rem auto; max-width: 48rem; }
-  @media (min-width: 48rem) { .tiers { grid-template-columns: 1fr 1fr; align-items: stretch; } }
-  .tier { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; padding: 2rem 1.75rem; }
+  .tiers { display: grid; gap: 1.5rem; margin: 2.5rem auto; max-width: 48rem; align-items: stretch; }
+  @media (min-width: 48rem) { .tiers { grid-template-columns: 1fr 1fr; } }
+  .tier { display: flex; flex-direction: column; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; padding: 2rem 1.75rem; }
   .tier p { max-width: none; }
   .tier .btn-row { margin-top: auto; padding-top: 1.75rem; }
   .tier .btn { width: 100%; padding-left: 1rem; padding-right: 1rem; }
