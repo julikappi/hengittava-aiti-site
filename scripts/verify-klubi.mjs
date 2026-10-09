@@ -66,7 +66,7 @@ assert(page.includes('Hyvinvoiva nainen ja äiti'), 'pillar 1 title verbatim');
 assert(page.includes('Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.'), 'pillar 1 text verbatim');
 assert(page.includes('Kasvua äitiydessä'), 'pillar 2 title verbatim');
 assert(page.includes('Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.'), 'pillar 2 text verbatim');
-assert(page.includes('Hyvinvoivempi perhe ja koti'), 'pillar 3 title verbatim');
+assert(page.includes('Parempi tunnelma perheessäsi ja kotonasi'), 'pillar 3 title verbatim');
 assert(page.includes('Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.'), 'pillar 3 text verbatim');
 assert((page.match(/<article class="pillar"/g) || []).length === 3, 'three is-this cards');
 assert(page.includes('Klubi on sinulle, jos'), 'recognition heading kept');
