@@ -172,6 +172,17 @@ assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
 assert(page.includes('Retriitti – Hengähdystauko Hotelli Valossa'), 'Valo meetup heading verbatim');
 assert(!page.includes('Tavataan Helsingissä'), 'old Valo Helsinki heading removed');
 assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo 2027 dates and prices verbatim');
+assert(page.includes('Päiväretriitti'), 'Valo day option heading');
+assert(
+  page.includes('Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.'),
+  'Valo day option text verbatim',
+);
+assert(page.includes('Yli yön'), 'Valo overnight option heading');
+assert(
+  page.includes('Kaksi pitkää, perusteellisesti lataavaa harjoitusta, ravitsevaa ruokaa ja rentoutumista Hotelli Valon upealla spa-osastolla.'),
+  'Valo overnight option text verbatim',
+);
+assert(!page.includes('Luvassa on luento, yhteinen harjoitus'), 'old Valo lecture paragraph removed');
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
 assert(
