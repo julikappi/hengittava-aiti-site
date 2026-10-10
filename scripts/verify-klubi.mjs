@@ -183,6 +183,12 @@ assert(
   'Valo overnight option text verbatim',
 );
 assert(!page.includes('Luvassa on luento, yhteinen harjoitus'), 'old Valo lecture paragraph removed');
+assert(page.includes('data-form-id="0s8Zj7kjIA8LTWOoIAYA"'), 'day retreat GHL form id');
+assert(page.includes('data-form-name="Retriitti Valo – päiväretriitti"'), 'day retreat GHL form name');
+assert(page.includes('data-form-id="9DTL1P28Fcz7sgJMbC4S"'), 'overnight retreat GHL form id');
+assert(page.includes('data-form-name="Retriitti Valo – yli yön"'), 'overnight retreat GHL form name');
+assert((page.match(/link\.msgsndr\.com\/js\/form_embed\.js/g) || []).length === 1, 'GHL form_embed.js loaded once');
+assert((page.match(/loading="lazy"/g) || []).length >= 2, 'Valo form iframes are lazy-loaded');
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
 assert(

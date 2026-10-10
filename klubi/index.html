@@ -9,6 +9,8 @@
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://hengittava-aiti.fi/klubi/">
 <link rel="icon" href="/kuvat/logo-merkki.png" type="image/png">
+<link rel="preconnect" href="https://api.leadconnectorhq.com" crossorigin>
+<link rel="preconnect" href="https://link.msgsndr.com" crossorigin>
 
 <meta property="og:title" content="Hengittävien äitien klubi">
 <meta property="og:description" content="Äitien oma pieni kylä keskellä arkea. Paikka, jossa opit ymmärtämään itseäsi ja omaa hermostoasi ja saat rinnallesi muita äitejä.">
@@ -380,6 +382,19 @@
     line-height: 1.55;
     color: var(--ink-soft);
   }
+  .option-form {
+    margin-top: 1.25rem;
+    min-height: 520px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .option-form iframe {
+    display: block;
+    width: 100%;
+    height: 520px;
+    border: 0;
+  }
   @media (min-width: 48rem) {
     .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
     .options { grid-template-columns: 1fr 1fr; gap: 1.35rem; }
@@ -616,10 +631,48 @@
         <article class="option">
           <h3>Päiväretriitti</h3>
           <p>Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.</p>
+          <div class="option-form">
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"
+              style="width:100%;height:520px;border:none;border-radius:16px"
+              id="inline-0s8Zj7kjIA8LTWOoIAYA"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Retriitti Valo – päiväretriitti"
+              data-height="520"
+              data-layout-iframe-id="inline-0s8Zj7kjIA8LTWOoIAYA"
+              data-form-id="0s8Zj7kjIA8LTWOoIAYA"
+              title="Retriitti Valo – päiväretriitti"
+              loading="lazy"></iframe>
+          </div>
         </article>
         <article class="option">
           <h3>Yli yön</h3>
           <p>Kaksi pitkää, perusteellisesti lataavaa harjoitusta, ravitsevaa ruokaa ja rentoutumista Hotelli Valon upealla spa-osastolla.</p>
+          <div class="option-form">
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"
+              style="width:100%;height:520px;border:none;border-radius:16px"
+              id="inline-9DTL1P28Fcz7sgJMbC4S"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Retriitti Valo – yli yön"
+              data-height="520"
+              data-layout-iframe-id="inline-9DTL1P28Fcz7sgJMbC4S"
+              data-form-id="9DTL1P28Fcz7sgJMbC4S"
+              title="Retriitti Valo – yli yön"
+              loading="lazy"></iframe>
+          </div>
         </article>
       </div>
       <img class="photo photo--break photo--colour" src="/klubi/img/valo-kattoterassi.jpg" width="863" height="575" loading="lazy" decoding="async" alt="Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.">
@@ -836,6 +889,7 @@
   update();
 })();
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 </body>
 </html>
