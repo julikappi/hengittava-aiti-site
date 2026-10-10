@@ -35,6 +35,7 @@ const requiredImages = [
   'hengahdys-kahvi-ikkunalla.jpg',
   'metsa-aurinko.jpg',
   'valo-kattoterassi.jpg',
+  'hengittava-koti-olohuone.jpg',
 ];
 
 assert(page === publicPage, 'public/klubi mirrors root page');
@@ -269,6 +270,14 @@ assert(page.includes('Tulossa alkuvuonna 2027'), '2027 heading kept');
 assert(!page.includes('Tulossa vuonna 2027'), 'year-only 2027 heading removed');
 assert(!page.includes('Tulossa 2027: Hengittävä Koti'), 'old Koti-only 2027 heading removed');
 assert(page.includes('Hengittävä Koti -valmennus'), 'Koti item title kept');
+assert(page.includes('hengittava-koti-olohuone.jpg'), 'Koti living-room photo present');
+assert(page.includes('Kodikas olohuone iltavalossa, sohvalla nalle ja nurkassa piano.'), 'Koti living-room alt verbatim');
+assert(
+  /hengittava-koti-olohuone\.jpg[^>]*photo--colour/.test(page) || /photo--colour[^>]*hengittava-koti-olohuone\.jpg/.test(page),
+  'Koti living-room stays in colour',
+);
+assert((page.match(/class="coming-media"/g) || []).length === 2, 'both 2027 items share the same photo layout');
+assert(page.includes('loading="lazy"') && page.includes('/klubi/img/hengittava-koti-olohuone.jpg'), 'Koti living-room is lazy-loaded');
 assert(
   page.includes('Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi jatkopolku niille, jotka haluavat paneutua omaan hyvinvointiinsa, vanhemmuuteen ja koko perheen arkeen vielä perusteellisemmin.'),
   'Koti short text kept verbatim',
