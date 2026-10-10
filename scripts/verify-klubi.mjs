@@ -133,6 +133,16 @@ assert(
 assert(page.includes('repeat(4, minmax(0, 1fr))'), 'goal cards are four columns on desktop');
 assert(page.includes('hero-open') && page.includes('hero-offer') && page.includes('hero-continue'), 'hero opening, offer, and continue are separate blocks');
 assert(page.includes('"copy visual"'), 'desktop hero is a balanced 2-column opening');
+assert(page.includes('"title title"'), 'desktop hero title may span the full hero width');
+assert(
+  /\.hero h1 \{[\s\S]*?white-space:\s*nowrap/.test(page),
+  'hero title stays on one line',
+);
+assert(
+  /\.hero h1 \{[\s\S]*?font-size:\s*clamp\(/.test(page),
+  'hero title size uses clamp so it fits narrow phones',
+);
+assert(!page.includes('max-width: 14ch'), 'hero title is not capped to two lines');
 assert(page.includes('hero-story'), 'coffee photo sits in the story row after the 2-col opening');
 assert(!page.includes('.hero .photo--pause { display: none; }'), 'coffee photo stays visible on desktop');
 assert(!page.includes('hero-head'), 'full-width centered hero head removed');
