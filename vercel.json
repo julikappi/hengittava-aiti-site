@@ -45,6 +45,14 @@
       "dest": "/hermosto-reset/index.html"
     },
     {
+      "src": "/klubi/ehdot/?",
+      "dest": "/klubi/ehdot/index.html"
+    },
+    {
+      "src": "/klubi/?",
+      "dest": "/klubi/index.html"
+    },
+    {
       "src": "/minun-tarinani/?",
       "dest": "/minun-tarinani/index.html"
     },
