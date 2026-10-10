@@ -203,7 +203,14 @@ assert(page.includes('Täällä ei suoriteta'), 'anti-hustle heading kept');
 assert(page.includes('Kuka minä olen'), 'about heading kept');
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
 assert(page.includes('Klubi 19 €/kk'), 'club price kept');
-assert(page.includes('kun liityt lokakuussa.'), 'october price line kept');
+assert(
+  page.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu. 1.11. alkaen hinta on 25 €/kk.'),
+  'founder price lock until 31.10. then 25 €/kk',
+);
+assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
+assert(!page.includes('kun liityt lokakuussa.'), 'old october-only price lead removed');
+assert(!page.includes('ellei jäsenyys- tai hinnoitteluehtoihin'), 'old lock caveat removed from the card');
+assert(!page.includes('uusien jäsenten hinta on 25 €/kk'), 'new-member-only 25 € wording replaced');
 assert(page.includes('Saat heti pääsyn klubiin.'), 'Klubi card grants access immediately');
 assert(!page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'calendar-month first-charge line removed');
 assert(!page.includes('kalenterikuukauden'), 'payment does not cover a calendar month');
@@ -330,6 +337,11 @@ assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
+assert(terms.includes('<h2>Hinta</h2>'), 'terms page price heading');
+assert(
+  terms.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu. 1.11. alkaen hinta on 25 €/kk.'),
+  'terms page has the same founder price lock',
+);
 assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
 assert(
   terms.includes('Jäsenyyden voi perua milloin vain viestillä osoitteeseen'),
