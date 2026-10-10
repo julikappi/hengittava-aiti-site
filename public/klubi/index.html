@@ -284,9 +284,17 @@
   .ehdot h3 { margin-bottom: .85rem; }
   .ehdot p { max-width: none; margin: 0 0 1rem; }
   .ehdot p:last-child { margin-bottom: 0; }
-  .ehdot a, .faq a {
+  .ehdot a, .faq a, .invoice-note a {
     color: var(--violet);
     text-underline-offset: .18em;
+  }
+  .invoice-note {
+    max-width: 40rem;
+    margin: .25rem auto 0;
+    text-align: center;
+    font-size: .95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
   }
   .price-fn {
     font-size: .82rem;
@@ -745,6 +753,7 @@
           </p>
         </article>
       </div>
+      <p class="invoice-note">Haluatko maksaa laskulla? Laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
       <div class="ehdot">
         <h3>Ehdot</h3>
         <p>Kyseessä on kuukausijäsenyys. Maksu veloitetaan liittyessä ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä.</p>
@@ -814,6 +823,7 @@
           <summary>Miten maksu toimii?</summary>
           <p>Kyseessä on kuukausijäsenyys. Maksu veloitetaan kortilla liittyessäsi ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet. Liittymishinta 19 €/kk* on voimassa 31.10. asti. 1.11. alkaen hinta on 25 €/kk.</p>
           <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
+          <p>Haluatko maksaa laskulla? Laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
         </details>
         <details>
           <summary>Voinko lopettaa jäsenyyden?</summary>

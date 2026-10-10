@@ -240,6 +240,16 @@ assert(
   'payment FAQ is join-date monthly billing',
 );
 assert(
+  (page.match(/Haluatko maksaa laskulla\? Laita viestiä osoitteeseen/g) || []).length === 2,
+  'invoice-by-email line under price cards and in the payment FAQ',
+);
+assert(
+  page.includes('class="invoice-note"') && page.includes('Haluatko maksaa laskulla?'),
+  'invoice note sits under the price cards',
+);
+assert(!page.includes('3 kuukauden lasku'), 'no 3-month billing mention');
+assert(!page.includes('laskutusjaksosta'), 'no extra invoice-period wording');
+assert(
   page.includes('Kyllä. Jäsenyydessä ei ole sitoutumisaikaa. Voit perua jäsenyyden milloin vain viestillä osoitteeseen'),
   'cancel FAQ is anytime by email',
 );
@@ -390,6 +400,11 @@ assert(
 );
 assert(terms.includes('kortilla, Apple Paylla tai Google Paylla (Stripe)'), 'terms page payment methods');
 assert(terms.includes('kuukauden välein liittymispäivästä'), 'terms page join-date billing');
+assert(
+  terms.includes('Laskulla maksamisesta voi sopia erikseen viestillä osoitteeseen'),
+  'terms page invoice-by-email under Maksaminen',
+);
+assert(!terms.includes('3 kuukauden lasku'), 'terms page has no 3-month billing');
 assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
 assert(
   terms.includes('Jäsenyyden voi perua milloin vain viestillä osoitteeseen'),
