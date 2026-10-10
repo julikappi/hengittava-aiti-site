@@ -192,7 +192,11 @@ assert(page.includes('data-form-name="Retriitti Valo – päiväretriitti"'), 'd
 assert(page.includes('data-form-id="9DTL1P28Fcz7sgJMbC4S"'), 'overnight retreat GHL form id');
 assert(page.includes('data-form-name="Retriitti Valo – yli yön"'), 'overnight retreat GHL form name');
 assert((page.match(/link\.msgsndr\.com\/js\/form_embed\.js/g) || []).length === 1, 'GHL form_embed.js loaded once');
-assert((page.match(/loading="lazy"/g) || []).length >= 2, 'Valo form iframes are lazy-loaded');
+assert(
+  !/<iframe[^>]*data-form-id="0s8Zj7kjIA8LTWOoIAYA"[^>]*loading="lazy"/.test(page) &&
+    !/<iframe[^>]*data-form-id="9DTL1P28Fcz7sgJMbC4S"[^>]*loading="lazy"/.test(page),
+  'Valo form iframes are not lazy-loaded so GHL can unhide them',
+);
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
 assert(
@@ -220,12 +224,26 @@ assert(
   page.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
   'approved 19 € footnote through 31.10.2027 with 30-day notice',
 );
-assert((page.match(/class="price-fn"/g) || []).length === 3, 'footnote on price card, Ehdot block, and payment FAQ');
+assert((page.match(/class="price-fn"/g) || []).length === 4, 'footnote on hero, price card, Ehdot block, and payment FAQ');
 assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
+assert(
+  /Lokakuussa liittyville[\s\S]{0,40}19 €\/kk\*[\s\S]{0,20}ei sitoutumisaikaa\./.test(page),
+  'hero names October price and no commitment',
+);
+assert(page.includes('<h2 id="h-hinta">Klubin hinta</h2>'), 'price section heading is Klubin hinta');
+assert((page.match(/class="cta-band"/g) || []).length === 2, 'two mid-page CTA bands');
+assert(
+  (page.match(/Valmis hengittämään kevyemmin\?[\s\S]{0,40}19 €\/kk[\s\S]{0,20}lokakuussa\./g) || []).length === 2,
+  'CTA bands share the October join line',
+);
+assert(page.includes('Lokakuussa liittyville'), 'hero October price lead present');
+assert((page.match(/Kyllä, liityn/g) || []).length === 3, 'hero and two bands use Kyllä, liityn');
+assert(!page.includes('<dialog'), 'no popup dialogs');
+assert(!page.includes('class="modal'), 'no popup modals');
 assert(!page.includes('kun liityt lokakuussa.'), 'old october-only price lead removed');
 assert(!page.includes('ellei jäsenyys- tai hinnoitteluehtoihin'), 'old lock caveat removed from the card');
 assert(!page.includes('uusien jäsenten hinta on 25 €/kk'), 'new-member-only 25 € wording replaced');
-assert(page.includes('Saat heti pääsyn klubiin.'), 'Klubi card grants access immediately');
+assert(!page.includes('Saat heti pääsyn klubiin'), 'immediate-access sentence removed from the price card');
 assert(!page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'calendar-month first-charge line removed');
 assert(!page.includes('kalenterikuukauden'), 'payment does not cover a calendar month');
 assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on 1.11.');
@@ -234,7 +252,10 @@ assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'),
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
 assert(page.includes('Tulossa 2027: Hengittävä Koti'), '2027 heading kept');
 assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading kept');
-assert(page.includes('Täysikuun nollaukseen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
+assert(page.includes('Täydenkuun nollaushetkeen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
+assert(page.includes('noin 30 minuutin harjoituksen Zoomissa'), 'nollaushetki duration is about 30 minutes');
+assert(!page.includes('Täysikuun nollauk'), 'old Täysikuun nollaus name removed');
+assert(!page.includes('20 min'), '20-minute duration removed from the club page');
 assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing lead from brief');
 assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
 assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
@@ -322,6 +343,7 @@ assert(!page.includes('Karla'), 'no Karla');
 assert(!page.includes('tailwindcss.com'), 'page is standalone CSS, not Tailwind CDN');
 
 assert(page.includes('https://hengittava-aiti.fi/nollaushetki/#ilmoittaudu'), 'nollaushetki CTA url');
+assert(!page.includes('perjantain-nollaushetki'), 'old nollaushetki path removed from the club page');
 assert(page.includes('og:title'), 'Open Graph title present');
 assert(page.includes('og:description'), 'Open Graph description present');
 assert(page.includes('og:image'), 'Open Graph image present');
@@ -346,7 +368,7 @@ assert(!page.includes('hengitystila'), 'Hengitystila LINKS entry removed');
 assert(!page.includes("meetup: '#'"), 'Valo LINKS entry removed');
 assert(!page.includes('data-klubi-link="regular"'), 'regular checkout is stored only, not wired');
 assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder checkout on price card, closing CTA, sticky bar');
-assert((page.match(/href="#hinta"/g) || []).length === 4, 'upper-page CTAs still scroll to #hinta');
+assert((page.match(/href="#hinta"/g) || []).length === 6, 'upper-page CTAs still scroll to #hinta');
 assert(
   (page.match(/href="https:\/\/link\.fastpaydirect\.com\/payment-link\/6ac7adab075ea22a20cdd237"/g) || []).length === 3,
   'founder checkout hrefs are the live FastPay URL, not #',
@@ -391,6 +413,11 @@ assert(
 );
 assert(terms.includes('Klubi PLUS 89 €/kk'), 'terms page PLUS price');
 assert(terms.includes('45 minuutin henkilökohtaisen Zoom-kartoituksen'), 'terms page PLUS assessment');
+assert(
+  terms.includes('viikoittaisen henkilökohtaisen viestin Julianalta oman reflektiosi pohjalta'),
+  'terms page PLUS uses the shortened weekly-message line',
+);
+assert(!terms.includes('kirjoitettu tai äänitetty'), 'terms page PLUS no longer names written or recorded replies');
 assert(terms.includes('enintään 10'), 'terms page PLUS cap');
 assert(
   !terms.includes('Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.'),
@@ -443,7 +470,20 @@ assert(!terms.includes('background: var(--ink)'), 'terms buttons are not ink/nea
 
 assert((page.match(/Liity klubiin/g) || []).length >= 3, 'club join buttons present');
 assert(page.includes('Liity PLUS-jäseneksi'), 'PLUS button label kept');
-assert(page.includes('Ilmoittaudu Täysikuun nollaukseen'), 'full-moon button label kept');
+assert(page.includes('Ilmoittaudu Täydenkuun nollaushetkeen'), 'full-moon button label kept');
+assert(!page.includes('kirjoitettu tai äänitetty'), 'PLUS no longer names written or recorded replies');
+assert(
+  page.includes('viikoittainen henkilökohtainen viesti Julianalta oman reflektiosi pohjalta'),
+  'PLUS card uses the shortened weekly-message line',
+);
+assert(
+  page.includes('viikoittaisen henkilökohtaisen viestin Julianalta oman reflektiosi pohjalta'),
+  'PLUS FAQ uses the shortened weekly-message line',
+);
+assert(!page.includes('min-height: 520px'), 'Valo form wrappers are not a fixed 520px tall');
+assert(!page.includes('data-height="520"'), 'Valo iframes are not a fixed 520px tall');
+assert(page.includes('.option-form {\n    position: relative;'), 'Valo form wrappers contain the absolutely positioned GHL iframe');
+assert(page.includes('background: transparent'), 'Valo form wrappers are not a white box');
 assert((page.match(/<article class="tier/g) || []).length === 2, 'exactly two price cards');
 
 assert(!page.includes('founder-countdown'), 'old founder countdown removed');
