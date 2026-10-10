@@ -137,7 +137,13 @@ assert(
   'desktop section headings are centered white boxes',
 );
 assert(page.includes('.split > h2 {\n      grid-column: 1 / -1;'), 'split headings span the full width');
-assert(page.includes('photo--pause-slot'), 'coffee photo fills the desktop hero right column');
+assert(!page.includes('photo--pause-slot'), 'coffee photo is not duplicated beside the portrait');
+assert(!page.includes('photo--pause-flow'), 'coffee photo uses the original in-flow class');
+assert((page.match(/hengahdys-kahvi-ikkunalla\.jpg/g) || []).length === 1, 'coffee photo appears once');
+assert(
+  page.includes('.not-this ul.soft {\n      display: flex;\n      flex-wrap: wrap;\n      justify-content: center;'),
+  'not-this items wrap as centered chips on desktop',
+);
 assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading is a main white-label h2');
 assert(page.includes('Klubi ei ole:'), 'not-this list lead-in verbatim');
 assert(page.includes('paikka, jossa arvostellaan muita ja toimitaan'), 'not-list item 1 verbatim');
