@@ -368,7 +368,8 @@ assert(
 );
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
-assert(terms.includes('Myyjä on Maradevi Oy.'), 'terms page names the seller');
+assert(terms.includes('Myyjä on ILO Wellness.'), 'terms page names the seller');
+assert(!terms.includes('Maradevi Oy'), 'terms page no longer names Maradevi as seller');
 assert(terms.includes('Hengittävien äitien klubi on kuukausijäsenyys.'), 'terms page names the product');
 assert(terms.includes('<h2>Hinta</h2>'), 'terms page price heading');
 assert(
