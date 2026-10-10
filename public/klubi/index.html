@@ -274,26 +274,37 @@
   .hero .photo--pause { display: block; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   @media (min-width: 56.25rem) {
-    .hero { padding: 5rem 0 6rem; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(24rem, 28rem); align-items: start; gap: 4rem; }
+    .hero { padding: 4.5rem 0 5.5rem; }
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(32rem, 1fr);
+      align-items: center;
+      gap: 4.5rem;
+    }
     .photo--hero {
       aspect-ratio: 4 / 5;
-      max-height: none;
+      width: 100%;
+      max-height: 46rem;
       object-fit: cover;
       position: sticky;
-      top: 2.5rem;
+      top: 2rem;
     }
-    .hero .photo--pause { max-width: 22rem; margin: 1.35rem 0 1.2rem; }
-    .hero h1 { font-size: clamp(2.4rem, 3.3vw, 3.15rem); white-space: nowrap; line-height: 1.12; }
-    .hero .wrap > :not(.hero-grid) { text-align: left; }
+    .hero .photo--pause { max-width: 24rem; margin: 1.35rem 0 1.2rem; }
+    .hero h1 { font-size: clamp(2.5rem, 3.6vw, 3.4rem); white-space: normal; line-height: 1.12; }
+    .hero p { max-width: 62ch; }
   }
 
   /* ---------- Kuka minä olen ---------- */
   .about-grid { display: grid; gap: 2.5rem; }
   .about-grid .photo--portrait { margin-top: 0; }
   @media (min-width: 56.25rem) {
-    .about-grid { grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr); align-items: center; gap: 4rem; max-width: 68.75rem; }
-    .about-grid .photo--portrait { max-width: 22rem; }
+    .about-grid {
+      grid-template-columns: minmax(26rem, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 4.5rem;
+      max-width: none;
+    }
+    .about-grid .photo--portrait { max-width: none; width: 100%; }
+    .about-grid p { max-width: 62ch; }
   }
 
   /* ---------- Pricing ---------- */
@@ -555,7 +566,9 @@
   @media (min-width: 56.25rem) {
     .wrap,
     .wrap--wide {
-      max-width: 68.75rem;
+      max-width: 80rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
 
     section,
@@ -566,119 +579,225 @@
     }
 
     h2 {
+      display: inline-block;
+      margin-left: 0;
+      margin-right: 0;
+      white-space: normal;
+      text-wrap: balance;
+      max-width: 22em;
+    }
+    .center h2 {
       display: table;
       margin-left: auto;
       margin-right: auto;
-      white-space: normal;
-      text-wrap: balance;
-      max-width: 36rem;
     }
 
-    .wrap > p,
-    .wrap > ul.soft,
-    .wrap > ul.recognize,
-    .wrap > ul.gets,
-    .wrap > h3,
-    .wrap > .not-lead,
-    .wrap > .lead,
-    .wrap > .btn-row,
-    .coming-inner,
-    .faq,
-    .ehdot,
-    .invoice-note,
-    .soft-step {
-      max-width: 42.5rem;
-      width: 100%;
+    p { max-width: 65ch; }
+
+    .intro,
+    section[aria-labelledby="h-sinulle"],
+    section[aria-labelledby="h-oppia"],
+    section[aria-labelledby="h-suoritus"],
+    .coming {
+      background: var(--peach-mist);
+      border-top: 1px solid var(--peach-2);
+      border-bottom: 1px solid var(--peach-2);
+    }
+    .not-this,
+    section[aria-labelledby="h-kuukausi"],
+    section[aria-labelledby="h-juliana"],
+    #varma {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: 4.5rem;
+      row-gap: 2.75rem;
+      max-width: 80rem;
       margin-left: auto;
       margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
-    .wrap > p,
-    .faq p,
-    .soft-step p,
-    .ehdot p {
-      max-width: 42.5rem;
+    .intro > .wrap { max-width: none; width: 100%; padding: 0; }
+    .intro-copy { grid-column: 1; grid-row: 1; }
+    .intro-photo { grid-column: 2; grid-row: 1; }
+    .intro-cards { grid-column: 1 / -1; grid-row: 2; }
+    .intro-photo .photo--break {
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      min-height: 28rem;
+      object-fit: cover;
+      margin: 0;
     }
 
     .photo--wide,
     .photo--inline,
-    .photo--break {
-      max-width: 56.25rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .photo--break,
     .photo--portrait {
-      max-width: 22rem;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .split {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(22rem, 26rem);
-      column-gap: 3.5rem;
-      row-gap: 1.25rem;
-      align-items: start;
-      max-width: 68.75rem;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: 4.5rem;
+      row-gap: 1.15rem;
+      align-items: center;
+      width: 100%;
       text-align: left;
     }
-    .split > :not(.photo):not(h2) { grid-column: 1; max-width: none; margin-left: 0; margin-right: 0; }
+    .wrap.split { max-width: 80rem; }
+    .split > :not(.photo):not(h2) { grid-column: 1; max-width: 65ch; margin-left: 0; margin-right: 0; }
     .split > h2 {
-      grid-column: 1 / -1;
+      grid-column: 1;
       grid-row: 1;
-      justify-self: center;
+      justify-self: start;
     }
     .split > .photo {
       grid-column: 2;
-      grid-row: 2 / span 8;
-      align-self: start;
+      grid-row: 1 / span 12;
+      align-self: stretch;
       width: 100%;
-      max-width: 26rem;
+      max-width: none;
+      height: 100%;
+      min-height: 22rem;
       margin: 0;
     }
-    .split--flip {
-      grid-template-columns: minmax(22rem, 26rem) minmax(0, 1fr);
-    }
     .split--flip > :not(.photo):not(h2) { grid-column: 2; }
-    .split--flip > h2 { grid-column: 1 / -1; }
+    .split--flip > h2 { grid-column: 2; }
     .split--flip > .photo { grid-column: 1; }
 
     .pillars {
-      max-width: 68.75rem;
-      margin: 2.5rem auto 0;
+      max-width: none;
+      margin: 0;
       gap: 1.5rem;
     }
     ul.gives {
-      max-width: 56.25rem;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 3.5rem;
     }
+    ul.gets {
+      max-width: none;
+      grid-template-columns: 1fr 1fr;
+    }
+    .not-this .wrap {
+      display: grid;
+      grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+      column-gap: 4rem;
+      align-items: start;
+    }
+    .not-this h2 { grid-column: 1; }
+    .not-this .not-lead { grid-column: 1; max-width: none; }
+    .not-this ul.soft {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      max-width: none;
+      columns: 2;
+      column-gap: 3rem;
+    }
+    .not-this ul.soft li { break-inside: avoid; }
+
+    section[aria-labelledby="h-kuukausi"] .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4.5rem;
+      row-gap: .85rem;
+    }
+    section[aria-labelledby="h-kuukausi"] h2 { grid-column: 1 / -1; }
+    section[aria-labelledby="h-kuukausi"] h3 { grid-column: 2; grid-row: 2; margin-top: 0; }
+    section[aria-labelledby="h-kuukausi"] h3 + p { grid-column: 2; }
+
+    section[aria-labelledby="h-heti"] .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4rem;
+      row-gap: 1rem;
+    }
+    section[aria-labelledby="h-heti"] h2,
+    section[aria-labelledby="h-heti"] ul.gets { grid-column: 1 / -1; }
+    section[aria-labelledby="h-heti"] .btn-row { grid-column: 1 / -1; }
+
+    section[aria-labelledby="h-suoritus"] .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4.5rem;
+      row-gap: 1rem;
+    }
+    section[aria-labelledby="h-suoritus"] h2 { grid-column: 1 / -1; }
+
     .tiers {
-      max-width: 56rem;
-      gap: 1.75rem;
+      max-width: none;
+      gap: 2rem;
     }
     .options {
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
       align-items: start;
     }
-    .coming-media {
+    .coming-inner {
       display: grid;
-      grid-template-columns: 14rem minmax(0, 1fr);
-      column-gap: 1.75rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: none;
       align-items: start;
     }
-    .coming-photo { max-width: 14rem; margin: 0; }
-    .coming-inner { max-width: 56.25rem; }
-    .coming-inner:has(.retriitti-more[open]) { max-width: 68.75rem; }
+    .coming-inner > h2 { grid-column: 1 / -1; }
+    .coming-item + .coming-item {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .coming-item {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.5rem 1.65rem;
+    }
+    .coming-media { display: block; }
+    .coming-photo { max-width: none; width: 100%; margin: 0 0 1.15rem; }
+    .coming-inner:has(.retriitti-more[open]) { max-width: none; }
     .retriitti-more[open] .options { margin-top: .25rem; }
-    .faq { max-width: 42.5rem; margin-left: auto; margin-right: auto; }
-    .cta-band { padding: 3.25rem 0; }
+
+    .faq {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3.5rem;
+      max-width: none;
+      margin: 0;
+    }
+    .ehdot {
+      max-width: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3.5rem;
+    }
+    .ehdot h3 { grid-column: 1 / -1; }
+    .invoice-note { max-width: none; }
+    .soft-step {
+      max-width: none;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 2.5rem;
+      align-items: center;
+      text-align: left;
+    }
+    .soft-step .photo--moon { grid-column: 1; grid-row: 1 / span 5; margin: 0; }
+    .soft-step > :not(.photo--moon) { grid-column: 2; }
+    .cta-band { padding: 3.5rem 0; }
     .cta-band .wrap { text-align: center; }
-    .cta-band p { max-width: 40rem; margin-left: auto; margin-right: auto; }
+    .cta-band p { max-width: none; }
     .hero-price { font-size: 1.2rem; }
-    .closing .wrap { max-width: 42.5rem; text-align: center; }
+    .closing .wrap { max-width: 80rem; text-align: center; }
+    .closing .breath { max-width: 28em; }
     .center { text-align: center; }
   }
 </style>
@@ -715,7 +834,7 @@
 <main id="sisalto">
 
   <section class="intro" aria-labelledby="h-mikaon">
-    <div class="wrap">
+    <div class="wrap intro-copy">
       <h2 id="h-mikaon">Mikä on Hengittävien äitien klubi?</h2>
       <p>Hengittävien äitien klubi on yhteisö äideille, jotka haluavat voida paremmin keskellä tavallista arkea ja kasvaa omassa äitiydessään.</p>
       <p>Opettelemme ymmärtämään hermoston toimintaa, tunnistamaan omia tarpeitamme ja löytämään keinoja palautua silloinkin, kun lapset tarvitsevat, puhelin soi ja oma aika tuntuu olevan aina viimeisenä.</p>
@@ -724,7 +843,7 @@
       <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
       <p>Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.</p>
     </div>
-    <div class="wrap wrap--wide">
+    <div class="wrap wrap--wide intro-cards">
       <div class="pillars">
         <article class="pillar">
           <h3>Hyvinvoiva nainen ja äiti</h3>
@@ -740,7 +859,7 @@
         </article>
       </div>
     </div>
-    <div class="wrap">
+    <div class="wrap intro-photo">
       <!-- Julianan oma kuva, väreissä (poikkeus mustavalkosäännöstä). -->
       <img class="photo photo--break photo--colour" src="/klubi/img/metsa-aurinko.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Aurinko siivilöityy männikön läpi syksyisessä metsässä.">
     </div>

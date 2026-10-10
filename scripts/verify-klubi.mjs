@@ -95,9 +95,13 @@ assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(pa
 assert(page.includes('@media (min-width: 56.25rem)'), 'desktop reading layout starts at 900px');
 assert(page.includes('.split'), 'desktop text+image split class present');
 assert((page.match(/class="wrap split/g) || []).length === 3, 'three natural text+image splits');
-assert(page.includes('max-width: 68.75rem'), 'desktop uses one ~1100px container');
-assert(page.includes('max-width: 42.5rem'), 'desktop body column is ~680px');
+assert(page.includes('max-width: 80rem'), 'desktop uses a ~1280px container');
+assert(!page.includes('max-width: 68.75rem'), 'narrow 1100px desktop container removed');
+assert(!page.includes('max-width: 42.5rem'), 'narrow centered 680px column removed');
 assert(page.includes('split--flip'), 'story sections alternate image side');
+assert(page.includes('.faq {\n      display: grid;\n      grid-template-columns: 1fr 1fr;'), 'FAQ is two columns on desktop');
+assert(page.includes('.coming-inner {\n      display: grid;\n      grid-template-columns: 1fr 1fr;'), '2027 items sit side by side on desktop');
+assert(page.includes('intro-copy') && page.includes('intro-photo'), 'intro is a wide text+image row');
 assert(!/h2\s*\{[^}]*white-space:\s*nowrap/.test(page), 'desktop heading boxes may wrap');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
