@@ -127,10 +127,10 @@ assert(
   'Ehdot block uses join-date billing',
 );
 assert(
-  page.includes('Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa. Maksettuja jäsenmaksuja ei palauteta.'),
-  'Ehdot cancel access-end and no refund',
+  page.includes('Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa.'),
+  'Ehdot cancel access-end',
 );
-assert((page.match(/Maksettuja jäsenmaksuja ei palauteta\./g) || []).length === 2, 'no-refund sentence in Ehdot and cancel FAQ');
+assert(!page.includes('Maksettuja jäsenmaksuja ei palauteta.'), 'no-refund sentence is not on the sales page');
 assert(page.includes('1–3 kuukauden tauon voi pitää pyynnöstä, ja tauon aikana ei laskuteta.'), 'Ehdot pause is on request');
 assert((page.match(/hei@hengittava-aiti.fi/g) || []).length >= 2, 'cancel and pause FAQs use the contact email');
 assert(page.includes('<h3>Ehdot</h3>'), 'Ehdot heading under prices');
@@ -197,6 +197,13 @@ assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
+assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
+assert(
+  terms.includes('Jäsenyyden voi perua milloin vain viestillä osoitteeseen'),
+  'terms page cancel by email',
+);
+assert(terms.includes('Pääsy päättyy maksetun kuukauden lopussa.'), 'terms page access-end');
+assert(terms.includes('Maksettuja jäsenmaksuja ei palauteta.'), 'no-refund sentence lives on the terms page');
 assert(terms.includes('Ehdot päivitetään tähän ennen klubin avautumista.'), 'terms page placeholder copy');
 assert(terms.includes('href="/klubi/"'), 'terms page links back to /klubi/');
 assert(/<meta name="robots" content="noindex/.test(terms), 'terms page is noindex');
