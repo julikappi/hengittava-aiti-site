@@ -452,6 +452,40 @@
     .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
   }
 
+  /* ---------- Compact Valo retreat at the end ---------- */
+  .retriitti { padding: 3.25rem 0 4rem; }
+  .retriitti-photo {
+    aspect-ratio: 3 / 2;
+    width: 100%;
+    margin: 0 0 1.5rem;
+  }
+  .retriitti-copy p { margin-bottom: 1rem; }
+  .retriitti-copy p:last-child { margin-bottom: 0; }
+  .retriitti-more { margin-top: 1.35rem; }
+  .retriitti-more > summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: .8rem 1.75rem;
+    border-radius: 999px;
+    background: var(--peach-deep);
+    border: 2px solid var(--peach-deep);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.3;
+    cursor: pointer;
+    text-align: center;
+  }
+  .retriitti-more > summary::-webkit-details-marker { display: none; }
+  .retriitti-more > summary::marker { content: ""; }
+  .retriitti-more > summary:hover { background: var(--peach); border-color: var(--peach); color: #FFFFFF; }
+  .retriitti-more[open] > summary { margin-bottom: 1.5rem; }
+  @media (max-width: 29.99rem) { .retriitti-more > summary { width: 100%; } }
+  @media (min-width: 48rem) { .retriitti { padding: 4rem 0; } }
+
   /* ---------- Tulossa 2027: Hengittävä Koti ---------- */
   .coming { padding: 1rem 0 4.5rem; }
   .coming-inner {
@@ -558,6 +592,14 @@
       gap: 1.5rem;
       align-items: start;
     }
+    .retriitti { padding: 4rem 0; }
+    .retriitti-intro.split {
+      grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
+    }
+    .retriitti-intro.split > .photo {
+      max-width: 16rem;
+    }
+    .retriitti-more[open] .options { margin-top: .25rem; }
     section[aria-labelledby="h-helsinki"] .wrap { max-width: 64rem; }
     section[aria-labelledby="h-oppia"] .wrap--wide { max-width: 52rem; }
     .faq { max-width: 42rem; margin-left: auto; margin-right: auto; }
@@ -759,60 +801,6 @@
     </div>
   </section>
 
-  <section aria-labelledby="h-helsinki">
-    <div class="wrap">
-      <h2 id="h-helsinki">Retriitti – Hengähdystauko Hotelli Valossa</h2>
-      <p>Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.</p>
-      <div class="options">
-        <article class="option">
-          <h3>Päiväretriitti</h3>
-          <p>Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.</p>
-          <div class="option-form">
-            <iframe
-              src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"
-              style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
-              id="inline-0s8Zj7kjIA8LTWOoIAYA"
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="Retriitti Valo – päiväretriitti"
-              data-height="740"
-              data-layout-iframe-id="inline-0s8Zj7kjIA8LTWOoIAYA"
-              data-form-id="0s8Zj7kjIA8LTWOoIAYA"
-              title="Retriitti Valo – päiväretriitti"></iframe>
-          </div>
-        </article>
-        <article class="option">
-          <h3>Yli yön</h3>
-          <p>Kaksi pitkää, perusteellisesti lataavaa harjoitusta, ravitsevaa ruokaa ja rentoutumista Hotelli Valon upealla spa-osastolla.</p>
-          <div class="option-form">
-            <iframe
-              src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"
-              style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
-              id="inline-9DTL1P28Fcz7sgJMbC4S"
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="Retriitti Valo – yli yön"
-              data-height="740"
-              data-layout-iframe-id="inline-9DTL1P28Fcz7sgJMbC4S"
-              data-form-id="9DTL1P28Fcz7sgJMbC4S"
-              title="Retriitti Valo – yli yön"></iframe>
-          </div>
-        </article>
-      </div>
-      <img class="photo photo--break photo--colour" src="/klubi/img/valo-kattoterassi.jpg" width="863" height="575" loading="lazy" decoding="async" alt="Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.">
-    </div>
-  </section>
-
   <section class="band" aria-labelledby="h-suoritus">
     <div class="wrap">
       <h2 id="h-suoritus">Täällä ei suoriteta</h2>
@@ -960,6 +948,68 @@
     </div>
   </section>
 
+  <section class="retriitti" id="retriitti" aria-labelledby="h-helsinki">
+    <div class="wrap split retriitti-intro">
+      <img class="photo photo--colour retriitti-photo" src="/klubi/img/valo-kattoterassi.jpg" width="863" height="575" loading="lazy" decoding="async" alt="Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.">
+      <h2 id="h-helsinki">Retriitti – Hengähdystauko Hotelli Valossa</h2>
+      <div class="retriitti-copy">
+        <p>Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian.</p>
+        <p>Valittavana on päiväretriitti tai yli yön -retriitti.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <details class="retriitti-more">
+        <summary>Lue lisää ja ilmoita kiinnostuksesi</summary>
+        <div class="options">
+          <article class="option">
+            <h3>Päiväretriitti</h3>
+            <p>Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.</p>
+            <div class="option-form">
+              <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"
+                style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
+                id="inline-0s8Zj7kjIA8LTWOoIAYA"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Retriitti Valo – päiväretriitti"
+                data-height="740"
+                data-layout-iframe-id="inline-0s8Zj7kjIA8LTWOoIAYA"
+                data-form-id="0s8Zj7kjIA8LTWOoIAYA"
+                title="Retriitti Valo – päiväretriitti"></iframe>
+            </div>
+          </article>
+          <article class="option">
+            <h3>Yli yön</h3>
+            <p>Kaksi pitkää, perusteellisesti lataavaa harjoitusta, ravitsevaa ruokaa ja rentoutumista Hotelli Valon upealla spa-osastolla.</p>
+            <div class="option-form">
+              <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"
+                style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
+                id="inline-9DTL1P28Fcz7sgJMbC4S"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Retriitti Valo – yli yön"
+                data-height="740"
+                data-layout-iframe-id="inline-9DTL1P28Fcz7sgJMbC4S"
+                data-form-id="9DTL1P28Fcz7sgJMbC4S"
+                title="Retriitti Valo – yli yön"></iframe>
+            </div>
+          </article>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <section class="closing" id="loppu" aria-label="Liity klubiin">
     <div class="wrap center">
       <hr class="divider" aria-hidden="true" style="margin-bottom: 2.5rem;">
@@ -1003,7 +1053,7 @@
 
   var bar = document.getElementById('sticky-cta');
   var heroCta = document.getElementById('hero-cta');
-  var stops = ['hinta', 'varma', 'loppu'].map(function (id) { return document.getElementById(id); });
+  var stops = ['hinta', 'varma', 'retriitti', 'loppu'].map(function (id) { return document.getElementById(id); });
   if (!bar || !heroCta) return;
   var shown = false, ticking = false;
   function update() {
@@ -1034,13 +1084,19 @@
     frame.style.opacity = '1';
     frame.style.visibility = 'visible';
   }
-  document.querySelectorAll('.option-form iframe').forEach(function (frame) {
-    frame.addEventListener('load', function () { reveal(frame); });
-    if (frame.complete) reveal(frame);
+  function loadForms(root) {
+    (root || document).querySelectorAll('.option-form iframe[data-src]').forEach(function (frame) {
+      if (frame.getAttribute('src')) return;
+      frame.addEventListener('load', function () { reveal(frame); });
+      frame.setAttribute('src', frame.getAttribute('data-src'));
+    });
+  }
+  document.querySelectorAll('details.retriitti-more').forEach(function (box) {
+    box.addEventListener('toggle', function () {
+      if (box.open) loadForms(box);
+    });
+    if (box.open) loadForms(box);
   });
-  setTimeout(function () {
-    document.querySelectorAll('.option-form iframe').forEach(reveal);
-  }, 1200);
 
   function applyHeight(formId, height) {
     var px = parseInt(height, 10);

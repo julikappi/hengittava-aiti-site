@@ -93,7 +93,7 @@ assert(!/h2[^{]*\{[^}]*font-size:[^}]*1\.05rem/.test(page), 'main h2s are not sh
 assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(page), 'all main white-label h2s share one size');
 assert(page.includes('@media (min-width: 56.25rem)'), 'desktop reading layout starts at 900px');
 assert(page.includes('.split'), 'desktop text+image split class present');
-assert((page.match(/class="wrap split"/g) || []).length === 3, 'three natural text+image splits');
+assert((page.match(/class="wrap split/g) || []).length === 4, 'four natural text+image splits including the compact Valo intro');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
@@ -175,7 +175,19 @@ assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-2581996
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
 assert(page.includes('Retriitti – Hengähdystauko Hotelli Valossa'), 'Valo meetup heading verbatim');
 assert(!page.includes('Tavataan Helsingissä'), 'old Valo Helsinki heading removed');
-assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo 2027 dates and prices verbatim');
+assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian.'), 'Valo 2027 dates and prices');
+assert(!page.includes('Varaa paikkasi jo nyt.'), 'old reserve-now line removed from the compact Valo teaser');
+assert(page.includes('Valittavana on päiväretriitti tai yli yön -retriitti.'), 'Valo teaser names the two options');
+assert(page.includes('Lue lisää ja ilmoita kiinnostuksesi'), 'Valo expand button label');
+assert(page.includes('<details class="retriitti-more">'), 'Valo extra content is a details toggle');
+assert(
+  /id="h-kysymyksia"[\s\S]*id="h-helsinki"[\s\S]*id="loppu"/.test(page),
+  'Valo section sits after FAQ and before the closing CTA',
+);
+assert(
+  !/id="h-heti"[\s\S]*id="h-helsinki"[\s\S]*id="h-suoritus"/.test(page),
+  'Valo no longer sits between immediate gifts and anti-hustle',
+);
 assert(page.includes('Päiväretriitti'), 'Valo day option heading');
 assert(
   page.includes('Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.'),
@@ -193,9 +205,14 @@ assert(page.includes('data-form-id="9DTL1P28Fcz7sgJMbC4S"'), 'overnight retreat 
 assert(page.includes('data-form-name="Retriitti Valo – yli yön"'), 'overnight retreat GHL form name');
 assert((page.match(/link\.msgsndr\.com\/js\/form_embed\.js/g) || []).length === 1, 'GHL form_embed.js loaded once');
 assert(
-  !/<iframe[^>]*data-form-id="0s8Zj7kjIA8LTWOoIAYA"[^>]*loading="lazy"/.test(page) &&
-    !/<iframe[^>]*data-form-id="9DTL1P28Fcz7sgJMbC4S"[^>]*loading="lazy"/.test(page),
-  'Valo form iframes are not lazy-loaded so GHL can unhide them',
+  page.includes('data-src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"') &&
+    page.includes('data-src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"'),
+  'Valo iframes wait for the details toggle before setting src',
+);
+assert(
+  !/<iframe[^>]*\ssrc="https:\/\/api\.leadconnectorhq\.com\/widget\/form\/0s8Zj7kjIA8LTWOoIAYA"/.test(page) &&
+    !/<iframe[^>]*\ssrc="https:\/\/api\.leadconnectorhq\.com\/widget\/form\/9DTL1P28Fcz7sgJMbC4S"/.test(page),
+  'Valo iframe src is not set until the section is opened',
 );
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
