@@ -256,6 +256,15 @@
   .hero { padding: 2.25rem 0 3.5rem; }
   .hero-grid { display: flex; flex-direction: column; gap: 0; }
   .hero-copy { display: contents; }
+  .hero h1 {
+    order: 1;
+    font-size: clamp(1.45rem, 7.85vw, 2.95rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.15rem;
+    max-width: none;
+    white-space: nowrap;
+  }
   .hero-open { order: 1; }
   .hero-story { display: contents; }
   .hero .photo--pause { order: 2; display: block; }
@@ -285,12 +294,14 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.9fr);
       grid-template-areas:
+        "title title"
         "copy visual"
         "story story";
       align-items: stretch;
       column-gap: 4.5rem;
       row-gap: 0;
     }
+    .hero h1,
     .hero-copy,
     .hero-open,
     .hero-offer,
@@ -299,6 +310,15 @@
     .hero-visual,
     .hero .photo--pause,
     .photo--hero { order: unset; }
+    .hero h1 {
+      grid-area: title;
+      font-size: clamp(2.55rem, 4.15vw, 3.35rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 2.15rem;
+      max-width: none;
+      white-space: nowrap;
+    }
     .hero-copy {
       display: flex;
       flex-direction: column;
@@ -317,13 +337,6 @@
     }
     .hero-continue { grid-column: 1; grid-row: 1; }
     .hero-story .photo--pause { grid-column: 2; grid-row: 1; }
-    .hero h1 {
-      font-size: clamp(2.35rem, 3.3vw, 3.15rem);
-      white-space: normal;
-      line-height: 1.12;
-      margin: 0 0 1rem;
-      max-width: 14ch;
-    }
     .hero .breath {
       text-align: left;
       max-width: 20em;
@@ -935,9 +948,9 @@
 <header class="hero">
   <div class="wrap wrap--wide">
     <div class="hero-grid">
+      <h1>Hengittävien äitien klubi</h1>
       <div class="hero-copy">
         <div class="hero-open">
-          <h1>Hengittävien äitien klubi</h1>
           <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
           <p class="hero-intro">Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
         </div>
