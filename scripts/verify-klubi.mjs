@@ -342,7 +342,7 @@ assert(!page.includes('EB Garamond'), 'no EB Garamond');
 assert(!page.includes('Karla'), 'no Karla');
 assert(!page.includes('tailwindcss.com'), 'page is standalone CSS, not Tailwind CDN');
 
-assert(page.includes('https://hengittava-aiti.fi/nollaushetki/'), 'nollaushetki CTA url');
+assert(page.includes('https://hengittava-aiti.fi/nollaushetki/#ilmoittaudu'), 'nollaushetki CTA url');
 assert(!page.includes('perjantain-nollaushetki'), 'old nollaushetki path removed from the club page');
 assert(page.includes('og:title'), 'Open Graph title present');
 assert(page.includes('og:description'), 'Open Graph description present');
