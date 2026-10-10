@@ -93,7 +93,7 @@ assert(!/h2[^{]*\{[^}]*font-size:[^}]*1\.05rem/.test(page), 'main h2s are not sh
 assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(page), 'all main white-label h2s share one size');
 assert(page.includes('@media (min-width: 56.25rem)'), 'desktop reading layout starts at 900px');
 assert(page.includes('.split'), 'desktop text+image split class present');
-assert((page.match(/class="wrap split/g) || []).length === 4, 'four natural text+image splits including the compact Valo intro');
+assert((page.match(/class="wrap split/g) || []).length === 3, 'three natural text+image splits');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
@@ -173,21 +173,19 @@ assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yll�
 assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
 assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
-assert(page.includes('Retriitti – Hengähdystauko Hotelli Valossa'), 'Valo meetup heading verbatim');
+assert(page.includes('Klubilaisten ensimmäinen retriitti – Hengähdystauko Hotelli Valossa'), 'Valo retreat is an item in the 2027 section');
 assert(!page.includes('Tavataan Helsingissä'), 'old Valo Helsinki heading removed');
-assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian.'), 'Valo 2027 dates and prices');
-assert(!page.includes('Varaa paikkasi jo nyt.'), 'old reserve-now line removed from the compact Valo teaser');
-assert(page.includes('Valittavana on päiväretriitti tai yli yön -retriitti.'), 'Valo teaser names the two options');
-assert(page.includes('Lue lisää ja ilmoita kiinnostuksesi'), 'Valo expand button label');
+assert(page.includes('Alkuvuodesta 2027, päiväretriitti tai yli yön. Hinnat ilmoitetaan pian.'), 'Valo teaser is two short 2027 facts');
+assert(!page.includes('Varaa paikkasi jo nyt.'), 'old reserve-now line removed');
+assert(!page.includes('Lue lisää ja ilmoita kiinnostuksesi'), 'old end-of-page Valo button removed');
+assert(page.includes('Ilmoita kiinnostuksesi'), 'Valo expand button label');
 assert(page.includes('<details class="retriitti-more">'), 'Valo extra content is a details toggle');
 assert(
-  /id="h-kysymyksia"[\s\S]*id="h-helsinki"[\s\S]*id="loppu"/.test(page),
-  'Valo section sits after FAQ and before the closing CTA',
+  /id="h-koti"[\s\S]*Hengittävä Koti -valmennus[\s\S]*Klubilaisten ensimmäinen retriitti/.test(page),
+  '2027 section lists Koti then the Valo retreat',
 );
-assert(
-  !/id="h-heti"[\s\S]*id="h-helsinki"[\s\S]*id="h-suoritus"/.test(page),
-  'Valo no longer sits between immediate gifts and anti-hustle',
-);
+assert(!page.includes('id="h-helsinki"'), 'standalone Valo heading removed');
+assert(!page.includes('class="retriitti"'), 'separate end-of-page Valo section removed');
 assert(page.includes('Päiväretriitti'), 'Valo day option heading');
 assert(
   page.includes('Yksi pitkä ja perusteellinen kehollinen harjoitus, joka laskee kierroksia ja palauttaa sinut takaisin flow-tilaan.'),
@@ -267,7 +265,14 @@ assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on
 assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price kept');
 assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
-assert(page.includes('Tulossa 2027: Hengittävä Koti'), '2027 heading kept');
+assert(page.includes('Tulossa vuonna 2027'), '2027 heading kept');
+assert(!page.includes('Tulossa 2027: Hengittävä Koti'), 'old Koti-only 2027 heading removed');
+assert(page.includes('Hengittävä Koti -valmennus'), 'Koti item title kept');
+assert(
+  page.includes('Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi jatkopolku niille, jotka haluavat paneutua omaan hyvinvointiinsa, vanhemmuuteen ja koko perheen arkeen vielä perusteellisemmin.'),
+  'Koti short text kept verbatim',
+);
+assert(page.includes('Klubilaiset kuulevat valmennuksista ensimmäisinä ja saavat ne etuhintaan.'), 'Koti member-first line kept');
 assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading kept');
 assert(page.includes('Täydenkuun nollaushetkeen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
 assert(page.includes('noin 30 minuutin harjoituksen Zoomissa'), 'nollaushetki duration is about 30 minutes');
