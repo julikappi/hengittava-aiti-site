@@ -19,6 +19,20 @@
       "dest": "/api/$1.js"
     },
     {
+      "src": "^/perjantain-nollaushetki(/.*)?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nollaushetki/"
+      }
+    },
+    {
+      "src": "^/kiitos/perjantain-nollaushetki/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/nollaushetki/kiitos/"
+      }
+    },
+    {
       "src": "/materiaalit/(.*)",
       "status": 404
     },
@@ -51,6 +65,14 @@
     {
       "src": "/klubi/?",
       "dest": "/klubi/index.html"
+    },
+    {
+      "src": "/nollaushetki/kiitos/?",
+      "dest": "/nollaushetki/kiitos/index.html"
+    },
+    {
+      "src": "/nollaushetki/?",
+      "dest": "/nollaushetki/index.html"
     },
     {
       "src": "/minun-tarinani/?",
