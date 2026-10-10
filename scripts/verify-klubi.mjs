@@ -138,6 +138,18 @@ assert(
 assert(!page.includes('Sinun rauhasi tarttuu lapsiin'), 'old rauha heading removed');
 assert(!page.includes('Hyvinvointisi on arvokasta myös sinun itsesi vuoksi'), 'old wellbeing line removed from this section');
 assert(page.includes('Näin klubikuukausi kulkee'), 'month heading kept');
+assert(
+  page.includes('Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.'),
+  'month rhythm paragraph verbatim',
+);
+assert(!page.includes('harjoittelemma'), 'harjoittelemma typo not present');
+assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
+assert(!page.includes('class="weeks"'), 'weeks list markup removed');
+assert(page.includes('Kurssin alusta ja materiaalit'), 'platform subheading present');
+assert(
+  /Kurssin alusta ja materiaalit[\s\S]*Klubilla on oma kurssialusta, jossa ovat harjoitukset, luennot ja muut materiaalit/.test(page),
+  'existing platform text sits under the new subheading',
+);
 assert(page.includes('Pysähtymisen taito'), 'November theme kept');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
 assert(page.includes('Saat heti liittyessäsi'), 'immediate gifts heading kept');
