@@ -272,25 +272,65 @@
   }
   .hero .btn-row { margin-top: 1.75rem; }
   .hero .photo--pause { display: block; }
+  .photo--pause-slot { display: none; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   @media (min-width: 56.25rem) {
     .hero { padding: 4.5rem 0 5.5rem; }
     .hero-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(32rem, 1fr);
-      align-items: center;
-      gap: 4.5rem;
+      grid-template-columns: minmax(0, 1fr) minmax(26rem, 1fr);
+      grid-template-areas:
+        "head head"
+        "copy visual";
+      align-items: stretch;
+      column-gap: 4rem;
+      row-gap: 2.25rem;
+    }
+    .hero-stack { display: contents; }
+    .hero-head {
+      grid-area: head;
+      text-align: center;
+    }
+    .hero-copy { grid-area: copy; }
+    .hero-visual {
+      grid-area: visual;
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+      min-height: 0;
+    }
+    .hero h1 {
+      font-size: clamp(2.75rem, 4.2vw, 3.85rem);
+      white-space: normal;
+      line-height: 1.1;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 18ch;
+    }
+    .hero .breath {
+      text-align: center;
+      max-width: 28em;
+      margin: 0 auto;
+      font-size: clamp(1.45rem, 2.2vw, 1.95rem);
     }
     .photo--hero {
       aspect-ratio: 4 / 5;
       width: 100%;
-      max-height: 46rem;
+      flex: 1 1 auto;
+      min-height: 22rem;
+      max-height: none;
       object-fit: cover;
-      position: sticky;
-      top: 2rem;
+      position: static;
     }
-    .hero .photo--pause { max-width: 24rem; margin: 1.35rem 0 1.2rem; }
-    .hero h1 { font-size: clamp(2.5rem, 3.6vw, 3.4rem); white-space: normal; line-height: 1.12; }
+    .hero .photo--pause-flow { display: none; }
+    .hero .photo--pause-slot {
+      display: block;
+      flex: 0 0 auto;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
     .hero p { max-width: 62ch; }
+    .hero-head .breath { max-width: 28em; }
   }
 
   /* ---------- Kuka minä olen ---------- */
@@ -396,6 +436,13 @@
   .intro p { font-size: 1.1875rem; line-height: 1.8; }
   .intro p + p { margin-top: 1.5rem; }
   .intro .pillars { margin-top: 2rem; }
+  .goals-kicker {
+    margin: 0 0 1.15rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--violet);
+  }
   @media (min-width: 48rem) {
     .intro { padding: 4.5rem 0 6.5rem; }
     .intro p { font-size: 1.3125rem; }
@@ -416,7 +463,7 @@
     .not-this .not-lead { font-size: 1.3125rem; }
   }
 
-  /* ---------- Kolme korttia (osa Mikä on -osiota) ---------- */
+  /* ---------- Neljä päämääräkorttia (osa Mikä on -osiota) ---------- */
   .pillars, .options { display: grid; gap: 1.15rem; margin: 2rem 0 0; }
   .options { margin: 1.5rem 0 0; }
   .pillar, .option {
@@ -465,9 +512,6 @@
     height: 100%;
     border: 0;
     background: transparent;
-  }
-  @media (min-width: 48rem) {
-    .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
   }
 
   /* ---------- Tulossa alkuvuonna 2027 ---------- */
@@ -579,9 +623,9 @@
     }
 
     h2 {
-      display: inline-block;
-      margin-left: 0;
-      margin-right: 0;
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
       white-space: normal;
       text-wrap: balance;
       max-width: 22em;
@@ -624,9 +668,19 @@
       padding-right: 2rem;
     }
     .intro > .wrap { max-width: none; width: 100%; padding: 0; }
-    .intro-copy { grid-column: 1; grid-row: 1; }
-    .intro-photo { grid-column: 2; grid-row: 1; }
-    .intro-cards { grid-column: 1 / -1; grid-row: 2; }
+    .intro-heading {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+    .intro-heading h2 { margin-left: auto; margin-right: auto; }
+    .intro-copy { grid-column: 1; grid-row: 2; }
+    .intro-photo { grid-column: 2; grid-row: 2; }
+    .intro-cards { grid-column: 1 / -1; grid-row: 3; }
+    .goals-kicker {
+      text-align: center;
+      font-size: 1.35rem;
+      margin: 0 0 1.5rem;
+    }
     .intro-photo .photo--break {
       max-width: none;
       width: 100%;
@@ -657,13 +711,13 @@
     .wrap.split { max-width: 80rem; }
     .split > :not(.photo):not(h2) { grid-column: 1; max-width: 65ch; margin-left: 0; margin-right: 0; }
     .split > h2 {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 1;
-      justify-self: start;
+      justify-self: center;
     }
     .split > .photo {
       grid-column: 2;
-      grid-row: 1 / span 12;
+      grid-row: 2 / span 12;
       align-self: stretch;
       width: 100%;
       max-width: none;
@@ -672,14 +726,23 @@
       margin: 0;
     }
     .split--flip > :not(.photo):not(h2) { grid-column: 2; }
-    .split--flip > h2 { grid-column: 2; }
+    .split--flip > h2 { grid-column: 1 / -1; }
     .split--flip > .photo { grid-column: 1; }
 
     .pillars {
       max-width: none;
       margin: 0;
-      gap: 1.5rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.15rem;
     }
+    .intro .pillar {
+      padding: 1.5rem 1.15rem 1.3rem;
+    }
+    .intro .pillar::before {
+      left: 1.15rem;
+      right: 1.15rem;
+    }
+    .intro .pillar h3 { font-size: 1.05rem; }
     ul.gives {
       max-width: none;
       grid-template-columns: 1fr 1fr;
@@ -695,11 +758,11 @@
       column-gap: 4rem;
       align-items: start;
     }
-    .not-this h2 { grid-column: 1; }
-    .not-this .not-lead { grid-column: 1; max-width: none; }
+    .not-this h2 { grid-column: 1 / -1; justify-self: center; }
+    .not-this .not-lead { grid-column: 1; grid-row: 2; max-width: none; }
     .not-this ul.soft {
       grid-column: 2;
-      grid-row: 1 / span 4;
+      grid-row: 2 / span 4;
       max-width: none;
       columns: 2;
       column-gap: 3rem;
@@ -712,7 +775,7 @@
       column-gap: 4.5rem;
       row-gap: .85rem;
     }
-    section[aria-labelledby="h-kuukausi"] h2 { grid-column: 1 / -1; }
+    section[aria-labelledby="h-kuukausi"] h2 { grid-column: 1 / -1; justify-self: center; }
     section[aria-labelledby="h-kuukausi"] h3 { grid-column: 2; grid-row: 2; margin-top: 0; }
     section[aria-labelledby="h-kuukausi"] h3 + p { grid-column: 2; }
 
@@ -724,6 +787,7 @@
     }
     section[aria-labelledby="h-heti"] h2,
     section[aria-labelledby="h-heti"] ul.gets { grid-column: 1 / -1; }
+    section[aria-labelledby="h-heti"] h2 { justify-self: center; }
     section[aria-labelledby="h-heti"] .btn-row { grid-column: 1 / -1; }
 
     section[aria-labelledby="h-suoritus"] .wrap {
@@ -732,7 +796,7 @@
       column-gap: 4.5rem;
       row-gap: 1rem;
     }
-    section[aria-labelledby="h-suoritus"] h2 { grid-column: 1 / -1; }
+    section[aria-labelledby="h-suoritus"] h2 { grid-column: 1 / -1; justify-self: center; }
 
     .tiers {
       max-width: none;
@@ -750,7 +814,7 @@
       max-width: none;
       align-items: start;
     }
-    .coming-inner > h2 { grid-column: 1 / -1; }
+    .coming-inner > h2 { grid-column: 1 / -1; justify-self: center; }
     .coming-item + .coming-item {
       margin-top: 0;
       padding-top: 0;
@@ -799,6 +863,17 @@
     .closing .wrap { max-width: 80rem; text-align: center; }
     .closing .breath { max-width: 28em; }
     .center { text-align: center; }
+    .about-grid > div { display: contents; }
+    .about-grid h2 {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+    .about-grid .photo--portrait {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .about-grid p,
+    .about-grid .btn-row { grid-column: 2; }
   }
 </style>
 </head>
@@ -808,25 +883,32 @@
 <header class="hero">
   <div class="wrap wrap--wide">
     <div class="hero-grid">
-      <div>
-        <h1>Hengittävien äitien klubi</h1>
-        <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
-        <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
-        <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-        <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
-        <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
-        <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
-        <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
-        <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
-        <p class="hero-price">Lokakuussa liittyville <span class="nw">19 €/kk*</span> – ei sitoutumisaikaa.</p>
-        <p class="btn-row">
-          <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
-          <a class="btn" id="hero-cta" href="#hinta">Kyllä, liityn</a>
-        </p>
-        <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
+      <div class="hero-stack">
+        <div class="hero-head">
+          <h1>Hengittävien äitien klubi</h1>
+          <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
+        </div>
+        <div class="hero-copy">
+          <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
+          <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+          <img class="photo photo--pause photo--pause-flow" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
+          <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
+          <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
+          <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
+          <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
+          <p class="hero-price">Lokakuussa liittyville <span class="nw">19 €/kk*</span> – ei sitoutumisaikaa.</p>
+          <p class="btn-row">
+            <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
+            <a class="btn" id="hero-cta" href="#hinta">Kyllä, liityn</a>
+          </p>
+          <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
+        </div>
       </div>
-      <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
-      <img class="photo photo--hero" src="/klubi/img/juliana-keittio-esiliina.jpg" width="960" height="1280" fetchpriority="high" decoding="async" alt="Juliana seisoo kotinsa keittiössä kädet ristissä, kallistaa päätään ja hymyilee kameraan.">
+      <div class="hero-visual">
+        <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
+        <img class="photo photo--hero" src="/klubi/img/juliana-keittio-esiliina.jpg" width="960" height="1280" fetchpriority="high" decoding="async" alt="Juliana seisoo kotinsa keittiössä kädet ristissä, kallistaa päätään ja hymyilee kameraan.">
+        <img class="photo photo--pause photo--pause-slot" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      </div>
     </div>
   </div>
 </header>
@@ -834,16 +916,20 @@
 <main id="sisalto">
 
   <section class="intro" aria-labelledby="h-mikaon">
-    <div class="wrap intro-copy">
+    <div class="wrap intro-heading">
       <h2 id="h-mikaon">Mikä on Hengittävien äitien klubi?</h2>
+    </div>
+    <div class="wrap intro-copy">
       <p>Hengittävien äitien klubi on yhteisö äideille, jotka haluavat voida paremmin keskellä tavallista arkea ja kasvaa omassa äitiydessään.</p>
       <p>Opettelemme ymmärtämään hermoston toimintaa, tunnistamaan omia tarpeitamme ja löytämään keinoja palautua silloinkin, kun lapset tarvitsevat, puhelin soi ja oma aika tuntuu olevan aina viimeisenä.</p>
-      <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.</p>
+      <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen.</p>
       <p>Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.</p>
       <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
-      <p>Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.</p>
+      <p>Hengittävien äitien klubissa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Se on paikka, jossa äiti nähdään kokonaisena ihmisenä omine tarpeineen ja ajatuksineen, unohtamatta äitiyden roolin ainutlaatuisuutta ja tärkeyttä. Opimme vaalimaan tätä roolia unohtamatta kuitenkaan, että olemme myös muuta.</p>
+      <p>Klubissa opettelemme siten voimaan hyvin naisena, äitinä ja perheen koordinaattorina.</p>
     </div>
     <div class="wrap wrap--wide intro-cards">
+      <h3 class="goals-kicker">Klubin päämäärät, joita kohti kuljemme:</h3>
       <div class="pillars">
         <article class="pillar">
           <h3>Hyvinvoiva nainen ja äiti</h3>
@@ -852,6 +938,10 @@
         <article class="pillar">
           <h3>Kasvua äitiydessä</h3>
           <p>Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.</p>
+        </article>
+        <article class="pillar">
+          <h3>Parempi yhteys lapseen</h3>
+          <p>Opimme pysähtymään lapsen äärellä, kuuntelemaan häntä ja kohtaamaan hänet rauhallisemmin myös haastavissa hetkissä.</p>
         </article>
         <article class="pillar">
           <h3>Parempi tunnelma perheessäsi ja kotonasi</h3>
@@ -975,7 +1065,7 @@
       <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
       <p>Marraskuun teema on Pysähtymisen taito ja joulukuun teema Riittävä joulu.</p>
       <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
-      <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien ja oman kyläryhmäsi kanssa.</p>
+      <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
     </div>
   </section>
 
@@ -987,7 +1077,7 @@
         <li>Kolme SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
       </ul>
       <p>Maanantaina 19.10. saat ensimmäiset materiaalit sähköpostiisi.</p>
-      <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet.</p>
+      <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20.</p>
       <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen.</p>
       <p class="btn-row">
         <!-- Linkki: vierittää hintoihin (#hinta) -->
