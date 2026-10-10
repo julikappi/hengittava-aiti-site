@@ -147,8 +147,18 @@ assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
 assert(page.includes('Kurssin alusta ja materiaalit'), 'platform subheading present');
 assert(
-  /Kurssin alusta ja materiaalit[\s\S]*Klubilla on oma kurssialusta, jossa ovat harjoitukset, luennot ja muut materiaalit/.test(page),
-  'existing platform text sits under the new subheading',
+  page.includes('Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien ja oman kyläryhmäsi kanssa.'),
+  'platform paragraph gathers existing facts only',
+);
+assert(!page.includes('muut materiaalit'), 'vague other-materials phrase removed');
+assert(
+  !page.includes('Voit katsoa viikon materiaalin tai palata siihen myöhemmin, tulla liveen tai kuunnella tallenteen.'),
+  'duplicate platform/recording sentence removed from anti-hustle',
+);
+assert(page.includes('Entä jos joku viikko jää väliin?'), 'missed-week FAQ question verbatim');
+assert(
+  page.includes('Ei haittaa. Voit tutustua materiaaleihin myöhemmin tai jättää ne väliin ja tulla mukaan kuluvaan viikkoon. Klubissa ei ole rästejä, sillä tärkeintä on, ettei tästä tule suoritusta.'),
+  'missed-week FAQ answer verbatim',
 );
 assert(page.includes('Pysähtymisen taito'), 'November theme kept');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
