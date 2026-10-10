@@ -192,6 +192,39 @@
   .btn-row { margin: 2rem 0 0; }
   @media (max-width: 29.99rem) { .btn-row .btn { width: 100%; } }
 
+  .hero-price {
+    margin: 1.35rem 0 0;
+    max-width: 36ch;
+    font-size: 1.125rem;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--violet);
+  }
+  .hero .price-fn { margin-top: .75rem; max-width: 46ch; }
+  .hero .btn-row { margin-top: 1.15rem; }
+
+  /* Inline mid-page join bands: compact, rose-tinted, no modal */
+  .cta-band {
+    background: var(--peach-mist);
+    border-top: 1px solid var(--peach-2);
+    border-bottom: 1px solid var(--peach-2);
+    padding: 2.25rem 0;
+    text-align: center;
+  }
+  .cta-band p {
+    margin: 0 auto;
+    max-width: 28ch;
+    color: var(--violet);
+    font-size: 1.125rem;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+  .cta-band .btn-row { margin: 1.15rem 0 0; }
+  @media (min-width: 48rem) {
+    .cta-band { padding: 2.5rem 0; }
+    .cta-band p { max-width: 36ch; font-size: 1.25rem; }
+  }
+
   a:focus-visible, summary:focus-visible, .btn:focus-visible { outline: 3px solid var(--violet); outline-offset: 4px; }
   .tier--featured .btn:focus-visible, .sticky-cta .btn:focus-visible { outline-color: var(--violet); }
   .tier--featured a:focus-visible { outline-color: var(--peach); }
@@ -401,16 +434,16 @@
   }
   .option-form {
     margin-top: 1.25rem;
-    min-height: 520px;
     border-radius: 16px;
-    overflow: hidden;
-    background: #FFFFFF;
+    overflow: visible;
+    background: transparent;
   }
   .option-form iframe {
     display: block;
     width: 100%;
-    height: 520px;
+    height: 340px;
     border: 0;
+    background: transparent;
   }
   @media (min-width: 48rem) {
     .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
@@ -526,6 +559,8 @@
     section[aria-labelledby="h-oppia"] .wrap--wide { max-width: 52rem; }
     .faq { max-width: 42rem; margin-left: auto; margin-right: auto; }
     .ehdot, .invoice-note, .soft-step, .coming-inner { max-width: 42rem; }
+    .cta-band { padding: 2.35rem 0; }
+    .hero-price { font-size: 1.2rem; }
   }
 </style>
 </head>
@@ -545,10 +580,12 @@
         <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
         <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
         <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
+        <p class="hero-price">Lokakuussa liittyville 19 €/kk* – ei sitoutumisaikaa.</p>
         <p class="btn-row">
           <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
-          <a class="btn" id="hero-cta" href="#hinta">Liity klubiin</a>
+          <a class="btn" id="hero-cta" href="#hinta">Kyllä, liityn</a>
         </p>
+        <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
       </div>
       <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
       <img class="photo photo--hero" src="/klubi/img/juliana-keittio-esiliina.jpg" width="960" height="1280" fetchpriority="high" decoding="async" alt="Juliana seisoo kotinsa keittiössä kädet ristissä, kallistaa päätään ja hymyilee kameraan.">
@@ -603,6 +640,15 @@
         <li>yksi paikka, jossa suoritetaan lisää</li>
         <li>new age -yhteisö</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-label="Liity klubiin">
+    <div class="wrap">
+      <p>Valmis hengittämään kevyemmin? 19 €/kk lokakuussa.</p>
+      <p class="btn-row">
+        <a class="btn btn--peach" href="#hinta">Kyllä, liityn</a>
+      </p>
     </div>
   </section>
 
@@ -674,6 +720,15 @@
     </div>
   </section>
 
+  <section class="cta-band" aria-label="Liity klubiin">
+    <div class="wrap">
+      <p>Valmis hengittämään kevyemmin? 19 €/kk lokakuussa.</p>
+      <p class="btn-row">
+        <a class="btn btn--peach" href="#hinta">Kyllä, liityn</a>
+      </p>
+    </div>
+  </section>
+
   <section aria-labelledby="h-kuukausi">
     <div class="wrap">
       <h2 id="h-kuukausi">Näin klubikuukausi kulkee</h2>
@@ -712,7 +767,7 @@
           <div class="option-form">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"
-              style="width:100%;height:520px;border:none;border-radius:16px"
+              style="width:100%;height:340px;border:none;border-radius:16px;background:transparent"
               id="inline-0s8Zj7kjIA8LTWOoIAYA"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
@@ -722,7 +777,7 @@
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="Retriitti Valo – päiväretriitti"
-              data-height="520"
+              data-height="340"
               data-layout-iframe-id="inline-0s8Zj7kjIA8LTWOoIAYA"
               data-form-id="0s8Zj7kjIA8LTWOoIAYA"
               title="Retriitti Valo – päiväretriitti"
@@ -735,7 +790,7 @@
           <div class="option-form">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"
-              style="width:100%;height:520px;border:none;border-radius:16px"
+              style="width:100%;height:340px;border:none;border-radius:16px;background:transparent"
               id="inline-9DTL1P28Fcz7sgJMbC4S"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
@@ -745,7 +800,7 @@
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="Retriitti Valo – yli yön"
-              data-height="520"
+              data-height="340"
               data-layout-iframe-id="inline-9DTL1P28Fcz7sgJMbC4S"
               data-form-id="9DTL1P28Fcz7sgJMbC4S"
               title="Retriitti Valo – yli yön"
@@ -787,11 +842,11 @@
   <section class="band" id="hinta" aria-labelledby="h-hinta">
     <div class="wrap wrap--wide">
       <div class="center">
-        <h2 id="h-hinta">Hinta</h2>
+        <h2 id="h-hinta">Klubin hinta</h2>
       </div>
       <div class="tiers">
         <article class="tier tier--featured" aria-label="Klubi 19 €/kk">
-          <p><span class="tier-lead">Klubi <span class="price nw">19 €/kk</span>*</span> Saat heti pääsyn klubiin. Liittymishinta 19 €/kk* on voimassa 31.10. asti. 1.11. alkaen hinta on 25 €/kk.</p>
+          <p><span class="tier-lead">Klubi <span class="price nw">19 €/kk</span>*</span> Liittymishinta 19 €/kk* on voimassa 31.10. asti. 1.11. alkaen hinta on 25 €/kk.</p>
           <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
           <div class="bonus">
             <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968/ kuvaaja Aleksandr Maksin (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
@@ -807,7 +862,7 @@
           <p><span class="tier-lead">Klubi PLUS <span class="price nw">89 €/kk</span>.</span> Kaikki klubin sisältö ja lisäksi henkilökohtainen tuki:</p>
           <ul class="soft">
             <li>aloituksen yhteydessä 45 minuutin henkilökohtainen Zoom-kartoitus</li>
-            <li>viikoittainen henkilökohtainen viesti Julianalta (kirjoitettu tai äänitetty vastaus) jäsenen oman reflektion pohjalta</li>
+            <li>viikoittainen henkilökohtainen viesti Julianalta oman reflektiosi pohjalta</li>
             <li>enintään 10 paikkaa</li>
           </ul>
           <p class="btn-row">
@@ -845,10 +900,10 @@
         <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/full-moon-on-black-background-7501782/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
         <img class="photo photo--moon" src="/klubi/img/taysikuu-rajattu.jpg" width="476" height="476" loading="lazy" decoding="async" alt="Täysikuu mustalla yötaivaalla.">
         <h2 id="h-varma">Etkö ole vielä varma?</h2>
-        <p>Tule ilmaiseen Täysikuun nollaukseen maanantaina 26.10. klo 21.00. Teemme yhdessä lyhyen harjoituksen Zoomissa, ja näet, millaista klubissa on.</p>
+        <p>Tule ilmaiseen Täydenkuun nollaushetkeen maanantaina 26.10. klo 21.00. Teemme yhdessä noin 30 minuutin harjoituksen Zoomissa, ja näet, millaista klubissa on.</p>
         <p class="btn-row">
-          <!-- Linkki: Täysikuun nollauksen (26.10. klo 21.00) ilmoittautumislomake GHL:ssä -->
-          <a class="btn btn--outline" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" data-klubi-link="nollaushetki">Ilmoittaudu Täysikuun nollaukseen</a>
+          <!-- Linkki: Täydenkuun nollaushetken (26.10. klo 21.00) ilmoittautumislomake -->
+          <a class="btn btn--outline" href="https://hengittava-aiti.fi/nollaushetki/" data-klubi-link="nollaushetki">Ilmoittaudu Täydenkuun nollaushetkeen</a>
         </p>
       </div>
     </div>
@@ -898,7 +953,7 @@
         </details>
         <details>
           <summary>Mitä PLUS-jäsenyys sisältää?</summary>
-          <p>PLUS sisältää kaiken klubin perussisällön sekä henkilökohtaisen 45 minuutin Zoom-kartoituksen ja viikoittaisen henkilökohtaisen viestin Julianalta (kirjoitettu tai äänitetty vastaus) jäsenen oman reflektion pohjalta. Paikkoja on enintään 10.</p>
+          <p>PLUS sisältää kaiken klubin perussisällön sekä henkilökohtaisen 45 minuutin Zoom-kartoituksen ja viikoittaisen henkilökohtaisen viestin Julianalta oman reflektiosi pohjalta. Paikkoja on enintään 10.</p>
         </details>
       </div>
     </div>
@@ -918,7 +973,7 @@
 
 </main>
 
-<!-- Kiinnitetty liittymispalkki mobiilissa: näkyy, kun hero on ohitettu, ja piiloutuu hinnan, Täysikuun nollauksen ja loppukehotuksen kohdalla -->
+<!-- Kiinnitetty liittymispalkki mobiilissa: näkyy, kun hero on ohitettu, ja piiloutuu hinnan, Täydenkuun nollaushetken ja loppukehotuksen kohdalla -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true" inert>
   <p>Klubi <span class="nw">19 €/kk</span></p>
   <!-- Linkki: FastPayDirect Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
@@ -934,7 +989,7 @@
       klubi: 'https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237', // 19 €/kk founder (current)
       regular: 'https://link.fastpaydirect.com/payment-link/6ac7ae22075ea22a20cdd23b', // 25 €/kk from 2.11.
       plus: 'https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499', // PLUS 89 €/kk
-      nollaushetki: 'https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu'
+      nollaushetki: 'https://hengittava-aiti.fi/nollaushetki/'
     }
   };
   Object.keys(KLUBI.LINKS).forEach(function (key) {
@@ -971,6 +1026,31 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+})();
+
+(function () {
+  function applyHeight(formId, height) {
+    var px = parseInt(height, 10);
+    if (!px || px < 80 || px > 900) return;
+    document.querySelectorAll('.option-form iframe').forEach(function (frame) {
+      var id = frame.getAttribute('data-form-id');
+      if (formId && id && id !== formId && frame.id !== 'inline-' + formId) return;
+      if (formId && !id) return;
+      frame.style.height = px + 'px';
+      frame.setAttribute('data-height', String(px));
+    });
+  }
+  window.addEventListener('message', function (event) {
+    var data = event.data;
+    if (!data) return;
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch (e) { return; }
+    }
+    if (typeof data !== 'object') return;
+    var height = data.height || data.scrollHeight || (data.payload && data.payload.height);
+    var formId = data.formId || data.id || (data.payload && data.payload.formId);
+    if (height) applyHeight(formId, height);
+  });
 })();
 </script>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
