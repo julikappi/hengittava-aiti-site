@@ -272,7 +272,6 @@
   }
   .hero .btn-row { margin-top: 1.75rem; }
   .hero .photo--pause { display: block; }
-  .photo--pause-slot { display: none; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   @media (min-width: 56.25rem) {
     .hero { padding: 4.5rem 0 5.5rem; }
@@ -281,7 +280,7 @@
       grid-template-areas:
         "head head"
         "copy visual";
-      align-items: stretch;
+      align-items: start;
       column-gap: 4rem;
       row-gap: 2.25rem;
     }
@@ -291,13 +290,7 @@
       text-align: center;
     }
     .hero-copy { grid-area: copy; }
-    .hero-visual {
-      grid-area: visual;
-      display: flex;
-      flex-direction: column;
-      gap: 1.35rem;
-      min-height: 0;
-    }
+    .hero-visual { grid-area: visual; }
     .hero h1 {
       font-size: clamp(2.75rem, 4.2vw, 3.85rem);
       white-space: normal;
@@ -315,19 +308,17 @@
     .photo--hero {
       aspect-ratio: 4 / 5;
       width: 100%;
-      flex: 1 1 auto;
-      min-height: 22rem;
-      max-height: none;
+      max-height: 46rem;
       object-fit: cover;
       position: static;
     }
-    .hero .photo--pause-flow { display: none; }
-    .hero .photo--pause-slot {
+    .hero .photo--pause {
       display: block;
-      flex: 0 0 auto;
-      max-width: none;
+      max-width: 24rem;
       width: 100%;
-      margin: 0;
+      margin: 1.35rem 0 1.2rem;
+      aspect-ratio: 16 / 9;
+      object-position: 50% 35%;
     }
     .hero p { max-width: 62ch; }
     .hero-head .breath { max-width: 28em; }
@@ -753,21 +744,38 @@
       grid-template-columns: 1fr 1fr;
     }
     .not-this .wrap {
-      display: grid;
-      grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
-      column-gap: 4rem;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 48rem;
     }
-    .not-this h2 { grid-column: 1 / -1; justify-self: center; }
-    .not-this .not-lead { grid-column: 1; grid-row: 2; max-width: none; }
-    .not-this ul.soft {
-      grid-column: 2;
-      grid-row: 2 / span 4;
+    .not-this h2 { justify-self: center; }
+    .not-this .not-lead {
+      margin: 0 0 1.5rem;
       max-width: none;
-      columns: 2;
-      column-gap: 3rem;
     }
-    .not-this ul.soft li { break-inside: avoid; }
+    .not-this ul.soft {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem 0.75rem;
+      max-width: 42rem;
+      margin: 0;
+      padding: 0;
+    }
+    .not-this ul.soft li {
+      position: static;
+      margin: 0;
+      padding: 0.55rem 1.05rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: var(--ink-soft);
+    }
+    .not-this ul.soft li::before { content: none; }
 
     section[aria-labelledby="h-kuukausi"] .wrap {
       display: grid;
@@ -891,7 +899,7 @@
         <div class="hero-copy">
           <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
           <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-          <img class="photo photo--pause photo--pause-flow" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
+          <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
           <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
           <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
           <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
@@ -907,7 +915,6 @@
       <div class="hero-visual">
         <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
         <img class="photo photo--hero" src="/klubi/img/juliana-keittio-esiliina.jpg" width="960" height="1280" fetchpriority="high" decoding="async" alt="Juliana seisoo kotinsa keittiössä kädet ristissä, kallistaa päätään ja hymyilee kameraan.">
-        <img class="photo photo--pause photo--pause-slot" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="" aria-hidden="true">
       </div>
     </div>
   </div>
