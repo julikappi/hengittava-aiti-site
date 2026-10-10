@@ -91,6 +91,9 @@ assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*metsa-aurinko/.test(p
 assert(!/#h-rauha\s*\{/.test(page), 'no per-heading size shrink for rauha');
 assert(!/h2[^{]*\{[^}]*font-size:[^}]*1\.05rem/.test(page), 'main h2s are not shrunk to 1.05rem');
 assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(page), 'all main white-label h2s share one size');
+assert(page.includes('@media (min-width: 56.25rem)'), 'desktop reading layout starts at 900px');
+assert(page.includes('.split'), 'desktop text+image split class present');
+assert((page.match(/class="wrap split"/g) || []).length === 3, 'three natural text+image splits');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),

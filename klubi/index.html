@@ -157,7 +157,7 @@
   ul.gives { list-style: none; padding: 0; margin: 0 0 2.25rem; display: grid; gap: 1.15rem 2.75rem; }
   ul.gives li { position: relative; padding-left: 1.7rem; margin: 0; line-height: 1.7; }
   ul.gives li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
-  @media (min-width: 60rem) { ul.gives { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 56.25rem) { ul.gives { grid-template-columns: 1fr 1fr; } }
 
   /* Tunnistuslista: selkeät rivit, helppo silmäillä */
   ul.recognize { list-style: none; padding: 0; margin: 0 0 2rem; border-top: 1px solid var(--line); max-width: 62ch; }
@@ -241,19 +241,20 @@
   .hero .btn-row { margin-top: 1.75rem; }
   .hero .photo--pause { display: block; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
-  @media (min-width: 60rem) {
-    .hero { padding: 4.5rem 0 6rem; }
-    .hero-grid { grid-template-columns: 1.1fr .9fr; align-items: start; gap: 5rem; }
-    .photo--hero { aspect-ratio: 5 / 6; }
-    .hero .photo--pause { max-width: 100%; margin: 1.5rem 0 1.2rem; }
+  @media (min-width: 56.25rem) {
+    .hero { padding: 4.25rem 0 5.5rem; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem); align-items: start; gap: 3.5rem; }
+    .photo--hero { aspect-ratio: 4 / 5; max-height: 34rem; object-fit: cover; }
+    .hero .photo--pause { max-width: 18rem; margin: 1.25rem 0 1.1rem; }
+    .hero h1 { font-size: clamp(2.4rem, 3.3vw, 3.15rem); white-space: nowrap; line-height: 1.12; }
   }
 
   /* ---------- Kuka minä olen ---------- */
   .about-grid { display: grid; gap: 2.5rem; }
   .about-grid .photo--portrait { margin-top: 0; }
-  @media (min-width: 60rem) {
-    .about-grid { grid-template-columns: .85fr 1.15fr; align-items: center; gap: 4.5rem; }
-    .about-grid .photo--portrait { max-width: none; }
+  @media (min-width: 56.25rem) {
+    .about-grid { grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr); align-items: center; gap: 3.5rem; }
+    .about-grid .photo--portrait { max-width: 20rem; }
   }
 
   /* ---------- Pricing ---------- */
@@ -463,7 +464,69 @@
   .sticky-cta.is-visible { transform: translateY(0); visibility: visible; transition: transform .25s ease, visibility 0s; }
   .sticky-cta p { margin: 0; font-size: 1.125rem; font-weight: 600; color: var(--violet); line-height: 1.2; }
   .sticky-cta .btn { min-height: 2.875rem; padding: .6rem 1.4rem; flex: none; }
-  @media (min-width: 60rem) { .sticky-cta { display: none; } }
+  @media (min-width: 56.25rem) { .sticky-cta { display: none; } }
+
+  /* Desktop reading layout only. Mobile CSS above stays as-is. */
+  @media (min-width: 56.25rem) {
+    .wrap { max-width: 48rem; }
+    .wrap--wide { max-width: 64rem; }
+    section { padding: 5.25rem 0; }
+    .intro { padding: 4.5rem 0 5.5rem; }
+    .not-this { padding: 5.25rem 0; }
+
+    h2 {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+      white-space: nowrap;
+      text-wrap: nowrap;
+      max-width: none;
+    }
+
+    .photo--wide,
+    .photo--inline,
+    .photo--break {
+      max-width: 34rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .photo--portrait {
+      max-width: 20rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem);
+      column-gap: 3.25rem;
+      row-gap: 1.1rem;
+      align-items: start;
+      max-width: 64rem;
+    }
+    .split > :not(.photo) { grid-column: 1; }
+    .split > h2 { grid-column: 1 / -1; grid-row: 1; }
+    .split > .photo {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+      width: 100%;
+      max-width: 21rem;
+      margin: 0;
+    }
+
+    .pillars { max-width: 64rem; margin-left: auto; margin-right: auto; }
+    .tiers { max-width: 56rem; gap: 1.75rem; }
+    .options {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    section[aria-labelledby="h-helsinki"] .wrap { max-width: 64rem; }
+    section[aria-labelledby="h-oppia"] .wrap--wide { max-width: 52rem; }
+    .faq { max-width: 42rem; margin-left: auto; margin-right: auto; }
+    .ehdot, .invoice-note, .soft-step, .coming-inner { max-width: 42rem; }
+  }
 </style>
 </head>
 <body>
@@ -544,7 +607,7 @@
   </section>
 
   <section aria-labelledby="h-sinulle">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="h-sinulle">Klubi on sinulle, jos</h2>
       <ul class="recognize">
         <li>muistat koko perheen asiat, mutta omat tarpeesi jäävät aina viimeiseksi</li>
@@ -563,7 +626,7 @@
   </section>
 
   <section class="band" aria-labelledby="h-keskella">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="h-keskella">Oma rauhan keidas keskellä arkea</h2>
       <p>Lapset kiukuttelevat, puhelin soi ja työasiat odottavat. Koti on välillä kaaos, unet jäävät lyhyiksi, eivätkä pyykit, harrastukset ja päiväkotiaamut lopu.</p>
       <p>Klubissa etsimme pieniä uusia tapoja toimia juuri tässä arjessa. Sinun ei tarvitse odottaa lomaa tai täydellistä hiljaisuutta. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
@@ -601,7 +664,7 @@
   </section>
 
   <section class="band" aria-labelledby="h-muistot">
-    <div class="wrap">
+    <div class="wrap split">
       <h2 id="h-muistot">Lapsellesi turvaa ja parhaat muistot</h2>
       <p class="lead lead--italic">Lapsesi parhaat muistot syntyvät lapsuuden kodissa – ja sinä luot sen tunnelman.</p>
       <p>Lapsuuden kodin tunnelma kulkee lapsen mukana pitkälle aikuisuuteen. Se, millaisena hän kokee kodin, läheisyyden ja turvan, luo pohjan sille, miten hän näkee itsensä, muut ihmiset ja maailman. Lapset aistivat kaiken, ja me haluamme olla heille paras mahdollinen malli. Täällä yhteisössä kuljemme kohti sitä keskeneräisinä ja epätäydellisinä, mutta selkeällä päämäärällä. Riittää, että haluat olla joka päivä vähän parempi äiti, ihminen ja puoliso. Yksi askel päivässä riittää.</p>
