@@ -134,6 +134,12 @@
     box-sizing: border-box;
     text-wrap: balance;
   }
+  #h-rauha {
+    white-space: nowrap;
+    font-size: clamp(1.05rem, 4.15vw, 2.05rem);
+    padding: .45em .7em;
+    max-width: none;
+  }
   h3 { font-size: 1.25rem; line-height: 1.3; margin: 0 0 .75rem; }
   p { margin: 0 0 1.25rem; max-width: 62ch; }
   p:last-child { margin-bottom: 0; }
@@ -213,6 +219,14 @@
   .photo--inline { aspect-ratio: 4 / 3; margin: 2rem 0; }
   .photo--portrait { aspect-ratio: 4 / 5; max-width: 26rem; margin-top: 2.5rem; }
   .photo--moon { aspect-ratio: 1 / 1; width: 9rem; margin: 0 auto 1.75rem; border-radius: 50%; }
+  .photo--pause {
+    aspect-ratio: 16 / 9;
+    max-width: 22rem;
+    margin: 1.25rem 0 1.1rem;
+    border-radius: 1rem;
+    object-position: 50% 35%;
+  }
+  .photo--break { aspect-ratio: 3 / 2; margin: 2rem 0 0; }
 
   /* ---------- Hero ---------- */
   .hero { padding: 2.25rem 0 3.5rem; }
@@ -233,11 +247,13 @@
     margin: 1.4rem 0;
   }
   .hero .btn-row { margin-top: 1.75rem; }
+  .hero .photo--pause { display: block; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   @media (min-width: 60rem) {
     .hero { padding: 4.5rem 0 6rem; }
     .hero-grid { grid-template-columns: 1.1fr .9fr; align-items: start; gap: 5rem; }
     .photo--hero { aspect-ratio: 5 / 6; }
+    .hero .photo--pause { max-width: 100%; margin: 1.5rem 0 1.2rem; }
   }
 
   /* ---------- Kuka minä olen ---------- */
@@ -445,6 +461,8 @@
         <h1>Hengittävien äitien klubi</h1>
         <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
         <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
+        <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+        <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
         <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
         <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
         <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
@@ -462,14 +480,14 @@
 
 <main id="sisalto">
 
-  <section class="intro" aria-labelledby="h-mikaon">
+  <section class="intro" aria-labelledby="h-toimii">
     <div class="wrap">
-      <h2 id="h-mikaon">Mikä on Hengittävien äitien klubi?</h2>
-      <p>Hengittävien äitien klubi on yhteisö äideille, jotka haluavat voida paremmin keskellä tavallista arkea ja kasvaa omassa äitiydessään.</p>
-      <p>Opettelemme ymmärtämään hermoston toimintaa, tunnistamaan omia tarpeitamme ja löytämään keinoja palautua silloinkin, kun lapset tarvitsevat, puhelin soi ja oma aika tuntuu olevan aina viimeisenä.</p>
+      <h2 id="h-toimii">Näin klubi toimii</h2>
       <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.</p>
       <p>Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.</p>
-      <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
+      <p>Saat olla keskeneräinen ja samalla kasvaa.</p>
+      <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/a-family-walking-in-the-forest-5533872/ kuvaaja Bulat Khamitov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+      <img class="photo photo--break" src="/klubi/img/aiti-ja-lapset-syysmetsa.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Äiti kävelee kahden lapsen kanssa syksyisellä metsäpolulla.">
     </div>
   </section>
 

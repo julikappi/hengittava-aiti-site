@@ -32,6 +32,8 @@ const requiredImages = [
   'juliana-kasi-leualla.jpg',
   'taysikuu-rajattu.jpg',
   'taysikuu-meri.jpg',
+  'hengahdys-kahvi-ikkunalla.jpg',
+  'aiti-ja-lapset-syysmetsa.jpg',
 ];
 
 assert(page === publicPage, 'public/klubi mirrors root page');
@@ -56,8 +58,27 @@ assert(page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit sähköpo
 assert(!page.includes('18.10.'), 'no 18.10. left on the page');
 assert(!page.includes('Ovet aukeavat'), 'old door-open line removed');
 assert(!page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'old hero breath removed');
-assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading kept');
-assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close from brief');
+assert(page.includes('Näin klubi toimii'), 'intro heading is how the club works');
+assert(!page.includes('Mikä on Hengittävien äitien klubi?'), 'old what-is heading removed');
+assert(
+  page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.'),
+  'how-it-works keeps monthly theme and Sunday live',
+);
+assert(
+  page.includes('Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.'),
+  'how-it-works keeps the no-extra-work sentence',
+);
+assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa.'), 'intro close kept without echoing the hero');
+assert(!page.includes('Sinun ei tarvitse pärjätä yksin.'), 'intro no longer echoes selvitä/pärjätä yksin');
+assert(!page.includes('yhteisö äideille, jotka haluavat voida paremmin'), 'generic what-is sentence removed');
+assert(page.includes('hengahdys-kahvi-ikkunalla.jpg'), 'hero breathing-pause photo present');
+assert(page.includes('aiti-ja-lapset-syysmetsa.jpg'), 'how-it-works forest photo present');
+assert(page.includes('6968357'), 'hero photo credits Mikhail Nilov / Pexels');
+assert(page.includes('5533872'), 'forest photo credits Bulat Khamitov / Pexels');
+assert(/Tuntuuko[\s\S]*hengahdys-kahvi-ikkunalla[\s\S]*Sinun ei tarvitse selvitä yksin/.test(page), 'pause photo sits before the hero emphasis line');
+assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*aiti-ja-lapset-syysmetsa/.test(page), 'forest photo sits after the keskeneräinen line');
+assert(page.includes('#h-rauha'), 'rauha heading id kept');
+assert(/#h-rauha\s*\{[^}]*white-space:\s*nowrap/.test(page), 'rauha heading stays on one line');
 assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading verbatim');
 assert(
   page.includes('Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia. Se ei myöskään ole joogakerho, jumpparyhmä tai tiettyyn maailmankatsomukseen sitoutunut yhteisö.'),
