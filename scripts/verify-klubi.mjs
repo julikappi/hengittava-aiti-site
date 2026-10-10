@@ -192,7 +192,11 @@ assert(page.includes('data-form-name="Retriitti Valo – päiväretriitti"'), 'd
 assert(page.includes('data-form-id="9DTL1P28Fcz7sgJMbC4S"'), 'overnight retreat GHL form id');
 assert(page.includes('data-form-name="Retriitti Valo – yli yön"'), 'overnight retreat GHL form name');
 assert((page.match(/link\.msgsndr\.com\/js\/form_embed\.js/g) || []).length === 1, 'GHL form_embed.js loaded once');
-assert((page.match(/loading="lazy"/g) || []).length >= 2, 'Valo form iframes are lazy-loaded');
+assert(
+  !/<iframe[^>]*data-form-id="0s8Zj7kjIA8LTWOoIAYA"[^>]*loading="lazy"/.test(page) &&
+    !/<iframe[^>]*data-form-id="9DTL1P28Fcz7sgJMbC4S"[^>]*loading="lazy"/.test(page),
+  'Valo form iframes are not lazy-loaded so GHL can unhide them',
+);
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
 assert(
@@ -222,13 +226,17 @@ assert(
 );
 assert((page.match(/class="price-fn"/g) || []).length === 4, 'footnote on hero, price card, Ehdot block, and payment FAQ');
 assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
-assert(page.includes('Lokakuussa liittyville 19 €/kk* – ei sitoutumisaikaa.'), 'hero names October price and no commitment');
+assert(
+  /Lokakuussa liittyville[\s\S]{0,40}19 €\/kk\*[\s\S]{0,20}ei sitoutumisaikaa\./.test(page),
+  'hero names October price and no commitment',
+);
 assert(page.includes('<h2 id="h-hinta">Klubin hinta</h2>'), 'price section heading is Klubin hinta');
 assert((page.match(/class="cta-band"/g) || []).length === 2, 'two mid-page CTA bands');
 assert(
-  (page.match(/Valmis hengittämään kevyemmin\? 19 €\/kk lokakuussa\./g) || []).length === 2,
+  (page.match(/Valmis hengittämään kevyemmin\?[\s\S]{0,40}19 €\/kk[\s\S]{0,20}lokakuussa\./g) || []).length === 2,
   'CTA bands share the October join line',
 );
+assert(page.includes('Lokakuussa liittyville'), 'hero October price lead present');
 assert((page.match(/Kyllä, liityn/g) || []).length === 3, 'hero and two bands use Kyllä, liityn');
 assert(!page.includes('<dialog'), 'no popup dialogs');
 assert(!page.includes('class="modal'), 'no popup modals');
@@ -474,6 +482,7 @@ assert(
 );
 assert(!page.includes('min-height: 520px'), 'Valo form wrappers are not a fixed 520px tall');
 assert(!page.includes('data-height="520"'), 'Valo iframes are not a fixed 520px tall');
+assert(page.includes('.option-form {\n    position: relative;'), 'Valo form wrappers contain the absolutely positioned GHL iframe');
 assert(page.includes('background: transparent'), 'Valo form wrappers are not a white box');
 assert((page.match(/<article class="tier/g) || []).length === 2, 'exactly two price cards');
 

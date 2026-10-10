@@ -194,7 +194,6 @@
 
   .hero-price {
     margin: 1.35rem 0 0;
-    max-width: 36ch;
     font-size: 1.125rem;
     line-height: 1.45;
     font-weight: 500;
@@ -205,7 +204,7 @@
 
   /* Inline mid-page join bands: compact, rose-tinted, no modal */
   .cta-band {
-    background: var(--peach-mist);
+    background: var(--peach-tint);
     border-top: 1px solid var(--peach-2);
     border-bottom: 1px solid var(--peach-2);
     padding: 2.25rem 0;
@@ -213,7 +212,7 @@
   }
   .cta-band p {
     margin: 0 auto;
-    max-width: 28ch;
+    max-width: 20rem;
     color: var(--violet);
     font-size: 1.125rem;
     line-height: 1.45;
@@ -222,7 +221,7 @@
   .cta-band .btn-row { margin: 1.15rem 0 0; }
   @media (min-width: 48rem) {
     .cta-band { padding: 2.5rem 0; }
-    .cta-band p { max-width: 36ch; font-size: 1.25rem; }
+    .cta-band p { max-width: none; font-size: 1.25rem; }
   }
 
   a:focus-visible, summary:focus-visible, .btn:focus-visible { outline: 3px solid var(--violet); outline-offset: 4px; }
@@ -433,15 +432,19 @@
     color: var(--ink-soft);
   }
   .option-form {
+    position: relative;
     margin-top: 1.25rem;
+    height: 740px;
     border-radius: 16px;
-    overflow: visible;
+    overflow: hidden;
     background: transparent;
   }
   .option-form iframe {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
-    height: 340px;
+    height: 100%;
     border: 0;
     background: transparent;
   }
@@ -580,7 +583,7 @@
         <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
         <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
         <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
-        <p class="hero-price">Lokakuussa liittyville 19 €/kk* – ei sitoutumisaikaa.</p>
+        <p class="hero-price">Lokakuussa liittyville <span class="nw">19 €/kk*</span> – ei sitoutumisaikaa.</p>
         <p class="btn-row">
           <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
           <a class="btn" id="hero-cta" href="#hinta">Kyllä, liityn</a>
@@ -645,7 +648,7 @@
 
   <section class="cta-band" aria-label="Liity klubiin">
     <div class="wrap">
-      <p>Valmis hengittämään kevyemmin? 19 €/kk lokakuussa.</p>
+      <p>Valmis hengittämään kevyemmin? <span class="nw">19 €/kk</span> lokakuussa.</p>
       <p class="btn-row">
         <a class="btn btn--peach" href="#hinta">Kyllä, liityn</a>
       </p>
@@ -722,7 +725,7 @@
 
   <section class="cta-band" aria-label="Liity klubiin">
     <div class="wrap">
-      <p>Valmis hengittämään kevyemmin? 19 €/kk lokakuussa.</p>
+      <p>Valmis hengittämään kevyemmin? <span class="nw">19 €/kk</span> lokakuussa.</p>
       <p class="btn-row">
         <a class="btn btn--peach" href="#hinta">Kyllä, liityn</a>
       </p>
@@ -767,7 +770,7 @@
           <div class="option-form">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/0s8Zj7kjIA8LTWOoIAYA"
-              style="width:100%;height:340px;border:none;border-radius:16px;background:transparent"
+              style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
               id="inline-0s8Zj7kjIA8LTWOoIAYA"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
@@ -777,11 +780,10 @@
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="Retriitti Valo – päiväretriitti"
-              data-height="340"
+              data-height="740"
               data-layout-iframe-id="inline-0s8Zj7kjIA8LTWOoIAYA"
               data-form-id="0s8Zj7kjIA8LTWOoIAYA"
-              title="Retriitti Valo – päiväretriitti"
-              loading="lazy"></iframe>
+              title="Retriitti Valo – päiväretriitti"></iframe>
           </div>
         </article>
         <article class="option">
@@ -790,7 +792,7 @@
           <div class="option-form">
             <iframe
               src="https://api.leadconnectorhq.com/widget/form/9DTL1P28Fcz7sgJMbC4S"
-              style="width:100%;height:340px;border:none;border-radius:16px;background:transparent"
+              style="width:100%;height:100%;border:none;border-radius:16px;background:transparent"
               id="inline-9DTL1P28Fcz7sgJMbC4S"
               data-layout="{'id':'INLINE'}"
               data-trigger-type="alwaysShow"
@@ -800,11 +802,10 @@
               data-deactivation-type="neverDeactivate"
               data-deactivation-value=""
               data-form-name="Retriitti Valo – yli yön"
-              data-height="340"
+              data-height="740"
               data-layout-iframe-id="inline-9DTL1P28Fcz7sgJMbC4S"
               data-form-id="9DTL1P28Fcz7sgJMbC4S"
-              title="Retriitti Valo – yli yön"
-              loading="lazy"></iframe>
+              title="Retriitti Valo – yli yön"></iframe>
           </div>
         </article>
       </div>
@@ -1029,15 +1030,30 @@
 })();
 
 (function () {
+  function reveal(frame) {
+    frame.style.opacity = '1';
+    frame.style.visibility = 'visible';
+  }
+  document.querySelectorAll('.option-form iframe').forEach(function (frame) {
+    frame.addEventListener('load', function () { reveal(frame); });
+    if (frame.complete) reveal(frame);
+  });
+  setTimeout(function () {
+    document.querySelectorAll('.option-form iframe').forEach(reveal);
+  }, 1200);
+
   function applyHeight(formId, height) {
     var px = parseInt(height, 10);
-    if (!px || px < 80 || px > 900) return;
+    if (!px || px < 200 || px > 1200) return;
     document.querySelectorAll('.option-form iframe').forEach(function (frame) {
       var id = frame.getAttribute('data-form-id');
       if (formId && id && id !== formId && frame.id !== 'inline-' + formId) return;
       if (formId && !id) return;
       frame.style.height = px + 'px';
       frame.setAttribute('data-height', String(px));
+      if (frame.parentElement) {
+        frame.parentElement.style.height = px + 'px';
+      }
     });
   }
   window.addEventListener('message', function (event) {
