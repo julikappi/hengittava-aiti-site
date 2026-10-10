@@ -346,6 +346,26 @@ assert(!/<a[^>]*data-klubi-link="(?:klubi|plus)"[^>]*href="#">/.test(page), 'no 
 assert(!/href="#(?!hinta)/.test(page), 'no leftover placeholder href="#"');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
+const home = readFileSync(join(root, 'index.html'), 'utf8');
+const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
+const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
+assert(home === publicHome, 'public homepage mirrors root homepage');
+assert(
+  home.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
+  'homepage desktop nav links to /klubi/',
+);
+assert(
+  home.includes('<a href="/klubi/" class="mobile-link">Klubi</a>'),
+  'homepage mobile nav links to /klubi/',
+);
+assert(
+  (home.match(/href="\/klubi\/">Klubi<\/a>/g) || []).length >= 3,
+  'homepage footer also links to /klubi/',
+);
+assert(
+  hermosto.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
+  'shared hermosto-reset nav links to /klubi/',
+);
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
 assert(terms.includes('Myyjä on Maradevi Oy.'), 'terms page names the seller');
