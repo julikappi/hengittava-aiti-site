@@ -72,9 +72,12 @@ assert(
   'intro hermosto paragraph restored',
 );
 assert(
-  page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.'),
-  'intro monthly-theme paragraph restored',
+  page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen.'),
+  'intro monthly-theme paragraph ends at the Sunday live',
 );
+assert(!page.includes('kyläryhm'), 'no village-group promise on the sales page');
+assert(page.includes('äitien oma pieni kylä'), 'village metaphor kept in the hero');
+assert(page.includes('omaa kylää: mummoa, naapuria'), 'recognize-list village metaphor kept');
 assert(
   page.includes('Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.'),
   'intro no-extra-work paragraph restored',
@@ -105,20 +108,36 @@ assert(page.includes('intro-copy') && page.includes('intro-photo'), 'intro is a 
 assert(!/h2\s*\{[^}]*white-space:\s*nowrap/.test(page), 'desktop heading boxes may wrap');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
-  page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
-  'former is-this paragraph kept verbatim in the intro',
+  page.includes('Hengittävien äitien klubissa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Se on paikka, jossa äiti nähdään kokonaisena ihmisenä omine tarpeineen ja ajatuksineen, unohtamatta äitiyden roolin ainutlaatuisuutta ja tärkeyttä. Opimme vaalimaan tätä roolia unohtamatta kuitenkaan, että olemme myös muuta.'),
+  'intro ending paragraph 1 verbatim',
 );
+assert(
+  page.includes('Klubissa opettelemme siten voimaan hyvin naisena, äitinä ja perheen koordinaattorina.'),
+  'intro ending paragraph 2 verbatim',
+);
+assert(page.includes('Klubin päämäärät, joita kohti kuljemme:'), 'goals subheading verbatim');
+assert(!page.includes('Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'), 'old is-this paragraph removed');
 assert(page.includes('Hyvinvoiva nainen ja äiti'), 'pillar 1 title verbatim');
 assert(page.includes('Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.'), 'pillar 1 text verbatim');
 assert(page.includes('Kasvua äitiydessä'), 'pillar 2 title verbatim');
 assert(page.includes('Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.'), 'pillar 2 text verbatim');
-assert(page.includes('Parempi tunnelma perheessäsi ja kotonasi'), 'pillar 3 title verbatim');
-assert(page.includes('Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.'), 'pillar 3 text verbatim');
-assert((page.match(/<article class="pillar"/g) || []).length === 3, 'three what-the-club-is cards');
+assert(page.includes('Parempi yhteys lapseen'), 'pillar 3 title verbatim');
+assert(page.includes('Opimme pysähtymään lapsen äärellä, kuuntelemaan häntä ja kohtaamaan hänet rauhallisemmin myös haastavissa hetkissä.'), 'pillar 3 text verbatim');
+assert(page.includes('Parempi tunnelma perheessäsi ja kotonasi'), 'pillar 4 title verbatim');
+assert(page.includes('Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.'), 'pillar 4 text verbatim');
+assert((page.match(/<article class="pillar"/g) || []).length === 4, 'four club-goal cards');
 assert(
-  /id="h-mikaon"[\s\S]*Paikka, jossa jokainen saa olla[\s\S]*Parempi tunnelma perheessäsi ja kotonasi[\s\S]*<\/section>/.test(page),
-  'is-this copy and cards sit inside the intro section',
+  /id="h-mikaon"[\s\S]*Klubin päämäärät, joita kohti kuljemme:[\s\S]*Parempi yhteys lapseen[\s\S]*Parempi tunnelma perheessäsi ja kotonasi[\s\S]*<\/section>/.test(page),
+  'new ending copy and four cards sit inside the intro section',
 );
+assert(page.includes('repeat(4, minmax(0, 1fr))'), 'goal cards are four columns on desktop');
+assert(page.includes('hero-head'), 'desktop hero title sits in a full-width head');
+assert(
+  /h2 \{\n      display: table;\n      margin-left: auto;\n      margin-right: auto;/.test(page),
+  'desktop section headings are centered white boxes',
+);
+assert(page.includes('.split > h2 {\n      grid-column: 1 / -1;'), 'split headings span the full width');
+assert(page.includes('photo--pause-slot'), 'coffee photo fills the desktop hero right column');
 assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading is a main white-label h2');
 assert(page.includes('Klubi ei ole:'), 'not-this list lead-in verbatim');
 assert(page.includes('paikka, jossa arvostellaan muita ja toimitaan'), 'not-list item 1 verbatim');
@@ -161,8 +180,12 @@ assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
 assert(page.includes('Kurssin alusta ja materiaalit'), 'platform subheading present');
 assert(
-  page.includes('Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien ja oman kyläryhmäsi kanssa.'),
-  'platform paragraph gathers existing facts only',
+  page.includes('Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.'),
+  'platform paragraph keeps the discussion space without a village group',
+);
+assert(
+  page.includes('Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20.'),
+  'intro evening keeps the date without a village-group promise',
 );
 assert(!page.includes('muut materiaalit'), 'vague other-materials phrase removed');
 assert(
