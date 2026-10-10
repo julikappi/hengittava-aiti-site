@@ -168,7 +168,11 @@ assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yll�
 assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
 assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
-assert(page.includes('Syksyn kohokohta: tavataan Helsingissä'), 'Valo meetup heading kept');
+assert(page.includes('Tavataan Helsingissä'), 'Valo meetup heading without autumn');
+assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo 2027 dates and prices verbatim');
+assert(!page.includes('Syksyn kohokohta'), 'Valo autumn heading removed');
+assert(!page.includes('Marraskuun viimeisenä viikonloppuna'), 'Valo November date removed');
+assert(!page.includes('Klubilaiset saavat lipun etuhintaan'), 'old Valo member-price line removed');
 assert(page.includes('Täällä ei suoriteta'), 'anti-hustle heading kept');
 assert(page.includes('Kuka minä olen'), 'about heading kept');
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
