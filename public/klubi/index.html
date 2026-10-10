@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hengittävien äitien klubi</title>
 <meta name="description" content="Äitien oma pieni kylä keskellä arkea. Paikka, jossa opit ymmärtämään itseäsi ja omaa hermostoasi ja saat rinnallesi muita äitejä.">
-<meta name="theme-color" content="#FAF8F4">
+<meta name="theme-color" content="#FBF7F1">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://hengittava-aiti.fi/klubi/">
 <link rel="icon" href="/kuvat/logo-merkki.png" type="image/png">
@@ -59,25 +59,26 @@
 }
 
   /*
-    Värit (Julianan määrittelemät):
-    --paper  #FAF8F4  tausta
-    --violet #3B2A4A  teksti ja päänapit
-    --peach  #F2C4A8  korostus
+    Värit (hengittava-aiti.fi / README Designtokenit, index.html tailwind.config):
+    --paper  #FBF7F1  kerma (paper.warm)
+    --ink    #2A2320  leipäteksti ja primääri-CTA
+    --violet #3B2A45  tummaliila / plum, tummat paneelit
+    --peach  #A8827A  vanha roosa / dawn
     Ei liukuvärejä, ei varjoja, ei emojeja. Kaikki teksti Playfair Displaylla (upotettu yllä).
   */
   :root {
-    --paper: #FAF8F4;
-    --surface: #FFFFFF;
-    --violet: #3B2A4A;
-    --violet-2: #4D3A5E;
-    --ink: #3B2A4A;
-    --ink-soft: #5A4A66;
-    --peach: #F2C4A8;
-    --peach-2: #F6D5C1;
-    --peach-tint: #FBEBE1;
-    --line: #E8E0D6;
-    --ph-bg: #E9E7E4;
-    --ph-ink: #45423F;
+    --paper: #FBF7F1;
+    --surface: #FFFCFA;
+    --violet: #3B2A45;
+    --violet-2: #4A3854;
+    --ink: #2A2320;
+    --ink-soft: #4A423E;
+    --peach: #A8827A;
+    --peach-2: #C9A8A1;
+    --peach-tint: #F0E6E3;
+    --line: #E4D2CD;
+    --ph-bg: #F8F3F1;
+    --ph-ink: #4A423E;
     --measure: 36rem;
     --font: "Playfair Display";
   }
@@ -113,7 +114,7 @@
   .divider { width: 2.5rem; height: 2px; border: 0; background: var(--peach); margin: 0 auto; }
 
   /* ---------- Typography ---------- */
-  h1, h2, h3, .breath, .tier-lead { color: var(--violet); font-weight: 500; letter-spacing: -0.005em; }
+  h1, h2, h3, .breath, .tier-lead { color: var(--ink); font-weight: 500; letter-spacing: -0.005em; }
   h1 { font-size: clamp(2.5rem, 10.5vw, 4.25rem); line-height: 1.05; margin: 0 0 1.25rem; }
   h2 {
     display: inline-block;
@@ -123,7 +124,7 @@
     margin: 0 0 1.5rem;
     padding: .55rem .85rem .6rem;
     background: #FFFFFF;
-    color: var(--violet);
+    color: var(--ink);
     border: 1px solid var(--line);
     border-bottom: 2px solid var(--peach);
     border-radius: .2rem;
@@ -177,16 +178,16 @@
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
     min-height: 3rem; padding: .8rem 2rem; border-radius: 999px;
-    background: var(--violet); color: #fff; border: 2px solid var(--violet);
+    background: var(--ink); color: #FFFCFA; border: 2px solid var(--ink);
     font-weight: 600; font-size: 1.0625rem; line-height: 1.3; letter-spacing: .01em;
     text-align: center; text-decoration: none;
     transition: background-color .2s ease, border-color .2s ease, color .2s ease;
   }
-  .btn:hover { background: var(--violet-2); border-color: var(--violet-2); }
-  .btn--outline { background: transparent; color: var(--violet); }
-  .btn--outline:hover { background: var(--peach-tint); border-color: var(--violet); }
-  .btn--peach { background: var(--peach); border-color: var(--peach); color: var(--violet); }
-  .btn--peach:hover { background: var(--peach-2); border-color: var(--peach-2); }
+  .btn:hover { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .btn--outline { background: transparent; color: var(--ink); }
+  .btn--outline:hover { background: var(--peach-tint); border-color: var(--ink); }
+  .btn--peach { background: var(--peach); border-color: var(--peach); color: var(--ink); }
+  .btn--peach:hover { background: var(--peach-2); border-color: var(--peach-2); color: var(--ink); }
   .btn-row { margin: 2rem 0 0; }
   @media (max-width: 29.99rem) { .btn-row .btn { width: 100%; } }
 
@@ -224,7 +225,7 @@
     font-weight: 500;
     font-size: clamp(1.2rem, 4.4vw, 1.5rem);
     line-height: 1.35;
-    color: var(--violet);
+    color: var(--ink);
     margin: 1.4rem 0;
   }
   .hero .btn-row { margin-top: 1.75rem; }
@@ -272,7 +273,7 @@
   .ehdot p { max-width: none; margin: 0 0 1rem; }
   .ehdot p:last-child { margin-bottom: 0; }
   .ehdot a, .faq a {
-    color: var(--violet);
+    color: var(--ink);
     text-underline-offset: .18em;
   }
   .bonus {
@@ -281,9 +282,9 @@
     gap: 1.1rem;
     margin: 1.2rem 0 0;
     padding: .95rem 1rem;
-    border: 1px solid rgba(242, 196, 168, .55);
+    border: 1px solid rgba(168, 130, 122, .45);
     border-radius: 1.15rem;
-    background: rgba(250, 248, 244, .08);
+    background: rgba(251, 247, 241, .08);
   }
   .bonus img {
     flex: none;
@@ -398,7 +399,7 @@
   /* ---------- FAQ ---------- */
   .faq { border-top: 1px solid var(--line); max-width: 62ch; }
   .faq details { border-bottom: 1px solid var(--line); }
-  .faq summary { list-style: none; cursor: pointer; min-height: 3.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; font-size: 1.25rem; line-height: 1.35; color: var(--violet); }
+  .faq summary { list-style: none; cursor: pointer; min-height: 3.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; font-size: 1.25rem; line-height: 1.35; color: var(--ink); }
   .faq summary::-webkit-details-marker { display: none; }
   .faq summary::after { content: ""; flex: none; width: .7rem; height: .7rem; border-right: 2px solid var(--violet); border-bottom: 2px solid var(--violet); transform: rotate(45deg) translate(-3px, -3px); transition: transform .2s ease; }
   .faq details[open] summary::after { transform: rotate(-135deg) translate(-3px, -3px); }
@@ -421,7 +422,7 @@
     transition: transform .25s ease, visibility 0s linear .25s;
   }
   .sticky-cta.is-visible { transform: translateY(0); visibility: visible; transition: transform .25s ease, visibility 0s; }
-  .sticky-cta p { margin: 0; font-size: 1.125rem; font-weight: 600; color: var(--violet); line-height: 1.2; }
+  .sticky-cta p { margin: 0; font-size: 1.125rem; font-weight: 600; color: var(--ink); line-height: 1.2; }
   .sticky-cta .btn { min-height: 2.875rem; padding: .6rem 1.4rem; flex: none; }
   @media (min-width: 60rem) { .sticky-cta { display: none; } }
 </style>

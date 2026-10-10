@@ -149,9 +149,13 @@ assert(!page.includes('[hinta]'), 'meetup price placeholders removed');
 assert(!page.includes('Voit peroa'), 'FAQ cancel verb is perua, not typo peroa');
 assert(!page.includes('—'), 'no em-dashes in the page');
 
-assert(page.includes('#FAF8F4'), 'paper colour kept');
-assert(page.includes('#3B2A4A'), 'violet colour kept');
-assert(page.includes('#F2C4A8'), 'peach colour kept');
+assert(page.includes('#FBF7F1'), 'cream paper from the live site');
+assert(page.includes('#2A2320'), 'ink from the live site');
+assert(page.includes('#3B2A45'), 'plum from the live site');
+assert(page.includes('#A8827A'), 'old rose / dawn from the live site');
+assert(!page.includes('#F2C4A8'), 'peach accent removed');
+assert(!page.includes('#FAF8F4'), 'off-brand cream removed');
+assert(!page.includes('#3B2A4A'), 'off-brand violet removed');
 assert(page.includes('sticky-cta'), 'sticky mobile CTA present');
 assert(page.includes('id="hinta"'), 'price section id kept');
 assert(page.includes('id="varma"'), 'full-moon section id kept');
@@ -213,6 +217,10 @@ assert(terms.includes('Maksettuja jäsenmaksuja ei palauteta.'), 'no-refund sent
 assert(terms.includes('Ehdot päivitetään tähän ennen klubin avautumista.'), 'terms page placeholder copy');
 assert(terms.includes('href="/klubi/"'), 'terms page links back to /klubi/');
 assert(/<meta name="robots" content="noindex/.test(terms), 'terms page is noindex');
+assert(terms.includes('#A8827A'), 'terms page uses old rose');
+assert(terms.includes('#FBF7F1'), 'terms page uses cream paper');
+assert(!terms.includes('#F2C4A8'), 'terms page peach removed');
+assert(!terms.includes('#FAF8F4'), 'terms page off-brand cream removed');
 
 assert((page.match(/Liity klubiin/g) || []).length >= 3, 'club join buttons present');
 assert(page.includes('Liity PLUS-jäseneksi'), 'PLUS button label kept');
