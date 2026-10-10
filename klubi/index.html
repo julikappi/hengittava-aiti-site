@@ -257,6 +257,7 @@
   .hero-grid { display: flex; flex-direction: column; gap: 0; }
   .hero-copy { display: contents; }
   .hero-open { order: 1; }
+  .hero-story { display: contents; }
   .hero .photo--pause { order: 2; display: block; }
   .hero-continue { order: 3; }
   .hero-offer { order: 4; margin-top: 1.5rem; }
@@ -285,7 +286,7 @@
       grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.9fr);
       grid-template-areas:
         "copy visual"
-        "more more";
+        "story story";
       align-items: stretch;
       column-gap: 4.5rem;
       row-gap: 0;
@@ -293,6 +294,7 @@
     .hero-copy,
     .hero-open,
     .hero-offer,
+    .hero-story,
     .hero-continue,
     .hero-visual,
     .hero .photo--pause,
@@ -305,7 +307,16 @@
       min-height: 0;
     }
     .hero-offer { margin-top: 1.85rem; }
-    .hero-continue { grid-area: more; }
+    .hero-story {
+      display: grid;
+      grid-area: story;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: 4.5rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+    .hero-continue { grid-column: 1; grid-row: 1; }
+    .hero-story .photo--pause { grid-column: 2; grid-row: 1; }
     .hero h1 {
       font-size: clamp(2.35rem, 3.3vw, 3.15rem);
       white-space: normal;
@@ -336,15 +347,22 @@
       object-fit: cover;
       object-position: 50% 16%;
     }
-    .hero .photo--pause { display: none; }
+    .hero .photo--pause {
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      aspect-ratio: 4 / 3;
+      object-position: 50% 32%;
+    }
     .hero-continue {
       max-width: 42rem;
-      margin: 3.25rem auto 0;
+      margin: 0;
     }
     .hero-continue .hero-stand {
-      text-align: center;
-      max-width: 22em;
-      margin: 0 auto 1.5rem;
+      text-align: left;
+      max-width: 18em;
+      margin: 0 0 1.25rem;
     }
     .hero p { max-width: 62ch; }
     .hero-price { margin-top: 0; }
@@ -932,13 +950,15 @@
           <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
         </div>
       </div>
-      <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-      <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
-      <div class="hero-continue">
-        <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
-        <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
-        <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
-        <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
+      <div class="hero-story">
+        <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+        <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
+        <div class="hero-continue">
+          <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
+          <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
+          <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
+          <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
+        </div>
       </div>
       <div class="hero-visual">
         <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
