@@ -58,19 +58,25 @@ assert(page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit sähköpo
 assert(!page.includes('18.10.'), 'no 18.10. left on the page');
 assert(!page.includes('Ovet aukeavat'), 'old door-open line removed');
 assert(!page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'old hero breath removed');
-assert(page.includes('Näin klubi toimii'), 'intro heading is how the club works');
-assert(!page.includes('Mikä on Hengittävien äitien klubi?'), 'old what-is heading removed');
+assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading restored');
+assert(!page.includes('Näin klubi toimii'), 'how-it-works rename undone');
+assert(
+  page.includes('Hengittävien äitien klubi on yhteisö äideille, jotka haluavat voida paremmin keskellä tavallista arkea ja kasvaa omassa äitiydessään.'),
+  'intro opening paragraph restored',
+);
+assert(
+  page.includes('Opettelemme ymmärtämään hermoston toimintaa, tunnistamaan omia tarpeitamme ja löytämään keinoja palautua silloinkin, kun lapset tarvitsevat, puhelin soi ja oma aika tuntuu olevan aina viimeisenä.'),
+  'intro hermosto paragraph restored',
+);
 assert(
   page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.'),
-  'how-it-works keeps monthly theme and Sunday live',
+  'intro monthly-theme paragraph restored',
 );
 assert(
   page.includes('Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.'),
-  'how-it-works keeps the no-extra-work sentence',
+  'intro no-extra-work paragraph restored',
 );
-assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa.'), 'intro close kept without echoing the hero');
-assert(!page.includes('Sinun ei tarvitse pärjätä yksin.'), 'intro no longer echoes selvitä/pärjätä yksin');
-assert(!page.includes('yhteisö äideille, jotka haluavat voida paremmin'), 'generic what-is sentence removed');
+assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close restored in full');
 assert(page.includes('hengahdys-kahvi-ikkunalla.jpg'), 'hero breathing-pause photo present');
 assert(page.includes('metsa-aurinko.jpg'), 'how-it-works uses Juliana’s sunlit forest photo');
 assert(page.includes('photo--colour'), 'sunlit forest stays in colour');
