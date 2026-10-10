@@ -34,19 +34,28 @@ const mime = {
 };
 
 const redirects = {
-  '/hermosto-reset-viikko-1': 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS',
-  '/hermosto-reset-viikko-1/': 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS',
-  '/tietosuojaseloste': 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH',
-  '/tietosuojaseloste/': 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH',
-  '/opas': 'https://hengittava-aiti.fi/hermosto-reset-viikko-1',
-  '/opas/': 'https://hengittava-aiti.fi/hermosto-reset-viikko-1',
+  '/hermosto-reset-viikko-1': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS' },
+  '/hermosto-reset-viikko-1/': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS' },
+  '/tietosuojaseloste': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH' },
+  '/tietosuojaseloste/': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH' },
+  '/opas': { status: 302, location: 'https://hengittava-aiti.fi/hermosto-reset-viikko-1' },
+  '/opas/': { status: 302, location: 'https://hengittava-aiti.fi/hermosto-reset-viikko-1' },
+  '/perjantain-nollaushetki': { status: 301, location: '/nollaushetki/' },
+  '/perjantain-nollaushetki/': { status: 301, location: '/nollaushetki/' },
+  '/kiitos/perjantain-nollaushetki': { status: 301, location: '/nollaushetki/kiitos/' },
+  '/kiitos/perjantain-nollaushetki/': { status: 301, location: '/nollaushetki/kiitos/' },
 };
 
 createServer(async (req, res) => {
   try {
     let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     if (redirects[pathname]) {
-      res.writeHead(302, { Location: redirects[pathname] });
+      const redir = redirects[pathname];
+      res.writeHead(redir.status, { Location: redir.location });
+      return res.end();
+    }
+    if (pathname.startsWith('/perjantain-nollaushetki')) {
+      res.writeHead(301, { Location: '/nollaushetki/' });
       return res.end();
     }
     if (pathname === '/') pathname = '/index.html';
