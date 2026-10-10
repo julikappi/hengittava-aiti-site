@@ -209,11 +209,13 @@ assert(
 );
 assert(
   !page.includes('Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.'),
-  'repeated lock sentence removed from main text',
+  'no as-long-as-membership-continues price promise',
 );
+assert(!page.includes('koko jäsenyytesi ajan'), 'no whole-membership price promise');
+assert(!page.includes('niin kauan kuin jäsenyys jatkuu'), 'no while-membership-continues price promise');
 assert(
-  page.includes('*Liittymishintasi pysyy samana koko jäsenyytesi ajan, kunhan tilauksesi jatkuu katkeamatta. Hinnat tarkistetaan kerran vuodessa, ja mahdollisista muutoksista ilmoitetaan hyvissä ajoin etukäteen.'),
-  'unbroken-membership footnote on the 19 € price',
+  page.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
+  'approved 19 € footnote through 31.10.2027 with 30-day notice',
 );
 assert((page.match(/class="price-fn"/g) || []).length === 3, 'footnote on price card, Ehdot block, and payment FAQ');
 assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
@@ -353,11 +355,12 @@ assert(
 );
 assert(
   !terms.includes('Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.'),
-  'terms page does not repeat the lock sentence',
+  'terms page has no as-long-as-membership-continues promise',
 );
+assert(!terms.includes('koko jäsenyytesi ajan'), 'terms page has no whole-membership price promise');
 assert(
-  terms.includes('*Liittymishintasi pysyy samana koko jäsenyytesi ajan, kunhan tilauksesi jatkuu katkeamatta. Hinnat tarkistetaan kerran vuodessa, ja mahdollisista muutoksista ilmoitetaan hyvissä ajoin etukäteen.'),
-  'terms page has the same unbroken-membership clause',
+  terms.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
+  'terms page has the same approved 19 € footnote',
 );
 assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
 assert(
