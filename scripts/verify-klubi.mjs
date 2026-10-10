@@ -95,6 +95,10 @@ assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(pa
 assert(page.includes('@media (min-width: 56.25rem)'), 'desktop reading layout starts at 900px');
 assert(page.includes('.split'), 'desktop text+image split class present');
 assert((page.match(/class="wrap split/g) || []).length === 3, 'three natural text+image splits');
+assert(page.includes('max-width: 68.75rem'), 'desktop uses one ~1100px container');
+assert(page.includes('max-width: 42.5rem'), 'desktop body column is ~680px');
+assert(page.includes('split--flip'), 'story sections alternate image side');
+assert(!/h2\s*\{[^}]*white-space:\s*nowrap/.test(page), 'desktop heading boxes may wrap');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
