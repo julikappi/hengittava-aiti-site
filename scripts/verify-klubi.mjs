@@ -86,8 +86,9 @@ assert(!page.includes('5533872'), 'Pexels 5533872 credit removed');
 assert(page.includes('6968357'), 'hero photo credits Mikhail Nilov / Pexels');
 assert(/Tuntuuko[\s\S]*hengahdys-kahvi-ikkunalla[\s\S]*Sinun ei tarvitse selvitä yksin/.test(page), 'pause photo sits before the hero emphasis line');
 assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*metsa-aurinko/.test(page), 'sunlit forest sits after the keskeneräinen line');
-assert(page.includes('#h-rauha'), 'rauha heading id kept');
-assert(/#h-rauha\s*\{[^}]*white-space:\s*nowrap/.test(page), 'rauha heading stays on one line');
+assert(!/#h-rauha\s*\{/.test(page), 'no per-heading size shrink for rauha');
+assert(!/h2[^{]*\{[^}]*font-size:[^}]*1\.05rem/.test(page), 'main h2s are not shrunk to 1.05rem');
+assert(/h2\s*\{[^}]*font-size:\s*clamp\(1\.5rem,\s*5\.6vw,\s*2\.05rem\)/.test(page), 'all main white-label h2s share one size');
 assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
@@ -125,8 +126,17 @@ assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
 assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'learn list has 8 items');
 assert(page.includes('Pienet harjoitukset eivät poista kaikkia arjen haasteita.'), 'no-miracle closing on learn list');
 assert(page.includes('Hengittävä äiti ei ole äiti, joka ei koskaan hermostu tai väsy.'), 'hengittävä äiti reframed');
-assert(page.includes('Sinun rauhasi tarttuu lapsiin'), 'co-regulation heading kept');
-assert(page.includes('Hyvinvointisi on arvokasta myös sinun itsesi vuoksi'), 'wellbeing for mother herself');
+assert(page.includes('Lapsellesi turvaa ja parhaat muistot'), 'childhood-home heading verbatim');
+assert(
+  page.includes('Lapsesi parhaat muistot syntyvät lapsuuden kodissa – ja sinä luot sen tunnelman.'),
+  'childhood-home lead verbatim',
+);
+assert(
+  page.includes('Lapsuuden kodin tunnelma kulkee lapsen mukana pitkälle aikuisuuteen. Se, millaisena hän kokee kodin, läheisyyden ja turvan, luo pohjan sille, miten hän näkee itsensä, muut ihmiset ja maailman. Lapset aistivat kaiken, ja me haluamme olla heille paras mahdollinen malli. Täällä yhteisössä kuljemme kohti sitä keskeneräisinä ja epätäydellisinä, mutta selkeällä päämäärällä. Riittää, että haluat olla joka päivä vähän parempi äiti, ihminen ja puoliso. Yksi askel päivässä riittää.'),
+  'childhood-home body verbatim',
+);
+assert(!page.includes('Sinun rauhasi tarttuu lapsiin'), 'old rauha heading removed');
+assert(!page.includes('Hyvinvointisi on arvokasta myös sinun itsesi vuoksi'), 'old wellbeing line removed from this section');
 assert(page.includes('Näin klubikuukausi kulkee'), 'month heading kept');
 assert(page.includes('Pysähtymisen taito'), 'November theme kept');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
