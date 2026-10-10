@@ -348,11 +348,16 @@ assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
+assert(terms.includes('Myyjä on Maradevi Oy.'), 'terms page names the seller');
+assert(terms.includes('Hengittävien äitien klubi on kuukausijäsenyys.'), 'terms page names the product');
 assert(terms.includes('<h2>Hinta</h2>'), 'terms page price heading');
 assert(
-  terms.includes('Liittymishinta 19 €/kk* on voimassa 31.10. asti. 1.11. alkaen hinta on 25 €/kk.'),
-  'terms page has the same founder price line',
+  terms.includes('Liittymishinta 19 €/kk* on voimassa 31.10.2026 asti. 1.11.2026 alkaen hinta on 25 €/kk.'),
+  'terms page founder price until 31.10.2026 then 25 €',
 );
+assert(terms.includes('Klubi PLUS 89 €/kk'), 'terms page PLUS price');
+assert(terms.includes('45 minuutin henkilökohtaisen Zoom-kartoituksen'), 'terms page PLUS assessment');
+assert(terms.includes('enintään 10'), 'terms page PLUS cap');
 assert(
   !terms.includes('Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.'),
   'terms page has no as-long-as-membership-continues promise',
@@ -362,14 +367,28 @@ assert(
   terms.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
   'terms page has the same approved 19 € footnote',
 );
+assert(terms.includes('kortilla, Apple Paylla tai Google Paylla (Stripe)'), 'terms page payment methods');
+assert(terms.includes('kuukauden välein liittymispäivästä'), 'terms page join-date billing');
 assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
 assert(
   terms.includes('Jäsenyyden voi perua milloin vain viestillä osoitteeseen'),
   'terms page cancel by email',
 );
 assert(terms.includes('Pääsy päättyy maksetun kuukauden lopussa.'), 'terms page access-end');
-assert(terms.includes('Maksettuja jäsenmaksuja ei palauteta.'), 'no-refund sentence lives on the terms page');
-assert(terms.includes('Ehdot päivitetään tähän ennen klubin avautumista.'), 'terms page placeholder copy');
+assert(terms.includes('Maksettuja jäsenmaksuja ei palauteta'), 'no-refund sentence lives on the terms page');
+assert(terms.includes('1–3 kuukauden tauon'), 'terms page pause');
+assert(terms.includes('19.10.2026'), 'terms page club start');
+assert(terms.includes('25.10.2026'), 'terms page first live');
+assert(terms.includes('Livet voidaan tallentaa.'), 'terms page lives may be recorded');
+assert(terms.includes('ilman kameraa'), 'terms page camera may be off');
+assert(terms.includes('menetät 14 päivän peruutusoikeuden'), 'terms page digital-content withdrawal waiver');
+assert(terms.includes('kuluttajansuojalain mukaisesti'), 'terms page cites consumer protection law');
+assert(terms.includes('henkilökohtaiseen käyttöön'), 'terms page personal use');
+assert(terms.includes('Klubi ei ole terapiaa eikä terveydenhuoltoa.'), 'terms page not therapy');
+assert(terms.includes('kunnioittavasti'), 'terms page respectful conduct');
+assert(terms.includes('href="/tietosuoja/"'), 'terms page links to the site privacy policy');
+assert(terms.includes('Ehtojen muutoksista ilmoitetaan etukäteen.'), 'terms page change notice');
+assert(!terms.includes('Ehdot päivitetään tähän ennen klubin avautumista.'), 'terms placeholder removed');
 assert(terms.includes('href="/klubi/"'), 'terms page links back to /klubi/');
 assert(/<meta name="robots" content="noindex/.test(terms), 'terms page is noindex');
 assert(terms.includes('#A8827A'), 'terms page uses old rose');
