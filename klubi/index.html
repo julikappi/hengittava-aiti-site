@@ -258,17 +258,25 @@
   .hero-copy { display: contents; }
   .hero h1 {
     order: 1;
-    font-size: clamp(1.45rem, 7.85vw, 2.95rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.35rem, 7.4vw, 2.85rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
     margin: 0 0 1.15rem;
-    max-width: none;
+    max-width: 100%;
     white-space: nowrap;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
   .hero-open { order: 1; }
-  .hero-story { display: contents; }
-  .hero .photo--pause { order: 2; display: block; }
-  .hero-continue { order: 3; }
+  .hero-story {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+  }
+  .hero .photo--pause {
+    display: block;
+    filter: none;
+  }
   .hero-offer { order: 4; margin-top: 1.5rem; }
   .hero-visual { order: 5; margin-top: 2.5rem; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
@@ -313,11 +321,13 @@
     .hero h1 {
       grid-area: title;
       font-size: clamp(2.55rem, 4.15vw, 3.35rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
       margin: 0 0 2.15rem;
       max-width: none;
       white-space: nowrap;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
     }
     .hero-copy {
       display: flex;
