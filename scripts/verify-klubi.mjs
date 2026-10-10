@@ -413,8 +413,11 @@ assert(
 assert(terms.includes('Pääsy päättyy maksetun kuukauden lopussa.'), 'terms page access-end');
 assert(terms.includes('Maksettuja jäsenmaksuja ei palauteta'), 'no-refund sentence lives on the terms page');
 assert(terms.includes('1–3 kuukauden tauon'), 'terms page pause');
-assert(terms.includes('19.10.2026'), 'terms page club start');
-assert(terms.includes('25.10.2026'), 'terms page first live');
+assert(terms.includes('<h2>Materiaalit ja livet</h2>'), 'terms page materials heading');
+assert(!terms.includes('Klubin alkaminen ja materiaalit'), 'old start-date heading removed');
+assert(!terms.includes('19.10.2026'), 'terms page has no club start date');
+assert(!terms.includes('25.10.2026'), 'terms page has no first live date');
+assert(terms.includes('Saat materiaalit sähköpostiisi, ja sisältö on käytössäsi klubin alustalla.'), 'terms page materials by email and platform');
 assert(terms.includes('Livet voidaan tallentaa.'), 'terms page lives may be recorded');
 assert(terms.includes('ilman kameraa'), 'terms page camera may be off');
 assert(terms.includes('menetät 14 päivän peruutusoikeuden'), 'terms page digital-content withdrawal waiver');
