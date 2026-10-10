@@ -204,9 +204,14 @@ assert(page.includes('Kuka minä olen'), 'about heading kept');
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
 assert(page.includes('Klubi 19 €/kk'), 'club price kept');
 assert(
-  page.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu. 1.11. alkaen hinta on 25 €/kk.'),
-  'founder price lock until 31.10. then 25 €/kk',
+  page.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.* 1.11. alkaen hinta on 25 €/kk.'),
+  'founder price lock until 31.10. then 25 €/kk, with asterisk',
 );
+assert(
+  page.includes('*Pidätämme oikeuden hintamuutoksiin. Hinnanmuutoksista ilmoitetaan jäsenille hyvissä ajoin etukäteen.'),
+  'price-change footnote is not an absolute lock',
+);
+assert((page.match(/class="price-fn"/g) || []).length === 3, 'footnote on price card, Ehdot block, and payment FAQ');
 assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
 assert(!page.includes('kun liityt lokakuussa.'), 'old october-only price lead removed');
 assert(!page.includes('ellei jäsenyys- tai hinnoitteluehtoihin'), 'old lock caveat removed from the card');
@@ -339,8 +344,12 @@ assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
 assert(terms.includes('<h2>Hinta</h2>'), 'terms page price heading');
 assert(
-  terms.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu. 1.11. alkaen hinta on 25 €/kk.'),
+  terms.includes('Liittymishinta 19 €/kk on voimassa 31.10. asti. Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.* 1.11. alkaen hinta on 25 €/kk.'),
   'terms page has the same founder price lock',
+);
+assert(
+  terms.includes('*Pidätämme oikeuden hintamuutoksiin. Hinnanmuutoksista ilmoitetaan jäsenille hyvissä ajoin etukäteen.'),
+  'terms page has the price-change clause',
 );
 assert(terms.includes('<h2>Jäsenyyden päättäminen</h2>'), 'terms page cancel heading');
 assert(
