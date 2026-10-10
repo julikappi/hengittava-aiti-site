@@ -78,7 +78,7 @@ assert(
 );
 assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close restored in full');
 assert(page.includes('hengahdys-kahvi-ikkunalla.jpg'), 'hero breathing-pause photo present');
-assert(page.includes('metsa-aurinko.jpg'), 'how-it-works uses Juliana’s sunlit forest photo');
+assert(page.includes('metsa-aurinko.jpg'), 'intro uses Juliana’s sunlit forest photo');
 assert(page.includes('photo--colour'), 'sunlit forest stays in colour');
 assert(page.includes('Aurinko siivilöityy männikön läpi syksyisessä metsässä.'), 'sunlit forest has Finnish alt');
 assert(!page.includes('aiti-ja-lapset-syysmetsa.jpg'), 'Pexels forest-path file unused');
@@ -88,15 +88,10 @@ assert(/Tuntuuko[\s\S]*hengahdys-kahvi-ikkunalla[\s\S]*Sinun ei tarvitse selvit�
 assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*metsa-aurinko/.test(page), 'sunlit forest sits after the keskeneräinen line');
 assert(page.includes('#h-rauha'), 'rauha heading id kept');
 assert(/#h-rauha\s*\{[^}]*white-space:\s*nowrap/.test(page), 'rauha heading stays on one line');
-assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading verbatim');
-assert(
-  page.includes('Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia. Se ei myöskään ole joogakerho, jumpparyhmä tai tiettyyn maailmankatsomukseen sitoutunut yhteisö.'),
-  'not-this paragraph verbatim',
-);
-assert(page.includes('Mitä se sitten on?'), 'is-this heading verbatim');
+assert(!page.includes('Mitä se sitten on?'), 'is-this heading removed into the intro');
 assert(
   page.includes('Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.'),
-  'is-this paragraph verbatim',
+  'former is-this paragraph kept verbatim in the intro',
 );
 assert(page.includes('Hyvinvoiva nainen ja äiti'), 'pillar 1 title verbatim');
 assert(page.includes('Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.'), 'pillar 1 text verbatim');
@@ -104,9 +99,28 @@ assert(page.includes('Kasvua äitiydessä'), 'pillar 2 title verbatim');
 assert(page.includes('Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.'), 'pillar 2 text verbatim');
 assert(page.includes('Parempi tunnelma perheessäsi ja kotonasi'), 'pillar 3 title verbatim');
 assert(page.includes('Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.'), 'pillar 3 text verbatim');
-assert((page.match(/<article class="pillar"/g) || []).length === 3, 'three is-this cards');
+assert((page.match(/<article class="pillar"/g) || []).length === 3, 'three what-the-club-is cards');
+assert(
+  /id="h-mikaon"[\s\S]*Paikka, jossa jokainen saa olla[\s\S]*Parempi tunnelma perheessäsi ja kotonasi[\s\S]*<\/section>/.test(page),
+  'is-this copy and cards sit inside the intro section',
+);
+assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading is a main white-label h2');
+assert(page.includes('Klubi ei ole:'), 'not-this list lead-in verbatim');
+assert(page.includes('paikka, jossa arvostellaan muita ja toimitaan'), 'not-list item 1 verbatim');
+assert(page.includes('juorukerho'), 'not-list item 2 verbatim');
+assert(page.includes('paikka, jossa jäädään pyörittelemään ongelmia'), 'not-list item 3 verbatim');
+assert(page.includes('joogakerho'), 'not-list item 4 verbatim');
+assert(page.includes('jumppakerho'), 'not-list item 5 verbatim');
+assert(page.includes('yksi paikka, jossa suoritetaan lisää'), 'not-list item 6 verbatim with the added comma');
+assert(page.includes('new age -yhteisö'), 'not-list item 7 verbatim');
+assert(
+  !page.includes('Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia.'),
+  'old not-this paragraph removed',
+);
+assert(!page.includes('class="is-this"'), 'standalone is-this section removed');
 assert(page.includes('Klubi on sinulle, jos'), 'recognition heading kept');
-assert(page.includes('Keskellä kaikkea'), 'community heading kept');
+assert(page.includes('Oma rauhan keidas keskellä arkea'), 'community heading renamed');
+assert(!page.includes('Keskellä kaikkea'), 'old community heading removed');
 assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
 assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'learn list has 8 items');
 assert(page.includes('Pienet harjoitukset eivät poista kaikkia arjen haasteita.'), 'no-miracle closing on learn list');

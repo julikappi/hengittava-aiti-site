@@ -334,37 +334,31 @@
   }
 
   /* ---------- Ensimmäinen sisältöjakso: Mikä on klubi ---------- */
-  .intro { padding: 3.25rem 0 2.5rem; }
+  .intro { padding: 3.25rem 0 4.5rem; }
   .intro p { font-size: 1.1875rem; line-height: 1.8; }
   .intro p + p { margin-top: 1.5rem; }
+  .intro .pillars { margin-top: 2rem; }
   @media (min-width: 48rem) {
-    .intro { padding: 4.5rem 0 3rem; }
+    .intro { padding: 4.5rem 0 6.5rem; }
     .intro p { font-size: 1.3125rem; }
   }
 
-  /* ---------- Mitä klubi ei ole (hillitty) ---------- */
-  .not-this { padding: 0 0 1.75rem; }
-  .not-this h2 {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    font-weight: 500;
-    padding: .5em 1em;
-    margin: 0 0 .7rem;
-    letter-spacing: 0;
+  /* ---------- Mitä klubi ei ole ---------- */
+  .not-this { padding: 4.5rem 0; }
+  .not-this .not-lead {
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    color: var(--ink);
   }
-  .not-this p {
-    font-size: .95rem;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
-  }
+  .not-this ul.soft { margin-bottom: 0; }
+  .not-this ul.soft li { font-size: 1.05rem; line-height: 1.55; color: var(--ink-soft); }
   @media (min-width: 48rem) {
-    .not-this { padding: 0 0 2rem; }
-    .not-this h2 { font-size: 1.1rem; }
+    .not-this { padding: 6.5rem 0; }
+    .not-this .not-lead { font-size: 1.3125rem; }
   }
 
-  /* ---------- Mitä se sitten on + kolme korttia ---------- */
-  .is-this { padding: 1.5rem 0 4.5rem; }
+  /* ---------- Kolme korttia (osa Mikä on -osiota) ---------- */
   .pillars { display: grid; gap: 1.15rem; margin: 2rem 0 0; }
   .pillar {
     position: relative;
@@ -397,7 +391,6 @@
     color: var(--ink-soft);
   }
   @media (min-width: 48rem) {
-    .is-this { padding: 2rem 0 6.5rem; }
     .pillars { grid-template-columns: 1fr 1fr 1fr; gap: 1.35rem; }
   }
 
@@ -489,21 +482,6 @@
       <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen, ja omassa kyläryhmässäsi saat jakaa kokemuksia muiden äitien kanssa.</p>
       <p>Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.</p>
       <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
-      <!-- Julianan oma kuva, väreissä (poikkeus mustavalkosäännöstä). -->
-      <img class="photo photo--break photo--colour" src="/klubi/img/metsa-aurinko.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Aurinko siivilöityy männikön läpi syksyisessä metsässä.">
-    </div>
-  </section>
-
-  <section class="not-this" aria-labelledby="h-eiole">
-    <div class="wrap">
-      <h2 id="h-eiole">Mitä Hengittävien äitien klubi ei ole?</h2>
-      <p>Se ei ole paikka, jossa arvostellaan muita tai jäädään yksin pyörittelemään arjen ongelmia. Se ei myöskään ole joogakerho, jumpparyhmä tai tiettyyn maailmankatsomukseen sitoutunut yhteisö.</p>
-    </div>
-  </section>
-
-  <section class="is-this" aria-labelledby="h-sitten">
-    <div class="wrap">
-      <h2 id="h-sitten">Mitä se sitten on?</h2>
       <p>Paikka, jossa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Klubissa hoidetaan äidin hyvinvointia kokonaisuutena: naisena, äitinä ja osana perhettä.</p>
     </div>
     <div class="wrap wrap--wide">
@@ -521,6 +499,26 @@
           <p>Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.</p>
         </article>
       </div>
+    </div>
+    <div class="wrap">
+      <!-- Julianan oma kuva, väreissä (poikkeus mustavalkosäännöstä). -->
+      <img class="photo photo--break photo--colour" src="/klubi/img/metsa-aurinko.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Aurinko siivilöityy männikön läpi syksyisessä metsässä.">
+    </div>
+  </section>
+
+  <section class="not-this" aria-labelledby="h-eiole">
+    <div class="wrap">
+      <h2 id="h-eiole">Mitä Hengittävien äitien klubi ei ole?</h2>
+      <p class="not-lead">Klubi ei ole:</p>
+      <ul class="soft">
+        <li>paikka, jossa arvostellaan muita ja toimitaan</li>
+        <li>juorukerho</li>
+        <li>paikka, jossa jäädään pyörittelemään ongelmia</li>
+        <li>joogakerho</li>
+        <li>jumppakerho</li>
+        <li>yksi paikka, jossa suoritetaan lisää</li>
+        <li>new age -yhteisö</li>
+      </ul>
     </div>
   </section>
 
@@ -545,7 +543,7 @@
 
   <section class="band" aria-labelledby="h-keskella">
     <div class="wrap">
-      <h2 id="h-keskella">Keskellä kaikkea</h2>
+      <h2 id="h-keskella">Oma rauhan keidas keskellä arkea</h2>
       <p>Lapset kiukuttelevat, puhelin soi ja työasiat odottavat. Koti on välillä kaaos, unet jäävät lyhyiksi, eivätkä pyykit, harrastukset ja päiväkotiaamut lopu.</p>
       <p>Klubissa etsimme pieniä uusia tapoja toimia juuri tässä arjessa. Sinun ei tarvitse odottaa lomaa tai täydellistä hiljaisuutta. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
       <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiön pöydän ääressä -->
