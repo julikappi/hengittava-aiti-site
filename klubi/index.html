@@ -254,7 +254,14 @@
 
   /* ---------- Hero ---------- */
   .hero { padding: 2.25rem 0 3.5rem; }
-  .hero-grid { display: grid; gap: 2.5rem; }
+  .hero-grid { display: flex; flex-direction: column; gap: 0; }
+  .hero-copy { display: contents; }
+  .hero-open { order: 1; }
+  .hero .photo--pause { order: 2; display: block; }
+  .hero-continue { order: 3; }
+  .hero-offer { order: 4; margin-top: 1.5rem; }
+  .hero-visual { order: 5; margin-top: 2.5rem; }
+  .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   .hero .breath {
     text-align: left;
     max-width: 22em;
@@ -270,58 +277,77 @@
     color: var(--violet);
     margin: 1.4rem 0;
   }
-  .hero .btn-row { margin-top: 1.75rem; }
-  .hero .photo--pause { display: block; }
-  .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
+  .hero .btn-row { margin-top: 1.15rem; }
   @media (min-width: 56.25rem) {
-    .hero { padding: 4.5rem 0 5.5rem; }
+    .hero { padding: 4.75rem 0 5rem; }
     .hero-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(26rem, 1fr);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.9fr);
       grid-template-areas:
-        "head head"
-        "copy visual";
-      align-items: start;
-      column-gap: 4rem;
-      row-gap: 2.25rem;
+        "copy visual"
+        "more more";
+      align-items: stretch;
+      column-gap: 4.5rem;
+      row-gap: 0;
     }
-    .hero-stack { display: contents; }
-    .hero-head {
-      grid-area: head;
-      text-align: center;
+    .hero-copy,
+    .hero-open,
+    .hero-offer,
+    .hero-continue,
+    .hero-visual,
+    .hero .photo--pause,
+    .photo--hero { order: unset; }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      grid-area: copy;
+      min-height: 0;
     }
-    .hero-copy { grid-area: copy; }
-    .hero-visual { grid-area: visual; }
+    .hero-offer { margin-top: 1.85rem; }
+    .hero-continue { grid-area: more; }
     .hero h1 {
-      font-size: clamp(2.75rem, 4.2vw, 3.85rem);
+      font-size: clamp(2.35rem, 3.3vw, 3.15rem);
       white-space: normal;
-      line-height: 1.1;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 18ch;
+      line-height: 1.12;
+      margin: 0 0 1rem;
+      max-width: 14ch;
     }
     .hero .breath {
-      text-align: center;
-      max-width: 28em;
-      margin: 0 auto;
-      font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+      text-align: left;
+      max-width: 20em;
+      margin: 0 0 1.35rem;
+      font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+    }
+    .hero-intro { max-width: 44ch; margin-bottom: 0; }
+    .hero-visual {
+      grid-area: visual;
+      position: relative;
+      min-height: 30rem;
+      margin: 0;
     }
     .photo--hero {
-      aspect-ratio: 4 / 5;
+      position: absolute;
+      inset: 0;
       width: 100%;
-      max-height: 46rem;
+      height: 100%;
+      margin: 0;
+      aspect-ratio: auto;
       object-fit: cover;
-      position: static;
+      object-position: 50% 16%;
     }
-    .hero .photo--pause {
-      display: block;
-      max-width: 24rem;
-      width: 100%;
-      margin: 1.35rem 0 1.2rem;
-      aspect-ratio: 16 / 9;
-      object-position: 50% 35%;
+    .hero .photo--pause { display: none; }
+    .hero-continue {
+      max-width: 42rem;
+      margin: 3.25rem auto 0;
+    }
+    .hero-continue .hero-stand {
+      text-align: center;
+      max-width: 22em;
+      margin: 0 auto 1.5rem;
     }
     .hero p { max-width: 62ch; }
-    .hero-head .breath { max-width: 28em; }
+    .hero-price { margin-top: 0; }
   }
 
   /* ---------- Kuka minä olen ---------- */
@@ -891,19 +917,13 @@
 <header class="hero">
   <div class="wrap wrap--wide">
     <div class="hero-grid">
-      <div class="hero-stack">
-        <div class="hero-head">
+      <div class="hero-copy">
+        <div class="hero-open">
           <h1>Hengittävien äitien klubi</h1>
           <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
+          <p class="hero-intro">Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
         </div>
-        <div class="hero-copy">
-          <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
-          <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-          <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
-          <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
-          <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
-          <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
-          <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
+        <div class="hero-offer">
           <p class="hero-price">Lokakuussa liittyville <span class="nw">19 €/kk*</span> – ei sitoutumisaikaa.</p>
           <p class="btn-row">
             <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
@@ -911,6 +931,14 @@
           </p>
           <p class="price-fn">*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.</p>
         </div>
+      </div>
+      <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+      <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
+      <div class="hero-continue">
+        <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
+        <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
+        <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
+        <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk 31.10. asti.</p>
       </div>
       <div class="hero-visual">
         <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->

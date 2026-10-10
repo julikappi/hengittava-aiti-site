@@ -131,7 +131,10 @@ assert(
   'new ending copy and four cards sit inside the intro section',
 );
 assert(page.includes('repeat(4, minmax(0, 1fr))'), 'goal cards are four columns on desktop');
-assert(page.includes('hero-head'), 'desktop hero title sits in a full-width head');
+assert(page.includes('hero-open') && page.includes('hero-offer') && page.includes('hero-continue'), 'hero opening, offer, and continue are separate blocks');
+assert(page.includes('"copy visual"'), 'desktop hero is a balanced 2-column opening');
+assert(page.includes('.hero .photo--pause { display: none; }'), 'coffee photo is out of the desktop hero');
+assert(!page.includes('hero-head'), 'full-width centered hero head removed');
 assert(
   /h2 \{\n      display: table;\n      margin-left: auto;\n      margin-right: auto;/.test(page),
   'desktop section headings are centered white boxes',
