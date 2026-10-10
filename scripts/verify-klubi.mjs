@@ -169,7 +169,8 @@ assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yll�
 assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
 assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
-assert(page.includes('Tavataan Helsingissä'), 'Valo meetup heading without autumn');
+assert(page.includes('Retriitti – Hengähdystauko Hotelli Valossa'), 'Valo meetup heading verbatim');
+assert(!page.includes('Tavataan Helsingissä'), 'old Valo Helsinki heading removed');
 assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo 2027 dates and prices verbatim');
 assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
 assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
