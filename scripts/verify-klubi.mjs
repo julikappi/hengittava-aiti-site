@@ -127,9 +127,10 @@ assert(
   'Ehdot block uses join-date billing',
 );
 assert(
-  page.includes('Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa.'),
-  'Ehdot cancel access-end',
+  page.includes('Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa. Maksettuja jäsenmaksuja ei palauteta.'),
+  'Ehdot cancel access-end and no refund',
 );
+assert((page.match(/Maksettuja jäsenmaksuja ei palauteta\./g) || []).length === 2, 'no-refund sentence in Ehdot and cancel FAQ');
 assert(page.includes('1–3 kuukauden tauon voi pitää pyynnöstä, ja tauon aikana ei laskuteta.'), 'Ehdot pause is on request');
 assert((page.match(/hei@hengittava-aiti.fi/g) || []).length >= 2, 'cancel and pause FAQs use the contact email');
 assert(page.includes('<h3>Ehdot</h3>'), 'Ehdot heading under prices');
