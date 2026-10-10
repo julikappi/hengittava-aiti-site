@@ -33,7 +33,7 @@ const requiredImages = [
   'taysikuu-rajattu.jpg',
   'taysikuu-meri.jpg',
   'hengahdys-kahvi-ikkunalla.jpg',
-  'aiti-ja-lapset-syysmetsa.jpg',
+  'metsa-aurinko.jpg',
 ];
 
 assert(page === publicPage, 'public/klubi mirrors root page');
@@ -72,11 +72,14 @@ assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa.'), 'intro clos
 assert(!page.includes('Sinun ei tarvitse pärjätä yksin.'), 'intro no longer echoes selvitä/pärjätä yksin');
 assert(!page.includes('yhteisö äideille, jotka haluavat voida paremmin'), 'generic what-is sentence removed');
 assert(page.includes('hengahdys-kahvi-ikkunalla.jpg'), 'hero breathing-pause photo present');
-assert(page.includes('aiti-ja-lapset-syysmetsa.jpg'), 'how-it-works forest photo present');
+assert(page.includes('metsa-aurinko.jpg'), 'how-it-works uses Juliana’s sunlit forest photo');
+assert(page.includes('photo--colour'), 'sunlit forest stays in colour');
+assert(page.includes('Aurinko siivilöityy männikön läpi syksyisessä metsässä.'), 'sunlit forest has Finnish alt');
+assert(!page.includes('aiti-ja-lapset-syysmetsa.jpg'), 'Pexels forest-path file unused');
+assert(!page.includes('5533872'), 'Pexels 5533872 credit removed');
 assert(page.includes('6968357'), 'hero photo credits Mikhail Nilov / Pexels');
-assert(page.includes('5533872'), 'forest photo credits Bulat Khamitov / Pexels');
 assert(/Tuntuuko[\s\S]*hengahdys-kahvi-ikkunalla[\s\S]*Sinun ei tarvitse selvitä yksin/.test(page), 'pause photo sits before the hero emphasis line');
-assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*aiti-ja-lapset-syysmetsa/.test(page), 'forest photo sits after the keskeneräinen line');
+assert(/Saat olla keskeneräinen ja samalla kasvaa\.[\s\S]*metsa-aurinko/.test(page), 'sunlit forest sits after the keskeneräinen line');
 assert(page.includes('#h-rauha'), 'rauha heading id kept');
 assert(/#h-rauha\s*\{[^}]*white-space:\s*nowrap/.test(page), 'rauha heading stays on one line');
 assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading verbatim');
