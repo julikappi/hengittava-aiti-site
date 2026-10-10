@@ -34,6 +34,7 @@ const requiredImages = [
   'taysikuu-meri.jpg',
   'hengahdys-kahvi-ikkunalla.jpg',
   'metsa-aurinko.jpg',
+  'valo-kattoterassi.jpg',
 ];
 
 assert(page === publicPage, 'public/klubi mirrors root page');
@@ -170,6 +171,12 @@ assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-2581996
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
 assert(page.includes('Tavataan Helsingissä'), 'Valo meetup heading without autumn');
 assert(page.includes('Retriitti alkuvuodesta 2027. Hinnat ilmoitetaan pian. Varaa paikkasi jo nyt.'), 'Valo 2027 dates and prices verbatim');
+assert(page.includes('valo-kattoterassi.jpg'), 'Valo rooftop photo present');
+assert(page.includes('Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.'), 'Valo rooftop alt verbatim');
+assert(
+  /valo-kattoterassi\.jpg[^>]*photo--colour/.test(page) || /photo--colour[^>]*valo-kattoterassi\.jpg/.test(page),
+  'Valo rooftop stays in colour',
+);
 assert(!page.includes('Syksyn kohokohta'), 'Valo autumn heading removed');
 assert(!page.includes('Marraskuun viimeisenä viikonloppuna'), 'Valo November date removed');
 assert(!page.includes('Klubilaiset saavat lipun etuhintaan'), 'old Valo member-price line removed');
