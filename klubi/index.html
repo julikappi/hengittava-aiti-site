@@ -200,14 +200,26 @@
   /* ---------- Hero ---------- */
   .hero { padding: 2.25rem 0 3.5rem; }
   .hero-grid { display: grid; gap: 2.5rem; }
-  .hero .breath { text-align: left; max-width: 16ch; margin: 0 0 1.15rem; font-size: clamp(1.45rem, 5.5vw, 2rem); }
-  .hero .lead { margin-bottom: 1.15rem; }
-  .hero .btn-row { margin-top: 1.6rem; }
-  .hero .note { margin-top: 0; color: var(--ink-soft); }
+  .hero .breath {
+    text-align: left;
+    max-width: 22em;
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.3rem, 5vw, 1.85rem);
+    line-height: 1.28;
+  }
+  .hero-stand {
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.2rem, 4.4vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--violet);
+    margin: 1.4rem 0;
+  }
+  .hero .btn-row { margin-top: 1.75rem; }
   .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
   @media (min-width: 60rem) {
     .hero { padding: 4.5rem 0 6rem; }
-    .hero-grid { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 5rem; }
+    .hero-grid { grid-template-columns: 1.1fr .9fr; align-items: start; gap: 5rem; }
     .photo--hero { aspect-ratio: 5 / 6; }
   }
 
@@ -411,10 +423,12 @@
     <div class="hero-grid">
       <div>
         <h1>Hengittävien äitien klubi</h1>
-        <p class="breath">Sinun ei tarvitse jaksaa kaikkea yksin.</p>
-        <p class="lead">Äitien oma pieni kylä keskellä arkea. Paikka, jossa opit ymmärtämään itseäsi ja omaa hermostoasi, löydät keinoja palautua arjen keskellä ja saat rinnallesi muita äitejä, jotka haluavat kulkea kohti paremmin voivaa itseään ja perhettään.</p>
-        <p>Täällä ei tarvitse olla täydellinen, ehtiä kaikkea tai jaksaa aina. Saat opetella rauhallisempaa ja tasapainoisempaa arkea askel kerrallaan, omassa tahdissasi.</p>
-        <p class="note">Ovet aukeavat 18.10. Ensimmäinen klubikuukausi alkaa 1.11.</p>
+        <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
+        <p>Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
+        <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
+        <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
+        <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
+        <p>Hengittävien äitien klubi starttaa syysloman jälkeen – maanantaina 19.10. Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10. Tule mukaan rakentamaan Hengittävien äitien yhteisöä ja pääset perustajahintaan – 19 € / kk.</p>
         <p class="btn-row">
           <!-- Linkki: vierittää hintoihin (#hinta), jossa ovat varsinaiset maksulinkit -->
           <a class="btn" id="hero-cta" href="#hinta">Liity klubiin</a>
@@ -560,6 +574,7 @@
         <li>Aloitusäänitteen: näin klubi toimii ja mistä aloitat</li>
         <li>Kolme SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
       </ul>
+      <p>Maanantaina 19.10. saat ensimmäiset materiaalit sähköpostiisi.</p>
       <p>Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20, ja saat oman kyläryhmän: 5–6 äitiä, joiden kanssa kuljet.</p>
       <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen.</p>
       <p class="btn-row">

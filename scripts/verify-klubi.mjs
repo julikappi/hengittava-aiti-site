@@ -47,9 +47,15 @@ assert(
   'club name not title-cased in copy',
 );
 
-assert(page.includes('Ovet aukeavat 18.10. Ensimmäinen klubikuukausi alkaa 1.11.'), 'hero dates from brief');
-assert(page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'hero tagline from brief');
-assert(!page.includes('syysloma'), 'autumn-holiday hook removed');
+assert(page.includes('Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.'), 'hero subtitle verbatim');
+assert(page.includes('Sinun ei tarvitse selvitä yksin.'), 'hero emphasis line verbatim');
+assert(page.includes('starttaa syysloman jälkeen'), 'hero start after autumn holiday');
+assert(page.includes('maanantaina 19.10.'), 'club opens Monday 19.10.');
+assert(page.includes('Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10.'), 'first live is Sunday 25.10.');
+assert(page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit sähköpostiisi.'), '19.10. first materials by email');
+assert(!page.includes('18.10.'), 'no 18.10. left on the page');
+assert(!page.includes('Ovet aukeavat'), 'old door-open line removed');
+assert(!page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'old hero breath removed');
 assert(page.includes('Mikä on Hengittävien äitien klubi?'), 'intro heading kept');
 assert(page.includes('Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.'), 'intro close from brief');
 assert(page.includes('Mitä Hengittävien äitien klubi ei ole?'), 'not-this heading verbatim');
