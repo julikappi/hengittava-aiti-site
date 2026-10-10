@@ -265,7 +265,8 @@ assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on
 assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price kept');
 assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
-assert(page.includes('Tulossa vuonna 2027'), '2027 heading kept');
+assert(page.includes('Tulossa alkuvuonna 2027'), '2027 heading kept');
+assert(!page.includes('Tulossa vuonna 2027'), 'year-only 2027 heading removed');
 assert(!page.includes('Tulossa 2027: Hengittävä Koti'), 'old Koti-only 2027 heading removed');
 assert(page.includes('Hengittävä Koti -valmennus'), 'Koti item title kept');
 assert(
