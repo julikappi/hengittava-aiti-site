@@ -177,6 +177,32 @@
     .reveal { opacity:1; transform:none; transition:none; }
     html { scroll-behavior: auto; }
   }
+  /* ─── Täydenkuun nollaushetket (TaysikuuNollaukset) ─────────────── */
+  .tk-section { padding: 56px 20px; background: #F0E8DF; border-top: 1px solid rgba(42,35,32,.10); }
+  .tk-wrap { max-width: 640px; margin: 0 auto; text-align: center; font-family: "Playfair Display", Georgia, serif; color: #2A2320; }
+  .tk-moon { display: block; width: 132px; height: 132px; margin: 0 auto 22px; }
+  .tk-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0; font-family: system-ui, sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #6F6560; }
+  .tk-eyebrow span { display: inline-block; width: 32px; height: 1px; background: rgba(168,130,122,.55); }
+  .tk-title { font-family: "Playfair Display", Georgia, serif; font-size: clamp(26px, 5vw, 36px); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; margin: 16px 0 12px; color: #2A2320; }
+  .tk-lead { margin: 0 auto 28px; max-width: 30em; font-size: 17px; line-height: 1.55; color: #4A423E; }
+  .tk-list { list-style: none; padding: 0; margin: 0 auto; max-width: 460px; text-align: left; border-top: 1px solid rgba(42,35,32,.12); }
+  .tk-item { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 4px; border-bottom: 1px solid rgba(42,35,32,.12); margin: 0; }
+  .tk-date { display: flex; align-items: center; gap: 12px; font-size: 17px; color: #2A2320; }
+  .tk-dot { flex: 0 0 12px; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FBF7F1 0%, #E4D2CD 55%, #C9A8A1 100%); box-shadow: 0 0 0 1px rgba(168,130,122,.45); }
+  .tk-next { display: inline-block; margin-left: 8px; padding: 2px 8px; font-family: system-ui, sans-serif; font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FBF7F1; background: #3B2A45; vertical-align: middle; }
+  .tk-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; font-family: "Playfair Display", Georgia, serif; font-size: 15px; font-weight: 700; color: #2A2320; text-decoration: none; border: 1px solid rgba(42,35,32,.7); background: transparent; transition: background-color .2s ease, color .2s ease; }
+  .tk-btn:hover, .tk-btn:focus-visible { background: #2A2320; color: #FBF7F1; }
+  .tk-item.is-next .tk-btn { background: #2A2320; color: #FBF7F1; border-color: #2A2320; }
+  .tk-item.is-next .tk-btn:hover { background: #4A423E; }
+  #nollaushetket .tk-title { font-weight: 400; font-size: clamp(30px, 4.4vw, 2.35rem); } /* etusivun h2-tyyli */
+  .tk-note { margin: 22px auto 0; font-size: 14px; color: #6F6560; }
+  .tk-empty { margin: 18px 0 0; font-size: 16px; color: #4A423E; }
+  @media (max-width: 420px) {
+    .tk-section { padding: 44px 16px; }
+    .tk-next { display: block; width: fit-content; margin: 4px 0 0; }
+    .tk-date { font-size: 16px; }
+    .tk-btn { padding: 9px 14px; font-size: 14px; }
+  }
 </style>
 </head>
 
@@ -515,6 +541,63 @@
         <a href="/hermosto-reset/" class="mt-5 inline-flex items-center justify-center border border-paper/70 hover:border-paper text-paper font-bold px-6 py-3 transition-colors">Tutustu 21 päivän oppaaseen</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════ @component: TaysikuuNollaukset (tulevat maksuttomat nollaushetket) ═══════════════
+     Päivämäärät: muokkaa vain data-end/data-start -attribuutteja ja näkyvää tekstiä.
+     Mennyt tilaisuus piiloutuu automaattisesti klo 21.30 Suomen aikaa (data-end).
+     Älä koskaan laita Zoom-linkkiä tälle julkiselle sivulle. -->
+<section id="nollaushetket" class="tk-section" data-component="TaysikuuNollaukset" aria-labelledby="tk-title">
+  <div class="tk-wrap">
+    <svg class="tk-moon" viewBox="0 0 132 132" role="img" aria-label="Täysikuu">
+      <defs>
+        <radialGradient id="tk-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="55%" stop-color="#E4D2CD" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#F0E8DF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="tk-face" cx="38%" cy="34%" r="70%">
+          <stop offset="0%" stop-color="#FFFCFA"/>
+          <stop offset="55%" stop-color="#F0E6E3"/>
+          <stop offset="100%" stop-color="#C9A8A1"/>
+        </radialGradient>
+      </defs>
+      <circle cx="66" cy="66" r="64" fill="url(#tk-glow)"/>
+      <circle cx="66" cy="66" r="40" fill="url(#tk-face)"/>
+      <circle cx="54" cy="56" r="7" fill="#A8827A" opacity=".16"/>
+      <circle cx="78" cy="72" r="9" fill="#A8827A" opacity=".13"/>
+      <circle cx="62" cy="82" r="4.5" fill="#A8827A" opacity=".15"/>
+      <circle cx="80" cy="50" r="3.5" fill="#A8827A" opacity=".14"/>
+      <circle cx="66" cy="66" r="40" fill="none" stroke="#A8827A" stroke-opacity=".25" stroke-width="1"/>
+    </svg>
+    <p class="tk-eyebrow"><span></span> Täydenkuun aikaan <span></span></p>
+    <h2 id="tk-title" class="tk-title">Maksuton täydenkuun nollaus Zoomissa</h2>
+    <p class="tk-lead">Kokoonnumme Zoomissa aina täydenkuun päivänä klo 21.00, 20 minuuttia, maksutta.</p>
+
+    <ul class="tk-list" data-tk-list>
+      <li class="tk-item" data-end="2026-10-09T21:30:00+03:00">
+        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>pe 9.10.2026 klo 21.00</span></span>
+        <a class="tk-btn" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen pe 9.10.2026 klo 21.00">Ilmoittaudu</a>
+      </li>
+      <li class="tk-item" data-end="2026-10-26T21:30:00+02:00">
+        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>ma 26.10.2026 klo 21.00</span></span>
+        <a class="tk-btn" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen ma 26.10.2026 klo 21.00">Ilmoittaudu</a>
+      </li>
+      <li class="tk-item" data-end="2026-11-24T21:30:00+02:00">
+        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>ti 24.11.2026 klo 21.00</span></span>
+        <a class="tk-btn" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen ti 24.11.2026 klo 21.00">Ilmoittaudu</a>
+      </li>
+      <li class="tk-item" data-end="2027-01-22T21:30:00+02:00">
+        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>pe 22.1.2027 klo 21.00</span></span>
+        <a class="tk-btn" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen pe 22.1.2027 klo 21.00">Ilmoittaudu</a>
+      </li>
+      <li class="tk-item" data-end="2027-02-21T21:30:00+02:00">
+        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>su 21.2.2027 klo 21.00</span></span>
+        <a class="tk-btn" href="https://hengittava-aiti.fi/perjantain-nollaushetki/#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen su 21.2.2027 klo 21.00">Ilmoittaudu</a>
+      </li>
+    </ul>
+    <p class="tk-empty" data-tk-empty hidden>Uudet päivät julkaistaan pian. Seuraa @hengittava_aiti, niin kuulet ensimmäisten joukossa.</p>
+    <p class="tk-note" data-tk-note>Zoom-linkki tulee sähköpostiisi ilmoittautumisen jälkeen.</p>
   </div>
 </section>
 
@@ -992,6 +1075,47 @@
 
   /* ── 8. Footer year ─────────────────────────────────────────────── */
   document.getElementById('year').textContent = String(new Date().getFullYear());
+})();
+</script>
+<script>
+/* TaysikuuNollaukset: piilota menneet tilaisuudet (data-end on Suomen aikaa,
+   aikavyöhyke mukana ISO-merkkijonossa). Esikatselu toiseen hetkeen: ?at=2026-10-10T12:00:00+03:00 */
+(function () {
+  var list = document.querySelector('[data-tk-list]');
+  if (!list) return;
+  var now = Date.now();
+  try {
+    var at = new URLSearchParams(window.location.search).get('at');
+    if (at && !isNaN(Date.parse(at))) now = Date.parse(at);
+  } catch (e) {}
+  var items = list.querySelectorAll('[data-end]');
+  var first = null;
+  for (var i = 0; i < items.length; i++) {
+    var end = Date.parse(items[i].getAttribute('data-end'));
+    if (!isNaN(end) && end <= now) {
+      items[i].hidden = true;
+      items[i].style.display = 'none';
+      continue;
+    }
+    if (!first) first = items[i];
+  }
+  if (first) {
+    first.classList.add('is-next');
+    var label = first.querySelector('.tk-date > span:last-child');
+    if (label && !label.querySelector('.tk-next')) {
+      var badge = document.createElement('span');
+      badge.className = 'tk-next';
+      badge.textContent = 'Seuraava';
+      label.appendChild(badge);
+    }
+  } else {
+    list.hidden = true;
+    list.style.display = 'none';
+    var empty = document.querySelector('[data-tk-empty]');
+    if (empty) empty.hidden = false;
+    var note = document.querySelector('[data-tk-note]');
+    if (note) note.hidden = true;
+  }
 })();
 </script>
 </body>
