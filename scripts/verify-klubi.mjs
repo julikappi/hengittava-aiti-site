@@ -40,6 +40,7 @@ const requiredImages = [
 assert(page === publicPage, 'public/klubi mirrors root page');
 assert(page.includes('lang="fi"'), 'html lang is fi');
 assert(page.includes('<title>Hengittävien äitien klubi</title>'), 'title is Juliana’s');
+assert(page.includes('<meta name="robots" content="index,follow">'), 'sales page is indexable');
 assert(
   page.includes('Äitien oma pieni kylä keskellä arkea.'),
   'meta description taken from new hero copy',
@@ -315,7 +316,16 @@ assert(!page.includes("meetup: '#'"), 'Valo LINKS entry removed');
 assert(!page.includes('data-klubi-link="regular"'), 'regular checkout is stored only, not wired');
 assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder checkout on price card, closing CTA, sticky bar');
 assert((page.match(/href="#hinta"/g) || []).length === 4, 'upper-page CTAs still scroll to #hinta');
-assert(page.includes('Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk'), 'GHL comment kept for club checkout');
+assert(
+  (page.match(/href="https:\/\/link\.fastpaydirect\.com\/payment-link\/6ac7adab075ea22a20cdd237"/g) || []).length === 3,
+  'founder checkout hrefs are the live FastPay URL, not #',
+);
+assert(
+  (page.match(/href="https:\/\/link\.fastpaydirect\.com\/payment-link\/6ac7ae4ec0e70c7fefb73499"/g) || []).length === 1,
+  'PLUS checkout href is the live FastPay URL, not #',
+);
+assert(!/<a[^>]*data-klubi-link="(?:klubi|plus)"[^>]*href="#">/.test(page), 'no checkout button left as href="#"');
+assert(!/href="#(?!hinta)/.test(page), 'no leftover placeholder href="#"');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');

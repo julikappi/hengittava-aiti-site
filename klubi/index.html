@@ -719,8 +719,8 @@
             <p>Lokakuussa liittyvät saavat bonuksena Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen.</p>
           </div>
           <p class="btn-row">
-            <!-- Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk -->
-            <a class="btn btn--peach" href="#" data-klubi-link="klubi">Liity klubiin</a>
+            <!-- Linkki: FastPayDirect Klubi 19 €/kk -->
+            <a class="btn btn--peach" href="https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237" data-klubi-link="klubi">Liity klubiin</a>
           </p>
         </article>
         <article class="tier" aria-label="Klubi PLUS 89 €/kk">
@@ -731,8 +731,8 @@
             <li>enintään 10 paikkaa</li>
           </ul>
           <p class="btn-row">
-            <!-- Linkki: GHL-tilauslinkki (Stripe) Klubi PLUS 89 €/kk -->
-            <a class="btn btn--outline" href="#" data-klubi-link="plus">Liity PLUS-jäseneksi</a>
+            <!-- Linkki: FastPayDirect Klubi PLUS 89 €/kk -->
+            <a class="btn btn--outline" href="https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499" data-klubi-link="plus">Liity PLUS-jäseneksi</a>
           </p>
         </article>
       </div>
@@ -825,8 +825,8 @@
       <p class="breath">Mitä jos sinun ei tarvitsisi selvitä tästä kaikesta yksin, ja saisit samalla oppia uusia tapoja voida paremmin?</p>
       <p class="lead">Tule mukaan Hengittävien äitien yhteisöön.</p>
       <p class="btn-row">
-        <!-- Linkki: GHL-tilauslinkki (Stripe) Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
-        <a class="btn btn--peach" href="#" data-klubi-link="klubi">Liity klubiin</a>
+        <!-- Linkki: FastPayDirect Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
+        <a class="btn btn--peach" href="https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237" data-klubi-link="klubi">Liity klubiin</a>
       </p>
     </div>
   </section>
@@ -836,13 +836,13 @@
 <!-- Kiinnitetty liittymispalkki mobiilissa: näkyy, kun hero on ohitettu, ja piiloutuu hinnan, Täysikuun nollauksen ja loppukehotuksen kohdalla -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true" inert>
   <p>Klubi <span class="nw">19 €/kk</span></p>
-  <!-- Linkki: GHL-tilauslinkki Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
-  <a class="btn" href="#" data-klubi-link="klubi">Liity klubiin</a>
+  <!-- Linkki: FastPayDirect Klubi 19 €/kk (sama kuin hintakortin Klubi-nappi) -->
+  <a class="btn" href="https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237" data-klubi-link="klubi">Liity klubiin</a>
 </div>
 
 <script>
 (function () {
-  /* Checkout URLs. "#" keeps a placeholder href. Visible copy stays unchanged.
+  /* Checkout URLs also live in the button hrefs so checkout works without JS.
      No date switch on this page: LINKS.regular is stored for 2.11. onward. */
   var KLUBI = {
     LINKS: {
