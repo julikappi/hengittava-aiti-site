@@ -501,6 +501,9 @@ const home = readFileSync(join(root, 'index.html'), 'utf8');
 const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
 const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
 assert(home === publicHome, 'public homepage mirrors root homepage');
+assert(home.includes('white-space: nowrap'), 'homepage nav items do not wrap');
+assert(home.includes("screens: { nav: '68.75rem' }"), 'homepage hamburger starts below 1100px');
+assert(home.includes('class="nav-desktop'), 'homepage desktop links are grouped');
 assert(
   home.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
   'homepage desktop nav links to /klubi/',
@@ -517,6 +520,12 @@ assert(
   hermosto.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
   'shared hermosto-reset nav links to /klubi/',
 );
+assert(hermosto.includes('white-space: nowrap'), 'hermosto nav items do not wrap');
+assert(hermosto.includes("screens: { nav: '68.75rem' }"), 'hermosto hamburger starts below 1100px');
+assert(page.includes('id="site-header"'), 'klubi shares the site header');
+assert(page.includes('white-space: nowrap'), 'klubi nav items do not wrap');
+assert(page.includes('@media (max-width: 68.74rem)'), 'klubi hamburger starts below 1100px');
+assert(page.includes('href="/klubi/" aria-current="true"'), 'klubi marks itself current in the nav');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
 assert(terms.includes('Myyjä on ILO Wellness.'), 'terms page names the seller');
