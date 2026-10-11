@@ -903,7 +903,10 @@
     }
     .coming-media { display: block; }
     .coming-photo { max-width: none; width: 100%; margin: 0 0 1.15rem; }
-    .coming-inner:has(.retriitti-more[open]) { max-width: none; }
+    .coming-inner:has(.retriitti-more[open]) {
+      grid-template-columns: 1fr;
+      max-width: none;
+    }
     .retriitti-more[open] .options { margin-top: .25rem; }
 
     .faq {
@@ -941,14 +944,20 @@
     .about-grid > div { display: contents; }
     .about-grid h2 {
       grid-column: 1 / -1;
+      grid-row: 1;
       justify-self: center;
     }
     .about-grid .photo--portrait {
       grid-column: 1;
       grid-row: 2;
     }
-    .about-grid p,
-    .about-grid .btn-row { grid-column: 2; }
+    .about-copy {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 </style>
 </head>
@@ -1180,12 +1189,14 @@
         <img class="photo photo--portrait" src="/klubi/img/juliana-kasi-leualla.jpg" width="960" height="1280" loading="lazy" decoding="async" style="object-position: 50% 30%;" alt="Juliana nojaa leukaansa käteen keittiön pöydän ääressä ja hymyilee lämpimästi kameraan.">
         <div>
           <h2 id="h-juliana">Kuka minä olen</h2>
-          <p>Olen Juliana, kolmen lapsen äiti ja joogaopettaja. Olen itse käynyt läpi kaksi burnoutia, ja tiedän, miltä tuntuu, kun voimat loppuvat kesken päivän eikä apua ole lähellä. Opetan hengitys- ja kehoharjoituksia, jotka mahtuvat äidin arkeen myös silloin, kun lapset ovat kotona.</p>
-          <p>Sinun ei tarvitse olla joogi, eikä sinun tarvitse tuntea energioita tai laulaa mantroja. Tärkeintä on halu ymmärtää itseäsi ja omaa hermostoasi sekä oppia uusia tapoja toimia perheen arjessa.</p>
-          <p class="btn-row">
-            <!-- Linkki: vierittää hintoihin (#hinta) -->
-            <a class="btn" href="#hinta">Liity klubiin</a>
-          </p>
+          <div class="about-copy">
+            <p>Olen Juliana, kolmen lapsen äiti ja joogaopettaja. Olen itse käynyt läpi kaksi burnoutia, ja tiedän, miltä tuntuu, kun voimat loppuvat kesken päivän eikä apua ole lähellä. Opetan hengitys- ja kehoharjoituksia, jotka mahtuvat äidin arkeen myös silloin, kun lapset ovat kotona.</p>
+            <p>Sinun ei tarvitse olla joogi, eikä sinun tarvitse tuntea energioita tai laulaa mantroja. Tärkeintä on halu ymmärtää itseäsi ja omaa hermostoasi sekä oppia uusia tapoja toimia perheen arjessa.</p>
+            <p class="btn-row">
+              <!-- Linkki: vierittää hintoihin (#hinta) -->
+              <a class="btn" href="#hinta">Liity klubiin</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -281,6 +281,11 @@ assert(!page.includes('Marraskuun viimeisenä viikonloppuna'), 'Valo November da
 assert(!page.includes('Klubilaiset saavat lipun etuhintaan'), 'old Valo member-price line removed');
 assert(page.includes('Täällä ei suoriteta'), 'anti-hustle heading kept');
 assert(page.includes('Kuka minä olen'), 'about heading kept');
+assert(page.includes('about-copy'), 'about text is one desktop column so it does not split around the portrait');
+assert(
+  page.includes('.coming-inner:has(.retriitti-more[open]) {\n      grid-template-columns: 1fr;'),
+  'open Valo forms use the full desktop width',
+);
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
 assert(page.includes('Klubi 19 €/kk'), 'club price kept');
 assert(
