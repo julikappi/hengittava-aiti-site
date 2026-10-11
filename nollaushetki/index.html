@@ -127,29 +127,54 @@
     .page { padding: 24px 16px 56px; }
   }
   /* ─── Täydenkuun nollaushetket (TaysikuuNollaukset) ─────────────── */
-  .tk-section { padding: 56px 20px; background: #F0E8DF; border-top: 1px solid rgba(42,35,32,.10); }
-  .tk-wrap { max-width: 640px; margin: 0 auto; text-align: center; font-family: "Playfair Display", Georgia, serif; color: #2A2320; }
-  .tk-moon { display: block; width: 132px; height: 132px; margin: 0 auto 22px; }
-  .tk-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0; font-family: system-ui, sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #6F6560; }
-  .tk-eyebrow span { display: inline-block; width: 32px; height: 1px; background: rgba(168,130,122,.55); }
-  .tk-title { font-family: "Playfair Display", Georgia, serif; font-size: clamp(26px, 5vw, 36px); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; margin: 16px 0 12px; color: #2A2320; }
-  .tk-lead { margin: 0 auto 28px; max-width: 30em; font-size: 17px; line-height: 1.55; color: #4A423E; }
-  .tk-list { list-style: none; padding: 0; margin: 0 auto; max-width: 460px; text-align: left; border-top: 1px solid rgba(42,35,32,.12); }
-  .tk-item { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 4px; border-bottom: 1px solid rgba(42,35,32,.12); margin: 0; }
-  .tk-date { display: flex; align-items: center; gap: 12px; font-size: 17px; color: #2A2320; }
-  .tk-dot { flex: 0 0 12px; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FBF7F1 0%, #E4D2CD 55%, #C9A8A1 100%); box-shadow: 0 0 0 1px rgba(168,130,122,.45); }
+  .tk-section {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    margin: 0;
+    padding: 72px 20px 80px;
+    overflow: hidden;
+    background: #0A1220;
+    border: 0;
+  }
+  .tk-sky,
+  .tk-veil { position: absolute; inset: 0; }
+  .tk-sky { z-index: 0; }
+  .tk-sky picture,
+  .tk-sky img { display: block; width: 100%; height: 100%; max-width: none; }
+  .tk-sky img { object-fit: cover; object-position: 58% 42%; }
+  .tk-veil { z-index: 1; background: rgba(8, 12, 22, 0.28); }
+  .tk-wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Playfair Display", Georgia, serif;
+    color: #FBF7F1;
+  }
+  .tk-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0; font-family: system-ui, sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,247,241,.78); }
+  .tk-eyebrow span { display: inline-block; width: 32px; height: 1px; background: rgba(251,247,241,.4); }
+  .tk-title { font-family: "Playfair Display", Georgia, serif; font-size: clamp(26px, 5vw, 36px); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; margin: 16px 0 12px; color: #FBF7F1; }
+  .tk-lead { margin: 0 auto 28px; max-width: 30em; font-size: 17px; line-height: 1.55; color: rgba(251,247,241,.86); }
+  .tk-list { list-style: none; padding: 0; margin: 0 auto; max-width: 460px; text-align: left; border-top: 1px solid rgba(251,247,241,.2); }
+  .tk-item { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 4px; border-bottom: 1px solid rgba(251,247,241,.2); margin: 0; }
+  .tk-date { display: flex; align-items: center; gap: 12px; font-size: 17px; color: #FBF7F1; }
+  .tk-date picture { flex: 0 0 36px; display: block; width: 36px; height: 36px; line-height: 0; }
+  .tk-moon-thumb { display: block; width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #0A1220; box-shadow: 0 0 0 1px rgba(251,247,241,.28); }
   .tk-next { display: inline-block; margin-left: 8px; padding: 2px 8px; font-family: system-ui, sans-serif; font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FBF7F1; background: #3B2A45; vertical-align: middle; }
-  .tk-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; font-family: "Playfair Display", Georgia, serif; font-size: 15px; font-weight: 700; color: #2A2320; text-decoration: none; border: 1px solid rgba(42,35,32,.7); background: transparent; transition: background-color .2s ease, color .2s ease; }
-  .tk-btn:hover, .tk-btn:focus-visible { background: #2A2320; color: #FBF7F1; }
-  .tk-item.is-next .tk-btn { background: #2A2320; color: #FBF7F1; border-color: #2A2320; }
-  .tk-item.is-next .tk-btn:hover { background: #4A423E; }
-  .tk-note { margin: 22px auto 0; font-size: 14px; color: #6F6560; }
-  .tk-empty { margin: 18px 0 0; font-size: 16px; color: #4A423E; }
+  .tk-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 10px 18px; font-family: "Playfair Display", Georgia, serif; font-size: 15px; font-weight: 700; color: #FBF7F1; text-decoration: none; border: 1px solid rgba(251,247,241,.85); background: transparent; transition: background-color .2s ease, color .2s ease; }
+  .tk-btn:hover, .tk-btn:focus-visible { background: #FBF7F1; color: #2A2320; }
+  .tk-item.is-next .tk-btn { background: #FBF7F1; color: #2A2320; border-color: #FBF7F1; }
+  .tk-item.is-next .tk-btn:hover { background: #F0E8DF; }
+  .tk-note { margin: 22px auto 0; font-size: 14px; color: rgba(251,247,241,.7); }
+  .tk-empty { margin: 18px 0 0; font-size: 16px; color: rgba(251,247,241,.86); }
   @media (max-width: 420px) {
-    .tk-section { padding: 44px 16px; }
+    .tk-section { padding: 56px 16px 64px; }
+    .tk-item { flex-wrap: wrap; }
     .tk-next { display: block; width: fit-content; margin: 4px 0 0; }
     .tk-date { font-size: 16px; }
-    .tk-btn { padding: 9px 14px; font-size: 14px; }
+    .tk-btn { padding: 10px 16px; font-size: 14px; }
   }
   .ghl-embed { scroll-margin-top: 16px; }
 </style>
@@ -226,50 +251,39 @@
      Mennyt tilaisuus piiloutuu automaattisesti klo 21.30 Suomen aikaa (data-end).
      Älä koskaan laita Zoom-linkkiä tälle julkiselle sivulle. -->
 <section id="nollaushetket" class="tk-section tk-section--page" data-component="TaysikuuNollaukset" aria-labelledby="tk-title">
+  <!-- Taustakuva: Linda Xu, Moonlit Moments (Unsplash / Wikimedia Commons), CC0 1.0.
+       Pienet kiekot: NASA/JPL/USGS Galileo PIA00405 ja NASA Apollo 13 AS13-60-8703, public domain. -->
+  <div class="tk-sky" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="/kuvat/taysikuu-yo.webp">
+      <img src="/kuvat/taysikuu-yo.jpg" alt="" width="2400" height="1200" decoding="async">
+    </picture>
+  </div>
+  <div class="tk-veil" aria-hidden="true"></div>
   <div class="tk-wrap">
-    <svg class="tk-moon" viewBox="0 0 132 132" role="img" aria-label="Täysikuu">
-      <defs>
-        <radialGradient id="tk-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="55%" stop-color="#E4D2CD" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#F0E8DF" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="tk-face" cx="38%" cy="34%" r="70%">
-          <stop offset="0%" stop-color="#FFFCFA"/>
-          <stop offset="55%" stop-color="#F0E6E3"/>
-          <stop offset="100%" stop-color="#C9A8A1"/>
-        </radialGradient>
-      </defs>
-      <circle cx="66" cy="66" r="64" fill="url(#tk-glow)"/>
-      <circle cx="66" cy="66" r="40" fill="url(#tk-face)"/>
-      <circle cx="54" cy="56" r="7" fill="#A8827A" opacity=".16"/>
-      <circle cx="78" cy="72" r="9" fill="#A8827A" opacity=".13"/>
-      <circle cx="62" cy="82" r="4.5" fill="#A8827A" opacity=".15"/>
-      <circle cx="80" cy="50" r="3.5" fill="#A8827A" opacity=".14"/>
-      <circle cx="66" cy="66" r="40" fill="none" stroke="#A8827A" stroke-opacity=".25" stroke-width="1"/>
-    </svg>
     <p class="tk-eyebrow"><span></span> Täydenkuun aikaan <span></span></p>
     <h2 id="tk-title" class="tk-title">Täydenkuun nollaushetket</h2>
     <p class="tk-lead">Kokoonnumme Zoomissa aina täydenkuun päivänä klo 21.00, noin 30 minuuttia, maksutta.</p>
 
     <ul class="tk-list" data-tk-list>
       <li class="tk-item" data-end="2026-10-09T21:30:00+03:00">
-        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>pe 9.10.2026 klo 21.00</span></span>
+        <span class="tk-date"><picture><source type="image/webp" srcset="/kuvat/taysikuu-kiekko-a.webp"><img class="tk-moon-thumb" src="/kuvat/taysikuu-kiekko-a.jpg" width="36" height="36" alt="" aria-hidden="true"></picture><span>pe 9.10.2026 klo 21.00</span></span>
         <a class="tk-btn" href="#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen pe 9.10.2026 klo 21.00">Ilmoittaudu</a>
       </li>
       <li class="tk-item" data-end="2026-10-26T21:30:00+02:00">
-        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>ma 26.10.2026 klo 21.00</span></span>
+        <span class="tk-date"><picture><source type="image/webp" srcset="/kuvat/taysikuu-kiekko-b.webp"><img class="tk-moon-thumb" src="/kuvat/taysikuu-kiekko-b.jpg" width="36" height="36" alt="" aria-hidden="true"></picture><span>ma 26.10.2026 klo 21.00</span></span>
         <a class="tk-btn" href="#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen ma 26.10.2026 klo 21.00">Ilmoittaudu</a>
       </li>
       <li class="tk-item" data-end="2026-11-24T21:30:00+02:00">
-        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>ti 24.11.2026 klo 21.00</span></span>
+        <span class="tk-date"><picture><source type="image/webp" srcset="/kuvat/taysikuu-kiekko-c.webp"><img class="tk-moon-thumb" src="/kuvat/taysikuu-kiekko-c.jpg" width="36" height="36" alt="" aria-hidden="true"></picture><span>ti 24.11.2026 klo 21.00</span></span>
         <a class="tk-btn" href="#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen ti 24.11.2026 klo 21.00">Ilmoittaudu</a>
       </li>
       <li class="tk-item" data-end="2027-01-22T21:30:00+02:00">
-        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>pe 22.1.2027 klo 21.00</span></span>
+        <span class="tk-date"><picture><source type="image/webp" srcset="/kuvat/taysikuu-kiekko-a.webp"><img class="tk-moon-thumb" src="/kuvat/taysikuu-kiekko-a.jpg" width="36" height="36" alt="" aria-hidden="true"></picture><span>pe 22.1.2027 klo 21.00</span></span>
         <a class="tk-btn" href="#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen pe 22.1.2027 klo 21.00">Ilmoittaudu</a>
       </li>
       <li class="tk-item" data-end="2027-02-21T21:30:00+02:00">
-        <span class="tk-date"><span class="tk-dot" aria-hidden="true"></span><span>su 21.2.2027 klo 21.00</span></span>
+        <span class="tk-date"><picture><source type="image/webp" srcset="/kuvat/taysikuu-kiekko-b.webp"><img class="tk-moon-thumb" src="/kuvat/taysikuu-kiekko-b.jpg" width="36" height="36" alt="" aria-hidden="true"></picture><span>su 21.2.2027 klo 21.00</span></span>
         <a class="tk-btn" href="#ilmoittaudu" aria-label="Ilmoittaudu täydenkuun nollaushetkeen su 21.2.2027 klo 21.00">Ilmoittaudu</a>
       </li>
     </ul>
