@@ -529,19 +529,46 @@ const klubiHeader = headerBlock(page);
 assert(home.includes('white-space: nowrap'), 'homepage nav items do not wrap');
 assert(home.includes("screens: { nav: '68.75rem' }"), 'homepage hamburger starts below 1100px');
 assert(home.includes('class="nav-desktop'), 'homepage desktop links are grouped');
-assert(!homeHeader.includes('Instagram'), 'homepage header has no Instagram text link');
-assert(!homeHeader.includes('instagram.com'), 'homepage header has no Instagram icon');
+assert(home.includes('--nav-h: 5.5rem'), 'homepage header is a couple of steps taller');
+assert(home.includes('hdr-ig-count'), 'homepage hides the follower count before the hamburger');
+assert(home.includes('@media (min-width: 85rem)'), 'homepage shows the follower count from 1360px');
 assert(
   /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(homeHeader),
   'homepage header has the five final nav items in order',
+);
+assert(
+  homeHeader.includes('href="https://instagram.com/hengittava_aiti"') &&
+    homeHeader.includes('target="_blank"') &&
+    homeHeader.includes('rel="noopener"') &&
+    homeHeader.includes('aria-label="@hengittava_aiti · 20 000 äitiä Instagramissa"'),
+  'homepage header Instagram is one labeled external link',
+);
+assert(homeHeader.includes('@hengittava_aiti'), 'homepage header shows the Instagram handle');
+assert(
+  /<div id="mobile-menu"[\s\S]*instagram\.com\/hengittava_aiti[\s\S]*20 000 äitiä/.test(homeHeader),
+  'homepage mobile menu includes the Instagram link',
 );
 assert(!homeHeader.includes('Saat hengittää'), 'homepage header has no Saat hengittää');
 assert(!homeHeader.includes('Askeleesi'), 'homepage header has no Askeleesi');
 assert(!homeHeader.includes('Aloita tästä'), 'homepage header has no Aloita tästä CTA');
 assert(!home.includes('id="hetki"'), 'homepage Saat hengittää section removed');
 assert(!home.includes('Saat hengittää'), 'Saat hengittää copy removed from homepage');
-assert((home.match(/20 000 äitiä/g) || []).length === 2, 'homepage follower count is 20 000 äitiä twice');
+assert((home.match(/20 000 äitiä/g) || []).length >= 4, 'homepage follower count is 20 000 äitiä in the header and hero');
 assert(!home.includes('18 000'), 'old 18 000 count removed');
+assert(
+  home.includes('Uupumus ei mene ohi tekemällä enemmän.') &&
+    home.includes('md:whitespace-nowrap md:text-[clamp(1.85rem,2.55vw,2.85rem)]'),
+  'homepage hero title stays on one desktop line',
+);
+assert(
+  home.includes('>Maksuttomat Täydenkuun nollaushetket Zoomissa<') &&
+    !home.includes('>Maksuton Täydenkuun nollaushetki Zoomissa<'),
+  'homepage moon heading is the plural nollaushetket line',
+);
+assert(
+  /#nollaushetket \.tk-title \{[\s\S]*white-space: nowrap/.test(home),
+  'homepage moon heading stays on one desktop line',
+);
 assert(
   /id="askeleet"[\s\S]*id="mita-saat"[\s\S]*id="nollaushetket"/.test(home),
   'Mitä saat mukaan sits directly under the guides',
@@ -555,13 +582,26 @@ assert(
   /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(home),
   'homepage footer keeps Instagram',
 );
-assert(!hermostoHeader.includes('instagram.com'), 'hermosto header has no Instagram icon');
+assert(
+  hermostoHeader.includes('href="https://instagram.com/hengittava_aiti"') &&
+    hermostoHeader.includes('aria-label="@hengittava_aiti · 20 000 äitiä Instagramissa"'),
+  'hermosto header has the same Instagram link',
+);
 assert(
   /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(hermosto),
   'hermosto footer keeps Instagram',
 );
-assert(!klubiHeader.includes('Instagram'), 'klubi header has no Instagram text link');
-assert(!klubiHeader.includes('instagram.com'), 'klubi header has no Instagram icon');
+assert(
+  klubiHeader.includes('href="https://instagram.com/hengittava_aiti"') &&
+    klubiHeader.includes('target="_blank"') &&
+    klubiHeader.includes('rel="noopener"') &&
+    klubiHeader.includes('aria-label="@hengittava_aiti · 20 000 äitiä Instagramissa"'),
+  'klubi header has the same Instagram link',
+);
+assert(
+  /<div id="mobile-menu"[\s\S]*instagram\.com\/hengittava_aiti[\s\S]*20 000 äitiä/.test(klubiHeader),
+  'klubi mobile menu includes the Instagram link',
+);
 assert(
   /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(klubiHeader),
   'klubi header has the five final nav items in order',
@@ -593,9 +633,12 @@ assert(
 );
 assert(hermosto.includes('white-space: nowrap'), 'hermosto nav items do not wrap');
 assert(hermosto.includes("screens: { nav: '68.75rem' }"), 'hermosto hamburger starts below 1100px');
+assert(hermosto.includes('--nav-h: 5.5rem'), 'hermosto header matches the taller bar');
 assert(page.includes('id="site-header"'), 'klubi shares the site header');
 assert(page.includes('white-space: nowrap'), 'klubi nav items do not wrap');
 assert(page.includes('@media (max-width: 68.74rem)'), 'klubi hamburger starts below 1100px');
+assert(page.includes('--nav-h: 5.5rem'), 'klubi header matches the taller bar');
+assert(page.includes('.hdr-ig-count { display: none; }'), 'klubi hides the follower count before the hamburger');
 assert(page.includes('href="/klubi/" aria-current="true"'), 'klubi marks itself current in the nav');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
