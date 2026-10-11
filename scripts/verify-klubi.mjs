@@ -464,22 +464,23 @@ assert(page.includes('og:title'), 'Open Graph title present');
 assert(page.includes('og:description'), 'Open Graph description present');
 assert(page.includes('og:image'), 'Open Graph image present');
 assert(
-  page.includes('content="https://hengittava-aiti.fi/uploads/klubi-og.jpg"'),
-  'og:image / twitter:image use the 1200 collage',
+  page.includes('content="https://hengittava-aiti.fi/uploads/klubi-og-v2.jpg"'),
+  'og:image / twitter:image use the 1200 collage without the bottom line',
 );
+assert(!page.includes('content="https://hengittava-aiti.fi/uploads/klubi-og.jpg"'), 'old og collage URL is unused');
 assert(page.includes('property="og:image:width" content="1200"'), 'og:image width is 1200');
 assert(page.includes('property="og:image:height" content="1200"'), 'og:image height is 1200');
 assert(
   page.includes('Hengittävien äitien klubi – Tilaa hengittää kaiken keskellä'),
   'og:image alt names the club collage',
 );
-assert(existsSync(join(root, 'uploads/klubi-og.jpg')), 'uploads/klubi-og.jpg exists');
-assert(existsSync(join(root, 'public/uploads/klubi-og.jpg')), 'public/uploads/klubi-og.jpg exists');
+assert(existsSync(join(root, 'uploads/klubi-og-v2.jpg')), 'uploads/klubi-og-v2.jpg exists');
+assert(existsSync(join(root, 'public/uploads/klubi-og-v2.jpg')), 'public/uploads/klubi-og-v2.jpg exists');
 assert(
-  readFileSync(join(root, 'uploads/klubi-og.jpg')).equals(
-    readFileSync(join(root, 'public/uploads/klubi-og.jpg')),
+  readFileSync(join(root, 'uploads/klubi-og-v2.jpg')).equals(
+    readFileSync(join(root, 'public/uploads/klubi-og-v2.jpg')),
   ),
-  'public/uploads/klubi-og.jpg mirrors root image',
+  'public/uploads/klubi-og-v2.jpg mirrors root image',
 );
 assert(page.includes('https://hengittava-aiti.fi/klubi/'), 'canonical / og:url point at /klubi/');
 
