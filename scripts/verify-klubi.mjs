@@ -391,6 +391,10 @@ assert(
   page.includes('class="invoice-note"') && page.includes('Haluatko maksaa laskulla?'),
   'invoice note sits under the price cards',
 );
+assert(
+  page.includes('Jäsenmaksu veloitetaan aina kuukauden jaksoissa: ensimmäinen kerta liittyessäsi ja sen jälkeen kuukauden välein liittymispäivästä, riippumatta kalenterikuukaudesta ja teemasta.'),
+  'billing-cycle sentence sits under the price cards',
+);
 assert(!page.includes('3 kuukauden lasku'), 'no 3-month billing mention');
 assert(!page.includes('laskutusjaksosta'), 'no extra invoice-period wording');
 assert(
