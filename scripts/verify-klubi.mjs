@@ -183,6 +183,12 @@ assert(page.includes('Oma rauhan keidas keskellä arkea'), 'community heading re
 assert(!page.includes('Keskellä kaikkea'), 'old community heading removed');
 assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
 assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'learn list has 8 items');
+assert(page.includes('ul.gives { column-count: 2; }') || page.includes('ul.gives {\n      max-width: none;\n      column-count: 2;'), 'learn list is two independent columns');
+assert(!/ul\.gives \{[^}]*grid-template-columns:\s*1fr 1fr/.test(page), 'learn list is not a row-aligned grid');
+assert(
+  /section\[aria-labelledby="h-oppia"\] \.wrap > p:not\(\.btn-row\) \{ margin-bottom: 2\.75rem; \}/.test(page),
+  'learn closing paragraph has extra space before the next heading',
+);
 assert(page.includes('Pienet harjoitukset eivät poista kaikkia arjen haasteita.'), 'no-miracle closing on learn list');
 assert(page.includes('Hengittävä äiti ei ole äiti, joka ei koskaan hermostu tai väsy.'), 'hengittävä äiti reframed');
 assert(page.includes('Lapsellesi turvaa ja parhaat muistot'), 'childhood-home heading verbatim');
@@ -205,6 +211,11 @@ assert(!page.includes('harjoittelemma'), 'harjoittelemma typo not present');
 assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
 assert(page.includes('Kurssin alusta ja materiaalit'), 'platform subheading present');
+assert((page.match(/class="kuukausi-col"/g) || []).length === 2, 'month section uses two independent columns');
+assert(
+  !/section\[aria-labelledby="h-kuukausi"\] h3 \{[^}]*grid-row:\s*2/.test(page),
+  'month h3 is not locked to a shared grid row',
+);
 assert(
   page.includes('Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.'),
   'platform paragraph keeps the discussion space without a village group',
@@ -339,6 +350,17 @@ assert(
   'Koti living-room stays in colour',
 );
 assert((page.match(/class="coming-media"/g) || []).length === 2, 'both 2027 items share the same photo layout');
+assert(
+  page.includes('.coming-photo {\n    aspect-ratio: 4 / 3;') &&
+    page.includes('object-fit: cover'),
+  '2027 photos share a 4:3 cover crop',
+);
+assert(page.includes('coming-photo--koti') && page.includes('coming-photo--valo'), 'each 2027 photo has its own crop position');
+assert(!/coming-photo \{[^}]*max-width:\s*16rem/.test(page), '2027 photos are not capped to 16rem');
+assert(
+  page.includes('.coming-item + .coming-item {\n      margin-top: 0;\n      padding-top: 1.5rem;'),
+  'both 2027 cards keep the same desktop padding so the photos line up',
+);
 assert(page.includes('loading="lazy"') && page.includes('/klubi/img/hengittava-koti-olohuone.jpg'), 'Koti living-room is lazy-loaded');
 assert(
   page.includes('Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi jatkopolku niille, jotka haluavat paneutua omaan hyvinvointiinsa, vanhemmuuteen ja koko perheen arkeen vielä perusteellisemmin.'),

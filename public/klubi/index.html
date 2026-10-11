@@ -154,17 +154,31 @@
   ul.soft li::before { content: ""; position: absolute; left: 0; top: .7em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
 
   /* Mitä klubi antaa: yksi palsta mobiilissa, kaksi leveällä */
-  ul.gives { list-style: none; padding: 0; margin: 0 0 2.25rem; display: grid; gap: 1.15rem 2.75rem; }
-  ul.gives li { position: relative; padding-left: 1.7rem; margin: 0; line-height: 1.7; }
+  ul.gives {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.25rem;
+    column-count: 1;
+    column-gap: 2.75rem;
+  }
+  ul.gives li {
+    position: relative;
+    padding-left: 1.7rem;
+    margin: 0 0 1.15rem;
+    line-height: 1.7;
+    break-inside: avoid;
+  }
   ul.gives li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
-  @media (min-width: 56.25rem) { ul.gives { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 56.25rem) { ul.gives { column-count: 2; } }
+  section[aria-labelledby="h-oppia"] .wrap > p:not(.btn-row) { margin-bottom: 2.75rem; }
 
   /* Tunnistuslista: selkeät rivit, helppo silmäillä */
   ul.recognize { list-style: none; padding: 0; margin: 0 0 2rem; border-top: 1px solid var(--line); max-width: 62ch; }
   ul.recognize li { position: relative; padding: .9rem 0 .9rem 2rem; border-bottom: 1px solid var(--line); line-height: 1.55; }
   ul.recognize li::before { content: ""; position: absolute; left: .15rem; top: 1.45rem; width: .7rem; height: .7rem; border-radius: 50%; border: 2px solid var(--violet); background: var(--peach); }
 
-  section .wrap > h3 { margin-top: 2.25rem; }
+  section .wrap > h3,
+  section[aria-labelledby="h-kuukausi"] .kuukausi-col h3 { margin-top: 2.25rem; }
 
   /* Saat heti: rasti-lista */
   ul.gets { list-style: none; padding: 0; margin: 0 0 1.75rem; display: grid; gap: .9rem; max-width: 62ch; }
@@ -587,17 +601,29 @@
     padding-top: 2rem;
     border-top: 1px solid var(--line);
   }
+  .coming-item {
+    display: flex;
+    flex-direction: column;
+  }
   .coming-item h3 {
     font-size: 1.12rem;
     line-height: 1.35;
     margin: 0 0 .7rem;
   }
+  .coming-media {
+    display: flex;
+    flex-direction: column;
+  }
   .coming-photo {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 3;
     width: 100%;
-    max-width: 16rem;
+    max-width: none;
+    height: auto;
+    object-fit: cover;
     margin: 0 0 1.1rem;
   }
+  .coming-photo--koti { object-position: 42% 55%; }
+  .coming-photo--valo { object-position: 55% 70%; }
   .retriitti-more { margin-top: 1.1rem; }
   .retriitti-more > summary {
     list-style: none;
@@ -803,8 +829,8 @@
     .intro .pillar h3 { font-size: 1.05rem; }
     ul.gives {
       max-width: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem 3.5rem;
+      column-count: 2;
+      column-gap: 3.5rem;
     }
     ul.gets {
       max-width: none;
@@ -849,10 +875,10 @@
       grid-template-columns: 1fr 1fr;
       column-gap: 4.5rem;
       row-gap: .85rem;
+      align-items: start;
     }
     section[aria-labelledby="h-kuukausi"] h2 { grid-column: 1 / -1; justify-self: center; }
-    section[aria-labelledby="h-kuukausi"] h3 { grid-column: 2; grid-row: 2; margin-top: 0; }
-    section[aria-labelledby="h-kuukausi"] h3 + p { grid-column: 2; }
+    section[aria-labelledby="h-kuukausi"] .kuukausi-col h3 { margin-top: 0; }
 
     section[aria-labelledby="h-heti"] .wrap {
       display: grid;
@@ -892,7 +918,7 @@
     .coming-inner > h2 { grid-column: 1 / -1; justify-self: center; }
     .coming-item + .coming-item {
       margin-top: 0;
-      padding-top: 0;
+      padding-top: 1.5rem;
       border-top: 0;
     }
     .coming-item {
@@ -901,8 +927,15 @@
       border-radius: 1.25rem;
       padding: 1.5rem 1.5rem 1.65rem;
     }
-    .coming-media { display: block; }
-    .coming-photo { max-width: none; width: 100%; margin: 0 0 1.15rem; }
+    .coming-media { display: flex; flex-direction: column; }
+    .coming-photo {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      object-fit: cover;
+      margin: 0 0 1.15rem;
+    }
     .coming-inner:has(.retriitti-more[open]) {
       grid-template-columns: 1fr;
       max-width: none;
@@ -1149,10 +1182,14 @@
   <section aria-labelledby="h-kuukausi">
     <div class="wrap">
       <h2 id="h-kuukausi">Näin klubikuukausi kulkee</h2>
-      <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
-      <p>Marraskuun teema on Pysähtymisen taito ja joulukuun teema Riittävä joulu.</p>
-      <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
-      <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
+      <div class="kuukausi-col">
+        <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
+        <p>Marraskuun teema on Pysähtymisen taito ja joulukuun teema Riittävä joulu.</p>
+      </div>
+      <div class="kuukausi-col">
+        <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
+        <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
+      </div>
     </div>
   </section>
 
@@ -1253,7 +1290,7 @@
         <h2 id="h-koti">Tulossa alkuvuonna 2027</h2>
         <article class="coming-item">
           <div class="coming-media">
-            <img class="photo photo--colour coming-photo" src="/klubi/img/hengittava-koti-olohuone.jpg" width="864" height="576" loading="lazy" decoding="async" alt="Kodikas olohuone iltavalossa, sohvalla nalle ja nurkassa piano.">
+            <img class="photo photo--colour coming-photo coming-photo--koti" src="/klubi/img/hengittava-koti-olohuone.jpg" width="864" height="576" loading="lazy" decoding="async" alt="Kodikas olohuone iltavalossa, sohvalla nalle ja nurkassa piano.">
             <div>
               <h3>Hengittävä Koti -valmennus</h3>
               <p>Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi jatkopolku niille, jotka haluavat paneutua omaan hyvinvointiinsa, vanhemmuuteen ja koko perheen arkeen vielä perusteellisemmin.</p>
@@ -1263,7 +1300,7 @@
         </article>
         <article class="coming-item" id="retriitti">
           <div class="coming-media">
-            <img class="photo photo--colour coming-photo" src="/klubi/img/valo-kattoterassi.jpg" width="863" height="575" loading="lazy" decoding="async" alt="Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.">
+            <img class="photo photo--colour coming-photo coming-photo--valo" src="/klubi/img/valo-kattoterassi.jpg" width="863" height="575" loading="lazy" decoding="async" alt="Hotelli Valon kattoterassi, poreallas ja sauna aurinkoisena päivänä.">
             <div>
               <h3>Klubilaisten ensimmäinen retriitti – Hengähdystauko Hotelli Valossa</h3>
               <p>Alkuvuodesta 2027, päiväretriitti tai yli yön. Hinnat ilmoitetaan pian.</p>
