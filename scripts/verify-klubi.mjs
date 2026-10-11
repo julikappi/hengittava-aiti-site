@@ -581,7 +581,7 @@ assert(
 );
 assert(
   home.includes('class="tk-veil"') &&
-    /tk-veil \{[\s\S]*background: rgba\(8, 12, 22/.test(home),
+    /tk-veil \{[\s\S]*background: rgba\(8, 12, 22, 0\.28\)/.test(home),
   'moon band uses a flat readability overlay',
 );
 assert(!home.includes('class="tk-moon"'), 'svg moon decoration removed from homepage');

@@ -224,9 +224,9 @@
   .tk-veil { position: absolute; inset: 0; }
   .tk-sky { z-index: 0; }
   .tk-sky picture,
-  .tk-sky img { display: block; width: 100%; height: 100%; }
-  .tk-sky img { object-fit: cover; object-position: 70% 55%; }
-  .tk-veil { z-index: 1; background: rgba(8, 12, 22, 0.42); }
+  .tk-sky img { display: block; width: 100%; height: 100%; max-width: none; }
+  .tk-sky img { object-fit: cover; object-position: 58% 42%; }
+  .tk-veil { z-index: 1; background: rgba(8, 12, 22, 0.28); }
   .tk-wrap {
     position: relative;
     z-index: 2;
@@ -578,7 +578,7 @@
   <div class="tk-sky" aria-hidden="true">
     <picture>
       <source type="image/webp" srcset="kuvat/taysikuu-yo.webp">
-      <img src="kuvat/taysikuu-yo.jpg" alt="" width="2400" height="1590" decoding="async">
+      <img src="kuvat/taysikuu-yo.jpg" alt="" width="2400" height="1200" decoding="async">
     </picture>
   </div>
   <div class="tk-veil" aria-hidden="true"></div>
