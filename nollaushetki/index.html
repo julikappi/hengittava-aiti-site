@@ -37,6 +37,9 @@
     padding: 36px 22px 72px;
     text-align: center;
   }
+  @media (min-width: 48rem) {
+    .page { max-width: 58rem; }
+  }
   .logo {
     width: 168px;
     height: auto;
@@ -44,11 +47,17 @@
     display: block;
   }
   h1 {
-    font-size: clamp(32px, 7vw, 48px);
+    font-size: clamp(1.45rem, 6vw, 1.9rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.12;
     margin: 0 0 12px;
+  }
+  @media (min-width: 48rem) {
+    h1 {
+      white-space: nowrap;
+      font-size: clamp(1.55rem, 2.3vw, 2.15rem);
+    }
   }
   .when {
     margin: 0 0 22px;
@@ -154,7 +163,7 @@
       width="280"
       height="280"
     >
-    <h1>Maksuton Täydenkuun nollaushetki Zoomissa</h1>
+    <h1>Maksuttomat Täydenkuun nollaushetket Zoomissa</h1>
     <p class="when">maanantai 26.10.2026 klo 21.00 · noin 30 minuuttia · Zoomissa</p>
     <p class="lead">Saat vain olla.<br>Noin 30 minuuttia itsellesi - ei suorittamista, ei vaatimuksia.<br>Vain pieni pysähdys täydenkuun aikaan.</p>
 

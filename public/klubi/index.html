@@ -89,7 +89,7 @@
     --ph-ink: #4A423E;
     --measure: 36rem;
     --font: "Playfair Display";
-    --nav-h: 4.75rem;
+    --nav-h: 5.5rem;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -133,7 +133,7 @@
     flex-wrap: nowrap;
     gap: .75rem;
     width: 100%;
-    max-width: 72rem;
+    max-width: 80rem;
     height: var(--nav-h);
     margin: 0 auto;
     padding: 0 1.25rem;
@@ -142,13 +142,13 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    gap: .65rem;
+    gap: .75rem;
     text-decoration: none;
     color: var(--ink);
   }
-  #site-header .brand img { height: 2.75rem; width: auto; display: block; }
+  #site-header .brand img { height: 3rem; width: auto; display: block; }
   #site-header .brand-name {
-    font-size: 1.02rem;
+    font-size: 1.14rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     line-height: 1;
@@ -160,12 +160,12 @@
     align-items: center;
     flex-wrap: nowrap;
   }
-  #site-header .nav-desktop { gap: 1.1rem; }
-  #site-header .nav-actions { gap: .65rem; }
+  #site-header .nav-desktop { gap: 1.35rem; }
+  #site-header .nav-actions { gap: .75rem; }
   #site-header .nav-link {
     position: relative;
     flex-shrink: 0;
-    font-size: .86rem;
+    font-size: .95rem;
     font-weight: 600;
     color: #6F6560;
     text-decoration: none;
@@ -184,25 +184,25 @@
   }
   #site-header .nav-link:hover::after,
   #site-header .nav-link[aria-current="true"]::after { right: 0; }
-  #site-header .hdr-cta {
+  #site-header .hdr-ig {
     display: none;
     align-items: center;
     flex-shrink: 0;
-    padding: .7rem 1.25rem;
-    background: #2A2320;
-    color: #FFFCFA;
-    font-size: .86rem;
-    font-weight: 700;
+    gap: .42rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #6F6560;
     text-decoration: none;
     white-space: nowrap;
     line-height: 1.2;
   }
+  #site-header .hdr-ig-count { display: none; }
   #site-header #menu-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border: 1px solid currentColor;
     background: transparent;
     color: var(--ink);
@@ -224,6 +224,7 @@
     font-weight: 600;
   }
   #mobile-menu .mobile-link { color: var(--ink); text-decoration: none; white-space: nowrap; }
+  #mobile-menu .mobile-link[href*="instagram"] { display: inline-flex; align-items: center; gap: .5rem; }
   #mobile-menu .mobile-cta {
     display: inline-flex;
     width: fit-content;
@@ -236,16 +237,17 @@
   }
   @media (max-width: 68.74rem) {
     #site-header .nav-desktop { display: none; }
-    #site-header .hdr-cta { display: none; }
+    #site-header .hdr-ig { display: none; }
   }
   @media (min-width: 68.75rem) {
     #site-header .nav-desktop { display: flex; }
     #site-header #menu-btn { display: none; }
+    #site-header .hdr-ig { display: inline-flex; }
     #mobile-menu { display: none !important; }
   }
-  @media (min-width: 80rem) {
-    #site-header .nav-desktop { gap: 1.45rem; }
-    #site-header .hdr-cta { display: inline-flex; }
+  @media (min-width: 85rem) {
+    #site-header .nav-desktop { gap: 1.7rem; }
+    #site-header .hdr-ig-count { display: inline; }
     #site-header nav { padding: 0 1.5rem; }
   }
 
@@ -1151,7 +1153,7 @@
 <header id="site-header">
   <nav aria-label="Päävalikko">
     <a href="/" class="brand">
-      <img src="/kuvat/logo-merkki.png" alt="" width="47" height="44">
+      <img src="/kuvat/logo-merkki.png" alt="" width="51" height="48">
       <span class="brand-name">Hengittävä Äiti</span>
     </a>
     <div class="nav-desktop">
@@ -1162,9 +1164,13 @@
       <a class="nav-link" href="/#musiikki">Musiikki</a>
     </div>
     <div class="nav-actions">
+      <a class="hdr-ig" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" aria-label="@hengittava_aiti · 20 000 äitiä Instagramissa">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+        <span>@hengittava_aiti<span class="hdr-ig-count"> · 20 000 äitiä</span></span>
+      </a>
       <button id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Avaa valikko">
-        <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <svg id="menu-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="menu-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </nav>
@@ -1175,6 +1181,10 @@
       <a href="/#askeleet" class="mobile-link">Tuotteet</a>
       <a href="/klubi/" class="mobile-link">Klubi</a>
       <a href="/#musiikki" class="mobile-link">Musiikki</a>
+      <a class="mobile-link" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener" aria-label="@hengittava_aiti · 20 000 äitiä Instagramissa">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+        @hengittava_aiti · 20 000 äitiä
+      </a>
     </div>
   </div>
 </header>
