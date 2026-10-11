@@ -463,7 +463,24 @@ assert(!page.includes('perjantain-nollaushetki'), 'old nollaushetki path removed
 assert(page.includes('og:title'), 'Open Graph title present');
 assert(page.includes('og:description'), 'Open Graph description present');
 assert(page.includes('og:image'), 'Open Graph image present');
-assert(page.includes('https://hengittava-aiti.fi/klubi/img/juliana-keittio-esiliina.jpg'), 'og:image uses a page photo');
+assert(
+  page.includes('content="https://hengittava-aiti.fi/uploads/klubi-og.jpg"'),
+  'og:image / twitter:image use the 1200 collage',
+);
+assert(page.includes('property="og:image:width" content="1200"'), 'og:image width is 1200');
+assert(page.includes('property="og:image:height" content="1200"'), 'og:image height is 1200');
+assert(
+  page.includes('Hengittävien äitien klubi – Tilaa hengittää kaiken keskellä'),
+  'og:image alt names the club collage',
+);
+assert(existsSync(join(root, 'uploads/klubi-og.jpg')), 'uploads/klubi-og.jpg exists');
+assert(existsSync(join(root, 'public/uploads/klubi-og.jpg')), 'public/uploads/klubi-og.jpg exists');
+assert(
+  readFileSync(join(root, 'uploads/klubi-og.jpg')).equals(
+    readFileSync(join(root, 'public/uploads/klubi-og.jpg')),
+  ),
+  'public/uploads/klubi-og.jpg mirrors root image',
+);
 assert(page.includes('https://hengittava-aiti.fi/klubi/'), 'canonical / og:url point at /klubi/');
 
 assert(!/buy\.stripe\.com/.test(page), 'no live Stripe checkout wired');
@@ -524,6 +541,15 @@ assert(!home.includes('id="hetki"'), 'homepage Saat hengittää section removed'
 assert(!home.includes('Saat hengittää'), 'Saat hengittää copy removed from homepage');
 assert((home.match(/20 000 äitiä/g) || []).length === 2, 'homepage follower count is 20 000 äitiä twice');
 assert(!home.includes('18 000'), 'old 18 000 count removed');
+assert(
+  /id="askeleet"[\s\S]*id="mita-saat"[\s\S]*id="nollaushetket"/.test(home),
+  'Mitä saat mukaan sits directly under the guides',
+);
+assert(
+  /<footer[\s\S]*id="rehellisesti"[\s\S]*text-\[13px\][\s\S]*text-paper\/45/.test(home),
+  'Rehellisesti is small muted footer text',
+);
+assert(!home.includes('data-component="HonestDisclaimer"'), 'Rehellisesti heading box is gone');
 assert(
   /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(home),
   'homepage footer keeps Instagram',
