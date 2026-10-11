@@ -164,7 +164,8 @@
   ul.recognize li { position: relative; padding: .9rem 0 .9rem 2rem; border-bottom: 1px solid var(--line); line-height: 1.55; }
   ul.recognize li::before { content: ""; position: absolute; left: .15rem; top: 1.45rem; width: .7rem; height: .7rem; border-radius: 50%; border: 2px solid var(--violet); background: var(--peach); }
 
-  section .wrap > h3 { margin-top: 2.25rem; }
+  section .wrap > h3,
+  section[aria-labelledby="h-kuukausi"] .kuukausi-col h3 { margin-top: 2.25rem; }
 
   /* Saat heti: rasti-lista */
   ul.gets { list-style: none; padding: 0; margin: 0 0 1.75rem; display: grid; gap: .9rem; max-width: 62ch; }
@@ -861,10 +862,10 @@
       grid-template-columns: 1fr 1fr;
       column-gap: 4.5rem;
       row-gap: .85rem;
+      align-items: start;
     }
     section[aria-labelledby="h-kuukausi"] h2 { grid-column: 1 / -1; justify-self: center; }
-    section[aria-labelledby="h-kuukausi"] h3 { grid-column: 2; grid-row: 2; margin-top: 0; }
-    section[aria-labelledby="h-kuukausi"] h3 + p { grid-column: 2; }
+    section[aria-labelledby="h-kuukausi"] .kuukausi-col h3 { margin-top: 0; }
 
     section[aria-labelledby="h-heti"] .wrap {
       display: grid;
@@ -1168,10 +1169,14 @@
   <section aria-labelledby="h-kuukausi">
     <div class="wrap">
       <h2 id="h-kuukausi">Näin klubikuukausi kulkee</h2>
-      <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
-      <p>Marraskuun teema on Pysähtymisen taito ja joulukuun teema Riittävä joulu.</p>
-      <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
-      <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
+      <div class="kuukausi-col">
+        <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
+        <p>Marraskuun teema on Pysähtymisen taito ja joulukuun teema Riittävä joulu.</p>
+      </div>
+      <div class="kuukausi-col">
+        <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
+        <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
+      </div>
     </div>
   </section>
 

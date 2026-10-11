@@ -205,6 +205,11 @@ assert(!page.includes('harjoittelemma'), 'harjoittelemma typo not present');
 assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
 assert(page.includes('Kurssin alusta ja materiaalit'), 'platform subheading present');
+assert((page.match(/class="kuukausi-col"/g) || []).length === 2, 'month section uses two independent columns');
+assert(
+  !/section\[aria-labelledby="h-kuukausi"\] h3 \{[^}]*grid-row:\s*2/.test(page),
+  'month h3 is not locked to a shared grid row',
+);
 assert(
   page.includes('Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.'),
   'platform paragraph keeps the discussion space without a village group',
