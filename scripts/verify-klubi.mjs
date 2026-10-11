@@ -339,6 +339,17 @@ assert(
   'Koti living-room stays in colour',
 );
 assert((page.match(/class="coming-media"/g) || []).length === 2, 'both 2027 items share the same photo layout');
+assert(
+  page.includes('.coming-photo {\n    aspect-ratio: 4 / 3;') &&
+    page.includes('object-fit: cover'),
+  '2027 photos share a 4:3 cover crop',
+);
+assert(page.includes('coming-photo--koti') && page.includes('coming-photo--valo'), 'each 2027 photo has its own crop position');
+assert(!/coming-photo \{[^}]*max-width:\s*16rem/.test(page), '2027 photos are not capped to 16rem');
+assert(
+  page.includes('.coming-item + .coming-item {\n      margin-top: 0;\n      padding-top: 1.5rem;'),
+  'both 2027 cards keep the same desktop padding so the photos line up',
+);
 assert(page.includes('loading="lazy"') && page.includes('/klubi/img/hengittava-koti-olohuone.jpg'), 'Koti living-room is lazy-loaded');
 assert(
   page.includes('Alkuvuodesta 2027 avautuvat Hengittävä Koti -valmennukset. Ne ovat pienryhmissä ohjattu, syvempi jatkopolku niille, jotka haluavat paneutua omaan hyvinvointiinsa, vanhemmuuteen ja koko perheen arkeen vielä perusteellisemmin.'),
