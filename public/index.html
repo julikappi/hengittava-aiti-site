@@ -242,18 +242,13 @@
     <!-- Desktop links -->
     <div class="nav-desktop hidden nav:flex items-center text-[0.86rem] font-semibold">
       <a class="nav-link hdr-fg-soft" href="#tuntuuko">Tuntuuko tutulta</a>
-      <a class="nav-link hdr-fg-soft" href="#askeleet">Askeleesi</a>
-      <a class="nav-link hdr-fg-soft" href="#hetki">Saat hengittää</a>
-      <a class="nav-link hdr-fg-soft" href="#musiikki">Musiikki</a>
-      <a class="nav-link hdr-fg-soft" href="/minun-tarinani/">Minun tarinani</a>
+      <a class="nav-link hdr-fg-soft" href="/minun-tarinani/">Tarinani</a>
+      <a class="nav-link hdr-fg-soft" href="#askeleet">Tuotteet</a>
       <a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>
+      <a class="nav-link hdr-fg-soft" href="#musiikki">Musiikki</a>
     </div>
 
     <div class="nav-actions flex items-center gap-2.5">
-      <a href="#askeleet"
-         class="hdr-cta hidden xl:inline-flex items-center gap-2 bg-ink text-paper text-[0.86rem] font-bold px-5 hover:bg-ink-soft transition-colors">
-        Aloita tästä
-      </a>
       <!-- Mobile menu button -->
       <button id="menu-btn" class="nav:hidden inline-flex items-center justify-center w-10 h-10 border border-current hdr-fg" aria-expanded="false" aria-controls="mobile-menu" aria-label="Avaa valikko">
         <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -266,13 +261,10 @@
   <div id="mobile-menu" class="nav:hidden hidden border-t border-ink/10 bg-paper">
     <div class="px-5 py-5 flex flex-col gap-3.5 text-base font-semibold text-ink">
       <a href="#tuntuuko" class="mobile-link">Tuntuuko tutulta</a>
-      <a href="#askeleet" class="mobile-link">Askeleesi</a>
-      <a href="#hetki" class="mobile-link">Saat hengittää</a>
-      <a href="#musiikki" class="mobile-link">Musiikki</a>
-      <a href="/minun-tarinani/" class="mobile-link">Minun tarinani</a>
+      <a href="/minun-tarinani/" class="mobile-link">Tarinani</a>
+      <a href="#askeleet" class="mobile-link">Tuotteet</a>
       <a href="/klubi/" class="mobile-link">Klubi</a>
-      <a href="#minusta" class="mobile-link">Minusta</a>
-      <a href="#askeleet" class="mobile-link mt-1 inline-flex w-fit items-center bg-ink text-paper px-5 py-3 font-bold">Aloita tästä</a>
+      <a href="#musiikki" class="mobile-link">Musiikki</a>
     </div>
   </div>
 </header>
@@ -287,7 +279,7 @@
       <a href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener"
          class="reveal inline-flex items-center gap-2 text-[0.82rem] font-semibold tracking-wide text-ink-mute hover:text-ink transition-colors">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
-        @hengittava_aiti · lähes 18 000 äitiä
+        @hengittava_aiti · 20 000 äitiä
       </a>
 
       <h1 class="reveal font-serif text-ink leading-[1.14] text-[clamp(1.7rem,4.2vw,2.85rem)] mt-4" data-delay="80">
@@ -301,10 +293,6 @@
         <a href="#askeleet" class="inline-flex items-center gap-2 bg-ink text-paper font-bold px-7 py-4 hover:bg-ink-soft transition-colors">
           Aloita tästä
         </a>
-        <a href="#hetki" class="inline-flex items-center gap-2.5 border border-ink/30 hover:border-ink text-ink font-bold px-7 py-4 transition-colors">
-          <svg width="14" height="14" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="32" r="10" fill="currentColor"/></svg>
-          Saat hengittää
-        </a>
       </div>
 
       <a href="https://hengittava-aiti.fi/hermosto-reset-viikko-1" class="reveal inline-flex items-center gap-2 mt-5 border border-ink/25 px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors" data-delay="320">
@@ -317,7 +305,7 @@
         Tämä alkoi Instagramista.
       </h2>
       <p class="mt-2 text-ink-mute leading-relaxed">
-        Lähes 18 000 äitiä lukee näitä joka viikko. Sama puhe jatkuu tällä sivulla.
+        20 000 äitiä lukee näitä joka viikko. Sama puhe jatkuu tällä sivulla.
       </p>
     </div>
 
@@ -492,61 +480,6 @@
           <a href="/hermosto-reset/" class="mt-6 inline-flex items-center justify-center bg-ink text-paper hover:bg-ink-soft font-bold px-6 py-3.5 transition-colors">Tutustu oppaaseen</a>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ @component: BreathingMoment — dark, interactive ═══════════════ -->
-<section id="hetki" data-component="BreathingMoment" class="relative py-16 md:py-24 overflow-hidden bg-ink">
-  <!-- Photo #8: sunrise, heavily darkened -->
-  <div class="absolute inset-0 ig-frame" aria-hidden="true">
-    <img src="kuvat/ig/breathing-auringonnousu.jpg" class="ig-photo ig-photo--dawn opacity-30" alt="" loading="lazy" onerror="this.style.display='none'">
-    <div class="absolute inset-0 bg-ink/75"></div>
-  </div>
-  <!-- Dawn glow -->
-  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46rem] h-[46rem] pointer-events-none opacity-50"
-       style="background: radial-gradient(closest-side, rgba(168,130,122,0.26), rgba(59,42,69,0.14) 58%, transparent 72%);" aria-hidden="true"></div>
-
-  <div class="relative max-w-3xl mx-auto px-5 sm:px-6 text-center">
-    <p class="reveal inline-flex items-center gap-3 text-[0.72rem] font-bold uppercase tracking-eyebrow text-paper/70">
-      <span class="inline-block w-8 h-px bg-paper/40"></span> Saat hengittää <span class="inline-block w-8 h-px bg-paper/40"></span>
-    </p>
-    <h2 class="reveal font-serif text-3xl md:text-[2.35rem] leading-[1.14] mt-5 text-paper" data-delay="80">
-      Pysähdy. Tämä minuutti on sinun.
-    </h2>
-    <p class="reveal mt-5 text-paper/80 leading-relaxed max-w-xl mx-auto" data-delay="160">
-      Seuraa ympyrää. Sisään nenän kautta, ulos pitkään ja pehmeästi.
-      Rytmi <strong class="font-bold text-paper">4 sisään · 6–8 ulos</strong>: pidennetty uloshengitys viestii keholle rauhasta.
-    </p>
-
-    <!-- Breathing instrument (functionality unchanged) -->
-    <div class="reveal mt-12 flex flex-col items-center" data-delay="240">
-      <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center" id="breath-stage">
-        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 280 280" aria-hidden="true">
-          <circle cx="140" cy="140" r="132" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
-          <circle id="breath-ring" cx="140" cy="140" r="132" fill="none" stroke="#A8827A" stroke-width="3"
-                  stroke-linecap="round" stroke-dasharray="829.4" stroke-dashoffset="829.4"/>
-        </svg>
-        <div class="absolute w-56 h-56 rounded-full border border-paper/25 anim-breathe" aria-hidden="true"></div>
-        <div class="absolute w-64 h-64 rounded-full border border-dawn-300/30 anim-breathe-slow" aria-hidden="true"></div>
-        <div id="breath-circle"
-             class="w-40 h-40 sm:w-44 sm:h-44 rounded-full flex items-center justify-center"
-             style="background: radial-gradient(circle at 35% 30%, #E4D2CD 0%, #A8827A 52%, #8A6A64 100%);">
-          <span id="breath-label" class="font-serif text-ink text-base sm:text-lg px-6 text-center leading-snug">Valmiina?</span>
-        </div>
-      </div>
-
-      <button id="breath-toggle"
-              class="mt-10 inline-flex items-center gap-2.5 bg-paper text-ink font-bold px-8 py-4 hover:bg-paper-deep transition-colors">
-        <span class="music-wave hidden inline-flex items-center gap-1" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-        <span id="breath-toggle-text">Aloita tästä</span>
-      </button>
-      <p id="breath-count" class="mt-4 text-sm text-paper/70 h-5" aria-live="polite"></p>
-      <div id="breath-cta" class="opacity-0 translate-y-3 mt-8 border border-paper/25 bg-paper/10 p-6 text-center">
-        <p class="font-serif text-xl text-paper leading-tight">Huomasitko, miten pienikin hetki voi muuttaa kehon tunnetta?</p>
-        <p class="mt-3 text-paper/80 leading-relaxed">Hermosto Reset — 21 päivää auttaa rakentamaan tästä pienen tavan. Päivä kerrallaan, ilman suorittamista.</p>
-        <a href="/hermosto-reset/" class="mt-5 inline-flex items-center justify-center border border-paper/70 hover:border-paper text-paper font-bold px-6 py-3 transition-colors">Tutustu 21 päivän oppaaseen</a>
-      </div>
     </div>
   </div>
 </section>
@@ -833,7 +766,6 @@
         <ul class="mt-4 space-y-2.5">
           <li><a class="hover:text-paper transition-colors" href="#instagram">Instagram</a></li>
           <li><a class="hover:text-paper transition-colors" href="#tuntuuko">Tuntuuko tutulta</a></li>
-          <li><a class="hover:text-paper transition-colors" href="#hetki">Saat hengittää</a></li>
           <li><a class="hover:text-paper transition-colors" href="#musiikki">Soittolistat</a></li>
           <li><a class="hover:text-paper transition-colors" href="#mita-saat">Mitä saat mukaan</a></li>
           <li><a class="hover:text-paper transition-colors" href="#minusta">Minusta</a></li>
@@ -916,7 +848,7 @@
 
   /* ── 4. Active nav link ─────────────────────────────────────────── */
   var navLinks = document.querySelectorAll('.nav-link');
-  var sections = ['instagram', 'tuntuuko', 'askeleet', 'hetki', 'musiikki', 'minusta']
+  var sections = ['instagram', 'tuntuuko', 'askeleet', 'musiikki', 'minusta']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   if ('IntersectionObserver' in window) {
@@ -931,125 +863,6 @@
     }, { rootMargin: '-40% 0px -55% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
   }
-
-  /* ── 5. Breathing exercise + soft generated music — 4 in, 6 out ─ */
-  var circle = document.getElementById('breath-circle');
-  var label  = document.getElementById('breath-label');
-  var ring   = document.getElementById('breath-ring');
-  var toggle = document.getElementById('breath-toggle');
-  var toggleText = document.getElementById('breath-toggle-text');
-  var musicWave = toggle ? toggle.querySelector('.music-wave') : null;
-  var count  = document.getElementById('breath-count');
-  var cta    = document.getElementById('breath-cta');
-  var RING_LEN = 829.4; // 2π · r132
-
-  var phases = [
-    { text: 'Hengitä sisään 4', dur: 4000, scale: 1.42 },
-    { text: 'Hengitä ulos 6',   dur: 6000, scale: 1.0  }
-  ];
-  var idx = 0, timer = null, completeTimer = null, running = false, breaths = 0;
-  var audioCtx = null, musicGain = null, musicNodes = [];
-
-  function setLabel(text) {
-    label.style.opacity = '0';
-    setTimeout(function () { label.textContent = text; label.style.opacity = '1'; }, 320);
-  }
-  function animateRing(dur) {
-    ring.style.transitionDuration = '0ms';
-    ring.style.strokeDashoffset = String(RING_LEN);
-    void ring.getBoundingClientRect();
-    ring.style.transitionDuration = dur + 'ms';
-    ring.style.strokeDashoffset = '0';
-  }
-  function startMusic() {
-    if (prefersReduced || (!(window.AudioContext || window.webkitAudioContext))) return;
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    stopMusic(true);
-
-    musicGain = audioCtx.createGain();
-    musicGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-    musicGain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 2.4);
-    musicGain.connect(audioCtx.destination);
-
-    [196, 246.94, 293.66].forEach(function (freq, i) {
-      var osc = audioCtx.createOscillator();
-      var gain = audioCtx.createGain();
-      var lfo = audioCtx.createOscillator();
-      var lfoGain = audioCtx.createGain();
-      osc.type = i === 0 ? 'sine' : 'triangle';
-      osc.frequency.value = freq;
-      gain.gain.value = i === 0 ? 0.42 : 0.18;
-      lfo.frequency.value = 0.035 + i * 0.012;
-      lfoGain.gain.value = 0.045;
-      lfo.connect(lfoGain);
-      lfoGain.connect(gain.gain);
-      osc.connect(gain);
-      gain.connect(musicGain);
-      osc.start();
-      lfo.start();
-      musicNodes.push(osc, lfo, gain);
-    });
-  }
-  function stopMusic(instant) {
-    if (!audioCtx || !musicGain) return;
-    var now = audioCtx.currentTime;
-    musicGain.gain.cancelScheduledValues(now);
-    musicGain.gain.setValueAtTime(Math.max(musicGain.gain.value, 0.0001), now);
-    musicGain.gain.exponentialRampToValueAtTime(0.0001, now + (instant ? 0.05 : 1.4));
-    var oldNodes = musicNodes.slice();
-    setTimeout(function () {
-      oldNodes.forEach(function (node) { if (node.stop) { try { node.stop(); } catch (e) {} } if (node.disconnect) { try { node.disconnect(); } catch (e) {} } });
-    }, instant ? 80 : 1600);
-    musicNodes = [];
-    musicGain = null;
-  }
-  function runPhase() {
-    var p = phases[idx];
-    circle.style.transitionDuration = p.dur + 'ms';
-    circle.style.transform = 'scale(' + p.scale + ')';
-    setLabel(p.text);
-    animateRing(p.dur);
-    timer = setTimeout(function () {
-      idx = (idx + 1) % phases.length;
-      if (idx === 0) {
-        breaths += 1;
-        count.textContent = breaths === 1 ? '1 hengitys. Hyvin tehty.' : breaths + ' hengitystä. Jatka omaan tahtiin.';
-      }
-      runPhase();
-    }, p.dur);
-  }
-  function stopBreath(completed) {
-    running = false;
-    clearTimeout(timer);
-    clearTimeout(completeTimer);
-    idx = 0;
-    circle.style.transitionDuration = '900ms';
-    circle.style.transform = 'scale(1)';
-    ring.style.transitionDuration = '600ms';
-    ring.style.strokeDashoffset = String(RING_LEN);
-    setLabel(breaths > 0 ? 'Kiitos tästä hetkestä.' : 'Valmiina?');
-    toggleText.textContent = breaths > 0 ? 'Hengitä uudelleen' : 'Aloita tästä';
-    if (musicWave) musicWave.classList.add('hidden');
-    stopMusic(false);
-    if (completed || breaths > 0) cta.classList.add('is-visible');
-  }
-  toggle.addEventListener('click', function () {
-    if (running) { stopBreath(false); return; }
-    running = true;
-    breaths = 0;
-    count.textContent = 'Musiikki soi hiljaa. Hengitä rauhassa.';
-    cta.classList.remove('is-visible');
-    toggleText.textContent = 'Lopeta hetki';
-    if (musicWave) musicWave.classList.remove('hidden');
-    idx = 0;
-    startMusic();
-    runPhase();
-    completeTimer = setTimeout(function () {
-      count.textContent = '60 sekuntia. Riittää, että tulit tähän.';
-      stopBreath(true);
-    }, 60000);
-  });
 
   /* ── 6. Plan preselect — offer CTAs feed the signup form ────────── */
   var interest = document.getElementById('signup-interest');

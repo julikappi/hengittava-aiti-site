@@ -514,6 +514,17 @@ assert(home.includes('class="nav-desktop'), 'homepage desktop links are grouped'
 assert(!homeHeader.includes('Instagram'), 'homepage header has no Instagram text link');
 assert(!homeHeader.includes('instagram.com'), 'homepage header has no Instagram icon');
 assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(homeHeader),
+  'homepage header has the five final nav items in order',
+);
+assert(!homeHeader.includes('Saat hengittää'), 'homepage header has no Saat hengittää');
+assert(!homeHeader.includes('Askeleesi'), 'homepage header has no Askeleesi');
+assert(!homeHeader.includes('Aloita tästä'), 'homepage header has no Aloita tästä CTA');
+assert(!home.includes('id="hetki"'), 'homepage Saat hengittää section removed');
+assert(!home.includes('Saat hengittää'), 'Saat hengittää copy removed from homepage');
+assert((home.match(/20 000 äitiä/g) || []).length === 2, 'homepage follower count is 20 000 äitiä twice');
+assert(!home.includes('18 000'), 'old 18 000 count removed');
+assert(
   /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(home),
   'homepage footer keeps Instagram',
 );
@@ -524,6 +535,15 @@ assert(
 );
 assert(!klubiHeader.includes('Instagram'), 'klubi header has no Instagram text link');
 assert(!klubiHeader.includes('instagram.com'), 'klubi header has no Instagram icon');
+assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(klubiHeader),
+  'klubi header has the five final nav items in order',
+);
+assert(!klubiHeader.includes('Saat hengittää'), 'klubi header has no Saat hengittää');
+assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(hermostoHeader),
+  'hermosto header has the five final nav items in order',
+);
 assert(
   page.includes('<footer class="site-footer">') && page.includes('class="f-ig"'),
   'klubi footer has a small Instagram link',
