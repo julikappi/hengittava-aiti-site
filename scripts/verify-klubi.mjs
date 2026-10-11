@@ -501,6 +501,53 @@ const home = readFileSync(join(root, 'index.html'), 'utf8');
 const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
 const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
 assert(home === publicHome, 'public homepage mirrors root homepage');
+function headerBlock(html) {
+  const match = html.match(/<header[^>]*(?:id="site-header"|class="site-header")[\s\S]*?<\/header>/);
+  return match ? match[0] : '';
+}
+const homeHeader = headerBlock(home);
+const hermostoHeader = headerBlock(hermosto);
+const klubiHeader = headerBlock(page);
+assert(home.includes('white-space: nowrap'), 'homepage nav items do not wrap');
+assert(home.includes("screens: { nav: '68.75rem' }"), 'homepage hamburger starts below 1100px');
+assert(home.includes('class="nav-desktop'), 'homepage desktop links are grouped');
+assert(!homeHeader.includes('Instagram'), 'homepage header has no Instagram text link');
+assert(!homeHeader.includes('instagram.com'), 'homepage header has no Instagram icon');
+assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(homeHeader),
+  'homepage header has the five final nav items in order',
+);
+assert(!homeHeader.includes('Saat hengittää'), 'homepage header has no Saat hengittää');
+assert(!homeHeader.includes('Askeleesi'), 'homepage header has no Askeleesi');
+assert(!homeHeader.includes('Aloita tästä'), 'homepage header has no Aloita tästä CTA');
+assert(!home.includes('id="hetki"'), 'homepage Saat hengittää section removed');
+assert(!home.includes('Saat hengittää'), 'Saat hengittää copy removed from homepage');
+assert((home.match(/20 000 äitiä/g) || []).length === 2, 'homepage follower count is 20 000 äitiä twice');
+assert(!home.includes('18 000'), 'old 18 000 count removed');
+assert(
+  /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(home),
+  'homepage footer keeps Instagram',
+);
+assert(!hermostoHeader.includes('instagram.com'), 'hermosto header has no Instagram icon');
+assert(
+  /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(hermosto),
+  'hermosto footer keeps Instagram',
+);
+assert(!klubiHeader.includes('Instagram'), 'klubi header has no Instagram text link');
+assert(!klubiHeader.includes('instagram.com'), 'klubi header has no Instagram icon');
+assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(klubiHeader),
+  'klubi header has the five final nav items in order',
+);
+assert(!klubiHeader.includes('Saat hengittää'), 'klubi header has no Saat hengittää');
+assert(
+  /Tuntuuko tutulta[\s\S]*Tarinani[\s\S]*Tuotteet[\s\S]*Klubi[\s\S]*Musiikki/.test(hermostoHeader),
+  'hermosto header has the five final nav items in order',
+);
+assert(
+  page.includes('<footer class="site-footer">') && page.includes('class="f-ig"'),
+  'klubi footer has a small Instagram link',
+);
 assert(
   home.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
   'homepage desktop nav links to /klubi/',
@@ -517,6 +564,12 @@ assert(
   hermosto.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
   'shared hermosto-reset nav links to /klubi/',
 );
+assert(hermosto.includes('white-space: nowrap'), 'hermosto nav items do not wrap');
+assert(hermosto.includes("screens: { nav: '68.75rem' }"), 'hermosto hamburger starts below 1100px');
+assert(page.includes('id="site-header"'), 'klubi shares the site header');
+assert(page.includes('white-space: nowrap'), 'klubi nav items do not wrap');
+assert(page.includes('@media (max-width: 68.74rem)'), 'klubi hamburger starts below 1100px');
+assert(page.includes('href="/klubi/" aria-current="true"'), 'klubi marks itself current in the nav');
 assert(terms === publicTerms, 'public/klubi/ehdot mirrors root terms page');
 assert(terms.includes('<h1>Jäsenyysehdot</h1>'), 'terms page heading');
 assert(terms.includes('Myyjä on ILO Wellness.'), 'terms page names the seller');
