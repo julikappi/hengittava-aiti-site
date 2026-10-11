@@ -501,9 +501,33 @@ const home = readFileSync(join(root, 'index.html'), 'utf8');
 const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
 const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
 assert(home === publicHome, 'public homepage mirrors root homepage');
+function headerBlock(html) {
+  const match = html.match(/<header[^>]*(?:id="site-header"|class="site-header")[\s\S]*?<\/header>/);
+  return match ? match[0] : '';
+}
+const homeHeader = headerBlock(home);
+const hermostoHeader = headerBlock(hermosto);
+const klubiHeader = headerBlock(page);
 assert(home.includes('white-space: nowrap'), 'homepage nav items do not wrap');
 assert(home.includes("screens: { nav: '68.75rem' }"), 'homepage hamburger starts below 1100px');
 assert(home.includes('class="nav-desktop'), 'homepage desktop links are grouped');
+assert(!homeHeader.includes('Instagram'), 'homepage header has no Instagram text link');
+assert(!homeHeader.includes('instagram.com'), 'homepage header has no Instagram icon');
+assert(
+  /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(home),
+  'homepage footer keeps Instagram',
+);
+assert(!hermostoHeader.includes('instagram.com'), 'hermosto header has no Instagram icon');
+assert(
+  /<footer[\s\S]*instagram\.com\/hengittava_aiti/.test(hermosto),
+  'hermosto footer keeps Instagram',
+);
+assert(!klubiHeader.includes('Instagram'), 'klubi header has no Instagram text link');
+assert(!klubiHeader.includes('instagram.com'), 'klubi header has no Instagram icon');
+assert(
+  page.includes('<footer class="site-footer">') && page.includes('class="f-ig"'),
+  'klubi footer has a small Instagram link',
+);
 assert(
   home.includes('<a class="nav-link hdr-fg-soft" href="/klubi/">Klubi</a>'),
   'homepage desktop nav links to /klubi/',
