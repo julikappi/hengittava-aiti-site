@@ -183,6 +183,12 @@ assert(page.includes('Oma rauhan keidas keskellä arkea'), 'community heading re
 assert(!page.includes('Keskellä kaikkea'), 'old community heading removed');
 assert(page.includes('Mitä voit oppia klubissa?'), 'learn heading from brief');
 assert((page.match(/<ul class="gives">[\s\S]*?<\/ul>/)[0].match(/<li>/g) || []).length === 8, 'learn list has 8 items');
+assert(page.includes('ul.gives { column-count: 2; }') || page.includes('ul.gives {\n      max-width: none;\n      column-count: 2;'), 'learn list is two independent columns');
+assert(!/ul\.gives \{[^}]*grid-template-columns:\s*1fr 1fr/.test(page), 'learn list is not a row-aligned grid');
+assert(
+  /section\[aria-labelledby="h-oppia"\] \.wrap > p:not\(\.btn-row\) \{ margin-bottom: 2\.75rem; \}/.test(page),
+  'learn closing paragraph has extra space before the next heading',
+);
 assert(page.includes('Pienet harjoitukset eivät poista kaikkia arjen haasteita.'), 'no-miracle closing on learn list');
 assert(page.includes('Hengittävä äiti ei ole äiti, joka ei koskaan hermostu tai väsy.'), 'hengittävä äiti reframed');
 assert(page.includes('Lapsellesi turvaa ja parhaat muistot'), 'childhood-home heading verbatim');

@@ -154,10 +154,23 @@
   ul.soft li::before { content: ""; position: absolute; left: 0; top: .7em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
 
   /* Mitä klubi antaa: yksi palsta mobiilissa, kaksi leveällä */
-  ul.gives { list-style: none; padding: 0; margin: 0 0 2.25rem; display: grid; gap: 1.15rem 2.75rem; }
-  ul.gives li { position: relative; padding-left: 1.7rem; margin: 0; line-height: 1.7; }
+  ul.gives {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.25rem;
+    column-count: 1;
+    column-gap: 2.75rem;
+  }
+  ul.gives li {
+    position: relative;
+    padding-left: 1.7rem;
+    margin: 0 0 1.15rem;
+    line-height: 1.7;
+    break-inside: avoid;
+  }
   ul.gives li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); }
-  @media (min-width: 56.25rem) { ul.gives { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 56.25rem) { ul.gives { column-count: 2; } }
+  section[aria-labelledby="h-oppia"] .wrap > p:not(.btn-row) { margin-bottom: 2.75rem; }
 
   /* Tunnistuslista: selkeät rivit, helppo silmäillä */
   ul.recognize { list-style: none; padding: 0; margin: 0 0 2rem; border-top: 1px solid var(--line); max-width: 62ch; }
@@ -816,8 +829,8 @@
     .intro .pillar h3 { font-size: 1.05rem; }
     ul.gives {
       max-width: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem 3.5rem;
+      column-count: 2;
+      column-gap: 3.5rem;
     }
     ul.gets {
       max-width: none;
