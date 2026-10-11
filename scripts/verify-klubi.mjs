@@ -207,6 +207,10 @@ assert(
   page.includes('Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.'),
   'month rhythm paragraph verbatim',
 );
+assert(
+  page.includes('Ensimmäinen teema kulkee mukanamme 19.10.–30.11., joten lokakuussa liittyessäsi pääset rauhassa sisään, ja joulukuusta alkaen jokaisella kuukaudella on oma teemansa.'),
+  'first-theme window sentence is verbatim in the month section',
+);
 assert(!page.includes('harjoittelemma'), 'harjoittelemma typo not present');
 assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
