@@ -570,6 +570,55 @@ assert(
   'homepage moon heading stays on one desktop line',
 );
 assert(
+  home.includes('kuvat/taysikuu-yo.webp') && home.includes('kuvat/taysikuu-yo.jpg'),
+  'homepage moon band uses the night-sky photo',
+);
+assert(
+  home.includes('taysikuu-kiekko-a') &&
+    home.includes('taysikuu-kiekko-b') &&
+    home.includes('taysikuu-kiekko-c'),
+  'date rows use round full-moon photos',
+);
+assert(
+  home.includes('class="tk-veil"') &&
+    /tk-veil \{[\s\S]*background: rgba\(8, 12, 22/.test(home),
+  'moon band uses a flat readability overlay',
+);
+assert(!home.includes('class="tk-moon"'), 'svg moon decoration removed from homepage');
+assert(!home.includes('class="tk-dot"'), 'gradient moon dots removed from homepage');
+assert(home.includes('min-height: 44px'), 'moon-band buttons are at least 44px');
+assert(!home.includes('kotiliesi'), 'Kotiliesi image is not used');
+const nollaus = readFileSync(join(root, 'nollaushetki/index.html'), 'utf8');
+assert(
+  nollaus.includes('/kuvat/taysikuu-yo.webp') && nollaus.includes('class="tk-veil"'),
+  'nollaushetki date list has the night-sky band',
+);
+assert(
+  nollaus.includes('taysikuu-kiekko-a') &&
+    nollaus.includes('taysikuu-kiekko-b') &&
+    nollaus.includes('taysikuu-kiekko-c'),
+  'nollaushetki date rows use round full-moon photos',
+);
+assert(!nollaus.includes('class="tk-dot"'), 'gradient moon dots removed from nollaushetki');
+assert(!page.includes('taysikuu-yo'), 'club page has no date-list moon band');
+const moonFiles = [
+  'taysikuu-yo.jpg',
+  'taysikuu-yo.webp',
+  'taysikuu-kiekko-a.jpg',
+  'taysikuu-kiekko-a.webp',
+  'taysikuu-kiekko-b.jpg',
+  'taysikuu-kiekko-b.webp',
+  'taysikuu-kiekko-c.jpg',
+  'taysikuu-kiekko-c.webp',
+];
+for (const name of moonFiles) {
+  assert(existsSync(join(root, 'kuvat', name)), `kuvat/${name} exists`);
+  assert(existsSync(join(root, 'public/kuvat', name)), `public/kuvat/${name} exists`);
+  const a = readFileSync(join(root, 'kuvat', name));
+  const b = readFileSync(join(root, 'public/kuvat', name));
+  assert(a.equals(b), `public/kuvat/${name} mirrors root image`);
+}
+assert(
   /id="askeleet"[\s\S]*id="mita-saat"[\s\S]*id="nollaushetket"/.test(home),
   'Mitä saat mukaan sits directly under the guides',
 );
