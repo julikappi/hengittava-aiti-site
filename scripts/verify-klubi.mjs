@@ -395,6 +395,10 @@ assert(
   page.includes('Jäsenmaksu veloitetaan aina kuukauden jaksoissa: ensimmäinen kerta liittyessäsi ja sen jälkeen kuukauden välein liittymispäivästä, riippumatta kalenterikuukaudesta ja teemasta.'),
   'billing-cycle sentence sits under the price cards',
 );
+assert(
+  (page.match(/Jos haluat maksaa laskulla, laita viestiä osoitteeseen/g) || []).length === 2,
+  'invoice line sits under both join buttons',
+);
 assert(!page.includes('3 kuukauden lasku'), 'no 3-month billing mention');
 assert(!page.includes('laskutusjaksosta'), 'no extra invoice-period wording');
 assert(
@@ -567,6 +571,24 @@ assert(
   home.includes('Uupumus ei mene ohi tekemällä enemmän.') &&
     home.includes('md:whitespace-nowrap md:text-[clamp(1.85rem,2.55vw,2.85rem)]'),
   'homepage hero title stays on one desktop line',
+);
+assert(
+  home.includes('Musiikki on yksi lempeimmistä tavoista tukea hermostoa.') &&
+    home.includes('Siksi tein kaksi soittolistaa, joiden jokaisen kappaleen olen itse valikoinut'),
+  'homepage music intro is Juliana’s new copy',
+);
+assert(
+  !/id="musiikki"[\s\S]*Instagram-biosta/.test(home),
+  'homepage music section no longer mentions the Instagram bio',
+);
+assert(
+  /id="minusta"[\s\S]*lg:grid-cols-\[minmax\(0,38%\)_minmax\(0,1fr\)\]/.test(home),
+  'homepage Tarinani photo is about 38% of the desktop row',
+);
+assert(
+  /#minusta \.story-photo img \{[\s\S]*max-height: 520px/.test(home) ||
+    /#minusta \.story-photo \{[\s\S]*max-height: 520px/.test(home),
+  'homepage Tarinani photo is capped on desktop',
 );
 assert(
   home.includes('>Maksuttomat Täydenkuun nollaushetket Zoomissa<') &&

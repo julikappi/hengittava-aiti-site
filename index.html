@@ -77,6 +77,30 @@
   .ig-photo        { width:100%; height:100%; object-fit:cover;
                      filter: grayscale(1) contrast(1.04); }
   .ig-photo--dawn  { filter: saturate(.78) contrast(1.02); }  /* auringonnousu/-lasku säilyy värillisenä */
+  #minusta .story-photo {
+    margin: 0;
+    max-width: 20rem;
+    max-height: 420px;
+    overflow: hidden;
+    background: #1A1816;
+  }
+  #minusta .story-photo img {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: 50% 18%;
+    filter: grayscale(1) contrast(1.04);
+  }
+  @media (min-width: 64rem) {
+    #minusta .story-photo {
+      max-width: none;
+      max-height: 520px;
+    }
+    #minusta .story-photo img {
+      height: 520px;
+    }
+  }
   .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
                      border-radius:0; box-shadow:none; padding:.38em .65em;
                      display:inline-block; max-width:82%; }
@@ -625,10 +649,10 @@
           <span class="inline-block w-8 h-px bg-dawn-500/55"></span> Soittolistat
         </p>
         <h2 class="font-serif text-3xl md:text-[2.25rem] leading-[1.14] mt-5 text-ink">
-          Kaksi listaa. Toinen purkaa, toinen rauhoittaa.
+          Musiikki on yksi lempeimmistä tavoista tukea hermostoa.
         </h2>
         <p class="mt-4 text-ink-mute leading-relaxed">
-          Samat listat, jotka löytyvät Instagram-biosta. Laita taustalle aamuun, autoon tai siihen kohtaan päivää, jossa kaikki tuntuu vähän liialta.
+          Oikea kappale voi hidastaa hengitystä, pehmentää hartioita ja kertoa keholle, että nyt on turvallista. Siksi tein kaksi soittolistaa, joiden jokaisen kappaleen olen itse valikoinut: toisen siihen, kun pitää päästää irti, ja toisen siihen, kun kaipaat rauhaa. Laita ne soimaan aamulla, autossa tai silloin, kun kaikki tuntuu vähän liialta.
         </p>
 
         <!-- Hermosto Reset -->
@@ -694,12 +718,12 @@
 <!-- ═══════════════ @component: FounderStory ("Minusta") ═══════════════ -->
 <section id="minusta" data-component="FounderStory" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div class="grid lg:grid-cols-[minmax(0,38%)_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
 
       <!-- Photo #10: Juliana, black & white, documentary -->
       <div class="reveal order-2 lg:order-1">
-        <figure class="ig-frame ig-frame--45 max-w-md">
-          <img src="kuvat/IMG_3596.jpg" class="ig-photo" alt="Juliana lastensa kanssa kotona" loading="lazy" onerror="this.style.display='none'">
+        <figure class="story-photo">
+          <img src="kuvat/IMG_3596.jpg" alt="Juliana lastensa kanssa kotona" loading="lazy" onerror="this.style.display='none'">
         </figure>
       </div>
 
