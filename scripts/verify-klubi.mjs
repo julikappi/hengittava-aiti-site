@@ -582,6 +582,35 @@ assert(
   'homepage music section no longer mentions the Instagram bio',
 );
 assert(
+  !/id="musiikki"[\s\S]*Aloita jo tänään/.test(home),
+  'homepage music section has no guides signup box',
+);
+assert(
+  !/id="musiikki"[\s\S]*id="signup-form"/.test(home),
+  'homepage music section has no signup form',
+);
+assert(
+  /id="musiikki"[\s\S]*kuvat\/aiti-kuuntelee\.jpg/.test(home),
+  'homepage music section has the listening photo',
+);
+assert(
+  /id="musiikki"[\s\S]*lg:grid-cols-2/.test(home),
+  'homepage music section stays two columns on desktop',
+);
+assert(
+  /id="askeleet"[\s\S]*Kun huusit taas/.test(home) &&
+    /id="askeleet"[\s\S]*Hermosto Reset/.test(home),
+  'guides remain in their own Askeleesi section',
+);
+assert(existsSync(join(root, 'kuvat/aiti-kuuntelee.jpg')), 'listening photo exists at root');
+assert(
+  existsSync(join(root, 'public/kuvat/aiti-kuuntelee.jpg')) &&
+    readFileSync(join(root, 'kuvat/aiti-kuuntelee.jpg')).equals(
+      readFileSync(join(root, 'public/kuvat/aiti-kuuntelee.jpg')),
+    ),
+  'public listening photo mirrors root',
+);
+assert(
   /id="minusta"[\s\S]*lg:grid-cols-\[minmax\(0,38%\)_minmax\(0,1fr\)\]/.test(home),
   'homepage Tarinani photo is about 38% of the desktop row',
 );
