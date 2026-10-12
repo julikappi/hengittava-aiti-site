@@ -101,6 +101,26 @@
       height: 520px;
     }
   }
+  #musiikki .music-photo {
+    margin: 0;
+    overflow: hidden;
+    background: #1A1816;
+    height: 100%;
+  }
+  #musiikki .music-photo img {
+    display: block;
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    object-position: 50% 42%;
+    filter: grayscale(1) contrast(1.04);
+  }
+  @media (min-width: 64rem) {
+    #musiikki .music-photo img {
+      height: 100%;
+      min-height: 36rem;
+    }
+  }
   .ig-caption      { position:absolute; background:#FBF7F1; color:#2A2320;
                      border-radius:0; box-shadow:none; padding:.38em .65em;
                      display:inline-block; max-width:82%; }
@@ -641,7 +661,7 @@
 <!-- ═══════════════ @component: MusicList + SignupForm ═══════════════ -->
 <section id="musiikki" data-component="MusicSignup" class="py-14 md:py-20 bg-paper-warm">
   <div class="max-w-6xl mx-auto px-5 sm:px-6">
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start lg:items-stretch">
 
       <!-- Soittolistat — sivun vasen puoli -->
       <div class="reveal">
@@ -684,32 +704,12 @@
         </div>
       </div>
 
-      <!-- Aloita jo tänään — yksi valikko, ei muita bokseja -->
-      <div class="reveal" data-delay="120">
-        <div class="relative overflow-hidden sunrise border border-dawn-300 p-8 md:p-10">
-          <span class="sun-glow -top-32 -right-28 w-[26rem] h-[26rem]" aria-hidden="true"></span>
-          <div class="relative">
-            <h3 class="font-serif text-xl leading-tight text-ink">Aloita jo tänään</h3>
-            <p class="mt-4 text-ink-soft leading-relaxed">
-              Lataa ilmainen opas tai avaa hermostoa hellivä musiikkilista. Valitse alta, kumman haluat.
-            </p>
-
-            <div id="signup-form" class="mt-7 space-y-4">
-              <label class="block">
-                <span class="text-sm font-bold text-ink-mute">Mikä kiinnostaa sinua?</span>
-                <select id="signup-interest" class="field mt-2 w-full bg-paper text-ink font-semibold border border-ink/20 px-4 py-3.5">
-                  <option value="miniopas">Kun huusit taas · ilmainen miniopas</option>
-                  <option value="mini">Ilmainen opas · Hermosto Reset Viikko 1</option>
-                  <option value="musiikki">Hermostoa hellivä musiikkilista</option>
-                </select>
-              </label>
-              <a id="signup-action" href="/kun-huusit/" class="w-full inline-flex items-center justify-center bg-ink text-paper font-bold px-8 py-4 hover:bg-ink-soft transition-colors">
-                Lataa miniopas
-              </a>
-              <p id="signup-note" class="text-sm text-ink-mute" aria-live="polite">Molemmat avautuvat heti. Jos linkki ei aukea, kirjoita <a class="font-bold underline underline-offset-4 hover:text-ink" href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
-            </div>
-          </div>
-        </div>
+      <!-- Kuva täyttää oikean sarakkeen, jotta desktopilla ei jää tyhjää pylvästä -->
+      <div class="reveal lg:h-full" data-delay="120">
+        <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/adult-woman-listening-to-the-music-with-her-eyes-closed-6687768/ kuvaaja cottonbro studio (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+        <figure class="music-photo">
+          <img src="kuvat/aiti-kuuntelee.jpg" width="1100" height="1684" alt="Äiti kuuntelee musiikkia kuulokkeilla sohvalla, silmät kiinni." loading="lazy" decoding="async" onerror="this.style.display='none'">
+        </figure>
       </div>
     </div>
   </div>
