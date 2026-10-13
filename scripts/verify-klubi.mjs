@@ -659,6 +659,20 @@ assert(
   'nollaushetki date rows use round full-moon photos',
 );
 assert(!nollaus.includes('class="tk-dot"'), 'gradient moon dots removed from nollaushetki');
+assert(
+  !home.includes('pe 9.10.2026') && !nollaus.includes('pe 9.10.2026'),
+  'past 9.10.2026 session is not listed for signup',
+);
+assert(
+  home.includes('ma 26.10.2026 klo 21.00') && nollaus.includes('ma 26.10.2026 klo 21.00'),
+  'next session 26.10.2026 remains first in the upcoming lists',
+);
+assert(
+  home.includes('ti 24.11.2026') &&
+    home.includes('pe 22.1.2027') &&
+    home.includes('su 21.2.2027'),
+  'later nollaushetki dates stay on the homepage',
+);
 assert(!page.includes('taysikuu-yo'), 'club page has no date-list moon band');
 const moonFiles = [
   'taysikuu-yo.jpg',
