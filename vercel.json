@@ -55,6 +55,20 @@
       }
     },
     {
+      "src": "^/kaasu/?$",
+      "status": 302,
+      "headers": {
+        "Location": "https://sites.leadconnectorhq.com/preview/BLw1AlK7G5H9gYY3eJsa"
+      }
+    },
+    {
+      "src": "^/kaasu-kiitos/?$",
+      "status": 302,
+      "headers": {
+        "Location": "https://sites.leadconnectorhq.com/preview/gRmkvvCMjhOFxUNm9tGd"
+      }
+    },
+    {
       "src": "/hermosto-reset/?",
       "dest": "/hermosto-reset/index.html"
     },

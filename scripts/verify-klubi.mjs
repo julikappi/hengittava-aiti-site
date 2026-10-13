@@ -527,6 +527,14 @@ assert(!/<a[^>]*data-klubi-link="(?:klubi|plus)"[^>]*href="#">/.test(page), 'no 
 assert(!/href="#(?!hinta)/.test(page), 'no leftover placeholder href="#"');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
+assert(
+  /"src": "\^\/kaasu\/\?\$"[\s\S]*?"status": 302[\s\S]*?BLw1AlK7G5H9gYY3eJsa/.test(vercel),
+  'vercel.json temporarily redirects /kaasu to the GHL preview',
+);
+assert(
+  /"src": "\^\/kaasu-kiitos\/\?\$"[\s\S]*?"status": 302[\s\S]*?gRmkvvCMjhOFxUNm9tGd/.test(vercel),
+  'vercel.json temporarily redirects /kaasu-kiitos to the GHL preview',
+);
 const home = readFileSync(join(root, 'index.html'), 'utf8');
 const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
 const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
