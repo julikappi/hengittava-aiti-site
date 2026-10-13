@@ -58,14 +58,14 @@
       "src": "^/kaasu/?$",
       "status": 302,
       "headers": {
-        "Location": "https://sites.leadconnectorhq.com/preview/BLw1AlK7G5H9gYY3eJsa"
+        "Location": "https://sivut.hengittava-aiti.fi/kaasu"
       }
     },
     {
       "src": "^/kaasu-kiitos/?$",
       "status": 302,
       "headers": {
-        "Location": "https://sites.leadconnectorhq.com/preview/gRmkvvCMjhOFxUNm9tGd"
+        "Location": "https://sivut.hengittava-aiti.fi/kaasu-kiitos"
       }
     },
     {
