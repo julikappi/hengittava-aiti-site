@@ -56,7 +56,8 @@ assert(page.includes('Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, j
 assert(page.includes('Sinun ei tarvitse selvitä yksin.'), 'hero emphasis line verbatim');
 assert(page.includes('starttaa syysloman jälkeen'), 'hero start after autumn holiday');
 assert(page.includes('maanantaina 19.10.'), 'club opens Monday 19.10.');
-assert(page.includes('Ensimmäinen klubin LIVE pidetään sunnuntaina 25.10.'), 'first live is Sunday 25.10.');
+assert(page.includes('Tutustumislive jäsenille su 1.11. klo 20.'), 'first live is the 1.11. tutustumislive');
+assert(!page.includes('25.10.'), 'no 25.10. live date left on the club page');
 assert(page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit sähköpostiisi.'), '19.10. first materials by email');
 assert(!page.includes('18.10.'), 'no 18.10. left on the page');
 assert(!page.includes('Ovet aukeavat'), 'old door-open line removed');
@@ -225,8 +226,8 @@ assert(
   'platform paragraph keeps the discussion space without a village group',
 );
 assert(
-  page.includes('Ennen ensimmäistä kuukautta tutustumme sunnuntaina 25.10. klo 20.'),
-  'intro evening keeps the date without a village-group promise',
+  page.includes('Tutustumislive jäsenille su 1.11. klo 20.'),
+  'intro evening is the 1.11. tutustumislive',
 );
 assert(!page.includes('muut materiaalit'), 'vague other-materials phrase removed');
 assert(
@@ -241,7 +242,7 @@ assert(
 assert(page.includes('Pysähtymisen taito'), 'November theme kept');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
 assert(page.includes('Saat heti liittyessäsi'), 'immediate gifts heading kept');
-assert(page.includes('sunnuntaina 25.10. klo 20'), 'intro evening date kept');
+assert((page.match(/Tutustumislive jäsenille su 1\.11\. klo 20\./g) || []).length >= 2, 'tutustumislive date appears in hero and gifts');
 assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen'), 'October moon bonus is the recording plus a surprise');
 assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
 assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
