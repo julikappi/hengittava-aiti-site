@@ -500,7 +500,7 @@ assert(page.includes('https://hengittava-aiti.fi/klubi/'), 'canonical / og:url p
 assert(!/buy\.stripe\.com/.test(page), 'no live Stripe checkout wired');
 assert(page.includes('var KLUBI'), 'KLUBI config object present');
 assert(
-  page.includes("klubi: 'https://link.fastpaydirect.com/payment-link/6ac7adab075ea22a20cdd237'"),
+  page.includes("klubi: 'https://sivut.hengittava-aiti.fi/klubi-kassa'"),
   'klubi 19 €/kk founder checkout in KLUBI.LINKS',
 );
 assert(
@@ -514,18 +514,19 @@ assert(
 assert(!page.includes('hengitystila'), 'Hengitystila LINKS entry removed');
 assert(!page.includes("meetup: '#'"), 'Valo LINKS entry removed');
 assert(!page.includes('data-klubi-link="regular"'), 'regular checkout is stored only, not wired');
-assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder checkout on price card, closing CTA, sticky bar');
-assert((page.match(/href="#hinta"/g) || []).length === 6, 'upper-page CTAs still scroll to #hinta');
+assert((page.match(/data-klubi-link="klubi"/g) || []).length === 9, 'all regular-club join CTAs use founder checkout');
+assert(!(page.match(/href="#hinta"/g) || []).length, 'regular-club join CTAs no longer scroll to #hinta');
 assert(
-  (page.match(/href="https:\/\/link\.fastpaydirect\.com\/payment-link\/6ac7adab075ea22a20cdd237"/g) || []).length === 3,
-  'founder checkout hrefs are the live FastPay URL, not #',
+  (page.match(/href="https:\/\/sivut\.hengittava-aiti\.fi\/klubi-kassa"/g) || []).length === 9,
+  'founder checkout hrefs are the live klubi-kassa URL, not FastPay',
 );
+assert(!page.includes('6ac7adab075ea22a20cdd237'), 'old FastPayDirect 19 €/kk founder URL is unused');
 assert(
   (page.match(/href="https:\/\/link\.fastpaydirect\.com\/payment-link\/6ac7ae4ec0e70c7fefb73499"/g) || []).length === 1,
   'PLUS checkout href is the live FastPay URL, not #',
 );
 assert(!/<a[^>]*data-klubi-link="(?:klubi|plus)"[^>]*href="#">/.test(page), 'no checkout button left as href="#"');
-assert(!/href="#(?!hinta)/.test(page), 'no leftover placeholder href="#"');
+assert(!/href="#/.test(page), 'no leftover placeholder href="#"');
 assert(vercel.includes('"/klubi/?"'), 'vercel.json routes /klubi/');
 assert(vercel.includes('"/klubi/ehdot/?"'), 'vercel.json routes /klubi/ehdot/');
 assert(
