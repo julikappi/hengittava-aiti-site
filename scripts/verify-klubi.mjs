@@ -856,6 +856,14 @@ assert(!terms.includes('background: var(--ink)'), 'terms buttons are not ink/nea
 
 assert((page.match(/Liity klubiin/g) || []).length >= 3, 'club join buttons present');
 assert(page.includes('Liity PLUS-jäseneksi'), 'PLUS button label kept');
+assert(
+  page.includes('Kaikki klubin sisältö ja lisäksi Julianan henkilökohtainen coaching:'),
+  'PLUS card intro names Julianan coaching',
+);
+assert(
+  !page.includes('Kaikki klubin sisältö ja lisäksi henkilökohtainen tuki:'),
+  'old PLUS tuki intro removed',
+);
 assert(page.includes('Ilmoittaudu Täydenkuun nollaushetkeen'), 'full-moon button label kept');
 assert(!page.includes('kirjoitettu tai äänitetty'), 'PLUS no longer names written or recorded replies');
 assert(
