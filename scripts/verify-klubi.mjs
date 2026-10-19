@@ -341,7 +341,8 @@ assert(!page.includes('Saat heti pääsyn klubiin'), 'immediate-access sentence 
 assert(!page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'calendar-month first-charge line removed');
 assert(!page.includes('kalenterikuukauden'), 'payment does not cover a calendar month');
 assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on 1.11.');
-assert(page.includes('Klubi PLUS 89 €/kk (TARJOUS 31.12.2026 asti)'), 'PLUS heading names the 89 € offer until 31.12.2026');
+assert(page.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'PLUS heading names the 89 € price until 31.12.2026');
+assert(!page.includes('TARJOUS'), 'sales page does not use TARJOUS');
 assert(
   page.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 129 €/kk.'),
   'PLUS card names 129 €/kk from 1.1.2027',
@@ -790,7 +791,8 @@ assert(
   terms.includes('Liittymishinta 19 €/kk* on voimassa 31.10.2026 asti. 1.11.2026 alkaen hinta on 25 €/kk.'),
   'terms page founder price until 31.10.2026 then 25 €',
 );
-assert(terms.includes('Klubi PLUS 89 €/kk (TARJOUS 31.12.2026 asti)'), 'terms page PLUS offer price');
+assert(terms.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'terms page PLUS price until 31.12.2026');
+assert(!terms.includes('TARJOUS'), 'terms page does not use TARJOUS');
 assert(
   terms.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 129 €/kk.'),
   'terms page PLUS names 129 €/kk from 1.1.2027',
