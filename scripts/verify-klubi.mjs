@@ -318,7 +318,7 @@ assert(
   page.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
   'approved 19 € footnote through 31.10.2027 with 30-day notice',
 );
-assert((page.match(/class="price-fn"/g) || []).length === 4, 'footnote on hero, price card, Ehdot block, and payment FAQ');
+assert((page.match(/class="price-fn"/g) || []).length === 5, 'footnote on hero, Klubi card, PLUS card, Ehdot block, and payment FAQ');
 assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
 assert(
   /Lokakuussa liittyville[\s\S]{0,40}19 €\/kk\*[\s\S]{0,20}ei sitoutumisaikaa\./.test(page),
@@ -341,7 +341,14 @@ assert(!page.includes('Saat heti pääsyn klubiin'), 'immediate-access sentence 
 assert(!page.includes('Ensimmäinen maksu kattaa marraskuun.'), 'calendar-month first-charge line removed');
 assert(!page.includes('kalenterikuukauden'), 'payment does not cover a calendar month');
 assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on 1.11.');
-assert(page.includes('Klubi PLUS 89 €/kk'), 'PLUS price kept');
+assert(page.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'PLUS heading names the 89 € price until 31.12.2026');
+assert(!page.includes('TARJOUS'), 'sales page does not use TARJOUS');
+assert(
+  page.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 119 €/kk.'),
+  'PLUS card names 119 €/kk from 1.1.2027',
+);
+assert(!page.includes('129 €'), 'no leftover 129 € on the sales page');
+assert(!page.includes('edullinen'), 'sales page does not use edullinen');
 assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
 assert(page.includes('Tulossa alkuvuonna 2027'), '2027 heading kept');
@@ -380,6 +387,10 @@ assert(!page.includes('20 min'), '20-minute duration removed from the club page'
 assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing lead from brief');
 assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
 assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
+assert(
+  page.includes('Hinta on 89 €/kk 31.12.2026 asti, 1.1.2027 alkaen 119 €/kk.'),
+  'PLUS FAQ names the offer and 119 € from 1.1.2027',
+);
 assert(
   page.includes('Kyseessä on kuukausijäsenyys. Maksu veloitetaan kortilla liittyessäsi ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet.'),
   'payment FAQ is join-date monthly billing',
@@ -782,7 +793,14 @@ assert(
   terms.includes('Liittymishinta 19 €/kk* on voimassa 31.10.2026 asti. 1.11.2026 alkaen hinta on 25 €/kk.'),
   'terms page founder price until 31.10.2026 then 25 €',
 );
-assert(terms.includes('Klubi PLUS 89 €/kk'), 'terms page PLUS price');
+assert(terms.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'terms page PLUS price until 31.12.2026');
+assert(!terms.includes('TARJOUS'), 'terms page does not use TARJOUS');
+assert(
+  terms.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 119 €/kk.'),
+  'terms page PLUS names 119 €/kk from 1.1.2027',
+);
+assert(!terms.includes('129 €'), 'no leftover 129 € on the terms page');
+assert(!terms.includes('edullinen'), 'terms page does not use edullinen');
 assert(terms.includes('45 minuutin henkilökohtaisen Zoom-kartoituksen'), 'terms page PLUS assessment');
 assert(
   terms.includes('viikoittaisen henkilökohtaisen viestin Julianalta oman reflektiosi pohjalta'),
@@ -841,6 +859,14 @@ assert(!terms.includes('background: var(--ink)'), 'terms buttons are not ink/nea
 
 assert((page.match(/Liity klubiin/g) || []).length >= 3, 'club join buttons present');
 assert(page.includes('Liity PLUS-jäseneksi'), 'PLUS button label kept');
+assert(
+  page.includes('Kaikki klubin sisältö ja lisäksi Julianan henkilökohtainen coaching:'),
+  'PLUS card intro names Julianan coaching',
+);
+assert(
+  !page.includes('Kaikki klubin sisältö ja lisäksi henkilökohtainen tuki:'),
+  'old PLUS tuki intro removed',
+);
 assert(page.includes('Ilmoittaudu Täydenkuun nollaushetkeen'), 'full-moon button label kept');
 assert(!page.includes('kirjoitettu tai äänitetty'), 'PLUS no longer names written or recorded replies');
 assert(
