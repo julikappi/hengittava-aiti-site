@@ -344,9 +344,10 @@ assert(!page.includes('ensimmäinen veloitus on 1.11.'), 'first charge is not on
 assert(page.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'PLUS heading names the 89 € price until 31.12.2026');
 assert(!page.includes('TARJOUS'), 'sales page does not use TARJOUS');
 assert(
-  page.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 129 €/kk.'),
-  'PLUS card names 129 €/kk from 1.1.2027',
+  page.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 119 €/kk.'),
+  'PLUS card names 119 €/kk from 1.1.2027',
 );
+assert(!page.includes('129 €'), 'no leftover 129 € on the sales page');
 assert(!page.includes('edullinen'), 'sales page does not use edullinen');
 assert(page.includes('Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa.'), 'annual price-review term present');
 assert(!page.includes('Klubi + Hengitystila'), 'Hengitystila tier removed');
@@ -387,8 +388,8 @@ assert(page.includes('Tule mukaan Hengittävien äitien yhteisöön.'), 'closing
 assert(page.includes('Voinko lopettaa jäsenyyden?'), 'cancel FAQ present');
 assert(page.includes('Mitä PLUS-jäsenyys sisältää?'), 'PLUS FAQ present');
 assert(
-  page.includes('Hinta on 89 €/kk 31.12.2026 asti, 1.1.2027 alkaen 129 €/kk.'),
-  'PLUS FAQ names the offer and 129 € from 1.1.2027',
+  page.includes('Hinta on 89 €/kk 31.12.2026 asti, 1.1.2027 alkaen 119 €/kk.'),
+  'PLUS FAQ names the offer and 119 € from 1.1.2027',
 );
 assert(
   page.includes('Kyseessä on kuukausijäsenyys. Maksu veloitetaan kortilla liittyessäsi ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet.'),
@@ -795,9 +796,10 @@ assert(
 assert(terms.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'terms page PLUS price until 31.12.2026');
 assert(!terms.includes('TARJOUS'), 'terms page does not use TARJOUS');
 assert(
-  terms.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 129 €/kk.'),
-  'terms page PLUS names 129 €/kk from 1.1.2027',
+  terms.includes('1.1.2027 alkaen PLUS-jäsenyys maksaa 119 €/kk.'),
+  'terms page PLUS names 119 €/kk from 1.1.2027',
 );
+assert(!terms.includes('129 €'), 'no leftover 129 € on the terms page');
 assert(!terms.includes('edullinen'), 'terms page does not use edullinen');
 assert(terms.includes('45 minuutin henkilökohtaisen Zoom-kartoituksen'), 'terms page PLUS assessment');
 assert(
