@@ -641,8 +641,8 @@ assert(
   'homepage Tarinani photo is capped on desktop',
 );
 assert(
-  home.includes('>Täydenkuun nollaushetket Zoomissa<') &&
-    !home.includes('>Täydenkuun nollaushetki Zoomissa<'),
+  home.includes('>Maksuttomat Täydenkuun nollaushetket Zoomissa<') &&
+    !home.includes('>Maksuton Täydenkuun nollaushetki Zoomissa<'),
   'homepage moon heading is the plural nollaushetket line',
 );
 assert(
