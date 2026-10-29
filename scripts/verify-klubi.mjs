@@ -380,7 +380,7 @@ assert(
 );
 assert(page.includes('Klubilaiset kuulevat valmennuksista ensimmäisinä ja saavat ne etuhintaan.'), 'Koti member-first line kept');
 assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading kept');
-assert(page.includes('Täydenkuun nollaushetkeen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
+assert(page.includes('Täydenkuun nollaushetkeen tiistaina 24.11. klo 21.00'), 'nollaushetki date kept');
 assert(page.includes('noin 30 minuutin harjoituksen Zoomissa'), 'nollaushetki duration is about 30 minutes');
 assert(!page.includes('Täysikuun nollauk'), 'old Täysikuun nollaus name removed');
 assert(!page.includes('20 min'), '20-minute duration removed from the club page');
@@ -685,14 +685,43 @@ assert(
   'past 9.10.2026 session is not listed for signup',
 );
 assert(
-  home.includes('ma 26.10.2026 klo 21.00') && nollaus.includes('ma 26.10.2026 klo 21.00'),
-  'next session 26.10.2026 remains first in the upcoming lists',
+  !home.includes('ma 26.10.2026 klo 21.00') &&
+    !nollaus.includes('ma 26.10.2026 klo 21.00') &&
+    !home.includes('data-end="2026-10-26T21:30:00+02:00"') &&
+    !nollaus.includes('data-end="2026-10-26T21:30:00+02:00"'),
+  'past 26.10.2026 session is not listed for signup',
+);
+assert(
+  nollaus.includes('tiistai 24.11.2026 klo 21.00 · noin 30 minuuttia · Zoomissa') &&
+    nollaus.includes('ti 24.11.2026 klo 21.00'),
+  'next session 24.11.2026 is featured and first in the nollaushetki list',
+);
+assert(
+  home.includes('ke 16.12.2026 klo 21.00') &&
+    nollaus.includes('ke 16.12.2026 klo 21.00') &&
+    home.includes('data-end="2026-12-16T21:30:00+02:00"') &&
+    nollaus.includes('data-end="2026-12-16T21:30:00+02:00"'),
+  '16.12.2026 December session is listed',
+);
+assert(!home.includes('23.12') && !nollaus.includes('23.12'), '23.12 session is not listed');
+assert(
+  home.includes('la 20.2.2027 klo 21.00') &&
+    nollaus.includes('la 20.2.2027 klo 21.00') &&
+    !home.includes('su 21.2.2027') &&
+    !nollaus.includes('su 21.2.2027') &&
+    !home.includes('2027-02-21') &&
+    !nollaus.includes('2027-02-21'),
+  'February session is Saturday 20.2.2027',
 );
 assert(
   home.includes('ti 24.11.2026') &&
     home.includes('pe 22.1.2027') &&
-    home.includes('su 21.2.2027'),
+    home.includes('la 20.2.2027'),
   'later nollaushetki dates stay on the homepage',
+);
+assert(
+  [...nollaus.matchAll(/class="tk-btn"[^>]*href="([^"]+)"/g)].every((m) => m[1] === '#ilmoittaudu'),
+  'nollaushetki list Ilmoittaudu buttons link to #ilmoittaudu',
 );
 assert(!page.includes('taysikuu-yo'), 'club page has no date-list moon band');
 const moonFiles = [
