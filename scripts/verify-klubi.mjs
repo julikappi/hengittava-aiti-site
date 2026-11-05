@@ -75,9 +75,10 @@ assert(
   'intro hermosto paragraph restored',
 );
 assert(
-  page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Sunnuntaisin kokoonnumme yhteiseen liveen.'),
-  'intro monthly-theme paragraph ends at the Sunday live',
+  page.includes('Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Kuukauden aikana pidämme 2–4 Zoom-liveä maanantaisin klo 21.'),
+  'intro monthly-theme paragraph ends at 2–4 Monday Zoom lives',
 );
+assert(!page.includes('Sunnuntaisin kokoonnumme yhteiseen liveen.'), 'weekly Sunday live wording removed');
 assert(!page.includes('kyläryhm'), 'no village-group promise on the sales page');
 assert(page.includes('äitien oma pieni kylä'), 'village metaphor kept in the hero');
 assert(page.includes('omaa kylää: mummoa, naapuria'), 'recognize-list village metaphor kept');
@@ -207,9 +208,10 @@ assert(!page.includes('Sinun rauhasi tarttuu lapsiin'), 'old rauha heading remov
 assert(!page.includes('Hyvinvointisi on arvokasta myös sinun itsesi vuoksi'), 'old wellbeing line removed from this section');
 assert(page.includes('Näin klubikuukausi kulkee'), 'month heading kept');
 assert(
-  page.includes('Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.'),
+  page.includes('Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Kuukauden aikana pidämme 2–4 Zoom-liveä maanantaisin klo 21, joissa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.'),
   'month rhythm paragraph verbatim',
 );
+assert(!page.includes('Jokainen viikko käydään läpi yhdessä Zoom-livessä'), 'weekly Zoom-live wording removed');
 assert(
   page.includes('Marraskuun teema on Kaasu ja jarru. Jokaisella kuukaudella on oma teemansa, ja joulukuussa teema on Riittävä joulu.'),
   'November theme is Kaasu ja jarru and each month has its own theme',
