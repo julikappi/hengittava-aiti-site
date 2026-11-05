@@ -31,7 +31,6 @@ const requiredImages = [
   'rauha-otsat-yhdessa.jpg',
   'juliana-kasi-leualla.jpg',
   'taysikuu-rajattu.jpg',
-  'taysikuu-meri.jpg',
   'hengahdys-kahvi-ikkunalla.jpg',
   'metsa-aurinko.jpg',
   'valo-kattoterassi.jpg',
@@ -54,11 +53,14 @@ assert(
 
 assert(page.includes('Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.'), 'hero subtitle verbatim');
 assert(page.includes('Sinun ei tarvitse selvitä yksin.'), 'hero emphasis line verbatim');
-assert(page.includes('starttaa syysloman jälkeen'), 'hero start after autumn holiday');
-assert(page.includes('maanantaina 19.10.'), 'club opens Monday 19.10.');
-assert(page.includes('Tutustumislive jäsenille su 1.11. klo 21.'), 'first live is the 1.11. tutustumislive');
+assert(page.includes('Hengittävien äitien klubi on jo käynnissä.'), 'hero says the club is already running');
+assert(page.includes('liity nyt, jäsenyys on 25 €/kk.'), 'hero start invites to join now at 25 €/kk');
+assert(!page.includes('starttaa syysloman jälkeen'), 'autumn-holiday start line removed');
+assert(!page.includes('maanantaina 19.10.'), '19.10. opening date removed');
+assert(!page.includes('Tutustumislive jäsenille su 1.11. klo 21.'), 'past 1.11. tutustumislive removed');
 assert(!page.includes('25.10.'), 'no 25.10. live date left on the club page');
-assert(page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit sähköpostiisi.'), '19.10. first materials by email');
+assert(page.includes('Saat materiaalit heti liittyessäsi sähköpostiisi.'), 'members get materials on join');
+assert(!page.includes('Maanantaina 19.10. saat ensimmäiset materiaalit'), 'old 19.10. materials line removed');
 assert(!page.includes('18.10.'), 'no 18.10. left on the page');
 assert(!page.includes('Ovet aukeavat'), 'old door-open line removed');
 assert(!page.includes('Sinun ei tarvitse jaksaa kaikkea yksin.'), 'old hero breath removed');
@@ -209,9 +211,11 @@ assert(
   'month rhythm paragraph verbatim',
 );
 assert(
-  page.includes('Ensimmäinen teema kulkee mukanamme 19.10.–30.11., joten lokakuussa liittyessäsi pääset rauhassa sisään, ja joulukuusta alkaen jokaisella kuukaudella on oma teemansa.'),
-  'first-theme window sentence is verbatim in the month section',
+  page.includes('Marraskuun teema on Kaasu ja jarru. Jokaisella kuukaudella on oma teemansa, ja joulukuussa teema on Riittävä joulu.'),
+  'November theme is Kaasu ja jarru and each month has its own theme',
 );
+assert(!page.includes('Ensimmäinen teema kulkee mukanamme'), 'old first-theme window sentence removed');
+assert(!page.includes('Pysähtymisen taito'), 'old November theme name removed');
 assert(!page.includes('harjoittelemma'), 'harjoittelemma typo not present');
 assert(!page.includes('Viikko 1:'), 'week-by-week breakdown removed');
 assert(!page.includes('class="weeks"'), 'weeks list markup removed');
@@ -226,8 +230,8 @@ assert(
   'platform paragraph keeps the discussion space without a village group',
 );
 assert(
-  page.includes('Tutustumislive jäsenille su 1.11. klo 21.'),
-  'intro evening is the 1.11. tutustumislive',
+  !page.includes('Tutustumislive jäsenille su 1.11. klo 21.'),
+  'past tutustumislive date is gone from gifts',
 );
 assert(!page.includes('muut materiaalit'), 'vague other-materials phrase removed');
 assert(
@@ -239,13 +243,12 @@ assert(
   page.includes('Ei haittaa. Voit tutustua materiaaleihin myöhemmin tai jättää ne väliin ja tulla mukaan kuluvaan viikkoon. Klubissa ei ole rästejä, sillä tärkeintä on, ettei tästä tule suoritusta.'),
   'missed-week FAQ answer verbatim',
 );
-assert(page.includes('Pysähtymisen taito'), 'November theme kept');
+assert(page.includes('Kaasu ja jarru'), 'November theme is Kaasu ja jarru');
 assert(page.includes('Riittävä joulu'), 'December theme kept');
 assert(page.includes('Saat heti liittyessäsi'), 'immediate gifts heading kept');
-assert((page.match(/Tutustumislive jäsenille su 1\.11\. klo 21\./g) || []).length >= 2, 'tutustumislive date appears in hero and gifts');
-assert(page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen'), 'October moon bonus is the recording plus a surprise');
-assert(page.includes('/klubi/img/taysikuu-meri.jpg'), 'bonus uses distinct moon photo');
-assert(page.includes('pexels.com/photo/view-of-a-full-moon-above-the-sea-25819968'), 'bonus photo credited');
+assert(!page.includes('Täydenkuun syvän rentoutuksen äänitteen ja pienen yllätyksen'), 'October moon bonus removed');
+assert(!page.includes('/klubi/img/taysikuu-meri.jpg'), 'October bonus moon photo unused');
+assert(!page.includes('Lokakuussa liittyvät saavat bonuksena'), 'October bonus wording removed');
 assert(!page.includes('Hermosto Reset -käsikirjan'), 'handbook offer removed');
 assert(page.includes('Klubilaisten ensimmäinen retriitti – Hengähdystauko Hotelli Valossa'), 'Valo retreat is an item in the 2027 section');
 assert(!page.includes('Tavataan Helsingissä'), 'old Valo Helsinki heading removed');
@@ -303,34 +306,29 @@ assert(
   'open Valo forms use the full desktop width',
 );
 assert(page.includes('kolmen lapsen äiti ja joogaopettaja'), 'Juliana bio kept');
-assert(page.includes('Klubi 19 €/kk'), 'club price kept');
-assert(
-  page.includes('Liittymishinta 19 €/kk* on voimassa 31.10. asti. 1.11. alkaen hinta on 25 €/kk.'),
-  'founder price until 31.10. then 25 €/kk, asterisk on 19 €',
-);
+assert(page.includes('Klubi 25 €/kk'), 'club price is 25 €/kk');
+assert(!/(?<!\d)19\s*€/.test(page), 'no leftover 19 € founder price on the sales page');
+assert(!page.includes('Liittymishinta 19 €/kk'), 'founder join-price line removed');
 assert(
   !page.includes('Hinta pysyy sinulla 19 eurossa niin kauan kuin jäsenyytesi jatkuu.'),
   'no as-long-as-membership-continues price promise',
 );
 assert(!page.includes('koko jäsenyytesi ajan'), 'no whole-membership price promise');
 assert(!page.includes('niin kauan kuin jäsenyys jatkuu'), 'no while-membership-continues price promise');
+assert(!page.includes('Liittymishintasi 19 €/kk'), 'founder-price footnote removed');
+assert((page.match(/class="price-fn"/g) || []).length === 1, 'only the PLUS 2027-price footnote remains');
+assert(!page.includes('perustajahintaan'), 'founder-price wording removed from the hero');
 assert(
-  page.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
-  'approved 19 € footnote through 31.10.2027 with 30-day notice',
-);
-assert((page.match(/class="price-fn"/g) || []).length === 5, 'footnote on hero, Klubi card, PLUS card, Ehdot block, and payment FAQ');
-assert(page.includes('perustajahintaan – 19 € / kk 31.10. asti.'), 'hero names the 31.10. founder deadline');
-assert(
-  /Lokakuussa liittyville[\s\S]{0,40}19 €\/kk\*[\s\S]{0,20}ei sitoutumisaikaa\./.test(page),
-  'hero names October price and no commitment',
+  /Klubi on käynnissä\. Liity nyt[\s\S]{0,40}25 €\/kk[\s\S]{0,20}ei sitoutumisaikaa\./.test(page),
+  'hero names the live 25 €/kk price and no commitment',
 );
 assert(page.includes('<h2 id="h-hinta">Klubin hinta</h2>'), 'price section heading is Klubin hinta');
 assert((page.match(/class="cta-band"/g) || []).length === 2, 'two mid-page CTA bands');
 assert(
-  (page.match(/Valmis hengittämään kevyemmin\?[\s\S]{0,40}19 €\/kk[\s\S]{0,20}lokakuussa\./g) || []).length === 2,
-  'CTA bands share the October join line',
+  (page.match(/Valmis hengittämään kevyemmin\?[\s\S]{0,40}25 €\/kk/g) || []).length === 2,
+  'CTA bands share the 25 €/kk join line',
 );
-assert(page.includes('Lokakuussa liittyville'), 'hero October price lead present');
+assert(!page.includes('Lokakuussa liittyville'), 'hero October price lead removed');
 assert((page.match(/Kyllä, liityn/g) || []).length === 3, 'hero and two bands use Kyllä, liityn');
 assert(!page.includes('<dialog'), 'no popup dialogs');
 assert(!page.includes('class="modal'), 'no popup modals');
@@ -380,7 +378,7 @@ assert(
 );
 assert(page.includes('Klubilaiset kuulevat valmennuksista ensimmäisinä ja saavat ne etuhintaan.'), 'Koti member-first line kept');
 assert(page.includes('Etkö ole vielä varma?'), 'soft-step heading kept');
-assert(page.includes('Täydenkuun nollaushetkeen maanantaina 26.10. klo 21.00'), 'nollaushetki date kept');
+assert(page.includes('Täydenkuun nollaushetkeen tiistaina 24.11.2026 klo 21.00'), 'nollaushetki date kept');
 assert(page.includes('noin 30 minuutin harjoituksen Zoomissa'), 'nollaushetki duration is about 30 minutes');
 assert(!page.includes('Täysikuun nollauk'), 'old Täysikuun nollaus name removed');
 assert(!page.includes('20 min'), '20-minute duration removed from the club page');
@@ -512,7 +510,7 @@ assert(!/buy\.stripe\.com/.test(page), 'no live Stripe checkout wired');
 assert(page.includes('var KLUBI'), 'KLUBI config object present');
 assert(
   page.includes("klubi: 'https://sivut.hengittava-aiti.fi/klubi-kassa'"),
-  'klubi 19 €/kk founder checkout in KLUBI.LINKS',
+  'klubi 25 €/kk checkout in KLUBI.LINKS',
 );
 assert(
   page.includes("regular: 'https://link.fastpaydirect.com/payment-link/6ac7ae22075ea22a20cdd23b'"),
@@ -525,11 +523,11 @@ assert(
 assert(!page.includes('hengitystila'), 'Hengitystila LINKS entry removed');
 assert(!page.includes("meetup: '#'"), 'Valo LINKS entry removed');
 assert(!page.includes('data-klubi-link="regular"'), 'regular checkout is stored only, not wired');
-assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'founder checkout on price card, closing CTA, sticky bar');
+assert((page.match(/data-klubi-link="klubi"/g) || []).length === 3, 'klubi checkout on price card, closing CTA, sticky bar');
 assert((page.match(/href="#hinta"/g) || []).length === 6, 'upper-page CTAs still scroll to #hinta');
 assert(
   (page.match(/href="https:\/\/sivut\.hengittava-aiti\.fi\/klubi-kassa"/g) || []).length === 3,
-  'founder checkout hrefs are the live klubi-kassa URL, not FastPay',
+  'klubi checkout hrefs are the live klubi-kassa URL, not FastPay',
 );
 assert(!page.includes('6ac7adab075ea22a20cdd237'), 'old FastPayDirect 19 €/kk founder URL is unused');
 assert(
@@ -551,7 +549,12 @@ assert(
 const home = readFileSync(join(root, 'index.html'), 'utf8');
 const publicHome = readFileSync(join(root, 'public/index.html'), 'utf8');
 const hermosto = readFileSync(join(root, 'hermosto-reset/index.html'), 'utf8');
+const publicHermosto = readFileSync(join(root, 'public/hermosto-reset/index.html'), 'utf8');
+const thanks = readFileSync(join(root, 'kiitos/index.html'), 'utf8');
+const publicThanks = readFileSync(join(root, 'public/kiitos/index.html'), 'utf8');
 assert(home === publicHome, 'public homepage mirrors root homepage');
+assert(hermosto === publicHermosto, 'public hermosto-reset mirrors root');
+assert(thanks === publicThanks, 'public /kiitos mirrors root');
 function headerBlock(html) {
   const match = html.match(/<header[^>]*(?:id="site-header"|class="site-header")[\s\S]*?<\/header>/);
   return match ? match[0] : '';
@@ -685,14 +688,43 @@ assert(
   'past 9.10.2026 session is not listed for signup',
 );
 assert(
-  home.includes('ma 26.10.2026 klo 21.00') && nollaus.includes('ma 26.10.2026 klo 21.00'),
-  'next session 26.10.2026 remains first in the upcoming lists',
+  !home.includes('ma 26.10.2026 klo 21.00') &&
+    !nollaus.includes('ma 26.10.2026 klo 21.00') &&
+    !home.includes('data-end="2026-10-26T21:30:00+02:00"') &&
+    !nollaus.includes('data-end="2026-10-26T21:30:00+02:00"'),
+  'past 26.10.2026 session is not listed for signup',
+);
+assert(
+  nollaus.includes('tiistai 24.11.2026 klo 21.00 · noin 30 minuuttia · Zoomissa') &&
+    nollaus.includes('ti 24.11.2026 klo 21.00'),
+  'next session 24.11.2026 is featured and first in the nollaushetki list',
+);
+assert(
+  home.includes('ke 16.12.2026 klo 21.00') &&
+    nollaus.includes('ke 16.12.2026 klo 21.00') &&
+    home.includes('data-end="2026-12-16T21:30:00+02:00"') &&
+    nollaus.includes('data-end="2026-12-16T21:30:00+02:00"'),
+  '16.12.2026 December session is listed',
+);
+assert(!home.includes('23.12') && !nollaus.includes('23.12'), '23.12 session is not listed');
+assert(
+  home.includes('la 20.2.2027 klo 21.00') &&
+    nollaus.includes('la 20.2.2027 klo 21.00') &&
+    !home.includes('su 21.2.2027') &&
+    !nollaus.includes('su 21.2.2027') &&
+    !home.includes('2027-02-21') &&
+    !nollaus.includes('2027-02-21'),
+  'February session is Saturday 20.2.2027',
 );
 assert(
   home.includes('ti 24.11.2026') &&
     home.includes('pe 22.1.2027') &&
-    home.includes('su 21.2.2027'),
+    home.includes('la 20.2.2027'),
   'later nollaushetki dates stay on the homepage',
+);
+assert(
+  [...nollaus.matchAll(/class="tk-btn"[^>]*href="([^"]+)"/g)].every((m) => m[1] === '#ilmoittaudu'),
+  'nollaushetki list Ilmoittaudu buttons link to #ilmoittaudu',
 );
 assert(!page.includes('taysikuu-yo'), 'club page has no date-list moon band');
 const moonFiles = [
@@ -789,10 +821,8 @@ assert(terms.includes('Myyjä on ILO Wellness.'), 'terms page names the seller')
 assert(!terms.includes('Maradevi Oy'), 'terms page no longer names Maradevi as seller');
 assert(terms.includes('Hengittävien äitien klubi on kuukausijäsenyys.'), 'terms page names the product');
 assert(terms.includes('<h2>Hinta</h2>'), 'terms page price heading');
-assert(
-  terms.includes('Liittymishinta 19 €/kk* on voimassa 31.10.2026 asti. 1.11.2026 alkaen hinta on 25 €/kk.'),
-  'terms page founder price until 31.10.2026 then 25 €',
-);
+assert(terms.includes('Klubi 25 €/kk.'), 'terms page club price is 25 €/kk');
+assert(!terms.includes('Liittymishinta 19 €/kk'), 'terms page founder join-price line removed');
 assert(terms.includes('Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)'), 'terms page PLUS price until 31.12.2026');
 assert(!terms.includes('TARJOUS'), 'terms page does not use TARJOUS');
 assert(
@@ -814,9 +844,10 @@ assert(
 );
 assert(!terms.includes('koko jäsenyytesi ajan'), 'terms page has no whole-membership price promise');
 assert(
-  terms.includes('*Liittymishintasi 19 €/kk on voimassa vähintään 31.10.2027 asti, kunhan tilauksesi jatkuu katkeamatta. Mahdollisista hinnanmuutoksista ilmoitetaan vähintään 30 päivää etukäteen.'),
-  'terms page has the same approved 19 € footnote',
+  !terms.includes('*Liittymishintasi 19 €/kk'),
+  'terms page founder-price footnote removed',
 );
+assert(!/(?<!\d)19\s*€/.test(terms), 'no leftover 19 € on the terms page');
 assert(terms.includes('kortilla, Apple Paylla tai Google Paylla (Stripe)'), 'terms page payment methods');
 assert(terms.includes('kuukauden välein liittymispäivästä'), 'terms page join-date billing');
 assert(
@@ -889,6 +920,29 @@ assert(!page.includes('MEETUP_HIDES'), 'old meetup-hide logic removed');
 assert(!page.includes('klubi-standalone'), 'standalone reference file not inlined');
 assert(!existsSync(join(root, 'klubi/klubi-standalone.html')), 'klubi-standalone.html not committed under klubi/');
 assert(!existsSync(join(root, 'klubi-standalone.html')), 'klubi-standalone.html not committed at repo root');
+
+assert(hermosto.includes('Hengittävä Koti -valmennus'), '6-week coaching is named Hengittävä Koti -valmennus');
+assert(hermosto.includes('alkaa 11.1.2027'), 'Hengittävä Koti starts 11.1.2027');
+assert(!hermosto.includes('alkaa 1.10.2026'), 'old 1.10.2026 start date removed');
+assert(hermosto.includes('199 €') && hermosto.includes('299 €'), 'Koti prices unchanged');
+assert(hermosto.includes('Etu 100 € ensimmäiseen ryhmään ilmoittautuville.'), 'Koti 100 € offer unchanged');
+
+assert(thanks.includes('Viestisi tuli perille.'), 'generic /kiitos thank-you copy');
+assert(thanks.includes('tiistaina 24.11.2026 klo 21.00'), '/kiitos names the next nollaushetki');
+assert(vercel.includes('"/kiitos/?"'), 'vercel.json routes /kiitos/');
+
+function leftoverScan(label, html) {
+  assert(!/(?<!\d)19\s*€/.test(html), `${label}: no leftover 19 €`);
+  assert(!/lokakuu(ssa)?/i.test(html), `${label}: no leftover lokakuu`);
+  assert(!html.includes('31.10.'), `${label}: no leftover 31.10.`);
+  assert(!html.includes('26.10.'), `${label}: no leftover 26.10.`);
+}
+leftoverScan('klubi', page);
+leftoverScan('terms', terms);
+leftoverScan('home', home);
+leftoverScan('nollaushetki', nollaus);
+leftoverScan('hermosto', hermosto);
+leftoverScan('kiitos', thanks);
 
 for (const name of requiredImages) {
   assert(page.includes(`/klubi/img/${name}`), `page references /klubi/img/${name}`);
