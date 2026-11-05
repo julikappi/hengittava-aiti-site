@@ -127,6 +127,10 @@
       "dest": "/kiitos/hermosto-reset-21/index.html"
     },
     {
+      "src": "/kiitos/?",
+      "dest": "/kiitos/index.html"
+    },
+    {
       "src": "/tietosuoja/?",
       "dest": "/tietosuoja/index.html"
     },
