@@ -347,13 +347,6 @@
   .btn-row { margin: 2rem 0 0; }
   @media (max-width: 29.99rem) { .btn-row .btn { width: 100%; } }
 
-  .hero-price {
-    margin: 1.35rem 0 0;
-    font-size: 1.125rem;
-    line-height: 1.45;
-    font-weight: 500;
-    color: var(--violet);
-  }
   .hero .price-fn { margin-top: .75rem; max-width: 46ch; }
   .hero .btn-row { margin-top: 1.15rem; }
 
@@ -543,7 +536,6 @@
       margin: 0 0 1.25rem;
     }
     .hero p { max-width: 62ch; }
-    .hero-price { margin-top: 0; }
   }
 
   /* ---------- Kuka minä olen ---------- */
@@ -859,6 +851,26 @@
   .sticky-cta .btn { min-height: 2.875rem; padding: .6rem 1.4rem; flex: none; }
   @media (min-width: 56.25rem) { .sticky-cta { display: none; } }
 
+  /* ---------- Liittymisvalinta: yläosan nappi avaa Klubi- ja PLUS-vaihtoehdon ---------- */
+  .join-choice { width: min(44rem, calc(100% - 2rem)); max-height: calc(100% - 2rem); padding: 0; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--surface); color: var(--ink-soft); }
+  .join-choice::backdrop { background: rgba(42, 35, 32, .45); }
+  .join-inner { position: relative; padding: 2rem 1.25rem 1.5rem; }
+  .join-choice h2 { display: table; margin: 0 auto 1.25rem; font-size: 1.5rem; line-height: 1.2; }
+  .join-close { position: absolute; top: .75rem; right: .75rem; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: transparent; color: var(--violet); font-size: 1.75rem; line-height: 1; cursor: pointer; }
+  .join-close:hover { background: var(--peach-mist); }
+  .join-options { display: grid; gap: 1rem; }
+  .join-option { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem; }
+  .join-option--klubi { background: var(--peach-tint); border-color: var(--peach-2); }
+  .join-option .tier-lead { font-size: 1.35rem; margin-bottom: .5rem; }
+  .join-option p { max-width: none; margin: 0 0 1rem; line-height: 1.55; }
+  .join-option .btn { width: 100%; margin-top: auto; }
+  .join-option .join-small { margin: .75rem 0 0; font-size: .95rem; text-align: center; }
+  .join-small a { color: var(--violet); }
+  @media (min-width: 40rem) {
+    .join-inner { padding: 2.25rem 2rem 2rem; }
+    .join-options { grid-template-columns: 1fr 1fr; }
+  }
+
   /* Desktop reading layout only. Mobile CSS above stays as-is. */
   @media (min-width: 56.25rem) {
     .wrap,
@@ -1139,7 +1151,6 @@
     .cta-band { padding: 3.5rem 0; }
     .cta-band .wrap { text-align: center; }
     .cta-band p { max-width: none; }
-    .hero-price { font-size: 1.2rem; }
     .closing .wrap { max-width: 80rem; text-align: center; }
     .closing .breath { max-width: 28em; }
     .center { text-align: center; }
@@ -1215,7 +1226,6 @@
           <p class="hero-intro">Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
         </div>
         <div class="hero-offer">
-          <p class="hero-price">Klubi on nyt käynnissä.</p>
           <p class="btn-row">
             <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
             <a class="btn" id="hero-cta" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Kyllä, liityn</a>
@@ -1640,6 +1650,30 @@
   <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
 </div>
 
+<!-- Liittymisvalinta: yläosan "Kyllä, liityn" avaa tämän. Ilman JavaScriptiä nappi vie suoraan klubin kassalle. -->
+<dialog class="join-choice" id="join-choice" aria-labelledby="h-valinta">
+  <div class="join-inner">
+    <button class="join-close" type="button" aria-label="Sulje" data-close>&times;</button>
+    <h2 id="h-valinta">Valitse jäsenyys</h2>
+    <div class="join-options">
+      <div class="join-option join-option--klubi">
+        <p class="tier-lead">Klubi <span class="price nw">25 €/kk</span></p>
+        <p>Kaikki klubin sisältö. Ei sitoutumisaikaa.</p>
+        <!-- Linkki: Klubi 25 €/kk kassa -->
+        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
+      </div>
+      <div class="join-option">
+        <p class="tier-lead">Klubi PLUS <span class="price nw">89 €/kk</span></p>
+        <p>Kaikki klubin sisältö ja lisäksi 2 henkilökohtaista 40 minuutin Zoom-tapaamista Julianan kanssa kuukaudessa. Hinta on voimassa 31.12.2026 asti.</p>
+        <!-- Linkki: FastPayDirect Klubi PLUS 89 €/kk -->
+        <a class="btn" href="https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499" data-klubi-link="plus">Liity PLUS-jäseneksi</a>
+        <!-- Linkki: GHL-varauskalenteri, ilmainen 30 min tutustumispuhelu -->
+        <p class="join-small"><a href="https://api.leadconnectorhq.com/widget/bookings/tutustumispuhelu-hengittava-aiti">Tai varaa ensin ilmainen 30 minuutin puhelu</a></p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script>
 (function () {
   var menuBtn = document.getElementById('menu-btn');
@@ -1706,6 +1740,20 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+})();
+
+(function () {
+  /* Yläosan "Kyllä, liityn" avaa valinnan Klubi / PLUS. Ilman dialog-tukea nappi vie suoraan kassalle. */
+  var dlg = document.getElementById('join-choice');
+  var heroCta = document.getElementById('hero-cta');
+  if (!dlg || !heroCta || typeof dlg.showModal !== 'function') return;
+  heroCta.addEventListener('click', function (e) {
+    e.preventDefault();
+    dlg.showModal();
+  });
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg || e.target.closest('[data-close]')) dlg.close();
+  });
 })();
 
 (function () {
