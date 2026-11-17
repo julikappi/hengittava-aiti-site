@@ -836,6 +836,7 @@
     text-decoration: none;
   }
   .site-footer .f-ig:hover { color: var(--ink); }
+  .site-footer .f-sep { margin: 0 .6rem; color: var(--ink-soft); }
 
   /* ---------- Kiinnitetty liittymispalkki (vain mobiili) ---------- */
   .sticky-cta {
@@ -1194,7 +1195,7 @@
   @media (min-width: 56rem) {
     .k-hero { padding: 4rem 0 4.75rem; }
     .k-hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 4rem; }
-    .k-hero .photo--hero { max-height: 38rem; }
+    .k-hero .photo--hero { position: static; inset: auto; width: 100%; height: auto; max-height: 38rem; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
   }
 
   .k-cards { display: grid; gap: 1rem; margin-top: 2rem; }
@@ -1208,6 +1209,9 @@
   .k-heti ul { margin: 0; padding-left: 1.2rem; }
   .k-heti li { margin: 0 0 .35rem; line-height: 1.55; }
   .k-heti li:last-child { margin-bottom: 0; }
+  .k-heti-note { margin: .8rem 0 0; font-size: .95rem; }
+  .k-card--wa { border-color: var(--peach-2); }
+  @media (min-width: 48rem) { .k-card--wa { grid-column: 1 / -1; } }
   .k-calm { margin-top: 1.75rem; }
   .k-short { max-width: 40rem; }
 
@@ -1282,7 +1286,7 @@
           <p class="k-offer-note">Jos perut 2 viikon aikana, et maksa mitään.</p>
         </div>
         <ul class="k-facts">
-          <li>Joka viikko miniluento ja pieni harjoitus</li>
+          <li>Joka viikko lyhyt äänite ja check-lista</li>
           <li>Live Zoomissa maanantaisin klo 21, tallenne jää alustalle</li>
           <li>Yksi teema kuukaudessa, ei rästejä</li>
         </ul>
@@ -1303,13 +1307,13 @@
       <div class="k-cards">
         <article class="k-card">
           <p class="k-label">Joka viikko</p>
-          <h3>Miniluento ja pieni harjoitus</h3>
-          <p>Saat ne maanantaisin. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
+          <h3>Lyhyt äänite ja check-lista</h3>
+          <p>Saat ne maanantaisin: miniluennon ja harjoituksen äänitteenä sekä tulostettavan check-listan. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
         </article>
         <article class="k-card">
           <p class="k-label">Maanantaisin klo 21</p>
           <h3>Yhteinen live Zoomissa</h3>
-          <p>Vastaan kysymyksiinne ja käymme viikon aiheen läpi yhdessä. Jos et ehdi, voit katsoa tallenteen myöhemmin omalla ajallasi.</p>
+          <p>Vastaan kysymyksiinne ja käymme viikon aiheen läpi yhdessä. Jos et ehdi, tallenne tulee seuraavana päivänä ja voit katsoa sen omalla ajallasi.</p>
         </article>
         <article class="k-card">
           <p class="k-label">Joka kuukausi</p>
@@ -1319,16 +1323,23 @@
         <article class="k-card">
           <p class="k-label">Aina käytössäsi</p>
           <h3>Oma kurssialusta ja keskustelutila</h3>
-          <p>Alustalta löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Keskustelutilassa voit jutella muiden äitien kanssa.</p>
+          <p>Alustalta löydät kaikki aiemmat luennot, harjoitukset, tulostettavat check-listat ja livejen tallenteet. Keskustelutilassa voit jutella muiden äitien kanssa.</p>
+        </article>
+        <article class="k-card k-card--wa">
+          <p class="k-label">Vain jäsenille</p>
+          <h3>Oma WhatsApp-ryhmä: Klubin kuulumiset</h3>
+          <p>Jäsenenä pääset klubin omaan WhatsApp-ryhmään. Sinne saa kirjoittaa kuulumisia, omia jarruhetkiä ja kysymyksiä, ja sinne tulevat muistutukset liveistä. Kirjoittaa ei tarvitse, lukeminenkin riittää. Saat ryhmän linkin sähköpostiisi, kun olet liittynyt.</p>
         </article>
       </div>
       <div class="k-heti">
-        <h3 id="h-heti">Saat heti liittyessäsi sähköpostiisi</h3>
+        <h3 id="h-heti">Lahjaksi heti liittyessäsi 🎁</h3>
         <ul>
-          <li>Aloitusäänitteen: näin klubi toimii ja mistä aloitat</li>
+          <li>Aloitusäänite: näin klubi toimii ja mistä aloitat</li>
+          <li>Kaasu ja jarru -äänite ja puhelin-PDF</li>
           <li>3 SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
           <li>Kuluvan viikon ja edellisen viikon materiaalit</li>
         </ul>
+        <p class="k-heti-note">Saat ne sähköpostiisi heti liittyessäsi.</p>
       </div>
       <p class="lead k-calm">Klubissa ei ole rästejä. Jos joku viikko jää väliin, tulet mukaan kuluvaan viikkoon.</p>
       <p class="btn-row">
@@ -1413,10 +1424,11 @@
           <p><span class="tier-lead">Klubi <span class="price nw">25 €/kk</span></span></p>
           <p class="k-trial"><strong>Ensimmäiset 2 viikkoa maksutta.</strong> Ei sitoutumisaikaa.</p>
           <ul class="k-list">
-            <li>miniluento ja pieni harjoitus joka viikko</li>
-            <li>live maanantaisin klo 21 ja tallenteet</li>
-            <li>kurssialusta ja keskustelutila</li>
-            <li>aloitusäänite ja 3 SOS-hengähdystä heti</li>
+            <li>lyhyt äänite ja check-lista joka viikko</li>
+            <li>live maanantaisin klo 21 ja tallenne seuraavana päivänä</li>
+            <li>kurssialusta, kaikki aiemmat harjoitukset ja keskustelutila</li>
+            <li>oma WhatsApp-ryhmä Klubin kuulumiset</li>
+            <li>aloitusäänite, Kaasu ja jarru -äänite ja 3 SOS-hengähdystä heti</li>
             <li>kuluvan viikon ja edellisen viikon materiaalit heti</li>
           </ul>
           <p class="btn-row">
@@ -1622,6 +1634,9 @@
 <footer class="site-footer">
   <div class="wrap">
     <a class="f-ig" href="https://instagram.com/hengittava_aiti" target="_blank" rel="noopener">Instagram</a>
+    <span class="f-sep" aria-hidden="true">·</span>
+    <!-- Linkki: julkinen WhatsApp-kanava Hengittävä Äiti (kaikille seuraajille) -->
+    <a class="f-ig" href="https://whatsapp.com/channel/0029Vb9S9zbCnA7vtog1Z03x" target="_blank" rel="noopener">WhatsApp-kanava Hengittävä Äiti</a>
   </div>
 </footer>
 
@@ -1786,5 +1801,6 @@
 </script>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
+<script src="/nollaus-banneri.js" defer></script>
 </body>
 </html>
