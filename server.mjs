@@ -34,12 +34,12 @@ const mime = {
 };
 
 const redirects = {
-  '/hermosto-reset-viikko-1': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS' },
-  '/hermosto-reset-viikko-1/': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS' },
+  '/hermosto-reset-viikko-1': { status: 302, location: '/hermosto-reset/' },
+  '/hermosto-reset-viikko-1/': { status: 302, location: '/hermosto-reset/' },
   '/tietosuojaseloste': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH' },
   '/tietosuojaseloste/': { status: 302, location: 'https://sites.leadconnectorhq.com/preview/S1YMcelSBsAUe9eNKTqH' },
-  '/opas': { status: 302, location: 'https://hengittava-aiti.fi/hermosto-reset-viikko-1' },
-  '/opas/': { status: 302, location: 'https://hengittava-aiti.fi/hermosto-reset-viikko-1' },
+  '/opas': { status: 302, location: '/hermosto-reset/' },
+  '/opas/': { status: 302, location: '/hermosto-reset/' },
   '/perjantain-nollaushetki': { status: 301, location: '/nollaushetki/' },
   '/perjantain-nollaushetki/': { status: 301, location: '/nollaushetki/' },
   '/kiitos/perjantain-nollaushetki': { status: 301, location: '/nollaushetki/kiitos/' },
