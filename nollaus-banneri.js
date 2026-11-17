@@ -13,7 +13,7 @@ var NOLLAUS = {
   pieni: '🌕 Ilmainen hetki sinulle Zoomissa',
   otsikko: 'Täydenkuun nollaushetki',
   aika: 'ti 24.11. klo 21',
-  teksti: 'Miniluento ja kehollinen nollaus.',
+  teksti: 'Miniluento ja kehollinen harjoitus.',
   lisa: 'Noin 30 minuuttia, avoin kaikille.',  // näkyy vain isommalla näytöllä
   nappi: 'Ilmoittaudu',
   linkki: '/nollaushetki/#ilmoittaudu',
