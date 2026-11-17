@@ -6,14 +6,16 @@
  *   piiloon  = milloin banneri katoaa itsestään (yleensä noin 45 min alun jälkeen)
  * Muista päivittää myös /nollaushetki/-sivun päivä ja lomake.
  * Kopioi tiedosto myös kansioon public/ (sama sisältö).
+ * Ilmaisuus sanotaan vain kerran (Juliana 17.11.: "yhden kerran riittää").
  * Banneri on vain etusivulla (Juliana 17.11.: klubisivulla se kilpaili kokeilunapin kanssa).
  */
 var NOLLAUS = {
+  pieni: '🌕 Ilmainen hetki sinulle Zoomissa',
   otsikko: 'Täydenkuun nollaushetki',
   aika: 'ti 24.11. klo 21',
-  teksti: 'Pääset ilmaiseksi nollaamaan.',
-  lisa: 'Noin 30 minuuttia Zoomissa, avoin kaikille.',  // näkyy vain isommalla näytöllä
-  nappi: 'Ilmoittaudu maksutta',
+  teksti: 'Miniluento ja kehollinen harjoitus.',
+  lisa: 'Noin 30 minuuttia, avoin kaikille.',  // näkyy vain isommalla näytöllä
+  nappi: 'Ilmoittaudu',
   linkki: '/nollaushetki/#ilmoittaudu',
   piiloon: '2026-11-24T21:45:00+02:00'
 };
@@ -37,7 +39,7 @@ var NOLLAUS = {
     + '.nb-kuu{flex:none;width:68px;height:68px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(255,250,235,.25),0 0 22px 6px rgba(255,246,220,.38),0 0 60px 14px rgba(255,240,210,.16);animation:nbKuu 6s ease-in-out infinite}'
     + '@keyframes nbKuu{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}'
     + '.nb-tahti{position:absolute;color:rgba(255,248,225,.75);font-size:10px;line-height:1;pointer-events:none}'
-    + '.nb-pieni{margin:0 0 4px;padding-right:34px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,247,241,.7)}'
+    + '.nb-pieni{margin:0 0 4px;padding-right:34px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.02em;color:rgba(251,247,241,.78)}'
     + '.nb-otsikko{margin:0;font-family:inherit;font-size:1.18rem;line-height:1.25;font-weight:600;color:#FBF7F1}'
     + '.nb-teksti{margin:6px 0 0;font-size:.95rem;line-height:1.45;color:rgba(251,247,241,.88)}'
     + '.nb-nappi{display:flex;align-items:center;justify-content:center;margin-top:14px;min-height:46px;padding:10px 18px;'
@@ -47,7 +49,7 @@ var NOLLAUS = {
     + '.nb-kiinni{position:absolute;top:6px;right:6px;width:40px;height:40px;border:0;border-radius:50%;'
     + 'background:transparent;color:rgba(251,247,241,.8);font-size:1.6rem;line-height:1;cursor:pointer}'
     + '.nb-kiinni:hover{color:#fff;background:rgba(251,247,241,.08)}'
-    + '@media (max-width:39.99rem){.nb{padding:12px 14px 12px}.nb-lisa{display:none}.nb-kuu{width:56px;height:56px}.nb-pieni{font-size:.62rem}'
+    + '@media (max-width:39.99rem){.nb{padding:12px 14px 12px}.nb-lisa{display:none}.nb-kuu{width:56px;height:56px}.nb-pieni{font-size:.76rem}'
     + '.nb-otsikko{font-size:1.05rem}.nb-pieni{padding-right:30px}.nb-teksti{margin-top:2px}.nb-nappi{margin-top:10px;min-height:42px;padding:8px 16px}'
     + '.nb-kiinni{top:2px;right:2px}}'
     + '@media (prefers-reduced-motion:reduce){.nb-kuu{animation:none}.nb{transition:opacity .2s ease}.nb,.nb.nb--auki{transform:none}}';
@@ -67,12 +69,13 @@ var NOLLAUS = {
       + '<div class="nb-rivi">'
       + '<img class="nb-kuu" src="/kuvat/taysikuu-kiekko-a.jpg" width="68" height="68" alt="" aria-hidden="true">'
       + '<div>'
-      + '<p class="nb-pieni">🌕 Ilmainen · Zoomissa</p>'
+      + '<p class="nb-pieni"></p>'
       + '<p class="nb-otsikko"></p>'
       + '<p class="nb-teksti"><span class="nb-lyhyt"></span> <span class="nb-lisa"></span></p>'
       + '</div></div>'
       + '<a class="nb-nappi"></a>';
     // Päivä pysyy yhdellä rivillä (sitovat välilyönnit).
+    nb.querySelector('.nb-pieni').textContent = NOLLAUS.pieni || '';
     nb.querySelector('.nb-otsikko').textContent = NOLLAUS.otsikko + ' ' + NOLLAUS.aika.replace(/ /g, '\u00a0');
     nb.querySelector('.nb-lyhyt').textContent = NOLLAUS.teksti;
     nb.querySelector('.nb-lisa').textContent = NOLLAUS.lisa || '';

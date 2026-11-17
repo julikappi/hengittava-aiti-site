@@ -44,7 +44,7 @@
       "src": "^/hermosto-reset-viikko-1/?$",
       "status": 302,
       "headers": {
-        "Location": "https://sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS"
+        "Location": "/hermosto-reset/"
       }
     },
     {
@@ -103,7 +103,7 @@
       "src": "/opas/?",
       "status": 302,
       "headers": {
-        "Location": "https://hengittava-aiti.fi/hermosto-reset-viikko-1"
+        "Location": "/hermosto-reset/"
       }
     },
     {

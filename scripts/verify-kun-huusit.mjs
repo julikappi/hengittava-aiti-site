@@ -45,7 +45,7 @@ assert(!server.includes('/api/kun-huusit'), 'preview server does not route homem
 assert(!page.includes('mailerlite'), 'no MailerLite');
 assert(page.includes('--cream: #FBF7F1'), 'warm cream card kept');
 assert(page.includes('Kun huusit taas'), 'Finnish heading kept');
-assert(viikko.includes('sites.leadconnectorhq.com/preview/uq6JC6cu8w0iri3DmvfS'), 'Viikko 1 funnel redirect untouched');
+assert(viikko.includes('/hermosto-reset/'), 'Viikko 1 ohjaa maksulliseen Resetiin (Juliana 17.11.)');
 assert(hermosto.includes('hermosto-reset'), 'Viikko 1 sales page file still present');
 
 const widget = await fetch(WIDGET_SRC, {
