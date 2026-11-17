@@ -6,6 +6,7 @@
  *   piiloon  = milloin banneri katoaa itsestään (yleensä noin 45 min alun jälkeen)
  * Muista päivittää myös /nollaushetki/-sivun päivä ja lomake.
  * Kopioi tiedosto myös kansioon public/ (sama sisältö).
+ * Banneri on vain etusivulla (Juliana 17.11.: klubisivulla se kilpaili kokeilunapin kanssa).
  */
 var NOLLAUS = {
   otsikko: 'Täydenkuun nollaushetki',
