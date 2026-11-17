@@ -1230,10 +1230,37 @@
   details.ehdot[open] > summary { margin-bottom: 1rem; }
 
 </style>
+<style id="ylapalkki-yo">
+  /* Yläpalkki yönvioletiksi kuten nollausbanneri (Juliana 17.11.) */
+  #site-header, #site-header.is-scrolled, .site-header {
+    --fg: #FBF7F1; --fg-soft: rgba(251,247,241,.82);
+    background: radial-gradient(120% 260% at 0% 0%, #4A3757 0%, #3B2A45 45%, #271C30 100%) !important;
+    border-bottom: 1px solid rgba(255,246,220,.10) !important;
+    box-shadow: 0 10px 30px -18px rgba(30,20,35,.55);
+  }
+  .site-header { position: relative; }
+  #site-header .brand, #site-header .brand-name, .site-header .brand { color: #FBF7F1 !important; }
+  #site-header .nav-link, #site-header .hdr-ig, .site-header .hdr-links a { color: rgba(251,247,241,.82) !important; border-color: rgba(251,247,241,.45) !important; }
+  #site-header .nav-link:hover, #site-header .nav-link[aria-current="true"], .site-header .hdr-links a:hover { color: #FBF7F1 !important; }
+  #site-header img[src*="logo-merkki"], .site-header img[src*="logo-merkki"] { filter: invert(1) drop-shadow(0 0 6px rgba(255,246,220,.35)); }
+  #site-header #menu-btn { color: #FBF7F1 !important; border-color: rgba(251,247,241,.55) !important; }
+  #site-header #mobile-menu { background: #2F2238 !important; border-color: rgba(251,247,241,.12) !important; }
+  #site-header #mobile-menu > div, #site-header #mobile-menu .mobile-link { color: #FBF7F1 !important; }
+  #site-header #mobile-menu .mobile-cta { background: #FBF7F1 !important; color: #3B2A45 !important; }
+  #site-header a:focus-visible, #site-header button:focus-visible, .site-header a:focus-visible { outline: 2px solid #F2C9B0; outline-offset: 3px; }
+  .hdr-tahdet { position: absolute; top: 0; left: 0; right: 0; height: var(--nav-h, 100%); overflow: hidden; pointer-events: none; }
+  .hdr-tahti { position: absolute; color: rgba(255,248,225,.7); line-height: 1; }
+  @media (max-width: 68.74rem) { .hdr-tahti--kone { display: none; } }
+</style>
 </head>
 <body>
 
 <header id="site-header">
+  <div class="hdr-tahdet" aria-hidden="true">
+    <span class="hdr-tahti" style="top:12px;left:29%;font-size:10px">✦</span>
+    <span class="hdr-tahti" style="bottom:14px;left:71%;font-size:7px;opacity:.6">✦</span>
+    <span class="hdr-tahti hdr-tahti--kone" style="top:22px;right:9%;font-size:8px;opacity:.75">✦</span>
+  </div>
   <nav aria-label="Päävalikko">
     <a href="/" class="brand">
       <img src="/kuvat/logo-merkki.png" alt="" width="51" height="48">
