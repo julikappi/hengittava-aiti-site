@@ -174,21 +174,26 @@
   .reveal { opacity: 1; transform: none;
             transition: opacity .55s ease, transform .55s ease; }
 
-  /* Header: cream over hero after scroll */
+  /* Header: yönvioletti kuten nollausbanneri (Juliana 17.11.) */
   #site-header {
-    --fg: #2A2320; --fg-soft: #6F6560;
-    transition: background-color .35s ease, border-color .35s ease;
-    border-bottom: 1px solid transparent;
+    --fg: #FBF7F1; --fg-soft: rgba(251,247,241,.82);
+    background: radial-gradient(120% 260% at 0% 0%, #4A3757 0%, #3B2A45 45%, #271C30 100%);
+    border-bottom: 1px solid rgba(255,246,220,.10);
+    box-shadow: 0 10px 30px -18px rgba(30,20,35,.55);
   }
-  #site-header.is-scrolled {
-    --fg: #2A2320; --fg-soft: #6F6560;
-    background: rgba(251,247,241,.96);
-    border-color: rgba(42,35,32,.10);
-  }
-  #site-header .hdr-fg      { color: var(--fg); transition: color .35s ease; }
-  #site-header .hdr-fg-soft { color: var(--fg-soft); transition: color .35s ease; }
-  #site-header .hdr-stroke  { stroke: var(--fg); transition: stroke .35s ease; }
-  #site-header .hdr-fill    { fill: var(--fg); transition: fill .35s ease; }
+  #site-header .hdr-fg      { color: var(--fg); }
+  #site-header .hdr-fg-soft { color: var(--fg-soft); }
+  #site-header .hdr-stroke  { stroke: var(--fg); }
+  #site-header .hdr-fill    { fill: var(--fg); }
+  #site-header .hdr-logo    { filter: invert(1) drop-shadow(0 0 6px rgba(255,246,220,.35)); }
+  #site-header .nav-link:hover { color: var(--fg); }
+  #site-header #menu-btn    { border-color: rgba(251,247,241,.55); }
+  #site-header #mobile-menu { background: #2F2238; border-color: rgba(251,247,241,.12); }
+  #site-header #mobile-menu > div { color: #FBF7F1; }
+  #site-header a:focus-visible, #site-header button:focus-visible { outline: 2px solid #F2C9B0; outline-offset: 3px; }
+  .hdr-tahdet { position: absolute; top: 0; left: 0; right: 0; height: var(--nav-h); overflow: hidden; pointer-events: none; }
+  @media (max-width: 68.74rem) { .hdr-tahti--kone { display: none; } }
+  .hdr-tahti { position: absolute; color: rgba(255,248,225,.7); line-height: 1; }
 
   .nav-link { position: relative; white-space: nowrap; flex-shrink: 0; }
   .nav-link::after {
@@ -322,10 +327,15 @@
 
 <!-- ═══════════════ @component: SiteHeader ═══════════════ -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50">
+  <div class="hdr-tahdet" aria-hidden="true">
+    <span class="hdr-tahti" style="top:12px;left:29%;font-size:10px">✦</span>
+    <span class="hdr-tahti" style="bottom:14px;left:71%;font-size:7px;opacity:.6">✦</span>
+    <span class="hdr-tahti hdr-tahti--kone" style="top:22px;right:9%;font-size:8px;opacity:.75">✦</span>
+  </div>
   <nav class="max-w-7xl mx-auto px-5 sm:px-6 h-[var(--nav-h)] flex items-center justify-between gap-4" aria-label="Päävalikko">
     <!-- Logo: SubscribePage-merkki (profiili, kuu, tähdet) + serif-nimenkirjoitus -->
     <a href="#alku" class="flex items-center gap-3 shrink-0">
-      <img src="kuvat/logo-merkki.png" alt="" class="h-12 w-auto" width="51" height="48">
+      <img src="kuvat/logo-merkki.png" alt="" class="hdr-logo h-12 w-auto" width="51" height="48">
       <span class="brand-name hdr-fg font-serif text-[1.14rem] sm:text-[1.22rem] tracking-[0.16em] uppercase leading-none">Hengittävä Äiti</span>
     </a>
 
