@@ -1172,6 +1172,57 @@
       justify-content: center;
     }
   }
+  /* ===================== Selkeä versio 10.11.2026 ===================== */
+  .k-hero { padding: 1.75rem 0 3rem; }
+  .k-hero-grid { display: grid; gap: 2rem; }
+  .k-hero h1 { font-size: clamp(2.2rem, 9.4vw, 3.75rem); margin: 0 0 .7rem; }
+  .k-hero .breath { font-size: clamp(1.25rem, 5vw, 1.7rem); margin: 0 0 1.1rem; text-align: left; max-width: 34rem; }
+  @media (max-width: 47.99rem) { main > section { padding: 3.5rem 0; } }
+  .k-what { margin: 0 0 1.35rem; max-width: 34rem; }
+  .k-offer {
+    background: var(--peach-tint); border: 1px solid var(--peach-2); border-radius: 1.25rem;
+    padding: 1.35rem 1.25rem 1.4rem; max-width: 34rem;
+  }
+  .k-offer-title { margin: 0 0 .35rem; color: var(--violet); font-size: 1.5rem; line-height: 1.2; font-weight: 600; }
+  .k-offer-sub { margin: 0 0 1.1rem; font-size: 1.02rem; line-height: 1.5; }
+  .k-offer .btn { width: 100%; min-height: 3.5rem; font-size: 1.125rem; }
+  .k-offer-note { margin: .8rem 0 0; font-size: .95rem; line-height: 1.5; text-align: center; }
+  .k-facts { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: .55rem; max-width: 34rem; }
+  .k-facts li { display: flex; gap: .7rem; align-items: baseline; font-size: 1.02rem; line-height: 1.45; color: var(--violet); }
+  .k-facts li::before { content: ""; flex: none; width: .5rem; height: .5rem; border-radius: 50%; background: var(--peach); transform: translateY(-.12rem); }
+  .k-hero .photo--hero { aspect-ratio: 4 / 5; object-position: 50% 20%; }
+  @media (min-width: 56rem) {
+    .k-hero { padding: 4rem 0 4.75rem; }
+    .k-hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 4rem; }
+    .k-hero .photo--hero { max-height: 38rem; }
+  }
+
+  .k-cards { display: grid; gap: 1rem; margin-top: 2rem; }
+  @media (min-width: 48rem) { .k-cards { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+  .k-card { background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.4rem 1.35rem 1.5rem; }
+  .k-label { margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--peach-deep); font-weight: 600; }
+  .k-card h3 { margin: 0 0 .5rem; font-size: 1.3rem; }
+  .k-card p { margin: 0; max-width: none; font-size: 1rem; line-height: 1.6; }
+  .k-heti { margin-top: 1.25rem; background: var(--peach-tint); border: 1px solid var(--peach-2); border-radius: 1.25rem; padding: 1.4rem 1.35rem 1.5rem; }
+  .k-heti h3 { margin: 0 0 .6rem; font-size: 1.3rem; }
+  .k-heti ul { margin: 0; padding-left: 1.2rem; }
+  .k-heti li { margin: 0 0 .35rem; line-height: 1.55; }
+  .k-heti li:last-child { margin-bottom: 0; }
+  .k-calm { margin-top: 1.75rem; }
+  .k-short { max-width: 40rem; }
+
+  .k-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: .85rem; }
+  .k-list li { position: relative; padding-left: 1.9rem; line-height: 1.55; }
+  .k-list li::before {
+    content: ""; position: absolute; left: .15rem; top: .42rem; width: .95rem; height: .5rem;
+    border-left: 2px solid var(--peach-deep); border-bottom: 2px solid var(--peach-deep); transform: rotate(-45deg);
+  }
+  .tier .k-list { margin: 1rem 0 0; gap: .6rem; }
+  .tier .k-list li { font-size: 1rem; }
+  .k-trial { margin: 0 0 .9rem; font-size: 1.05rem; }
+  details.ehdot > summary { cursor: pointer; color: var(--violet); font-size: 1.1rem; }
+  details.ehdot[open] > summary { margin-bottom: 1rem; }
+
 </style>
 </head>
 <body>
@@ -1215,33 +1266,28 @@
   </div>
 </header>
 
-<!-- ===================== 1. HERO: lupaus, liittymisnappi ja Julianan kasvot heti ===================== -->
-<header class="hero">
+<!-- ===================== 1. HERO: mikä klubi on, kokeilu, nappi ja Julianan kasvot ===================== -->
+<header class="k-hero">
   <div class="wrap wrap--wide">
-    <div class="hero-grid">
-      <h1>Hengittävien äitien klubi</h1>
-      <div class="hero-copy">
-        <div class="hero-open">
-          <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
-          <p class="hero-intro">Tuntuuko, että arki on jatkuvaa muistamista, huolehtimista ja muiden tarpeisiin vastaamista? Että haluaisit olla kärsivällisempi äiti, mutta väsyneenä pinna kiristyy ja omat tarpeet jäävät taas viimeiseksi?</p>
+    <div class="k-hero-grid">
+      <div>
+        <h1>Hengittävien äitien klubi</h1>
+        <p class="breath">Kun arki vie kaiken tilan, myös äiti tarvitsee jonkun, joka kannattelee.</p>
+        <p class="k-what">Klubi on äitien oma pieni kylä keskellä arkea. Opit ymmärtämään omaa hermostoasi, saat käytännön keinoja palautumiseen ja rinnallesi muita äitejä.</p>
+        <div class="k-offer">
+          <p class="k-offer-title">Kokeile 2 viikkoa maksutta</p>
+          <p class="k-offer-sub">Sen jälkeen <span class="nw">25 €/kk</span>. Ei sitoutumisaikaa.</p>
+          <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
+          <a class="btn" id="hero-cta" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita kokeilu</a>
+          <p class="k-offer-note">Jos perut 2 viikon aikana, et maksa mitään.</p>
         </div>
-        <div class="hero-offer">
-          <p class="btn-row">
-            <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
-            <a class="btn" id="hero-cta" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Kyllä, liityn</a>
-          </p>
-        </div>
+        <ul class="k-facts">
+          <li>Joka viikko miniluento ja pieni harjoitus</li>
+          <li>Live Zoomissa maanantaisin klo 21, tallenne jää alustalle</li>
+          <li>Yksi teema kuukaudessa, ei rästejä</li>
+        </ul>
       </div>
-      <div class="hero-story">
-        <!-- Kuvapankkikuva (mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/woman-in-white-tank-top-and-brown-cardigan-sitting-by-the-window-6968357/ kuvaaja Mikhail Nilov (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-        <img class="photo photo--pause" src="/klubi/img/hengahdys-kahvi-ikkunalla.jpg" width="1200" height="674" loading="lazy" decoding="async" alt="Äiti istuu ikkunan äärellä villapaidassa, pitää kahvikuppia kädessä ja hengähtää hetken.">
-        <div class="hero-continue">
-          <p class="hero-stand">Sinun ei tarvitse selvitä yksin.</p>
-          <p>Hengittävien äitien klubi on äitien oma pieni kylä keskellä arkea. Saat oppia ymmärtämään omaa hermostoasi, löytää käytännön keinoja palautumiseen ja saada rinnallesi muita äitejä, jotka haluavat kasvaa, voida paremmin ja rakentaa hyvinvoivaa arkea itselleen ja perheelleen.</p>
-          <p>Sinun ei tarvitse muuttaa kaikkea kerralla tai suorittaa hyvinvointia muidenkin asioiden päälle. Riittää, että aloitat pienestä. Yhdessä voimme löytää enemmän rauhaa, yhteyttä ja tilaa hengittää – myös tavallisten arkipäivien keskellä.</p>
-        </div>
-      </div>
-      <div class="hero-visual">
+      <div>
         <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiössä, kädet ristissä, katse kameraan -->
         <img class="photo photo--hero" src="/klubi/img/juliana-keittio-esiliina.jpg" width="960" height="1280" fetchpriority="high" decoding="async" alt="Juliana seisoo kotinsa keittiössä kädet ristissä, kallistaa päätään ja hymyilee kameraan.">
       </div>
@@ -1251,80 +1297,43 @@
 
 <main id="sisalto">
 
-  <section aria-labelledby="h-kuukausi">
-    <div class="wrap">
-      <h2 id="h-kuukausi">Näin klubikuukausi kulkee</h2>
-      <div class="kuukausi-col">
-        <p>Joka kuukaudella on oma laajempi teema, jota harjoittelemme 4 viikkoa. Joka viikon maanantaina saat miniluennon ja pienen harjoituksen. Jokainen viikko käydään läpi yhdessä Zoom-livessä, jossa vastaan kysymyksiinne ja käymme aiheen läpi vielä yhdessä.</p>
-        <p>Marraskuun teema on Kaasu ja jarru. Jokaisella kuukaudella on oma teemansa, ja joulukuussa teema on Riittävä joulu.</p>
+  <section class="band" aria-labelledby="h-saat">
+    <div class="wrap wrap--wide">
+      <h2 id="h-saat">Mitä saat klubissa</h2>
+      <div class="k-cards">
+        <article class="k-card">
+          <p class="k-label">Joka viikko</p>
+          <h3>Miniluento ja pieni harjoitus</h3>
+          <p>Saat ne maanantaisin. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
+        </article>
+        <article class="k-card">
+          <p class="k-label">Maanantaisin klo 21</p>
+          <h3>Yhteinen live Zoomissa</h3>
+          <p>Vastaan kysymyksiinne ja käymme viikon aiheen läpi yhdessä. Jos et ehdi, voit katsoa tallenteen myöhemmin omalla ajallasi.</p>
+        </article>
+        <article class="k-card">
+          <p class="k-label">Joka kuukausi</p>
+          <h3>Yksi teema, jota harjoittelemme 4 viikkoa</h3>
+          <p>Marraskuun teema on Kaasu ja jarru. Joulukuussa teema on Riittävä joulu.</p>
+        </article>
+        <article class="k-card">
+          <p class="k-label">Aina käytössäsi</p>
+          <h3>Oma kurssialusta ja keskustelutila</h3>
+          <p>Alustalta löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Keskustelutilassa voit jutella muiden äitien kanssa.</p>
+        </article>
       </div>
-      <div class="kuukausi-col">
-        <h3 id="h-alusta">Kurssin alusta ja materiaalit</h3>
-        <p>Klubilla on oma kurssialusta. Sieltä löydät luennot, harjoitukset, tulostettavat PDF-tarkistuslistat ja livejen tallenteet. Samalla alustalla on keskustelutila, jossa voit jutella muiden äitien kanssa.</p>
+      <div class="k-heti">
+        <h3 id="h-heti">Saat heti liittyessäsi sähköpostiisi</h3>
+        <ul>
+          <li>Aloitusäänitteen: näin klubi toimii ja mistä aloitat</li>
+          <li>3 SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
+          <li>Kuluvan viikon ja edellisen viikon materiaalit</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="h-heti">
-    <div class="wrap">
-      <h2 id="h-heti">Saat heti liittyessäsi</h2>
-      <ul class="gets">
-        <li>Aloitusäänitteen: näin klubi toimii ja mistä aloitat</li>
-        <li>Kolme SOS-hengähdystä: kun hermo palaa, kun uni ei tule ja kun kaikki kaatuu päälle</li>
-      </ul>
-      <p>Saat materiaalit heti liittyessäsi sähköpostiisi.</p>
+      <p class="lead k-calm">Klubissa ei ole rästejä. Jos joku viikko jää väliin, tulet mukaan kuluvaan viikkoon.</p>
       <p class="btn-row">
         <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
-        <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="intro" aria-labelledby="h-mikaon">
-    <div class="wrap intro-heading">
-      <h2 id="h-mikaon">Mikä on Hengittävien äitien klubi?</h2>
-    </div>
-    <div class="wrap intro-copy">
-      <p>Hengittävien äitien klubi on yhteisö äideille, jotka haluavat voida paremmin keskellä tavallista arkea ja kasvaa omassa äitiydessään.</p>
-      <p>Opettelemme ymmärtämään hermoston toimintaa, tunnistamaan omia tarpeitamme ja löytämään keinoja palautua silloinkin, kun lapset tarvitsevat, puhelin soi ja oma aika tuntuu olevan aina viimeisenä.</p>
-      <p>Joka kuukausi keskitymme yhteen teemaan. Saat lyhyitä luentoja, käytännön harjoituksia ja pieniä tehtäviä, joita voit kokeilla omassa arjessasi. Maanantaisin klo 21 kokoonnumme yhteiseen liveen.</p>
-      <p>Et tarvitse pitkiä vapaita hetkiä tai valmiita taitoja. Tarkoitus ei ole lisätä tekemistä kalenteriisi, vaan auttaa sinua löytämään uusia tapoja toimia ja voida paremmin sen elämän keskellä, jota jo elät.</p>
-      <p>Saat olla keskeneräinen ja samalla kasvaa. Sinun ei tarvitse pärjätä yksin.</p>
-      <p>Hengittävien äitien klubissa jokainen saa olla oma itsensä ja tulla kohdatuksi lämpimästi ja kunnioittavasti. Se on paikka, jossa äiti nähdään kokonaisena ihmisenä omine tarpeineen ja ajatuksineen, unohtamatta äitiyden roolin ainutlaatuisuutta ja tärkeyttä. Opimme vaalimaan tätä roolia unohtamatta kuitenkaan, että olemme myös muuta.</p>
-      <p>Klubissa opettelemme siten voimaan hyvin naisena, äitinä ja perheen koordinaattorina.</p>
-    </div>
-    <div class="wrap wrap--wide intro-cards">
-      <h3 class="goals-kicker">Klubin päämäärät, joita kohti kuljemme:</h3>
-      <div class="pillars">
-        <article class="pillar">
-          <h3>Hyvinvoiva nainen ja äiti</h3>
-          <p>Opimme ymmärtämään itseämme, tunteitamme ja hermostoamme sekä pitämään huolta omasta jaksamisestamme.</p>
-        </article>
-        <article class="pillar">
-          <h3>Kasvua äitiydessä</h3>
-          <p>Löydämme uusia näkökulmia vanhemmuuteen ja keinoja tukea lastemme hyvinvointia.</p>
-        </article>
-        <article class="pillar">
-          <h3>Parempi yhteys lapseen</h3>
-          <p>Opimme pysähtymään lapsen äärellä, kuuntelemaan häntä ja kohtaamaan hänet rauhallisemmin myös haastavissa hetkissä.</p>
-        </article>
-        <article class="pillar">
-          <h3>Parempi tunnelma perheessäsi ja kotonasi</h3>
-          <p>Kuljemme pienin askelin kohti arkea, jossa kaikkien on parempi olla, ilman uusia suorituspaineita.</p>
-        </article>
-      </div>
-    </div>
-    <div class="wrap intro-photo">
-      <!-- Julianan oma kuva, väreissä (poikkeus mustavalkosäännöstä). -->
-      <img class="photo photo--break photo--colour" src="/klubi/img/metsa-aurinko.jpg" width="1600" height="1067" loading="lazy" decoding="async" alt="Aurinko siivilöityy männikön läpi syksyisessä metsässä.">
-    </div>
-  </section>
-
-  <section class="cta-band" aria-label="Liity klubiin">
-    <div class="wrap">
-      <p>Valmis hengittämään kevyemmin? <span class="nw">25 €/kk</span>.</p>
-      <p class="btn-row">
-        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Kyllä, liityn</a>
+        <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita 2 viikon kokeilu</a>
       </p>
     </div>
   </section>
@@ -1332,83 +1341,51 @@
   <section aria-labelledby="h-sinulle">
     <div class="wrap split">
       <h2 id="h-sinulle">Klubi on sinulle, jos</h2>
-      <ul class="recognize">
+      <ul class="k-list">
         <li>muistat koko perheen asiat, mutta omat tarpeesi jäävät aina viimeiseksi</li>
         <li>pinna ja oma rauhallisuus joutuvat koetukselle, etenkin lasten kanssa</li>
-        <li>olet illalla niin väsynyt, että selaat puhelinta, vaikka uni auttaisi enemmän</li>
         <li>tiedät, että pitäisi levätä, mutta lepo tuntuu siltä, että se pitää ensin ansaita</li>
         <li>lähelläsi ei ole omaa kylää: mummoa, naapuria tai ystävää, joka ottaisi lapset hetkeksi</li>
-        <li>kaipaat toista aikuista, jolle voi puhua rehellisesti</li>
         <li>haluat voida paremmin, mutta et jaksa uutta suoritusprojektia</li>
-        <li>haluat ymmärtää itseäsi paremmin ja löytää uusia tapoja kohdata lapsesi ja perheesi</li>
       </ul>
-      <p class="lead">Jos tunnistit itsesi yhdestäkin kohdasta, olet tervetullut mukaan. Sinun ei tarvitse olla kriisissä liittyäksesi klubiin. Voit tulla myös siksi, että haluat oppia tuntemaan itseäsi ja nauttimaan arjesta enemmän.</p>
+      <p class="lead">Jos tunnistit itsesi yhdestäkin kohdasta, olet tervetullut mukaan. Sinun ei tarvitse olla kriisissä liittyäksesi klubiin.</p>
       <!-- Kuvapankkikuva (väliaikainen). Lähde: https://www.pexels.com/photo/mom-and-daughter-lying-down-and-eyes-closed-7204133/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
       <img class="photo photo--wide" src="/klubi/img/klubi-sinulle-aiti-ja-tytar.jpg" width="1400" height="934" loading="lazy" decoding="async" alt="Äiti ja tytär makaavat vierekkäin silmät kiinni, äiti hymyilee ja silittää tytön hiuksia.">
     </div>
   </section>
 
-  <section class="band" aria-labelledby="h-keskella">
-    <div class="wrap split split--flip">
-      <h2 id="h-keskella">Oma rauhan keidas keskellä arkea</h2>
-      <p>Lapset kiukuttelevat, puhelin soi ja työasiat odottavat. Koti on välillä kaaos, unet jäävät lyhyiksi, eivätkä pyykit, harrastukset ja päiväkotiaamut lopu.</p>
-      <p>Klubissa etsimme pieniä uusia tapoja toimia juuri tässä arjessa. Sinun ei tarvitse odottaa lomaa tai täydellistä hiljaisuutta. Harjoituksia voi kokeilla keittiössä, autossa ja iltaisin, sen elämän keskellä jota jo elät.</p>
-      <!-- Julianan oma kuva (mustavalkoiseksi muunnettu): keittiön pöydän ääressä -->
-      <img class="photo photo--portrait" src="/klubi/img/juliana-poyta-katse-sivulle.jpg" width="960" height="1280" loading="lazy" decoding="async" style="object-position: 50% 35%;" alt="Juliana istuu keittiön pöydän ääressä kädet ristissä ja katsoo hymyillen ikkunasta.">
-    </div>
-  </section>
-
-  <section aria-labelledby="h-oppia">
-    <div class="wrap wrap--wide">
+  <section class="band" aria-labelledby="h-oppia">
+    <div class="wrap">
       <h2 id="h-oppia">Mitä voit oppia klubissa?</h2>
-      <ul class="gives">
+      <ul class="k-list">
         <li>Tunnistamaan omat kuormituksen merkkisi aiemmin.</li>
         <li>Löytämään keinoja pysähtyä ennen kuin kiire ja ärtymys ottavat vallan.</li>
         <li>Kokeilemaan hengitys- ja kehoharjoituksia, jotka mahtuvat tavalliseen päivään.</li>
-        <li>Suhtautumaan omaan väsymykseen ja levon tarpeeseen lempeämmin.</li>
         <li>Tukemaan lastasi vaikeissa tunteissa ja näyttämään omalla esimerkillä, miten rauhoittumiseen voi palata.</li>
-        <li>Tunnistamaan omia rajojasi ja sitä, mihin voimasi tällä hetkellä riittävät.</li>
-        <li>Ymmärtämään paremmin omia reaktioitasi ja niiden taustalla olevia tarpeita.</li>
         <li>Löytämään ympärillesi muita äitejä, joiden kanssa ei tarvitse esittää pärjäävänsä.</li>
       </ul>
-      <p>Pienet harjoitukset eivät poista kaikkia arjen haasteita. Ne voivat kuitenkin auttaa sinua löytämään uusia tapoja kohdata niitä.</p>
-      <div class="split">
-      <!-- Kuvapankkikuva (väliaikainen, mustavalkoiseksi muunnettu). Lähde: https://www.pexels.com/photo/mother-and-child-enjoying-natural-light-indoors-29973427/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-      <img class="photo photo--inline" src="/klubi/img/hero-aiti-ja-lapsi-ikkunalla.jpg" width="1200" height="1500" loading="lazy" decoding="async" style="object-position: 50% 18%;" alt="Äiti ja pieni lapsi seisovat selin ikkunan äärellä ja katsovat talvista pihaa aamun valossa.">
-      <h2 id="h-hengittava">Hengittävä äiti</h2>
-      <p>Hengittävä äiti ei ole äiti, joka ei koskaan hermostu tai väsy.</p>
-      <p>Hän opettelee tunnistamaan, milloin oma kuorma kasvaa liian suureksi. Hän harjoittelee pysähtymistä, omien tarpeidensa kuuntelemista ja takaisin rauhaan palaamista, myös niiden hetkien jälkeen, kun kaikki ei mennyt niin kuin hän olisi toivonut.</p>
-      <p>Hän ymmärtää, ettei hänen tarvitse onnistua kaikessa ollakseen hyvä äiti.</p>
-      <p>Vähitellen arkeen voi tulla enemmän tilaa hengittää, olla läsnä ja nauttia pienistä hetkistä lastensa kanssa.</p>
-      </div>
-      <p class="btn-row cta-beat">
-        <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
-        <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
-      </p>
+      <p class="k-calm">Pienet harjoitukset eivät poista kaikkia arjen haasteita. Ne voivat kuitenkin auttaa sinua löytämään uusia tapoja kohdata niitä.</p>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="h-muistot">
+  <section aria-labelledby="h-muistot">
     <div class="wrap split">
       <h2 id="h-muistot">Lapsellesi turvaa ja parhaat muistot</h2>
       <p class="lead lead--italic">Lapsesi parhaat muistot syntyvät lapsuuden kodissa – ja sinä luot sen tunnelman.</p>
-      <p>Lapsuuden kodin tunnelma kulkee lapsen mukana pitkälle aikuisuuteen. Se, millaisena hän kokee kodin, läheisyyden ja turvan, luo pohjan sille, miten hän näkee itsensä, muut ihmiset ja maailman. Lapset aistivat kaiken, ja me haluamme olla heille paras mahdollinen malli. Täällä yhteisössä kuljemme kohti sitä keskeneräisinä ja epätäydellisinä, mutta selkeällä päämäärällä. Riittää, että haluat olla joka päivä vähän parempi äiti, ihminen ja puoliso. Yksi askel päivässä riittää.</p>
-      <!-- Kuvapankkikuva (väliaikainen). Lähde: https://www.pexels.com/photo/mother-and-daughter-faces-together-18251000/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön).
-           Vaihtoehto ladattu: img/vaihtoehto-aiti-ja-poika.jpg, lähde https://www.pexels.com/photo/mother-looking-at-son-in-close-up-view-18332326/ -->
+      <p>Lapset aistivat kaiken, ja me haluamme olla heille paras mahdollinen malli. Täällä yhteisössä kuljemme kohti sitä keskeneräisinä ja epätäydellisinä, mutta selkeällä päämäärällä. Yksi askel päivässä riittää.</p>
+      <!-- Kuvapankkikuva (väliaikainen). Lähde: https://www.pexels.com/photo/mother-and-daughter-faces-together-18251000/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön). -->
       <img class="photo photo--portrait" src="/klubi/img/rauha-otsat-yhdessa.jpg" width="1200" height="1500" loading="lazy" decoding="async" alt="Äiti ja tytär nojaavat otsat vastakkain ja hymyilevät rauhallisesti.">
     </div>
   </section>
 
   <section class="cta-band" aria-label="Liity klubiin">
     <div class="wrap">
-      <p>Valmis hengittämään kevyemmin? <span class="nw">25 €/kk</span>.</p>
+      <p>Valmis hengittämään kevyemmin? Kokeile 2 viikkoa maksutta.</p>
       <p class="btn-row">
-        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Kyllä, liityn</a>
+        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita kokeilu</a>
       </p>
     </div>
   </section>
-
-
 
   <section aria-labelledby="h-juliana">
     <div class="wrap wrap--wide">
@@ -1420,10 +1397,6 @@
           <div class="about-copy">
             <p>Olen Juliana, kolmen lapsen äiti ja joogaopettaja. Taustallani on työuupumus ja toinen samanlainen vaihe, kun perheeseemme tuli kolmas lapsi. Tiedän, miltä tuntuu, kun voimat loppuvat kesken päivän eikä apua ole lähellä. Opetan hengitys- ja kehoharjoituksia, jotka mahtuvat äidin arkeen myös silloin, kun lapset ovat kotona.</p>
             <p>Sinun ei tarvitse olla joogi, eikä sinun tarvitse tuntea energioita tai laulaa mantroja. Tärkeintä on halu ymmärtää itseäsi ja omaa hermostoasi sekä oppia uusia tapoja toimia perheen arjessa.</p>
-            <p class="btn-row">
-              <!-- Linkki: Klubi 25 €/kk kassa suoraan -->
-              <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
-            </p>
           </div>
         </div>
       </div>
@@ -1436,20 +1409,27 @@
         <h2 id="h-hinta">Klubin hinta</h2>
       </div>
       <div class="tiers">
-        <article class="tier tier--featured" aria-label="Klubi 25 €/kk">
-          <p><span class="tier-lead">Klubi <span class="price nw">25 €/kk</span></span> Ei sitoutumisaikaa.</p>
+        <article class="tier tier--featured" aria-label="Klubi 25 €/kk, 2 viikkoa maksutta">
+          <p><span class="tier-lead">Klubi <span class="price nw">25 €/kk</span></span></p>
+          <p class="k-trial"><strong>Ensimmäiset 2 viikkoa maksutta.</strong> Ei sitoutumisaikaa.</p>
+          <ul class="k-list">
+            <li>miniluento ja pieni harjoitus joka viikko</li>
+            <li>live maanantaisin klo 21 ja tallenteet</li>
+            <li>kurssialusta ja keskustelutila</li>
+            <li>aloitusäänite ja 3 SOS-hengähdystä heti</li>
+            <li>kuluvan viikon ja edellisen viikon materiaalit heti</li>
+          </ul>
           <p class="btn-row">
             <!-- Linkki: Klubi 25 €/kk kassa -->
-            <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
+            <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita 2 viikon kokeilu</a>
           </p>
-          <p class="tier-invoice">Jos haluat maksaa laskulla, laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
         </article>
         <article class="tier" aria-label="Klubi PLUS 89 €/kk (tämä hinta on voimassa 31.12.2026 asti)">
           <p class="tier-plus-head"><span class="tier-lead">Klubi PLUS <span class="price nw">89 €/kk</span> <span class="tier-offer">(tämä hinta on voimassa 31.12.2026 asti)</span></span></p>
           <p class="price-fn">1.1.2027 alkaen PLUS-jäsenyys maksaa 119 €/kk.</p>
-          <p>Kaikki klubin sisältö ja lisäksi henkilökohtaista tukea Julianalta. Jos kaipaat henkilökohtaisempaa huomiota ja haluat päästä nopeammin eteenpäin, PLUS voi olla juuri sinulle.</p>
-          <ul class="soft">
-            <li>aloitat ilmaisella 30 minuutin tutustumispuhelulla, jossa katsotaan yhdessä sinun tilannettasi; puhelu ei velvoita mihinkään</li>
+          <p>Kaikki klubin sisältö ja lisäksi henkilökohtaista tukea Julianalta.</p>
+          <ul class="k-list">
+            <li>aloitat ilmaisella 30 minuutin tutustumispuhelulla, joka ei velvoita mihinkään</li>
             <li>sen jälkeen 2 henkilökohtaista 40 minuutin Zoom-tapaamista kuukaudessa</li>
             <li>enintään 10 paikkaa</li>
           </ul>
@@ -1459,18 +1439,92 @@
             <!-- Linkki: FastPayDirect Klubi PLUS 89 €/kk -->
             <a class="btn btn--outline" style="margin-top: .75rem;" href="https://link.fastpaydirect.com/payment-link/6ac7ae4ec0e70c7fefb73499" data-klubi-link="plus">Liity PLUS-jäseneksi</a>
           </p>
-          <p class="tier-invoice">Jos haluat maksaa laskulla, laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
         </article>
       </div>
-      <p class="invoice-note">Jäsenmaksu veloitetaan aina kuukauden jaksoissa: ensimmäinen kerta liittyessäsi ja sen jälkeen kuukauden välein liittymispäivästä, riippumatta kalenterikuukaudesta ja teemasta.</p>
       <p class="invoice-note">Haluatko maksaa laskulla? Laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
-      <div class="ehdot">
-        <h3>Ehdot</h3>
-        <p>Kyseessä on kuukausijäsenyys. Maksu veloitetaan liittyessä ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä.</p>
+      <details class="ehdot">
+        <summary>Ehdot lyhyesti</summary>
+        <p>Kyseessä on kuukausijäsenyys. Ensimmäiset 2 viikkoa ovat maksuttomat. Jos et peru kokeilun aikana, ensimmäinen maksu veloitetaan 2 viikon kuluttua liittymisestä ja sen jälkeen automaattisesti kuukauden välein.</p>
         <p>Klubin hinta on 25 €/kk.</p>
         <p>Sitoutumisaikaa ei ole. Jäsenyyden voi perua milloin vain, ja pääsy päättyy maksetun kuukauden lopussa. 1–3 kuukauden tauon voi pitää pyynnöstä, ja tauon aikana ei laskuteta.</p>
         <p>Jäsenmaksut tarkistetaan tarvittaessa kerran vuodessa. Pidätämme oikeuden muuttaa jäsenmaksua perustellusta syystä. Mahdollisesta muutoksesta ilmoitetaan jäsenille etukäteen, ja voit päättää jäsenyytesi ennen kuin uusi hinta astuu voimaan.</p>
         <p><a href="/klubi/ehdot/">Lue tarkemmin ehdoista</a></p>
+      </details>
+    </div>
+  </section>
+
+  <section id="varma" aria-labelledby="h-varma">
+    <div class="wrap">
+      <div class="soft-step center">
+        <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/full-moon-on-black-background-7501782/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
+        <img class="photo photo--moon" src="/klubi/img/taysikuu-rajattu.jpg" width="476" height="476" loading="lazy" decoding="async" alt="Täysikuu mustalla yötaivaalla.">
+        <h2 id="h-varma">Etkö ole vielä varma?</h2>
+        <p>Tule ilmaiseen Täydenkuun nollaushetkeen tiistaina 24.11.2026 klo 21.00. Teemme yhdessä noin 30 minuutin harjoituksen Zoomissa, ja näet, millaista klubissa on.</p>
+        <p class="btn-row">
+          <!-- Linkki: Täydenkuun nollaushetken (24.11.2026 klo 21.00) ilmoittautumislomake -->
+          <a class="btn btn--outline" href="https://hengittava-aiti.fi/nollaushetki/#ilmoittaudu" data-klubi-link="nollaushetki">Ilmoittaudu Täydenkuun nollaushetkeen</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="h-kysymyksia">
+    <div class="wrap">
+      <h2 id="h-kysymyksia">Kysymyksiä</h2>
+      <div class="faq">
+        <details>
+          <summary>Miten 2 viikon kokeilu toimii?</summary>
+          <p>Liityt klubiin tavalliseen tapaan ja saat heti aloitusmateriaalit sekä kuluvan viikon ja edellisen viikon materiaalit. Ensimmäiset 2 viikkoa ovat maksuttomat. Jos klubi ei tunnu omalta, peru viestillä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a> ennen kuin 2 viikkoa on kulunut, niin et maksa mitään.</p>
+        </details>
+        <details>
+          <summary>Entä jos en ehdi liveen?</summary>
+          <p>Voit katsoa tallenteen myöhemmin omalla ajallasi. Sinun ei tarvitse osallistua jokaiseen liveen pysyäksesi mukana.</p>
+        </details>
+        <details id="faq-valiin">
+          <summary>Entä jos joku viikko jää väliin?</summary>
+          <p>Ei haittaa. Voit tutustua materiaaleihin myöhemmin tai jättää ne väliin ja tulla mukaan kuluvaan viikkoon. Klubissa ei ole rästejä, sillä tärkeintä on, ettei tästä tule suoritusta.</p>
+        </details>
+        <details>
+          <summary>Pitääkö kameran olla päällä?</summary>
+          <p>Voit osallistua liveen myös ilman kameraa.</p>
+        </details>
+        <details>
+          <summary>Pitääkö asua pääkaupunkiseudulla?</summary>
+          <p>Ei. Klubi toimii verkossa, ja siihen voi osallistua asuinpaikasta riippumatta. Helsingissä järjestettävä tapaaminen on erillinen lisämahdollisuus.</p>
+        </details>
+        <details>
+          <summary>Entä jos tulee huono kuukausi?</summary>
+          <p>Klubin tarkoitus ei ole lisätä kuormitusta. Voit ottaa materiaalit käyttöön silloin, kun sinulla on siihen tilaa, ja palata harjoituksiin myöhemmin. Sinun ei tarvitse pysyä aikataulussa täydellisesti.</p>
+        </details>
+        <details>
+          <summary>Onko klubi terapiaa?</summary>
+          <p>Ei. Klubi on ohjattu oppimis- ja yhteisöpalvelu, joka keskittyy hermoston säätelyyn, itsetuntemukseen, vanhemmuuteen ja arjen hyvinvointiin. Se ei korvaa terveydenhuoltoa tai psykoterapiaa silloin, kun niitä tarvitaan.</p>
+        </details>
+        <details>
+          <summary>Miten maksu toimii?</summary>
+          <p>Kyseessä on kuukausijäsenyys. Ensimmäiset 2 viikkoa ovat maksuttomat. Sen jälkeen maksu veloitetaan kortilta automaattisesti kuukauden välein. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet. Klubin hinta on 25 €/kk.</p>
+          <p>Haluatko maksaa laskulla? Laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
+        </details>
+        <details>
+          <summary>Kuinka pitkään kannattaa olla mukana?</summary>
+          <p>Suosittelen antamaan itsellesi aluksi kolme kuukautta, jotta teemat ehtivät tulla tutuiksi. Se on suositus, ei sitova jäsenyysaika. Sitoutumisaikaa ei ole.</p>
+        </details>
+        <details>
+          <summary>Voinko lopettaa jäsenyyden?</summary>
+          <p>Kyllä. Jäsenyydessä ei ole sitoutumisaikaa. Voit perua jäsenyyden milloin vain viestillä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>, ja pääsy päättyy maksetun kuukauden lopussa.</p>
+        </details>
+        <details>
+          <summary>Voinko pitää taukoa?</summary>
+          <p>Kyllä. Voit pitää 1–3 kuukauden tauon pyytämällä sitä viestillä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>. Tauon aikana sinua ei laskuteta.</p>
+        </details>
+        <details>
+          <summary>Mitä PLUS-jäsenyys sisältää?</summary>
+          <p>PLUS sisältää kaiken klubin sisällön ja lisäksi henkilökohtaista tukea Julianalta. Aloitat ilmaisella 30 minuutin tutustumispuhelulla, jossa katsotaan yhdessä sinun tilannettasi ja sovitaan, millainen tuki sinua auttaisi. Puhelu ei velvoita mihinkään. Sen jälkeen tapaamme kahdestaan Zoomissa 2 kertaa kuukaudessa, 40 minuuttia kerrallaan. Paikkoja on enintään 10. Hinta on 89 €/kk 31.12.2026 asti liittyville, ja se pysyy niin kauan kuin jäsenyys jatkuu. 1.1.2027 alkaen hinta on 119 €/kk.</p>
+        </details>
+        <details>
+          <summary>Olen jo klubissa. Voinko päivittää PLUSsaan?</summary>
+          <p>Kyllä, milloin vain. Varaa ensin <a href="https://api.leadconnectorhq.com/widget/bookings/tutustumispuhelu-hengittava-aiti">ilmainen tutustumispuhelu</a> tai laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>. Jos myöhemmin palaat tavalliseen jäsenyyteen, oma klubihintasi säilyy.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -1551,78 +1605,6 @@
     </div>
   </section>
 
-  <section id="varma" aria-labelledby="h-varma">
-    <div class="wrap">
-      <div class="soft-step center">
-        <!-- Kuvapankkikuva. Lähde: https://www.pexels.com/photo/full-moon-on-black-background-7501782/ (Pexels-lisenssi, vapaa kaupalliseen käyttöön) -->
-        <img class="photo photo--moon" src="/klubi/img/taysikuu-rajattu.jpg" width="476" height="476" loading="lazy" decoding="async" alt="Täysikuu mustalla yötaivaalla.">
-        <h2 id="h-varma">Etkö ole vielä varma?</h2>
-        <p>Tule ilmaiseen Täydenkuun nollaushetkeen tiistaina 24.11.2026 klo 21.00. Teemme yhdessä noin 30 minuutin harjoituksen Zoomissa, ja näet, millaista klubissa on.</p>
-        <p class="btn-row">
-          <!-- Linkki: Täydenkuun nollaushetken (24.11.2026 klo 21.00) ilmoittautumislomake -->
-          <a class="btn btn--outline" href="https://hengittava-aiti.fi/nollaushetki/#ilmoittaudu" data-klubi-link="nollaushetki">Ilmoittaudu Täydenkuun nollaushetkeen</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="h-kysymyksia">
-    <div class="wrap">
-      <h2 id="h-kysymyksia">Kysymyksiä</h2>
-      <div class="faq">
-        <details>
-          <summary>Entä jos en ehdi liveen?</summary>
-          <p>Voit katsoa tallenteen myöhemmin omalla ajallasi. Sinun ei tarvitse osallistua jokaiseen liveen pysyäksesi mukana.</p>
-        </details>
-        <details id="faq-valiin">
-          <summary>Entä jos joku viikko jää väliin?</summary>
-          <p>Ei haittaa. Voit tutustua materiaaleihin myöhemmin tai jättää ne väliin ja tulla mukaan kuluvaan viikkoon. Klubissa ei ole rästejä, sillä tärkeintä on, ettei tästä tule suoritusta.</p>
-        </details>
-        <details>
-          <summary>Pitääkö kameran olla päällä?</summary>
-          <p>Voit osallistua liveen myös ilman kameraa.</p>
-        </details>
-        <details>
-          <summary>Pitääkö asua pääkaupunkiseudulla?</summary>
-          <p>Ei. Klubi toimii verkossa, ja siihen voi osallistua asuinpaikasta riippumatta. Helsingissä järjestettävä tapaaminen on erillinen lisämahdollisuus.</p>
-        </details>
-        <details>
-          <summary>Entä jos tulee huono kuukausi?</summary>
-          <p>Klubin tarkoitus ei ole lisätä kuormitusta. Voit ottaa materiaalit käyttöön silloin, kun sinulla on siihen tilaa, ja palata harjoituksiin myöhemmin. Sinun ei tarvitse pysyä aikataulussa täydellisesti.</p>
-        </details>
-        <details>
-          <summary>Onko klubi terapiaa?</summary>
-          <p>Ei. Klubi on ohjattu oppimis- ja yhteisöpalvelu, joka keskittyy hermoston säätelyyn, itsetuntemukseen, vanhemmuuteen ja arjen hyvinvointiin. Se ei korvaa terveydenhuoltoa tai psykoterapiaa silloin, kun niitä tarvitaan.</p>
-        </details>
-        <details>
-          <summary>Miten maksu toimii?</summary>
-          <p>Kyseessä on kuukausijäsenyys. Maksu veloitetaan kortilla liittyessäsi ja sen jälkeen automaattisesti kuukauden välein liittymispäivästä. Näet liittymiskuukautesi materiaalit ja kaikki tulevat kuukaudet. Klubin hinta on 25 €/kk.</p>
-          <p>Haluatko maksaa laskulla? Laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>.</p>
-        </details>
-        <details>
-          <summary>Kuinka pitkään kannattaa olla mukana?</summary>
-          <p>Suosittelen antamaan itsellesi aluksi kolme kuukautta, jotta teemat ehtivät tulla tutuiksi. Se on suositus, ei sitova jäsenyysaika. Sitoutumisaikaa ei ole.</p>
-        </details>
-        <details>
-          <summary>Voinko lopettaa jäsenyyden?</summary>
-          <p>Kyllä. Jäsenyydessä ei ole sitoutumisaikaa. Voit perua jäsenyyden milloin vain viestillä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>, ja pääsy päättyy maksetun kuukauden lopussa.</p>
-        </details>
-        <details>
-          <summary>Voinko pitää taukoa?</summary>
-          <p>Kyllä. Voit pitää 1–3 kuukauden tauon pyytämällä sitä viestillä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>. Tauon aikana sinua ei laskuteta.</p>
-        </details>
-        <details>
-          <summary>Mitä PLUS-jäsenyys sisältää?</summary>
-          <p>PLUS sisältää kaiken klubin sisällön ja lisäksi henkilökohtaista tukea Julianalta. Aloitat ilmaisella 30 minuutin tutustumispuhelulla, jossa katsotaan yhdessä sinun tilannettasi ja sovitaan, millainen tuki sinua auttaisi. Puhelu ei velvoita mihinkään. Sen jälkeen tapaamme kahdestaan Zoomissa 2 kertaa kuukaudessa, 40 minuuttia kerrallaan. Paikkoja on enintään 10. Hinta on 89 €/kk 31.12.2026 asti liittyville, ja se pysyy niin kauan kuin jäsenyys jatkuu. 1.1.2027 alkaen hinta on 119 €/kk.</p>
-        </details>
-        <details>
-          <summary>Olen jo klubissa. Voinko päivittää PLUSsaan?</summary>
-          <p>Kyllä, milloin vain. Varaa ensin <a href="https://api.leadconnectorhq.com/widget/bookings/tutustumispuhelu-hengittava-aiti">ilmainen tutustumispuhelu</a> tai laita viestiä osoitteeseen <a href="mailto:hei@hengittava-aiti.fi">hei@hengittava-aiti.fi</a>. Jos myöhemmin palaat tavalliseen jäsenyyteen, oma klubihintasi säilyy.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
   <section class="closing" id="loppu" aria-label="Liity klubiin">
     <div class="wrap center">
       <hr class="divider" aria-hidden="true" style="margin-bottom: 2.5rem;">
@@ -1630,7 +1612,7 @@
       <p class="lead">Tule mukaan Hengittävien äitien yhteisöön.</p>
       <p class="btn-row">
         <!-- Linkki: Klubi 25 €/kk kassa (sama kuin hintakortin Klubi-nappi) -->
-        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
+        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita 2 viikon kokeilu</a>
       </p>
     </div>
   </section>
@@ -1645,9 +1627,9 @@
 
 <!-- Kiinnitetty liittymispalkki mobiilissa: näkyy, kun hero on ohitettu, ja piiloutuu hinnan, Täydenkuun nollaushetken ja loppukehotuksen kohdalla -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true" inert>
-  <p>Klubi <span class="nw">25 €/kk</span></p>
+  <p>2 viikkoa maksutta</p>
   <!-- Linkki: Klubi 25 €/kk kassa (sama kuin hintakortin Klubi-nappi) -->
-  <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
+  <a class="btn" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita kokeilu</a>
 </div>
 
 <!-- Liittymisvalinta: yläosan "Kyllä, liityn" avaa tämän. Ilman JavaScriptiä nappi vie suoraan klubin kassalle. -->
@@ -1658,9 +1640,9 @@
     <div class="join-options">
       <div class="join-option join-option--klubi">
         <p class="tier-lead">Klubi <span class="price nw">25 €/kk</span></p>
-        <p>Kaikki klubin sisältö. Ei sitoutumisaikaa.</p>
+        <p>Kaikki klubin sisältö. Ensimmäiset 2 viikkoa maksutta, ei sitoutumisaikaa.</p>
         <!-- Linkki: Klubi 25 €/kk kassa -->
-        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Liity klubiin</a>
+        <a class="btn btn--peach" href="https://sivut.hengittava-aiti.fi/klubi-kassa" data-klubi-link="klubi">Aloita 2 viikon kokeilu</a>
       </div>
       <div class="join-option">
         <p class="tier-lead">Klubi PLUS <span class="price nw">89 €/kk</span></p>
